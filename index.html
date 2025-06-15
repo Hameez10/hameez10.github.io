@@ -3,159 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hameez Iqbal | Software Engineer & Community Leader</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Hameez Iqbal - Cybersecurity, Software, Public Service</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #FF6B6B;
+            --secondary-color: #4ECDC4;
+            --warm-bg: #FFF9F4;
+            --text-dark: #2D3436;
+            --text-light: #636E72;
+            --accent-color: #FFD93D;
+        }
+
+        body {
+            font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--warm-bg);
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+            background-color: rgba(255, 107, 107, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 2rem 6rem;
+            background: linear-gradient(135deg, var(--warm-bg) 0%, #FFE8D6 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,217,61,0.1) 0%, rgba(255,217,61,0) 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 2.5rem 0;
+        }
+
+        .cta-button {
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .primary-button {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .secondary-button {
+            background-color: white;
+            color: var(--text-dark);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .primary-button:hover {
+            background-color: #FF5252;
+        }
+
+        .secondary-button:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* Tech Badges */
+        .tech-badges {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-top: 4rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .tech-badge {
+            width: 50px;
+            height: 50px;
+            transition: all 0.3s ease;
+            filter: grayscale(100%);
+            opacity: 0.7;
+        }
+
+        .tech-badge:hover {
+            transform: scale(1.15) rotate(5deg);
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* Startup Scene Section */
+        .startup-scene {
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 30px;
+            margin: 2rem auto;
+            max-width: 1000px;
+        }
+
+        .startup-scene h2 {
+            color: var(--text-dark);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .startup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .startup-card {
+            background: var(--warm-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .startup-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .startup-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .startup-card p {
+            color: var(--text-light);
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">HI</div>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#community">Community</a></li>
-                <li><a href="heraldry.html">Heraldry</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="experience.html">Experience</a>
+                <a href="projects.html">Projects</a>
+                <a href="blog.html">Blog</a>
+                <a href="media.html">Media</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-    <main>
-        <section class="hero">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
             <h1>Hameez Iqbal</h1>
-            <p class="tagline">Software Engineer • Community Leader • Civic Tech Enthusiast</p>
-            <p class="intro">Building innovative solutions in fraud prevention, healthcare technology, and civic engagement while pursuing my Computer Science degree at Toronto Metropolitan University.</p>
-            <div class="social-links">
-                <a href="https://linkedin.com/in/hameeziqbal" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/hameeziqbal" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="/resume.pdf" class="cta-button">Download Resume</a>
+            <p>Building innovative solutions at the intersection of cybersecurity, software development, and community impact</p>
+            
+            <div class="cta-buttons">
+                <a href="resume.pdf" class="cta-button primary-button">View Resume →</a>
+                <a href="projects.html" class="cta-button secondary-button">Explore Projects</a>
+                <a href="contact.html" class="cta-button secondary-button">Let's Connect</a>
             </div>
-        </section>
 
-        <section id="about" class="about">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <div class="profile-image">
-                    <img src="profile.jpg" alt="Hameez Iqbal" />
-                </div>
-                <div class="bio">
-                    <h3>Academic Journey</h3>
-                    <p>Currently pursuing my Bachelor's in Computer Science at Toronto Metropolitan University, where I combine technical expertise with a passion for community impact.</p>
-                    
-                    <h3>Professional Development</h3>
-                    <p>Through co-op experiences at leading companies like Mastercard, Unity Health Toronto, and Crewscope, I've developed expertise in fraud prevention, healthcare technology, and software development.</p>
-                    
-                    <h3>Community Engagement</h3>
-                    <p>As a former TDSB Trustee candidate and active volunteer with Trace Labs, I'm committed to leveraging technology for social good. My involvement in civic tech initiatives reflects my dedication to community-driven solutions.</p>
-                    
-                    <h3>Interests & Expertise</h3>
-                    <ul>
-                        <li>Cybersecurity & Digital Privacy</li>
-                        <li>Civic Technology & Digital Government</li>
-                        <li>Political Data Analysis</li>
-                        <li>Language Learning & Cultural Exchange</li>
-                        <li>Open Source Development</li>
-                    </ul>
-                </div>
+            <div class="tech-badges">
+                <a href="https://github.com/Hameez10" target="_blank">
+                    <img src="assets/github.svg" alt="GitHub" class="tech-badge">
+                </a>
+                <a href="https://linkedin.com/in/hameez-iqbal" target="_blank">
+                    <img src="assets/linkedin.svg" alt="LinkedIn" class="tech-badge">
+                </a>
+                <a href="https://tracelabs.org" target="_blank">
+                    <img src="assets/tracelabs.svg" alt="Trace Labs" class="tech-badge">
+                </a>
+                <a href="https://mastercard.com" target="_blank">
+                    <img src="assets/mastercard.svg" alt="Mastercard" class="tech-badge">
+                </a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="experience" class="experience">
-            <h2>Professional Experience</h2>
-            <div class="experience-timeline">
-                <div class="experience-item">
-                    <h3>Software Engineering Intern</h3>
-                    <h4>Crewscope</h4>
-                    <p class="date">2023 - Present</p>
-                    <p>Developing innovative solutions for crew management and operational efficiency.</p>
-                </div>
-                
-                <div class="experience-item">
-                    <h3>Technology Intern</h3>
-                    <h4>Mastercard</h4>
-                    <p class="date">2022</p>
-                    <p>Contributed to fraud prevention tools and security infrastructure development.</p>
-                </div>
-                
-                <div class="experience-item">
-                    <h3>Technical Analyst</h3>
-                    <h4>Unity Health Toronto</h4>
-                    <p class="date">2021</p>
-                    <p>Supported the implementation of Electronic Patient Record (EPR) systems.</p>
-                </div>
-                
-                <div class="experience-item">
-                    <h3>Software Developer Co-op</h3>
-                    <h4>Ethoca</h4>
-                    <p class="date">2021</p>
-                    <p>Worked on backend development and Angular frontend implementations.</p>
-                </div>
+    <!-- Startup Scene Section -->
+    <section class="startup-scene">
+        <h2>Toronto Startup Scene</h2>
+        <div class="startup-grid">
+            <div class="startup-card">
+                <h3>Startup Community</h3>
+                <p>Active member of Toronto's vibrant tech ecosystem, participating in hackathons, meetups, and startup events.</p>
             </div>
-        </section>
-
-        <section id="skills" class="skills">
-            <h2>Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Backend Development</h3>
-                    <ul>
-                        <li>Java (Spring Framework)</li>
-                        <li>Python (Django, Flask)</li>
-                        <li>Node.js</li>
-                        <li>SQL & Database Design</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Frontend Development</h3>
-                    <ul>
-                        <li>Angular</li>
-                        <li>React</li>
-                        <li>HTML/CSS/JavaScript</li>
-                        <li>Responsive Design</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Cloud & DevOps</h3>
-                    <ul>
-                        <li>Azure Cloud Services</li>
-                        <li>Docker</li>
-                        <li>CI/CD Pipelines</li>
-                        <li>Git Version Control</li>
-                    </ul>
-                </div>
+            <div class="startup-card">
+                <h3>Innovation Hub</h3>
+                <p>Contributing to Toronto's position as a leading tech innovation hub through collaboration and knowledge sharing.</p>
             </div>
-        </section>
-
-        <section id="community" class="community">
-            <h2>Community Impact</h2>
-            <div class="community-content">
-                <p>My commitment to community extends beyond technology. As a former TDSB Trustee candidate, I advocated for digital literacy and accessible education. Through my work with Trace Labs, I contribute to missing persons investigations using OSINT techniques. I'm passionate about the intersection of technology and public policy, working to create more efficient and accessible digital government services.</p>
+            <div class="startup-card">
+                <h3>Mentorship</h3>
+                <p>Engaging with early-stage startups and founders, sharing insights in cybersecurity and software development.</p>
             </div>
-        </section>
-
-        <section id="contact" class="contact">
-            <h2>Get in Touch</h2>
-            <div class="contact-content">
-                <p>Interested in collaborating on civic tech projects or discussing technology's role in community development? Let's connect!</p>
-                <a href="mailto:contact@hameeziqbal.ca" class="cta-button">Email Me</a>
-                <div class="social-links">
-                    <a href="https://linkedin.com/in/hameeziqbal" target="_blank">LinkedIn</a>
-                    <a href="https://github.com/hameeziqbal" target="_blank">GitHub</a>
-                    <a href="https://hameeziqbal.ca" target="_blank">Website</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 Hameez Iqbal. All rights reserved.</p>
-    </footer>
+        </div>
+    </section>
 </body>
 </html>
