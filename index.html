@@ -1,13 +1,161 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hameez Iqbal | Software Engineer & Community Leader</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">HI</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="heraldry.html">Heraldry</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Hameez Iqbal</h1>
+            <p class="tagline">Software Engineer • Community Leader • Civic Tech Enthusiast</p>
+            <p class="intro">Building innovative solutions in fraud prevention, healthcare technology, and civic engagement while pursuing my Computer Science degree at Toronto Metropolitan University.</p>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/hameeziqbal" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/hameeziqbal" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="/resume.pdf" class="cta-button">Download Resume</a>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="profile-image">
+                    <img src="profile.jpg" alt="Hameez Iqbal" />
+                </div>
+                <div class="bio">
+                    <h3>Academic Journey</h3>
+                    <p>Currently pursuing my Bachelor's in Computer Science at Toronto Metropolitan University, where I combine technical expertise with a passion for community impact.</p>
+                    
+                    <h3>Professional Development</h3>
+                    <p>Through co-op experiences at leading companies like Mastercard, Unity Health Toronto, and Crewscope, I've developed expertise in fraud prevention, healthcare technology, and software development.</p>
+                    
+                    <h3>Community Engagement</h3>
+                    <p>As a former TDSB Trustee candidate and active volunteer with Trace Labs, I'm committed to leveraging technology for social good. My involvement in civic tech initiatives reflects my dedication to community-driven solutions.</p>
+                    
+                    <h3>Interests & Expertise</h3>
+                    <ul>
+                        <li>Cybersecurity & Digital Privacy</li>
+                        <li>Civic Technology & Digital Government</li>
+                        <li>Political Data Analysis</li>
+                        <li>Language Learning & Cultural Exchange</li>
+                        <li>Open Source Development</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="experience">
+            <h2>Professional Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <h3>Software Engineering Intern</h3>
+                    <h4>Crewscope</h4>
+                    <p class="date">2023 - Present</p>
+                    <p>Developing innovative solutions for crew management and operational efficiency.</p>
+                </div>
+                
+                <div class="experience-item">
+                    <h3>Technology Intern</h3>
+                    <h4>Mastercard</h4>
+                    <p class="date">2022</p>
+                    <p>Contributed to fraud prevention tools and security infrastructure development.</p>
+                </div>
+                
+                <div class="experience-item">
+                    <h3>Technical Analyst</h3>
+                    <h4>Unity Health Toronto</h4>
+                    <p class="date">2021</p>
+                    <p>Supported the implementation of Electronic Patient Record (EPR) systems.</p>
+                </div>
+                
+                <div class="experience-item">
+                    <h3>Software Developer Co-op</h3>
+                    <h4>Ethoca</h4>
+                    <p class="date">2021</p>
+                    <p>Worked on backend development and Angular frontend implementations.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Backend Development</h3>
+                    <ul>
+                        <li>Java (Spring Framework)</li>
+                        <li>Python (Django, Flask)</li>
+                        <li>Node.js</li>
+                        <li>SQL & Database Design</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Frontend Development</h3>
+                    <ul>
+                        <li>Angular</li>
+                        <li>React</li>
+                        <li>HTML/CSS/JavaScript</li>
+                        <li>Responsive Design</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Cloud & DevOps</h3>
+                    <ul>
+                        <li>Azure Cloud Services</li>
+                        <li>Docker</li>
+                        <li>CI/CD Pipelines</li>
+                        <li>Git Version Control</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="community" class="community">
+            <h2>Community Impact</h2>
+            <div class="community-content">
+                <p>My commitment to community extends beyond technology. As a former TDSB Trustee candidate, I advocated for digital literacy and accessible education. Through my work with Trace Labs, I contribute to missing persons investigations using OSINT techniques. I'm passionate about the intersection of technology and public policy, working to create more efficient and accessible digital government services.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>Get in Touch</h2>
+            <div class="contact-content">
+                <p>Interested in collaborating on civic tech projects or discussing technology's role in community development? Let's connect!</p>
+                <a href="mailto:contact@hameeziqbal.ca" class="cta-button">Email Me</a>
+                <div class="social-links">
+                    <a href="https://linkedin.com/in/hameeziqbal" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/hameeziqbal" target="_blank">GitHub</a>
+                    <a href="https://hameeziqbal.ca" target="_blank">Website</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Hameez Iqbal. All rights reserved.</p>
+    </footer>
+</body>
 </html>
