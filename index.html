@@ -18,6 +18,8 @@
             position: relative;
             min-height: 100vh;
             max-height: 100vh;
+            height: 100%;
+            overflow: hidden;
         }
 
         :root {
@@ -35,6 +37,8 @@
             color: var(--text-dark);
             background-color: var(--warm-bg);
             overflow-y: auto;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Navigation */
@@ -103,10 +107,9 @@
         /* Updated Hero Section */
         .hero {
             padding: 2rem;
-            padding-top: calc(70px + 3rem); /* Reduced from 6rem to 3rem */
+            padding-top: calc(70px + 3rem);
             background: linear-gradient(135deg, var(--warm-bg) 0%, #FFE8D6 100%);
-            min-height: 100vh;
-            max-height: 100vh;
+            height: 100vh; /* Changed from min-height to fixed height */
             display: flex;
             align-items: flex-start;
             position: relative;
@@ -134,10 +137,12 @@
             max-width: 800px;
             width: 100%;
             margin: 0 auto;
-            margin-top: 1rem; /* Reduced from 2rem to 1rem */
+            margin-top: 1rem;
             position: relative;
             z-index: 2;
             padding-bottom: 2rem;
+            height: auto;
+            min-height: min-content;
         }
 
         .profile-section {
@@ -229,6 +234,7 @@
         .connect-section {
             text-align: center;
             margin-top: 2rem;
+            margin-bottom: 2rem;
         }
 
         .social-links {
@@ -268,6 +274,7 @@
             padding: 2rem;
             color: var(--text-light);
             font-size: 0.9rem;
+            margin-top: auto;
         }
 
         footer a {
@@ -277,6 +284,12 @@
 
         footer a:hover {
             text-decoration: underline;
+        }
+
+        main {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
         }
     </style>
 </head>
@@ -297,53 +310,55 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="hero">
-        <div class="hero-content">
-            <section class="profile-section">
-                <div class="profile-header">
-                    <div class="profile-image">
-                        <img src="HameezIqbal Image.png" alt="Hameez Iqbal">
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <section class="profile-section">
+                    <div class="profile-header">
+                        <div class="profile-image">
+                            <img src="HameezIqbal Image.png" alt="Hameez Iqbal">
+                        </div>
+                        <div class="intro-text">
+                            <h1>Hey! I'm Hameez 👋</h1>
+                            <p class="tagline">Student, Developer, Product, & Community Leader</p>
+                        </div>
                     </div>
-                    <div class="intro-text">
-                        <h1>Hey! I'm Hameez 👋</h1>
-                        <p class="tagline">Student, Developer, Product, & Community Leader</p>
+
+                    <div class="about-me">
+                        <p>
+                            Currently pursuing my <span class="highlight">Computer Science degree</span> at Toronto Metropolitan University, where I'm diving deep into Machine Learning and AI. I'm also minoring in Innovation and Cybersecurity because I believe technology should make the world better and safer! 🚀
+                        </p>
+                        <p>
+                            When I'm not coding or studying, you'll find me engaged in community initiatives. I've even taken the leap into public service by running for office! I love bringing together my tech knowledge and community leadership to create meaningful change. 💡
+                        </p>
                     </div>
-                </div>
 
-                <div class="about-me">
-                    <p>
-                        Currently pursuing my <span class="highlight">Computer Science degree</span> at Toronto Metropolitan University, where I'm diving deep into Machine Learning and AI. I'm also minoring in Innovation and Cybersecurity because I believe technology should make the world better and safer! 🚀
-                    </p>
-                    <p>
-                        When I'm not coding or studying, you'll find me engaged in community initiatives. I've even taken the leap into public service by running for office! I love bringing together my tech knowledge and community leadership to create meaningful change. 💡
-                    </p>
-                </div>
+                    <div class="interests">
+                        <span class="interest-tag">🤖 Machine Learning</span>
+                        <span class="interest-tag">🧠 Artificial Intelligence</span>
+                        <span class="interest-tag">🔒 Cybersecurity</span>
+                        <span class="interest-tag">💡 Innovation</span>
+                        <span class="interest-tag">🤝 Community Leadership</span>
+                        <span class="interest-tag">🌟 Public Service</span>
+                    </div>
+                </section>
 
-                <div class="interests">
-                    <span class="interest-tag">🤖 Machine Learning</span>
-                    <span class="interest-tag">🧠 Artificial Intelligence</span>
-                    <span class="interest-tag">🔒 Cybersecurity</span>
-                    <span class="interest-tag">💡 Innovation</span>
-                    <span class="interest-tag">🤝 Community Leadership</span>
-                    <span class="interest-tag">🌟 Public Service</span>
-                </div>
-            </section>
-
-            <div class="connect-section">
-                <h2>Let's Connect!</h2>
-                <div class="social-links">
-                    <a href="mailto:hameezwork@gmail.com" class="social-link">
-                        ✉️ Email Me
-                    </a>
-                    <a href="https://github.com/Hameez10" target="_blank" class="social-link">
-                        <img src="assets/GitHub.png" alt="GitHub"> GitHub
-                    </a>
-                    <a href="https://linkedin.com/in/hameez-iqbal" target="_blank" class="social-link">
-                        <img src="assets/LinkedIn_Icon.png" alt="LinkedIn"> LinkedIn
-                    </a>
+                <div class="connect-section">
+                    <h2>Let's Connect!</h2>
+                    <div class="social-links">
+                        <a href="mailto:hameezwork@gmail.com" class="social-link">
+                            ✉️ Email Me
+                        </a>
+                        <a href="https://github.com/Hameez10" target="_blank" class="social-link">
+                            <img src="assets/github.svg" alt="GitHub"> GitHub
+                        </a>
+                        <a href="https://linkedin.com/in/hameez-iqbal" target="_blank" class="social-link">
+                            <img src="assets/linkedin.svg" alt="LinkedIn"> LinkedIn
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     </main>
 
     <footer>
