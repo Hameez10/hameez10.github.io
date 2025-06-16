@@ -62,95 +62,146 @@
             color: var(--primary-color);
         }
 
-        /* About Section */
-        .about-section {
-            padding: 8rem 2rem 4rem;
-            max-width: 1200px;
+        .container {
+            max-width: 1000px;
             margin: 0 auto;
+            padding: 6rem 2rem 2rem;
         }
 
-        .about-content {
+        .about-section {
             background: white;
-            border-radius: 20px;
-            padding: 2.5rem;
+            border-radius: 30px;
+            padding: 3rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 4rem;
-            margin-top: 2rem;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
         .profile-image {
-            width: 100%;
-            border-radius: 15px;
+            width: 250px;
+            height: 250px;
+            border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: translateY(-5px);
         }
 
         .profile-image img {
             width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.3s ease;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .profile-image:hover img {
-            transform: scale(1.05);
+        .profile-intro {
+            flex: 1;
         }
 
-        .bio h2 {
+        .profile-intro h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
             color: var(--text-dark);
-            margin-bottom: 1.5rem;
-            font-size: 2rem;
         }
 
-        .bio h3 {
-            color: var(--primary-color);
-            margin: 2rem 0 1rem;
-            font-size: 1.3rem;
-        }
-
-        .bio p {
-            margin-bottom: 1.5rem;
+        .profile-intro p {
             color: var(--text-light);
             font-size: 1.1rem;
             line-height: 1.8;
         }
 
-        .bio ul {
-            list-style-type: none;
-            margin: 1.5rem 0;
+        .section {
+            margin-bottom: 2.5rem;
         }
 
-        .bio li {
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .highlight {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: var(--warm-bg);
+            padding: 1.5rem;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
             padding-left: 1.5rem;
             position: relative;
-            color: var(--text-light);
         }
 
-        .bio li:before {
+        .skill-list li:before {
             content: "•";
             color: var(--accent-color);
             position: absolute;
             left: 0;
         }
 
-        .download-resume {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background-color: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-top: 2rem;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
 
-        .download-resume:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+            .profile-image {
+                margin: 0 auto;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -170,37 +221,68 @@
         </div>
     </nav>
 
-    <!-- About Section -->
-    <section class="about-section">
-        <div class="about-content">
-            <div class="profile-image">
-                <img src="assets/profile.jpg" alt="Hameez Iqbal">
+    <div class="container">
+        <section class="about-section">
+            <div class="profile-header">
+                <div class="profile-image">
+                    <img src="HameezIqbal Image.png" alt="Hameez Iqbal">
+                </div>
+                <div class="profile-intro">
+                    <h1>About Me</h1>
+                    <p>I'm a Computer Science and Cybersecurity student at Toronto Metropolitan University, passionate about building products that make a positive impact. My journey spans technology, entrepreneurship, and community leadership.</p>
+                </div>
             </div>
-            <div class="bio">
-                <h2>About Me</h2>
-                <p>I'm a Computer Science and Cybersecurity student at Toronto Metropolitan University, passionate about using technology to make a positive impact in both the digital and physical world.</p>
-                
-                <h3>Academic Journey</h3>
-                <p>Currently pursuing my Bachelor's in Computer Science with a focus on Cybersecurity, I combine technical expertise with a passion for community impact. My studies at TMU have provided me with a strong foundation in both theoretical and practical aspects of computer science.</p>
-                
-                <h3>Professional Development</h3>
-                <p>Through co-op experiences at leading companies like Mastercard, Unity Health Toronto, and Crewscope, I've developed expertise in fraud prevention, healthcare technology, and software development. Each role has contributed to my growth as a cybersecurity professional and software developer.</p>
-                
-                <h3>Community Engagement</h3>
-                <p>As a former TDSB Trustee candidate and active volunteer with Trace Labs, I'm committed to leveraging technology for social good. My involvement in civic tech initiatives reflects my dedication to community-driven solutions.</p>
-                
-                <h3>Interests & Expertise</h3>
-                <ul>
-                    <li>Cybersecurity & Digital Privacy</li>
-                    <li>Civic Technology & Digital Government</li>
-                    <li>Political Data Analysis</li>
-                    <li>Language Learning & Cultural Exchange</li>
-                    <li>Open Source Development</li>
-                </ul>
 
-                <a href="resume.pdf" class="download-resume">Download Resume</a>
+            <div class="section">
+                <h2>🚀 Startup & Innovation</h2>
+                <p>Deeply involved in Toronto's startup ecosystem through the DMZ at TMU, I've had the opportunity to work with innovative startups like <span class="highlight">Crewscope</span>. I've complemented my practical experience by studying at <span class="highlight">Y Combinator's Startup School</span>, learning from industry leaders about building and scaling successful tech companies.</p>
             </div>
-        </div>
-    </section>
+
+            <div class="section">
+                <h2>💻 Technical Journey</h2>
+                <p>At TMU, I'm specializing in Computer Science with a focus on Cybersecurity, combining theoretical knowledge with practical applications. Through roles at companies like Mastercard and Unity Health Toronto, I've developed expertise in fraud prevention, healthcare technology, and software development.</p>
+            </div>
+
+            <div class="section">
+                <h2>🤝 Community Impact</h2>
+                <p>Beyond technology, I'm committed to civic engagement and community development. As a former TDSB Trustee candidate and active volunteer with Trace Labs, I work to bridge the gap between technology and social impact, particularly in education and digital privacy.</p>
+            </div>
+
+            <div class="section">
+                <h2>🎯 Areas of Focus</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Product Development</h3>
+                        <ul class="skill-list">
+                            <li>User-Centered Design</li>
+                            <li>Product Strategy</li>
+                            <li>Agile Methodologies</li>
+                            <li>MVP Development</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Technical Expertise</h3>
+                        <ul class="skill-list">
+                            <li>Full-Stack Development</li>
+                            <li>Cybersecurity</li>
+                            <li>System Architecture</li>
+                            <li>Cloud Infrastructure</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Innovation & Research</h3>
+                        <ul class="skill-list">
+                            <li>Startup Development</li>
+                            <li>Market Analysis</li>
+                            <li>Technology Trends</li>
+                            <li>Digital Privacy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 </body>
 </html> 
