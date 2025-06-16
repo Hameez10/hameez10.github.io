@@ -45,6 +45,7 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            height: 70px; /* Fixed height for navbar */
         }
 
         .nav-container {
@@ -100,7 +101,8 @@
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 6rem 2rem 2rem;
+            padding: 2rem;
+            padding-top: calc(70px + 4rem); /* navbar height + additional padding */
             min-height: calc(100vh - 2rem);
             overflow-y: auto;
             overflow-x: hidden;
