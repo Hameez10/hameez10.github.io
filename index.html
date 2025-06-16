@@ -102,13 +102,13 @@
 
         /* Updated Hero Section */
         .hero {
-            padding: 8rem 2rem 4rem;
-            padding-top: calc(70px + 4rem); /* navbar height + additional padding */
+            padding: 2rem;
+            padding-top: calc(70px + 6rem); /* Increased padding-top for more space */
             background: linear-gradient(135deg, var(--warm-bg) 0%, #FFE8D6 100%);
             min-height: 100vh;
             max-height: 100vh;
             display: flex;
-            align-items: center;
+            align-items: flex-start; /* Changed from center to flex-start */
             position: relative;
             overflow-y: auto;
             overflow-x: hidden;
@@ -134,8 +134,9 @@
             max-width: 800px;
             width: 100%;
             margin: 0 auto;
+            margin-top: 2rem; /* Added margin-top */
             position: relative;
-            z-index: 2; /* Increased z-index to be above navbar's backdrop */
+            z-index: 2;
             padding-bottom: 2rem;
         }
 
@@ -145,7 +146,6 @@
             border-radius: 30px;
             margin-bottom: 2rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            margin-top: 2rem; /* Added margin-top */
         }
 
         .profile-header {
