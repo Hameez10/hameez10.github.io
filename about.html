@@ -203,6 +203,62 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tech-category {
+            background: var(--warm-bg);
+            padding: 1.5rem;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .tech-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .tech-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .tech-tag {
+            background: white;
+            color: var(--text-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .tech-tag:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -245,7 +301,7 @@
 
             <div class="section">
                 <h2>🤝 Community Impact</h2>
-                <p>Beyond technology, I'm committed to civic engagement and community development. As a former TDSB Trustee candidate and active volunteer with Trace Labs, I work to bridge the gap between technology and social impact, particularly in education and digital privacy.</p>
+                <p>Beyond technology, I'm committed to civic engagement and community development. As a former PDSB Trustee candidate and active volunteer with Trace Labs, I work to bridge the gap between technology and social impact, particularly in education and digital privacy.</p>
             </div>
 
             <div class="section">
@@ -279,6 +335,84 @@
                             <li>Technology Trends</li>
                             <li>Digital Privacy</li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🛠️ Technology Stack</h2>
+                <div class="tech-grid">
+                    <div class="tech-category">
+                        <h3>Development</h3>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">HTML & CSS</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Arduino</span>
+                        </div>
+                    </div>
+
+                    <div class="tech-category">
+                        <h3>Frameworks & Libraries</h3>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Spring</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Angular</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">NumPy</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">Matplotlib</span>
+                        </div>
+                    </div>
+
+                    <div class="tech-category">
+                        <h3>DevOps & Cloud</h3>
+                        <div class="tech-tags">
+                            <span class="tech-tag">GitLab</span>
+                            <span class="tech-tag">GitHub</span>
+                            <span class="tech-tag">Jenkins</span>
+                            <span class="tech-tag">Azure</span>
+                            <span class="tech-tag">Nexus</span>
+                            <span class="tech-tag">Linux/Unix</span>
+                            <span class="tech-tag">REST API</span>
+                        </div>
+                    </div>
+
+                    <div class="tech-category">
+                        <h3>Security Tools</h3>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Wireshark</span>
+                            <span class="tech-tag">Snort</span>
+                            <span class="tech-tag">Hashcat</span>
+                            <span class="tech-tag">John the Ripper</span>
+                            <span class="tech-tag">Splunk</span>
+                            <span class="tech-tag">Any.run</span>
+                            <span class="tech-tag">Virtual Machines</span>
+                        </div>
+                    </div>
+
+                    <div class="tech-category">
+                        <h3>Project Management</h3>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Jira</span>
+                            <span class="tech-tag">Confluence</span>
+                            <span class="tech-tag">Asana</span>
+                            <span class="tech-tag">ClickUp</span>
+                            <span class="tech-tag">Bubble</span>
+                            <span class="tech-tag">Twilio</span>
+                        </div>
+                    </div>
+
+                    <div class="tech-category">
+                        <h3>Productivity</h3>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Microsoft Office</span>
+                            <span class="tech-tag">Google Workspace</span>
+                            <span class="tech-tag">Jupyter Notebook</span>
+                            <span class="tech-tag">NationBuilder</span>
+                        </div>
                     </div>
                 </div>
             </div>
