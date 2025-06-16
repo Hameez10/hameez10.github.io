@@ -54,12 +54,16 @@
             margin: 0 auto;
             padding: 0 2rem;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .nav-links {
             display: flex;
             justify-content: center;
             gap: 2rem;
+            align-items: center;
         }
 
         .nav-links a {
@@ -68,10 +72,18 @@
             font-weight: 500;
             font-size: 1rem;
             transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
         }
 
         .nav-links a:hover {
             color: var(--primary-color);
+            background: rgba(255, 107, 107, 0.1);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-color);
+            background: rgba(255, 107, 107, 0.1);
         }
 
         .menu-toggle {
@@ -132,6 +144,16 @@
 
             .menu-toggle.active span:nth-child(3) {
                 transform: translateY(-7px) rotate(-45deg);
+            }
+        }
+
+        @media (min-width: 769px) {
+            .menu-toggle {
+                display: none;
+            }
+
+            .nav-links {
+                display: flex !important;
             }
         }
 
@@ -325,7 +347,7 @@
                 <span></span>
             </button>
             <div class="nav-links">
-                <a href="index.html">Home</a>
+                <a href="index.html" class="active">Home</a>
                 <a href="about.html">About</a>
                 <a href="experience.html">Experience</a>
                 <a href="projects.html">Projects</a>
