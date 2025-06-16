@@ -19,11 +19,20 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+            min-height: 100vh;
+            max-height: 100vh;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
             background: var(--warm-bg);
+            overflow-y: auto;
         }
 
         /* Navigation Styles */
@@ -66,6 +75,9 @@
             max-width: 1000px;
             margin: 0 auto;
             padding: 6rem 2rem 2rem;
+            min-height: calc(100vh - 2rem);
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
         .about-section {
@@ -364,6 +376,7 @@
                             <span class="tech-tag">NumPy</span>
                             <span class="tech-tag">Pandas</span>
                             <span class="tech-tag">Matplotlib</span>
+                            <span class="tech-tag">Jupyter Notebook</span> 
                         </div>
                     </div>
 
@@ -410,7 +423,6 @@
                         <div class="tech-tags">
                             <span class="tech-tag">Microsoft Office</span>
                             <span class="tech-tag">Google Workspace</span>
-                            <span class="tech-tag">Jupyter Notebook</span>
                             <span class="tech-tag">NationBuilder</span>
                         </div>
                     </div>

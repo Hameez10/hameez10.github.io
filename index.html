@@ -12,6 +12,14 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+            min-height: 100vh;
+            max-height: 100vh;
+        }
+
         :root {
             --primary-color: #FF6B6B;
             --secondary-color: #4ECDC4;
@@ -26,6 +34,7 @@
             line-height: 1.6;
             color: var(--text-dark);
             background-color: var(--warm-bg);
+            overflow-y: auto;
         }
 
         /* Navigation */
@@ -69,9 +78,12 @@
             padding: 8rem 2rem 4rem;
             background: linear-gradient(135deg, var(--warm-bg) 0%, #FFE8D6 100%);
             min-height: 100vh;
+            max-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
         .hero::before {
@@ -92,9 +104,11 @@
 
         .hero-content {
             max-width: 800px;
+            width: 100%;
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            padding-bottom: 2rem;
         }
 
         .profile-section {
