@@ -5,7 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects - Hameez Iqbal</title>
     <style>
-        /* Reset and base styles */
+        :root {
+            --primary-color: #FF6B6B;
+            --accent-color: #4ECDC4;
+            --warm-bg: #FFF9F4;
+            --text-dark: #2D3436;
+            --text-light: #636E72;
+            --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,51 +22,16 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: var(--text-dark);
+            background: var(--warm-bg);
         }
 
-        /* Navigation */
-        .navbar {
-            background-color: #2c3e50;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #3498db;
-        }
-
-        /* Projects Section */
-        .projects-section {
-            padding: 8rem 2rem 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 2rem;
         }
 
         .projects-grid {
@@ -69,152 +43,256 @@
 
         .project-card {
             background: white;
-            border-radius: 10px;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
         }
 
         .project-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .project-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
+        .project-header {
+            margin-bottom: 1.5rem;
         }
 
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-content h3 {
-            color: #2c3e50;
+        .project-title {
+            font-size: 1.5rem;
+            color: var(--text-dark);
             margin-bottom: 0.5rem;
         }
 
-        .project-content p {
-            color: #666;
+        .project-meta {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
             margin-bottom: 1rem;
         }
 
-        .project-tags {
+        .project-date {
+            background: var(--warm-bg);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .project-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-list {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-bottom: 1rem;
+            margin-top: 1rem;
         }
 
-        .project-tag {
-            background-color: #f0f0f0;
+        .skill-tag {
+            background: rgba(255, 107, 107, 0.1);
+            color: var(--primary-color);
             padding: 0.3rem 0.8rem;
             border-radius: 15px;
-            font-size: 0.9rem;
-            color: #666;
+            font-size: 0.8rem;
         }
 
         .project-links {
             display: flex;
             gap: 1rem;
+            margin-top: 1.5rem;
         }
 
         .project-link {
-            padding: 0.5rem 1rem;
-            background-color: #3498db;
-            color: white;
             text-decoration: none;
-            border-radius: 5px;
+            color: var(--primary-color);
+            font-weight: 500;
             font-size: 0.9rem;
-            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
         }
 
         .project-link:hover {
-            background-color: #2980b9;
+            text-decoration: underline;
         }
 
-        .project-link.secondary {
-            background-color: #2c3e50;
+        .institution-tag {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 1rem;
         }
 
-        .project-link.secondary:hover {
-            background-color: #1a252f;
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="experience.html">Experience</a>
-                <a href="projects.html">Projects</a>
-                <a href="blog.html">Blog</a>
-                <a href="media.html">Media</a>
-                <a href="contact.html">Contact</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Projects Section -->
-    <section class="projects-section">
+    <div class="container">
+        <h1 class="section-title">My Projects</h1>
+        <p class="section-subtitle">A collection of my academic and personal projects, showcasing my journey in technology and community impact.</p>
+        
         <div class="projects-grid">
-            <!-- Project 1 -->
+            <!-- Bug Report System -->
             <div class="project-card">
-                <img src="assets/project1.jpg" alt="OSINT Tool" class="project-image">
-                <div class="project-content">
-                    <h3>OSINT Investigation Tool</h3>
-                    <p>A Python-based tool for conducting open-source intelligence investigations, developed during my work with Trace Labs.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Python</span>
-                        <span class="project-tag">OSINT</span>
-                        <span class="project-tag">API Integration</span>
+                <div class="project-header">
+                    <span class="institution-tag">Toronto Metropolitan University</span>
+                    <h3 class="project-title">Bug Report System</h3>
+                    <div class="project-meta">
+                        <span class="project-date">Feb 2024 - Apr 2024</span>
                     </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">View Demo</a>
-                        <a href="#" class="project-link secondary">GitHub</a>
-                    </div>
+                </div>
+                <p class="project-description">
+                    Currently in development for CPS406 - Introduction to Software Engineering. A comprehensive system for tracking and managing software bugs.
+                </p>
+                <div class="skills-list">
+                    <span class="skill-tag">Software Engineering</span>
+                    <span class="skill-tag">Bug Tracking</span>
                 </div>
             </div>
 
-            <!-- Project 2 -->
+            <!-- Encryption Tools Analysis -->
             <div class="project-card">
-                <img src="assets/project2.jpg" alt="Healthcare API" class="project-image">
-                <div class="project-content">
-                    <h3>Healthcare Data API</h3>
-                    <p>RESTful API for managing and analyzing healthcare data, built during my time at Unity Health Toronto.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Java</span>
-                        <span class="project-tag">Spring Boot</span>
-                        <span class="project-tag">SQL</span>
+                <div class="project-header">
+                    <span class="institution-tag">Toronto Metropolitan University</span>
+                    <h3 class="project-title">Modern Encryption Tools Analysis</h3>
+                    <div class="project-meta">
+                        <span class="project-date">Oct 2023 - Nov 2023</span>
                     </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">View Demo</a>
-                        <a href="#" class="project-link secondary">GitHub</a>
-                    </div>
+                </div>
+                <p class="project-description">
+                    A comparative analysis of modern encryption tools and their applications in cybersecurity. Collaborated with team members for CPS571 (Introduction to Cyber-Security).
+                </p>
+                <div class="skills-list">
+                    <span class="skill-tag">Cybersecurity</span>
+                    <span class="skill-tag">Encryption</span>
+                    <span class="skill-tag">Research</span>
                 </div>
             </div>
 
-            <!-- Project 3 -->
+            <!-- METMate -->
             <div class="project-card">
-                <img src="assets/project3.jpg" alt="Fraud Detection" class="project-image">
-                <div class="project-content">
-                    <h3>Fraud Detection System</h3>
-                    <p>Machine learning-based system for detecting fraudulent transactions, developed during my internship at Mastercard.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Python</span>
-                        <span class="project-tag">Machine Learning</span>
-                        <span class="project-tag">Azure</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">View Demo</a>
-                        <a href="#" class="project-link secondary">GitHub</a>
+                <div class="project-header">
+                    <span class="institution-tag">Ignition Hacks</span>
+                    <h3 class="project-title">METMate</h3>
+                    <div class="project-meta">
+                        <span class="project-date">Aug 2023</span>
                     </div>
                 </div>
+                <p class="project-description">
+                    Project developed during Ignition Hacks hackathon.
+                </p>
+                <div class="skills-list">
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">JavaScript</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">📂 GitHub Repository</a>
+                </div>
             </div>
+
+            <!-- ChatGPT Research -->
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="institution-tag">Toronto Metropolitan University</span>
+                    <h3 class="project-title">Ethical Analysis of ChatGPT in Academia</h3>
+                    <div class="project-meta">
+                        <span class="project-date">Feb 2023 - Apr 2023</span>
+                    </div>
+                </div>
+                <p class="project-description">
+                    Research study exploring the ethical implications of using ChatGPT in academic settings, including surveys of professors, graduate students, and undergraduates.
+                </p>
+                <div class="skills-list">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Research</span>
+                    <span class="skill-tag">Data Analysis</span>
+                </div>
+            </div>
+
+            <!-- CPU Design -->
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="institution-tag">Toronto Metropolitan University</span>
+                    <h3 class="project-title">CPU Design with ALU</h3>
+                    <div class="project-meta">
+                        <span class="project-date">Nov 2022 - Dec 2022</span>
+                    </div>
+                </div>
+                <p class="project-description">
+                    Developed a fully functional CPU featuring ALU, Control Unit, and Display components. Implemented complex digital logic design and computer architecture principles.
+                </p>
+                <div class="skills-list">
+                    <span class="skill-tag">Digital Logic</span>
+                    <span class="skill-tag">Computer Architecture</span>
+                    <span class="skill-tag">Circuit Design</span>
+                </div>
+            </div>
+
+            <!-- Campaign Website -->
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="institution-tag">City of Mississauga</span>
+                    <h3 class="project-title">Campaign Website (HameezIqbal.ca)</h3>
+                    <div class="project-meta">
+                        <span class="project-date">Aug 2022 - Oct 2022</span>
+                    </div>
+                </div>
+                <p class="project-description">
+                    Developed and launched a campaign website that attracted over 1,000 visitors within two months. Implemented SEO strategies and custom functionality.
+                </p>
+                <div class="skills-list">
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
+                    <span class="skill-tag">SEO</span>
+                </div>
+            </div>
+
+            <!-- Flappy Bird AI -->
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="institution-tag">Personal Project</span>
+                    <h3 class="project-title">Flappy Bird AI</h3>
+                    <div class="project-meta">
+                        <span class="project-date">Feb 2022 - May 2022</span>
+                    </div>
+                </div>
+                <p class="project-description">
+                    Recreation of Flappy Bird with an AI implementation using Neural Networks, achieving 100% success rate in gameplay.
+                </p>
+                <div class="skills-list">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Pygame</span>
+                    <span class="skill-tag">Neural Networks</span>
+                    <span class="skill-tag">AI</span>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
 </body>
 </html> 
