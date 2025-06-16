@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hameez Iqbal - Cybersecurity, Software, Public Service</title>
+    <title>Hameez Iqbal - Student & Community Leader</title>
     <style>
         /* Reset and base styles */
         * {
@@ -69,13 +69,14 @@
             transform: translateY(-2px);
         }
 
-        /* Hero Section */
+        /* Updated Hero Section */
         .hero {
-            padding: 10rem 2rem 6rem;
+            padding: 8rem 2rem 4rem;
             background: linear-gradient(135deg, var(--warm-bg) 0%, #FFE8D6 100%);
-            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
             position: relative;
-            overflow: hidden;
         }
 
         .hero::before {
@@ -101,140 +102,143 @@
             z-index: 1;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-            font-weight: 800;
-            letter-spacing: -1px;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.4rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* CTA Buttons */
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin: 2.5rem 0;
-        }
-
-        .cta-button {
-            padding: 1rem 2rem;
+        .profile-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2.5rem;
             border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .primary-button {
-            background-color: var(--primary-color);
-            color: white;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-        }
-
-        .secondary-button {
-            background-color: white;
-            color: var(--text-dark);
-            border: 2px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-
-        .primary-button:hover {
-            background-color: #FF5252;
-        }
-
-        .secondary-button:hover {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        /* Tech Badges */
-        .tech-badges {
-            display: flex;
-            justify-content: center;
-            gap: 2.5rem;
-            margin-top: 4rem;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
 
-        .tech-badge {
-            width: 50px;
-            height: 50px;
-            transition: all 0.3s ease;
-            filter: grayscale(100%);
-            opacity: 0.7;
-        }
-
-        .tech-badge:hover {
-            transform: scale(1.15) rotate(5deg);
-            filter: grayscale(0%);
-            opacity: 1;
-        }
-
-        /* Startup Scene Section */
-        .startup-scene {
-            padding: 4rem 2rem;
-            background: white;
-            border-radius: 30px;
-            margin: 2rem auto;
-            max-width: 1000px;
-        }
-
-        .startup-scene h2 {
-            color: var(--text-dark);
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .startup-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        .profile-header {
+            display: flex;
+            align-items: center;
             gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .intro-text .tagline {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .about-me {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .highlight {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .interest-tag {
+            background: rgba(255, 107, 107, 0.1);
+            color: var(--primary-color);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .interest-tag:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .connect-section {
+            text-align: center;
             margin-top: 2rem;
         }
 
-        .startup-card {
-            background: var(--warm-bg);
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border-radius: 25px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
-        .startup-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .startup-card h3 {
+        .social-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             color: var(--primary-color);
-            margin-bottom: 1rem;
         }
 
-        .startup-card p {
+        .social-link img {
+            width: 20px;
+            height: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
             color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -254,52 +258,58 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Main Content -->
+    <main class="hero">
         <div class="hero-content">
-            <h1>Hameez Iqbal</h1>
-            <p>Building innovative solutions at the intersection of cybersecurity, software development, and community impact</p>
-            
-            <div class="cta-buttons">
-                <a href="resume.pdf" class="cta-button primary-button">View Resume →</a>
-                <a href="projects.html" class="cta-button secondary-button">Explore Projects</a>
-                <a href="contact.html" class="cta-button secondary-button">Let's Connect</a>
-            </div>
+            <section class="profile-section">
+                <div class="profile-header">
+                    <div class="profile-image">
+                        <img src="HameezIqbal Image.png" alt="Hameez Iqbal">
+                    </div>
+                    <div class="intro-text">
+                        <h1>Hey! I'm Hameez 👋</h1>
+                        <p class="tagline">Student, Developer & Community Leader</p>
+                    </div>
+                </div>
 
-            <div class="tech-badges">
-                <a href="https://github.com/Hameez10" target="_blank">
-                    <img src="assets/github.svg" alt="GitHub" class="tech-badge">
-                </a>
-                <a href="https://linkedin.com/in/hameez-iqbal" target="_blank">
-                    <img src="assets/linkedin.svg" alt="LinkedIn" class="tech-badge">
-                </a>
-                <a href="https://tracelabs.org" target="_blank">
-                    <img src="assets/tracelabs.svg" alt="Trace Labs" class="tech-badge">
-                </a>
-                <a href="https://mastercard.com" target="_blank">
-                    <img src="assets/mastercard.svg" alt="Mastercard" class="tech-badge">
-                </a>
+                <div class="about-me">
+                    <p>
+                        Currently pursuing my <span class="highlight">Computer Science degree</span> at Toronto Metropolitan University, where I'm diving deep into Machine Learning and AI. I'm also minoring in Innovation and Cybersecurity because I believe technology should make the world better and safer! 🚀
+                    </p>
+                    <p>
+                        When I'm not coding or studying, you'll find me engaged in community initiatives. I've even taken the leap into public service by running for office! I love bringing together my tech knowledge and community leadership to create meaningful change. 💡
+                    </p>
+                </div>
+
+                <div class="interests">
+                    <span class="interest-tag">🤖 Machine Learning</span>
+                    <span class="interest-tag">🧠 Artificial Intelligence</span>
+                    <span class="interest-tag">🔒 Cybersecurity</span>
+                    <span class="interest-tag">💡 Innovation</span>
+                    <span class="interest-tag">🤝 Community Leadership</span>
+                    <span class="interest-tag">🌟 Public Service</span>
+                </div>
+            </section>
+
+            <div class="connect-section">
+                <h2>Let's Connect!</h2>
+                <div class="social-links">
+                    <a href="mailto:hameezwork@gmail.com" class="social-link">
+                        ✉️ Email Me
+                    </a>
+                    <a href="https://github.com/Hameez10" target="_blank" class="social-link">
+                        <img src="assets/github.svg" alt="GitHub"> GitHub
+                    </a>
+                    <a href="https://linkedin.com/in/hameez-iqbal" target="_blank" class="social-link">
+                        <img src="assets/linkedin.svg" alt="LinkedIn"> LinkedIn
+                    </a>
+                </div>
             </div>
         </div>
-    </section>
+    </main>
 
-    <!-- Startup Scene Section -->
-    <section class="startup-scene">
-        <h2>Toronto Startup Scene</h2>
-        <div class="startup-grid">
-            <div class="startup-card">
-                <h3>Startup Community</h3>
-                <p>Active member of Toronto's vibrant tech ecosystem, participating in hackathons, meetups, and startup events.</p>
-            </div>
-            <div class="startup-card">
-                <h3>Innovation Hub</h3>
-                <p>Contributing to Toronto's position as a leading tech innovation hub through collaboration and knowledge sharing.</p>
-            </div>
-            <div class="startup-card">
-                <h3>Mentorship</h3>
-                <p>Engaging with early-stage startups and founders, sharing insights in cybersecurity and software development.</p>
-            </div>
-        </div>
-    </section>
+    <footer>
+        <p>&copy; 2024 Hameez Iqbal | <a href="mailto:hameezwork@gmail.com">hameezwork@gmail.com</a></p>
+    </footer>
 </body>
 </html>
