@@ -4,22 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Hameez Iqbal</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Contact Me</h1>
-        <p>Please email me at: <a href="mailto:hameezwork@gmail.com">hameezwork@gmail.com</a></p>
-    </div>
-</body>
-</html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Hameez Iqbal</title>
     <style>
-        /* Reset and base styles */
+        :root {
+            --primary-color: #FF6B6B;
+            --accent-color: #4ECDC4;
+            --warm-bg: #FFF9F4;
+            --text-dark: #2D3436;
+            --text-light: #636E72;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -27,141 +20,128 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: var(--text-dark);
+            background: var(--warm-bg);
         }
 
-        /* Navigation */
+        /* Navigation Styles */
         .navbar {
-            background-color: #2c3e50;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             padding: 0 2rem;
         }
 
         .nav-links {
             display: flex;
+            justify-content: center;
             gap: 2rem;
         }
 
         .nav-links a {
-            color: white;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 6rem 2rem 2rem;
+        }
+
+        .contact-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .contact-text {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .highlight {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .contact-method {
+            background: var(--warm-bg);
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 400px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-method:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-method h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-method p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .contact-link {
+            color: var(--accent-color);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
         }
 
-        .nav-links a:hover {
-            color: #3498db;
+        .contact-link:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
         }
 
-        /* Contact Section */
-        .contact-section {
-            padding: 8rem 2rem 4rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-info h2 {
-            color: #2c3e50;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-info p {
-            color: #666;
-            margin-bottom: 2rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            background-color: #3498db;
-            transform: translateY(-2px);
-        }
-
-        .social-link img {
-            width: 20px;
-            height: 20px;
-        }
-
-        /* Contact Form */
-        .contact-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #2c3e50;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        .form-group textarea {
-            height: 150px;
-            resize: vertical;
-        }
-
-        .submit-button {
-            background-color: #3498db;
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .submit-button:hover {
-            background-color: #2980b9;
+        .decoration {
+            font-size: 2rem;
+            margin: 2rem 0;
+            color: var(--primary-color);
         }
     </style>
 </head>
@@ -181,52 +161,32 @@
         </div>
     </nav>
 
-    <!-- Contact Section -->
-    <section class="contact-section">
-        <div class="contact-content">
-            <div class="contact-info">
-                <h2>Get in Touch</h2>
-                <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
-                
-                <div class="social-links">
-                    <a href="https://github.com/Hameez10" target="_blank" class="social-link">
-                        <img src="assets/github.svg" alt="GitHub">
-                    </a>
-                    <a href="https://linkedin.com/in/hameez-iqbal" target="_blank" class="social-link">
-                        <img src="assets/linkedin.svg" alt="LinkedIn">
-                    </a>
-                    <a href="mailto:contact@hameeziqbal.ca" class="social-link">
-                        <img src="assets/email.svg" alt="Email">
-                    </a>
+    <div class="container">
+        <section class="contact-section">
+            <h1 class="section-title">Get in Touch</h1>
+            
+            <p class="contact-text">
+                I'm always excited to connect with fellow professionals, students, and anyone interested in technology, innovation, or community engagement. Whether you have a question, want to collaborate, or just want to say hello, I'd love to hear from you!
+            </p>
+
+            <div class="decoration">✉️</div>
+
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <h3>Professional Inquiries</h3>
+                    <p>For professional opportunities and collaborations, reach out via <a href="https://www.linkedin.com/in/hameez-iqbal/" class="contact-link" target="_blank">LinkedIn</a> or email me at <a href="mailto:hameez.iqbal@torontomu.ca" class="contact-link">hameez.iqbal@torontomu.ca</a></p>
+                </div>
+
+                <div class="contact-method">
+                    <h3>Academic & Research</h3>
+                    <p>For academic or research-related discussions, please email me at <a href="mailto:hameez.iqbal@torontomu.ca" class="contact-link">hameez.iqbal@torontomu.ca</a></p>
                 </div>
             </div>
 
-            <div class="contact-form">
-                <form action="#" method="POST">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-button">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </section>
+            <p class="contact-text" style="margin-top: 2rem;">
+                I typically respond within 24-48 hours. Looking forward to connecting with you!
+            </p>
+        </section>
+    </div>
 </body>
 </html> 
