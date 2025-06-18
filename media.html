@@ -635,7 +635,29 @@
                     // Initially mark all posts as waiting
                     posts.forEach(post => post.classList.add('waiting'));
 
-                    function loadNextPost() {
+                    function checkPostFullyLoaded(post) {
+                        return new Promise((resolve) => {
+                            const checkComplete = setInterval(() => {
+                                const iframe = post.querySelector('iframe');
+                                if (iframe) {
+                                    // Check if the iframe has actual content
+                                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                                    if (iframeDoc && iframeDoc.body && iframeDoc.body.innerHTML.length > 0) {
+                                        clearInterval(checkComplete);
+                                        resolve(true);
+                                    }
+                                }
+                            }, 100);
+
+                            // Timeout after 10 seconds to prevent infinite waiting
+                            setTimeout(() => {
+                                clearInterval(checkComplete);
+                                resolve(false);
+                            }, 10000);
+                        });
+                    }
+
+                    async function loadNextPost() {
                         if (currentIndex >= posts.length) return;
 
                         const post = posts[currentIndex];
@@ -648,28 +670,33 @@
                         // Only load if not already loaded
                         if (!media.classList.contains('loaded')) {
                             // Clear any existing Instagram embed
-                            post.querySelector('.instagram-media').innerHTML = '';
+                            media.innerHTML = '';
                             
                             // Trigger Instagram embed for this specific post
                             if (window.instgrm) {
                                 window.instgrm.Embeds.process(post);
                             }
 
-                            // Add loaded class when embed is ready
-                            const checkLoaded = setInterval(() => {
-                                const iframe = post.querySelector('iframe');
-                                if (iframe) {
-                                    clearInterval(checkLoaded);
-                                    media.classList.add('loaded');
-                                    post.classList.remove('loading');
-                                    
-                                    // Load next post after a short delay
-                                    setTimeout(() => {
-                                        currentIndex++;
-                                        loadNextPost();
-                                    }, 500); // Increased delay for better visual sequence
-                                }
-                            }, 100);
+                            // Wait for post to be fully loaded
+                            const isLoaded = await checkPostFullyLoaded(post);
+                            
+                            if (isLoaded) {
+                                media.classList.add('loaded');
+                                post.classList.remove('loading');
+                                
+                                // Wait a moment to ensure smooth transition
+                                await new Promise(resolve => setTimeout(resolve, 500));
+                                
+                                // Move to next post
+                                currentIndex++;
+                                loadNextPost();
+                            } else {
+                                // If loading failed, skip to next post
+                                console.warn('Post loading timed out, moving to next');
+                                post.classList.remove('loading');
+                                currentIndex++;
+                                loadNextPost();
+                            }
                         } else {
                             // If already loaded, move to next post
                             post.classList.remove('loading');
