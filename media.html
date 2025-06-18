@@ -240,7 +240,7 @@
                 <article class="news-item">
                     <div class="news-source">LinkedIn</div>
                     <div class="news-image">
-                        <img src="assets/mastercard-feature.jpg" alt="Mastercard Canada Co-op Feature">
+                        <img src="assets/mastercard-feature.jpg" alt="Mastercard Canada Feature">
                     </div>
                     <h3 class="news-title">Mastercard Canada Co-op Feature</h3>
                     <p class="news-excerpt">Featured on Mastercard Canada's LinkedIn for contributions and achievements during co-op term.</p>
@@ -544,7 +544,38 @@
                     overflow: hidden;
                 }
 
-                .instagram-post::before {
+                .instagram-post.waiting {
+                    position: relative;
+                }
+
+                .instagram-post.waiting::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.7);
+                    z-index: 10;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .instagram-post.waiting::after {
+                    content: 'Waiting to load...';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    color: white;
+                    z-index: 11;
+                    font-size: 1.1rem;
+                    text-align: center;
+                    width: 100%;
+                }
+
+                .instagram-post.loading::before {
                     content: '';
                     position: absolute;
                     top: 50%;
@@ -556,21 +587,23 @@
                     border-top: 3px solid var(--primary-color);
                     border-radius: 50%;
                     animation: spin 1s linear infinite;
+                    z-index: 10;
                 }
 
-                @keyframes spin {
-                    0% { transform: translate(-50%, -50%) rotate(0deg); }
-                    100% { transform: translate(-50%, -50%) rotate(360deg); }
-                }
-
-                .instagram-post::after {
-                    content: 'Loading Instagram post...';
+                .instagram-post.loading::after {
+                    content: 'Loading post...';
                     position: absolute;
                     top: 60%;
                     left: 50%;
                     transform: translateX(-50%);
                     font-size: 0.9rem;
                     color: var(--text-light);
+                    z-index: 10;
+                }
+
+                @keyframes spin {
+                    0% { transform: translate(-50%, -50%) rotate(0deg); }
+                    100% { transform: translate(-50%, -50%) rotate(360deg); }
                 }
 
                 .instagram-media {
@@ -599,14 +632,24 @@
                     const posts = Array.from(document.querySelectorAll('.instagram-post'));
                     let currentIndex = 0;
 
+                    // Initially mark all posts as waiting
+                    posts.forEach(post => post.classList.add('waiting'));
+
                     function loadNextPost() {
                         if (currentIndex >= posts.length) return;
 
                         const post = posts[currentIndex];
                         const media = post.querySelector('.instagram-media');
 
+                        // Remove waiting state and show loading state
+                        post.classList.remove('waiting');
+                        post.classList.add('loading');
+
                         // Only load if not already loaded
                         if (!media.classList.contains('loaded')) {
+                            // Clear any existing Instagram embed
+                            post.querySelector('.instagram-media').innerHTML = '';
+                            
                             // Trigger Instagram embed for this specific post
                             if (window.instgrm) {
                                 window.instgrm.Embeds.process(post);
@@ -618,15 +661,18 @@
                                 if (iframe) {
                                     clearInterval(checkLoaded);
                                     media.classList.add('loaded');
+                                    post.classList.remove('loading');
+                                    
                                     // Load next post after a short delay
                                     setTimeout(() => {
                                         currentIndex++;
                                         loadNextPost();
-                                    }, 300);
+                                    }, 500); // Increased delay for better visual sequence
                                 }
                             }, 100);
                         } else {
                             // If already loaded, move to next post
+                            post.classList.remove('loading');
                             currentIndex++;
                             loadNextPost();
                         }
@@ -635,20 +681,17 @@
                     // Start loading posts when they become visible
                     const observer = new IntersectionObserver((entries) => {
                         entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                // Start loading sequence if it hasn't started yet
-                                if (currentIndex === 0) {
-                                    loadNextPost();
-                                }
-                                observer.unobserve(entry.target);
+                            if (entry.isIntersecting && currentIndex === 0) {
+                                loadNextPost();
+                                observer.disconnect(); // Stop observing once loading starts
                             }
                         });
                     }, {
                         rootMargin: '50px'
                     });
 
-                    // Observe the first few posts
-                    posts.slice(0, 3).forEach(post => observer.observe(post));
+                    // Start observing the first post
+                    observer.observe(posts[0]);
                 }
 
                 // Load Instagram embed script dynamically
