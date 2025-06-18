@@ -594,38 +594,61 @@
             </style>
 
             <script>
-                // Function to load Instagram embeds lazily
+                // Function to load Instagram embeds sequentially
                 function loadInstagramEmbeds() {
-                    const posts = document.querySelectorAll('.instagram-post');
-                    
+                    const posts = Array.from(document.querySelectorAll('.instagram-post'));
+                    let currentIndex = 0;
+
+                    function loadNextPost() {
+                        if (currentIndex >= posts.length) return;
+
+                        const post = posts[currentIndex];
+                        const media = post.querySelector('.instagram-media');
+
+                        // Only load if not already loaded
+                        if (!media.classList.contains('loaded')) {
+                            // Trigger Instagram embed for this specific post
+                            if (window.instgrm) {
+                                window.instgrm.Embeds.process(post);
+                            }
+
+                            // Add loaded class when embed is ready
+                            const checkLoaded = setInterval(() => {
+                                const iframe = post.querySelector('iframe');
+                                if (iframe) {
+                                    clearInterval(checkLoaded);
+                                    media.classList.add('loaded');
+                                    // Load next post after a short delay
+                                    setTimeout(() => {
+                                        currentIndex++;
+                                        loadNextPost();
+                                    }, 300);
+                                }
+                            }, 100);
+                        } else {
+                            // If already loaded, move to next post
+                            currentIndex++;
+                            loadNextPost();
+                        }
+                    }
+
+                    // Start loading posts when they become visible
                     const observer = new IntersectionObserver((entries) => {
                         entries.forEach(entry => {
                             if (entry.isIntersecting) {
-                                const post = entry.target;
-                                const media = post.querySelector('.instagram-media');
-                                
-                                // Only load if not already loaded
-                                if (!media.classList.contains('loaded')) {
-                                    // Trigger Instagram embed
-                                    if (window.instgrm) {
-                                        window.instgrm.Embeds.process();
-                                    }
-                                    
-                                    // Add loaded class when embed is ready
-                                    media.addEventListener('load', () => {
-                                        media.classList.add('loaded');
-                                    });
+                                // Start loading sequence if it hasn't started yet
+                                if (currentIndex === 0) {
+                                    loadNextPost();
                                 }
-                                
-                                // Stop observing after loading
-                                observer.unobserve(post);
+                                observer.unobserve(entry.target);
                             }
                         });
                     }, {
                         rootMargin: '50px'
                     });
-                    
-                    posts.forEach(post => observer.observe(post));
+
+                    // Observe the first few posts
+                    posts.slice(0, 3).forEach(post => observer.observe(post));
                 }
 
                 // Load Instagram embed script dynamically
