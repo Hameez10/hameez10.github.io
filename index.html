@@ -34,10 +34,9 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
-            background-color: var(--warm-bg);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
+            background: var(--warm-bg);
+            overflow-y: auto;
+            min-height: 100vh;
         }
 
         /* Navigation */
@@ -96,9 +95,8 @@
         /* Updated Hero Section */
         .hero {
             padding: 2rem;
-            padding-top: 6rem; /* Matches the heraldry page's container padding-top */
-            background: var(--warm-bg);
-            height: 100vh; /* Changed from min-height to fixed height */
+            padding-top: 6rem;
+            min-height: calc(100vh - 2rem);
             display: flex;
             align-items: flex-start;
             position: relative;
@@ -130,8 +128,6 @@
             position: relative;
             z-index: 2;
             padding-bottom: 2rem;
-            height: auto;
-            min-height: min-content;
         }
 
         .profile-section {
