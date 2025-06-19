@@ -246,7 +246,7 @@
             background-color: white;
             border: 3px solid var(--primary-color);
             border-radius: 50%;
-            top: 25px;
+            top: calc(25px - 8px); /* Adjusting by subtracting half the height */
             z-index: 1;
             transition: all 0.3s ease;
         }
@@ -286,6 +286,7 @@
 
             .timeline-item::after {
                 left: 23px;
+                top: calc(25px - 8px); /* Keep the same vertical centering in mobile view */
             }
 
             .timeline-item:nth-child(odd)::after {
