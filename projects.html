@@ -105,6 +105,61 @@
             font-size: 0.8rem;
         }
 
+        /* Language-specific tags */
+        .python-tag {
+            background: #3776AB;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .java-tag {
+            background: #f89820;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* TMU Institution tag */
+        .tmu-tag {
+            background: linear-gradient(135deg, #004c9b 50%, #ffdc00 50%);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* Glenforest Secondary School styles */
+        .glenforest-tag {
+            background: linear-gradient(135deg, #000080 50%, #FFD700 50%);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .achievement-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #000080;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            border: 2px solid #FFD700;
+        }
+
         .project-links {
             display: flex;
             gap: 1rem;
@@ -231,7 +286,7 @@
             <!-- Bug Report System -->
             <div class="project-card">
                 <div class="project-header">
-                    <span class="institution-tag">Toronto Metropolitan University</span>
+                    <span class="tmu-tag">Toronto Metropolitan University</span>
                     <h3 class="project-title">Bug Report System</h3>
                     <div class="project-meta">
                         <span class="project-date">Feb 2024 - Apr 2024</span>
@@ -271,7 +326,7 @@
             <!-- Modern Encryption Tools Analysis -->
             <div class="project-card">
                 <div class="project-header">
-                    <span class="institution-tag">Toronto Metropolitan University</span>
+                    <span class="tmu-tag">Toronto Metropolitan University</span>
                     <h3 class="project-title">Modern Encryption Tools Analysis</h3>
                     <div class="project-meta">
                         <span class="project-date">Oct 2023 - Nov 2023</span>
@@ -315,7 +370,7 @@
             <!-- Computer Organization Labs -->
             <div class="project-card">
                 <div class="project-header">
-                    <span class="institution-tag">Toronto Metropolitan University</span>
+                    <span class="tmu-tag">Toronto Metropolitan University</span>
                     <h3 class="project-title">Computer Organization Course Labs</h3>
                     <div class="project-meta">
                         <span class="project-date">January 2023 - April 2023</span>
@@ -335,7 +390,7 @@
             <!-- ChatGPT Research -->
             <div class="project-card">
                 <div class="project-header">
-                    <span class="institution-tag">Toronto Metropolitan University</span>
+                    <span class="tmu-tag">Toronto Metropolitan University</span>
                     <h3 class="project-title">Ethical Analysis of ChatGPT in Academia</h3>
                     <div class="project-meta">
                         <span class="project-date">Feb 2023 - Apr 2023</span>
@@ -345,7 +400,7 @@
                     Research study exploring the ethical implications of using ChatGPT in academic settings, including surveys of professors, graduate students, and undergraduates.
                 </p>
                 <div class="skills-list">
-                    <span class="skill-tag">Python</span>
+                    <span class="python-tag">Python</span>
                     <span class="skill-tag">Research</span>
                     <span class="skill-tag">Data Analysis</span>
                 </div>
@@ -357,7 +412,7 @@
             <!-- CPU Design -->
             <div class="project-card">
                 <div class="project-header">
-                    <span class="institution-tag">Toronto Metropolitan University</span>
+                    <span class="tmu-tag">Toronto Metropolitan University</span>
                     <h3 class="project-title">CPU Design with ALU</h3>
                     <div class="project-meta">
                         <span class="project-date">Nov 2022 - Dec 2022</span>
@@ -387,7 +442,7 @@
                     Utilized Python with Pandas and NumPy on Jupyter Notebook to analyze voter registration data and optimize campaign targeting in densely populated areas.
                 </p>
                 <div class="skills-list">
-                    <span class="skill-tag">Python</span>
+                    <span class="python-tag">Python</span>
                     <span class="skill-tag">Pandas</span>
                     <span class="skill-tag">NumPy</span>
                     <span class="skill-tag">Data Analysis</span>
@@ -407,7 +462,7 @@
                     A Python-based recreation of drone programming mechanics and controls.
                 </p>
                 <div class="skills-list">
-                    <span class="skill-tag">Python</span>
+                    <span class="python-tag">Python</span>
                     <span class="skill-tag">Drone Programming</span>
                     <span class="skill-tag">Simulation</span>
                 </div>
@@ -439,7 +494,8 @@
             <!-- Linear Regression Tutorial -->
             <div class="project-card">
                 <div class="project-header">
-                    <span class="institution-tag">Educational Content</span>
+                    <span class="glenforest-tag">Glenforest Secondary School</span>
+                    <span class="achievement-badge">A+</span>
                     <h3 class="project-title">Linear Regression Tutorial</h3>
                     <div class="project-meta">
                         <span class="project-date">February 2022 - March 2022</span>
@@ -449,7 +505,7 @@
                     Created an educational video tutorial demonstrating the application of Linear Regression using Jupyter Notebook, targeting IDP4U0-B students.
                 </p>
                 <div class="skills-list">
-                    <span class="skill-tag">Python</span>
+                    <span class="python-tag">Python</span>
                     <span class="skill-tag">Pandas</span>
                     <span class="skill-tag">Matplotlib</span>
                     <span class="skill-tag">scikit-learn</span>
@@ -460,7 +516,8 @@
             <!-- COVID-19 Effects Analysis -->
             <div class="project-card">
                 <div class="project-header">
-                    <span class="institution-tag">ICS4U Culminative Project</span>
+                    <span class="glenforest-tag">Glenforest Secondary School</span>
+                    <span class="achievement-badge">A+</span>
                     <h3 class="project-title">COVID-19 Effects on Classism in Mississauga</h3>
                     <div class="project-meta">
                         <span class="project-date">May 2021 - June 2021</span>
@@ -482,7 +539,8 @@
             <!-- Java Classes & Objects -->
             <div class="project-card">
                 <div class="project-header">
-                    <span class="institution-tag">ICS4U Course Project</span>
+                    <span class="glenforest-tag">Glenforest Secondary School</span>
+                    <span class="achievement-badge">A+</span>
                     <h3 class="project-title">Java Classes & Objects Assignment</h3>
                     <div class="project-meta">
                         <span class="project-date">February 2021 - May 2021</span>
@@ -492,7 +550,7 @@
                     Implementation of Object-Oriented Programming concepts in Java, completed during semester 2 of the 2020-2021 school year.
                 </p>
                 <div class="skills-list">
-                    <span class="skill-tag">Java</span>
+                    <span class="java-tag">Java</span>
                     <span class="skill-tag">OOP</span>
                     <span class="skill-tag">Classes</span>
                 </div>
@@ -504,7 +562,8 @@
             <!-- Activity Point Calculator -->
             <div class="project-card">
                 <div class="project-header">
-                    <span class="institution-tag">School Project</span>
+                    <span class="glenforest-tag">Glenforest Secondary School</span>
+                    <span class="achievement-badge">A+</span>
                     <h3 class="project-title">Activity Point Award Calculator</h3>
                     <div class="project-meta">
                         <span class="project-date">September 2020 - October 2020</span>
@@ -514,7 +573,7 @@
                     Java program developed for Glenforest Secondary School to calculate graduation awards based on student activity points.
                 </p>
                 <div class="skills-list">
-                    <span class="skill-tag">Java</span>
+                    <span class="java-tag">Java</span>
                     <span class="skill-tag">Console Application</span>
                 </div>
             </div>
