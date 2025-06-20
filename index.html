@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hameez Iqbal - Student & Community Leader</title>
+    <title>Hameez Iqbal</title>
     <!-- Preload Instagram embed for faster media page loading -->
     <link rel="preload" href="https://www.instagram.com/embed.js" as="script">
     <style data-version="1.1">
@@ -22,6 +22,7 @@
             max-height: 100vh;
             height: 100%;
             overflow: hidden;
+            -webkit-text-size-adjust: 100%; /* Prevent iOS font size adjustment */
         }
 
         :root {
@@ -90,7 +91,12 @@
 
             .nav-links a {
                 font-size: 0.9rem;
-                padding: 0.4rem 0.8rem;
+                padding: 0.8rem;
+                margin: 0.2rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
             }
         }
 
@@ -130,6 +136,7 @@
             position: relative;
             z-index: 2;
             padding-bottom: 2rem;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
         .profile-section {
@@ -143,44 +150,57 @@
         .profile-header {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 3rem;
             margin-bottom: 2rem;
         }
 
         .profile-image {
-            width: 200px;
-            height: 200px;
+            width: 280px;
+            height: 280px;
             border-radius: 50%;
             overflow: hidden;
             border: 5px solid white;
             box-shadow: 0 10px 30px rgba(255, 107, 107, 0.2);
             transition: transform 0.3s ease;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .profile-image::after {
+            content: '';
+            display: block;
+            padding-bottom: 100%;
+        }
+
+        .profile-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .profile-image:hover {
             transform: translateY(-5px);
         }
 
-        .profile-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
         .intro-text {
-            flex: 1;
+            flex-grow: 1;
         }
 
         .intro-text h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
-            color: var(--text-dark);
+            color: #2d3748;
+            font-weight: 700;
         }
 
         .intro-text .tagline {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            font-weight: 500;
+            font-size: 1.5rem;
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
         }
 
         .about-me {
@@ -280,6 +300,101 @@
             overflow: hidden;
             position: relative;
         }
+
+        /* Enhanced Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 1rem;
+                padding-top: 5rem;
+            }
+
+            .profile-section {
+                padding: 1.5rem;
+            }
+
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .profile-image {
+                width: 180px;
+                height: 180px;
+                margin: 0 auto;
+            }
+
+            .intro-text h1 {
+                font-size: 2rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .intro-text .tagline {
+                font-size: 1.1rem;
+            }
+
+            .about-me {
+                font-size: 1rem;
+                text-align: left;
+            }
+
+            .interests {
+                justify-content: center;
+            }
+
+            .interest-tag {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+
+        /* Small Mobile Devices */
+        @media (max-width: 380px) {
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .intro-text h1 {
+                font-size: 1.75rem;
+            }
+
+            .intro-text .tagline {
+                font-size: 1rem;
+            }
+
+            .profile-section {
+                padding: 1.25rem;
+            }
+
+            .interests {
+                gap: 0.5rem;
+            }
+
+            .interest-tag {
+                font-size: 0.85rem;
+                padding: 0.3rem 0.7rem;
+            }
+        }
+
+        /* Fix for iOS Safari */
+        @supports (-webkit-touch-callout: none) {
+            .profile-image {
+                position: relative;
+                overflow: hidden;
+            }
+
+            .profile-image img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                min-width: 100%;
+                min-height: 100%;
+                width: auto;
+                height: auto;
+            }
+        }
     </style>
 </head>
 <body>
@@ -308,7 +423,7 @@
                             <img src="HameezIqbal Image.png" alt="Hameez Iqbal">
                         </div>
                         <div class="intro-text">
-                            <h1>Hey! I'm Hameez 👋</h1>
+                            <h1>Hey!<br>I'm Hameez 👋</h1>
                             <p class="tagline">Student, Developer, Product, & Community Leader</p>
                         </div>
                     </div>

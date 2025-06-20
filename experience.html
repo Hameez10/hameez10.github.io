@@ -132,6 +132,7 @@
             margin: 0 auto;
         }
 
+        /* Timeline Container and Line */
         .timeline {
             position: relative;
             max-width: 1000px;
@@ -142,7 +143,7 @@
             content: '';
             position: absolute;
             width: 3px;
-            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+            background: linear-gradient(to bottom, #004c9b, #ffdc00);
             top: 0;
             bottom: 0;
             left: 50%;
@@ -150,6 +151,7 @@
             border-radius: 3px;
         }
 
+        /* Timeline Items */
         .timeline-item {
             padding: 10px 40px;
             position: relative;
@@ -168,107 +170,23 @@
             padding-left: 60px;
         }
 
-        .timeline-content {
-            padding: 2rem;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .timeline-content h3 {
-            color: var(--text-dark);
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-content h4 {
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .timeline-content .date {
-            color: var(--accent-color);
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-content .location {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .timeline-content ul {
-            list-style: none;
-            margin: 1rem 0;
-        }
-
-        .timeline-content li {
-            color: var(--text-light);
-            margin-bottom: 0.8rem;
-            padding-left: 1.5rem;
-            position: relative;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .timeline-content li:before {
-            content: "•";
-            color: var(--accent-color);
-            position: absolute;
-            left: 0;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-top: 1.5rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .tech-tag {
-            background: rgba(78, 205, 196, 0.1);
-            color: var(--accent-color);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .tech-tag:hover {
-            background: var(--accent-color);
-            color: white;
-            transform: translateY(-2px);
-        }
-
+        /* Timeline Dots */
         .timeline-item::after {
             content: '';
             position: absolute;
             width: 16px;
             height: 16px;
             background-color: white;
-            border: 3px solid var(--primary-color);
+            border: 3px solid #004c9b;
             border-radius: 50%;
-            top: 50%;
-            transform: translateY(-50%);
+            top: 25px;
             z-index: 1;
             transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover::after {
+            background-color: #004c9b;
+            transform: scale(1.2);
         }
 
         .timeline-item:nth-child(odd)::after {
@@ -279,45 +197,22 @@
             left: -8px;
         }
 
-        /* Adjust timeline layout for larger screens */
-        @media (min-width: 1400px) {
-            .timeline-item {
-                padding: 10px 60px;  /* Increase padding for better spacing */
-            }
-
-            .timeline-item:nth-child(odd) {
-                padding-right: 80px;
-            }
-
-            .timeline-item:nth-child(even) {
-                padding-left: 80px;
-            }
-
-            .timeline-content {
-                padding: 2.5rem;  /* Slightly larger padding for content */
-            }
+        /* Experience Cards */
+        .experience-card {
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
+            transition: all 0.3s ease;
         }
 
-        @media (min-width: 1600px) {
-            .timeline {
-                max-width: 1200px;  /* Wider timeline on very large screens */
-                margin: 0 auto;
-            }
-
-            .timeline-item {
-                padding: 10px 80px;
-            }
-
-            .timeline-item:nth-child(odd) {
-                padding-right: 100px;
-            }
-
-            .timeline-item:nth-child(even) {
-                padding-left: 100px;
-            }
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
 
-        /* Keep existing mobile media query */
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .timeline::after {
                 left: 31px;
@@ -339,7 +234,7 @@
             }
 
             .timeline-item::after {
-                left: 23px;
+                left: 23px !important;
             }
 
             .timeline-item:nth-child(odd)::after {
@@ -350,10 +245,35 @@
             .experience-section {
                 padding: 2rem;
             }
+        }
 
-            .section-title {
-                font-size: 2rem;
-            }
+        /* Experience Content Styling */
+        .experience-title {
+            font-size: 1.4rem;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .experience-date {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-description {
+            color: #4a5568;
+            line-height: 1.6;
+            margin: 1rem 0;
+        }
+
+        .experience-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         /* TMU Institution tag */
@@ -385,6 +305,466 @@
             font-size: 0.8rem;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
+
+        /* Additional Tag Colors */
+        .tag-qa {
+            background: linear-gradient(45deg, #6B4FBB, #8E44AD); /* GitLab-inspired purple */
+        }
+
+        .tag-testing {
+            background: #2E7D32; /* Material Green 800 */
+        }
+
+        .tag-automation {
+            background: #0288D1; /* Material Blue 700 */
+        }
+
+        .tag-quality {
+            background: #D32F2F; /* Material Red 700 */
+        }
+
+        .tag-documentation {
+            background: #455A64; /* Material Blue Grey 700 */
+        }
+
+        .tag-project-management {
+            background: #0097A7; /* Material Cyan 700 */
+        }
+
+        .tag-healthcare {
+            background: #00A3E0; /* Unity Health Blue */
+        }
+
+        .tag-technical-support {
+            background: #2D3748; /* Slate 800 */
+        }
+
+        .tag-system {
+            background: #4A5568; /* Slate 700 */
+        }
+
+        .tag-education {
+            background: #2B6CB0; /* Blue 700 */
+        }
+
+        .tag-advocacy {
+            background: #6B46C1; /* Purple 700 */
+        }
+
+        .tag-youth {
+            background: #00B4B4; /* Teal */
+        }
+
+        .tag-policy {
+            background: #4C51BF; /* Indigo 700 */
+        }
+
+        .tag-community {
+            background: #38A169; /* Green 700 */
+        }
+
+        /* Programming Languages */
+        .tag-python {
+            background: #3776AB;
+        }
+
+        .tag-java {
+            background: #f89820;
+        }
+
+        .tag-cpp {
+            background: #00599C;
+        }
+
+        .tag-javascript {
+            background: #F7DF1E;
+            color: black;
+        }
+
+        .tag-typescript {
+            background: #3178C6;
+        }
+
+        /* Web Technologies */
+        .tag-html {
+            background: #E34F26;
+        }
+
+        .tag-css {
+            background: #1572B6;
+        }
+
+        .tag-react {
+            background: #61DAFB;
+            color: black;
+        }
+
+        .tag-angular {
+            background: #DD0031;
+        }
+
+        .tag-spring {
+            background: #6DB33F;
+        }
+
+        /* Version Control & DevOps */
+        .tag-git {
+            background: #F05032;
+        }
+
+        .tag-github {
+            background: #181717;
+        }
+
+        .tag-gitlab {
+            background: #FC6D26;
+        }
+
+        .tag-jenkins {
+            background: #D24939;
+        }
+
+        /* Data & Analytics */
+        .tag-sql {
+            background: #4479A1;
+        }
+
+        .tag-jupyter {
+            background: #F37626;
+        }
+
+        .tag-excel {
+            background: #217346;
+        }
+
+        .tag-unix {
+            background: #FCC624;
+            color: black;
+        }
+
+        /* Project Management */
+        .tag-jira {
+            background: #0052CC;
+        }
+
+        .tag-asana {
+            background: #F06A6A;
+        }
+
+        .tag-confluence {
+            background: #172B4D;
+        }
+
+        .tag-clickup {
+            background: #7B68EE;
+        }
+
+        .tag-bubble {
+            background: #2400FF;
+        }
+
+        /* Google Products */
+        .tag-google-blue {
+            background: #4285F4;
+        }
+
+        .tag-google-red {
+            background: #DB4437;
+        }
+
+        .tag-google-yellow {
+            background: #F4B400;
+            color: black;
+        }
+
+        .tag-google-green {
+            background: #0F9D58;
+        }
+
+        /* Healthcare & Technical */
+        .tag-healthcare {
+            background: #41B6E6;
+        }
+
+        .tag-technical-support {
+            background: #2D3748;
+        }
+
+        .tag-documentation {
+            background: #718096;
+        }
+
+        /* Leadership & Soft Skills */
+        .tag-leadership {
+            background: #553C9A;
+        }
+
+        .tag-project-management {
+            background: #805AD5;
+        }
+
+        .tag-data-analysis {
+            background: #3182CE;
+        }
+
+        /* Additional Technology Tags */
+        .tag-api {
+            background: #009688;
+        }
+
+        .tag-epr {
+            background: #41B6E6;
+        }
+
+        .tag-hardware {
+            background: #78909C;
+        }
+
+        .tag-qa {
+            background: #26A69A;
+        }
+
+        .tag-database {
+            background: #1976D2;
+        }
+
+        .tag-event {
+            background: #9C27B0;
+        }
+
+        .tag-sharepoint {
+            background: #0078D4;
+        }
+
+        .tag-computer-science {
+            background: #4285F4; /* Google Blue */
+        }
+
+        .tag-machine-learning {
+            background: #0F9D58; /* Google Green */
+        }
+
+        .tag-ai {
+            background: #DB4437; /* Google Red */
+        }
+
+        .tag-cybersecurity {
+            background: #4A148C;
+        }
+
+        .tag-innovation {
+            background: #F4B400; /* Google Yellow */
+            color: black;
+        }
+
+        .tag-academic-excellence {
+            background: #FFD700;
+            color: black;
+        }
+
+        /* Productivity Tools */
+        .tag-asana {
+            background: #F06A6A;
+        }
+
+        .tag-confluence {
+            background: #172B4D;
+        }
+
+        .tag-jira {
+            background: #0052CC;
+        }
+
+        .tag-clickup {
+            background: #7B68EE;
+        }
+
+        .tag-notion {
+            background: #000000;
+        }
+
+        .tag-trello {
+            background: #0079BF;
+        }
+
+        .tag-slack {
+            background: #4A154B;
+        }
+
+        .tag-teams {
+            background: #6264A7;
+        }
+
+        /* Add hover effect for all tags */
+        .experience-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Base tag styling */
+        .experience-tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin: 0.2rem;
+            transition: all 0.2s ease;
+            cursor: default;
+        }
+
+        /* Company Colors */
+        .company-tmu {
+            background: linear-gradient(45deg, #004c9b, #ffdc00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+        }
+
+        .company-glenforest {
+            background: linear-gradient(45deg, #00205B, #FFD700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+        }
+
+        .company-pdsb {
+            color: #0051A1;
+            font-weight: 600;
+        }
+
+        .company-mississauga {
+            background: linear-gradient(45deg, #0077BE, #7AB800);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+        }
+
+        .company-mastercard-ethoca {
+            background: linear-gradient(45deg, #EB001B 0%, #FF5F00 50%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+        }
+
+        .company-mastercard-ethoca .ethoca {
+            background: #00A887; /* Ethoca's green */
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+        }
+
+        .company-unity-health {
+            color: #00A3E0;
+            font-weight: 600;
+        }
+
+        .company-crewscope {
+            color: #00B4B4;
+            font-weight: 600;
+        }
+
+        .company-olp {
+            color: #E4002B;
+            font-weight: 600;
+        }
+
+        /* Update experience company class */
+        .experience-company {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Remove highlighting from experience areas */
+        .highlight-cs,
+        .highlight-ml,
+        .highlight-ai,
+        .highlight-cyber,
+        .highlight-innovation,
+        .highlight-academic,
+        .highlight-leadership {
+            background: none;
+            color: inherit;
+            padding: 0;
+            border-radius: 0;
+            text-shadow: none;
+        }
+
+        /* Update tag colors for better legibility */
+        .tech-tag {
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: #fff;
+            background: #4a90e2;  /* Default blue */
+        }
+
+        /* Specific tag colors - using softer, more legible colors */
+        .tag-documentation {
+            background: #5c6bc0;  /* Soft indigo */
+        }
+
+        .tag-data-analysis {
+            background: #26a69a;  /* Soft teal */
+        }
+
+        .tag-research {
+            background: #7986cb;  /* Soft blue */
+        }
+
+        .tag-leadership {
+            background: #5c6bc0;  /* Soft indigo */
+        }
+
+        .tag-teamwork {
+            background: #4db6ac;  /* Soft teal */
+        }
+
+        .tag-communication {
+            background: #4fc3f7;  /* Light blue */
+        }
+
+        .tag-project-management {
+            background: #7e57c2;  /* Soft purple */
+        }
+
+        .tag-innovation {
+            background: #4db6ac;  /* Soft teal */
+        }
+
+        .tag-problem-solving {
+            background: #5c6bc0;  /* Soft indigo */
+        }
+
+        .tag-critical-thinking {
+            background: #4fc3f7;  /* Light blue */
+        }
+
+        .tag-analysis {
+            background: #26a69a;  /* Soft teal */
+        }
+
+        .tag-research-methodology {
+            background: #7986cb;  /* Soft blue */
+        }
+
+        .tag-academic-writing {
+            background: #5c6bc0;  /* Soft indigo */
+        }
+
+        /* Hover effect for all tags */
+        .tech-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
@@ -412,132 +792,99 @@
 
             <div class="timeline">
                 <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Software Engineer</h3>
-                        <h4>Crewscope</h4>
-                        <div class="date">Jan 2025 - Apr 2025 · 4 mos</div>
-                        <div class="location">📍 Toronto, Ontario, Canada · Hybrid</div>
-                        <ul>
-                            <li>Designed and implemented backend services, managing data storage and developing a microservices-based architecture for a modern enterprise application</li>
-                            <li>Integrated AI-powered workflows using APIs to enhance automation and optimize business processes</li>
-                            <li>Participated in the full software development lifecycle, contributing to QA efforts, building automated tests, and ensuring high-quality code</li>
-                            <li>Developed integrations between Crewscope's product and third-party services to enhance functionality and streamline operations</li>
-                            <li>Wrote sustainable, maintainable code and comprehensive documentation for future scalability</li>
-                        </ul>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Backend Development</span>
-                            <span class="tech-tag">Microservices</span>
-                            <span class="tech-tag">AI Integration</span>
-                            <span class="tech-tag">API Development</span>
+                    <div class="experience-card">
+                        <h3 class="experience-title">Software Engineer</h3>
+                        <div class="experience-company company-crewscope">Crewscope</div>
+                        <div class="experience-date">Jan 2025 - Apr 2025</div>
+                        <p class="experience-description">
+                            Designed and implemented backend services, managing data storage and developing a microservices-based architecture.
+                        </p>
+                        <div class="experience-tags">
+                            <span class="experience-tag tag-python">Python</span>
+                            <span class="experience-tag tag-java">Java</span>
+                            <span class="experience-tag tag-spring">Spring</span>
                         </div>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Technical Operations Intern</h3>
-                        <h4>St. Michael's Hospital - Unity Health Toronto</h4>
-                        <div class="date">Dec 2024 - Jan 2025 · 2 mos</div>
-                        <div class="location">📍 Toronto, Ontario, Canada · On-site</div>
-                        <ul>
-                            <li>Developed an understanding of system interconnectivity and infrastructure, supporting asset relationships and optimizing hospital technology operations, leading to improved coordination across departments</li>
-                            <li>Conducted a thorough audit of hospital technology assets, recording key data points (e.g., location, users, manufacturer, model, serial number, and connections) into a well-structured spreadsheet completing audits for 4 departments and over 300 devices</li>
-                            <li>Utilized strong analytical and organizational skills to create an accurate and detailed inventory system, facilitating efficient asset tracking and future upgrades, which improved asset management and resource allocation</li>
-                            <li>Ensured data consistency and integrity in documentation, demonstrating attention to detail and proficiency in managing large datasets, resulting in a more reliable and easily accessible asset management system</li>
-                        </ul>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Asset Management</span>
-                            <span class="tech-tag">Data Analysis</span>
-                            <span class="tech-tag">System Infrastructure</span>
-                            <span class="tech-tag">Documentation</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Operating Room Support</h3>
-                        <h4>St. Michael's Hospital - Unity Health Toronto</h4>
-                        <div class="date">Nov 2024 - Dec 2024 · 2 mos</div>
-                        <div class="location">📍 Toronto, Ontario, Canada · On-site</div>
-                        <ul>
-                            <li>Supported Operating Room staff in using the new Electronic Patient Records (EPR) system, including nurses, residents, fellows, surgeons, and other healthcare professionals</li>
-                            <li>Navigated high-pressure surgical environments to deliver timely technical support without disrupting critical procedures</li>
-                            <li>Troubleshot software issues, managed ticket escalations, and ensured timely resolution in a fast-paced healthcare setting</li>
-                            <li>Performed urgent hardware maintenance and repairs during active surgical procedures while minimizing operational disruptions</li>
-                            <li>Conducted regular staff check-ins to monitor workflow and address software-related concerns, enhancing efficiency</li>
-                            <li>Created and distributed resource materials to assist staff with software-related questions and provide quick access to help</li>
-                            <li>Assisted circulation nurses with clinical documentation tasks to streamline Operating Room workflow</li>
-                            <li>Developed comprehensive understanding of cross-departmental workflows to facilitate effective support and collaboration</li>
-                        </ul>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Healthcare IT</span>
-                            <span class="tech-tag">Technical Support</span>
-                            <span class="tech-tag">EPR Systems</span>
-                            <span class="tech-tag">Hardware Maintenance</span>
+                    <div class="experience-card">
+                        <h3 class="experience-title">Technical Operations Intern</h3>
+                        <div class="experience-company company-unity-health">St. Michael's Hospital - Unity Health Toronto</div>
+                        <div class="experience-date">Dec 2024 - Jan 2025</div>
+                        <p class="experience-description">
+                            Developed an understanding of system interconnectivity and infrastructure, supporting asset relationships and optimizing hospital technology operations, leading to improved coordination across departments.
+                        </p>
+                        <div class="experience-tags">
+                            <span class="experience-tag tag-excel">Excel</span>
+                            <span class="experience-tag tag-data-analysis">Data Analysis</span>
+                            <span class="experience-tag tag-system">System Infrastructure</span>
+                            <span class="experience-tag tag-documentation">Documentation</span>
                         </div>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Quality Assurance Intern</h3>
-                        <h4>Unity Health Toronto - Project Connect (Go-Live)</h4>
-                        <div class="date">Sep 2024 - Nov 2024 · 3 mos</div>
-                        <div class="location">📍 Toronto, Ontario, Canada · On-site</div>
-                        <ul>
-                            <li>Utilized project management tools and methodologies to oversee and execute tasks, ensuring timely and efficient project completion in a hospital environment</li>
-                            <li>Collaborated with cross-functional teams to identify and resolve technical issues, improving system performance and user experience</li>
-                            <li>Conducted thorough testing of healthcare systems, ensuring compliance with security standards and regulatory requirements</li>
-                            <li>Documented technical processes and created user guides to facilitate system adoption and training</li>
-                        </ul>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Healthcare Tech</span>
-                            <span class="tech-tag">QA Testing</span>
-                            <span class="tech-tag">Project Management</span>
-                            <span class="tech-tag">Documentation</span>
+                    <div class="experience-card">
+                        <h3 class="experience-title">Operating Room Support</h3>
+                        <div class="experience-company company-unity-health">St. Michael's Hospital - Unity Health Toronto</div>
+                        <div class="experience-date">Nov 2024 - Dec 2024</div>
+                        <p class="experience-description">
+                            Supported Operating Room staff in using the new Electronic Patient Records (EPR) system, including nurses, residents, fellows, surgeons, and other healthcare professionals.
+                        </p>
+                        <div class="experience-tags">
+                            <span class="experience-tag tag-healthcare">Healthcare IT</span>
+                            <span class="experience-tag tag-technical-support">Technical Support</span>
+                            <span class="experience-tag tag-epr">EPR Systems</span>
+                            <span class="experience-tag tag-hardware">Hardware Maintenance</span>
                         </div>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Campus Liaison & Data Team Member</h3>
-                        <h4>Ontario Liberal Party</h4>
-                        <div class="date">Jul 2023 - Dec 2023 · 6 mos</div>
-                        <div class="location">📍 Ontario, Canada · Hybrid/Remote</div>
-                        <ul>
-                            <li>Leveraged Unix and Excel to extract meaningful insights from data sets up to 2 million data points, optimizing workflow and data preparation</li>
-                            <li>Proficiently used software tools to verify, append, and manage critical campaign data</li>
-                            <li>Developed a comprehensive strategy for the database migration, considering the election period requirements</li>
-                            <li>Coordinated with TMU stakeholders to organize and execute the Ontario Liberal leadership debate on campus</li>
-                            <li>Built relationships with student organizations and campus groups to increase political engagement</li>
-                        </ul>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Unix</span>
-                            <span class="tech-tag">Excel</span>
-                            <span class="tech-tag">Data Analysis</span>
-                            <span class="tech-tag">Database Management</span>
-                            <span class="tech-tag">Event Planning</span>
+                    <div class="experience-card">
+                        <h3 class="experience-title">Quality Assurance Intern</h3>
+                        <div class="experience-company">Unity Health Toronto - Project Connect (Go-Live)</div>
+                        <div class="experience-date">Sep 2024 - Nov 2024</div>
+                        <p class="experience-description">
+                            Utilized project management tools and methodologies to oversee and execute tasks, ensuring timely and efficient project completion in a hospital environment.
+                        </p>
+                        <div class="experience-tags">
+                            <span class="experience-tag tag-qa">QA Testing</span>
+                            <span class="experience-tag tag-project">Project Management</span>
+                            <span class="experience-tag tag-documentation">Documentation</span>
                         </div>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Software Developer Co-op</h3>
-                        <h4>Mastercard - Cyber & Intelligence Solutions (Ethoca)</h4>
-                        <div class="date">May 2024 - Aug 2024 · 4 mos</div>
-                        <div class="location">📍 Toronto, Ontario, Canada · Hybrid</div>
-                        <ul>
-                            <li>Developed robust front-end applications using Angular and Spring frameworks for Consumer Clarity product, currently accessed 10 billion times per month</li>
-                            <li>Contributed to codebase by updating Java and YML files with client information, utilizing Git for version control and code review processes</li>
-                            <li>Collaborated with cross-functional team of 12 to implement new functionality and participated in Security Code Review to ensure adherence to security standards</li>
-                            <li>Delivered high-impact presentations to C-level executives and Engineering team, effectively communicating technical developments and project outcomes</li>
-                            <li>Optimized employee Onboarding process using SharePoint, reducing expenses by $1500+ per employee</li>
-                        </ul>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Angular</span>
-                            <span class="tech-tag">Spring</span>
-                            <span class="tech-tag">Java</span>
-                            <span class="tech-tag">Git</span>
-                            <span class="tech-tag">SharePoint</span>
+                    <div class="experience-card">
+                        <h3 class="experience-title">Campus Liaison & Data Team Member</h3>
+                        <div class="experience-company company-olp">Ontario Liberal Party</div>
+                        <div class="experience-date">Jul 2023 - Dec 2023</div>
+                        <p class="experience-description">
+                            Leveraged Unix and Excel to extract meaningful insights from data sets up to 2 million data points, optimizing workflow and data preparation.
+                        </p>
+                        <div class="experience-tags">
+                            <span class="experience-tag tag-unix">Unix</span>
+                            <span class="experience-tag tag-excel">Excel</span>
+                            <span class="experience-tag tag-data-analysis">Data Analysis</span>
+                            <span class="experience-tag tag-database">Database Management</span>
+                            <span class="experience-tag tag-event">Event Planning</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="experience-card">
+                        <h3 class="experience-title">Software Developer Co-op</h3>
+                        <div class="experience-company">
+                            <span class="company-mastercard-ethoca">Mastercard</span> - 
+                            <span class="company-mastercard-ethoca ethoca">Ethoca</span>
+                        </div>
+                        <div class="experience-date">May 2024 - Aug 2024</div>
+                        <p class="experience-description">
+                            Developed robust front-end applications using Angular and Spring frameworks for Consumer Clarity product, currently accessed 10 billion times per month.
+                        </p>
+                        <div class="experience-tags">
+                            <span class="experience-tag tag-angular">Angular</span>
+                            <span class="experience-tag tag-spring">Spring</span>
+                            <span class="experience-tag tag-java">Java</span>
                         </div>
                     </div>
                 </div>
@@ -566,11 +913,11 @@
                             <li>Minor in Cybersecurity</li>
                         </ul>
                         <div class="tech-tags">
-                            <span class="tech-tag">Computer Science</span>
-                            <span class="tech-tag">Machine Learning</span>
-                            <span class="tech-tag">AI</span>
-                            <span class="tech-tag">Cybersecurity</span>
-                            <span class="tech-tag">Innovation</span>
+                            <span class="tech-tag tag-computer-science">Computer Science</span>
+                            <span class="tech-tag tag-machine-learning">Machine Learning</span>
+                            <span class="tech-tag tag-ai">AI</span>
+                            <span class="tech-tag tag-cybersecurity">Cybersecurity</span>
+                            <span class="tech-tag tag-innovation">Innovation</span>
                         </div>
                     </div>
                 </div>
@@ -589,8 +936,8 @@
                             <li>Student Activity Council Technology Executive</li>
                         </ul>
                         <div class="tech-tags">
-                            <span class="tech-tag">Academic Excellence</span>
-                            <span class="tech-tag">Leadership</span>
+                            <span class="tech-tag tag-academic-excellence">Academic Excellence</span>
+                            <span class="tech-tag tag-leadership">Leadership</span>
                         </div>
                     </div>
                 </div>
