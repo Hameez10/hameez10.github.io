@@ -308,7 +308,8 @@
 
         /* Additional Tag Colors */
         .tag-qa {
-            background: linear-gradient(45deg, #6B4FBB, #8E44AD); /* GitLab-inspired purple */
+            background-color: rgba(66, 153, 225, 0.2);
+            color: #2C5282;  /* Darker blue for better contrast */
         }
 
         .tag-testing {
@@ -340,7 +341,8 @@
         }
 
         .tag-system {
-            background: #4A5568; /* Slate 700 */
+            background-color: rgba(74, 85, 104, 0.2);
+            color: #1A202C;  /* Even darker slate for better contrast */
         }
 
         .tag-education {
@@ -365,15 +367,18 @@
 
         /* Programming Languages */
         .tag-python {
-            background: #3776AB;
+            background-color: rgba(55, 118, 171, 0.1);
+            color: #3776AB;
         }
 
         .tag-java {
-            background: #f89820;
+            background-color: rgba(248, 152, 32, 0.1);
+            color: #f89820;
         }
 
         .tag-cpp {
-            background: #00599C;
+            background-color: rgba(0, 89, 156, 0.1);
+            color: #00599C;
         }
 
         .tag-javascript {
@@ -387,11 +392,13 @@
 
         /* Web Technologies */
         .tag-html {
-            background: #E34F26;
+            background-color: rgba(227, 79, 38, 0.1);
+            color: #E34F26;
         }
 
         .tag-css {
-            background: #1572B6;
+            background-color: rgba(21, 114, 182, 0.1);
+            color: #1572B6;
         }
 
         .tag-react {
@@ -400,20 +407,24 @@
         }
 
         .tag-angular {
-            background: #DD0031;
+            background-color: rgba(221, 0, 49, 0.1);
+            color: #DD0031;
         }
 
         .tag-spring {
-            background: #6DB33F;
+            background-color: rgba(109, 179, 63, 0.1);
+            color: #6DB33F;
         }
 
         /* Version Control & DevOps */
         .tag-git {
-            background: #F05032;
+            background-color: rgba(240, 80, 50, 0.1);
+            color: #F05032;
         }
 
         .tag-github {
-            background: #181717;
+            background-color: rgba(24, 23, 23, 0.1);
+            color: #181717;
         }
 
         .tag-gitlab {
@@ -434,12 +445,13 @@
         }
 
         .tag-excel {
-            background: #217346;
+            background-color: rgba(33, 115, 70, 0.1);
+            color: #217346;
         }
 
         .tag-unix {
-            background: #FCC624;
-            color: black;
+            background-color: rgba(252, 198, 36, 0.1);
+            color: #FCC624;
         }
 
         /* Project Management */
@@ -483,53 +495,65 @@
 
         /* Healthcare & Technical */
         .tag-healthcare {
-            background: #41B6E6;
+            background-color: rgba(65, 182, 230, 0.1);
+            color: #41B6E6;
         }
 
         .tag-technical-support {
-            background: #2D3748;
+            background-color: rgba(45, 55, 72, 0.1);
+            color: #2D3748;
         }
 
         .tag-documentation {
-            background: #718096;
+            background-color: rgba(113, 128, 150, 0.1);
+            color: #718096;
         }
 
         /* Leadership & Soft Skills */
         .tag-leadership {
-            background: #553C9A;
+            background-color: rgba(85, 60, 154, 0.1);
+            color: #553C9A;
         }
 
         .tag-project-management {
-            background: #805AD5;
+            background-color: rgba(128, 90, 213, 0.1);
+            color: #805AD5;
         }
 
         .tag-data-analysis {
-            background: #3182CE;
+            background-color: rgba(66, 153, 225, 0.15);
+            color: #2B6CB0;  /* Darker blue */
         }
 
         /* Additional Technology Tags */
         .tag-api {
-            background: #009688;
+            background-color: rgba(0, 150, 136, 0.1);
+            color: #009688;
         }
 
         .tag-epr {
-            background: #41B6E6;
+            background-color: rgba(65, 182, 230, 0.1);
+            color: #41B6E6;
         }
 
         .tag-hardware {
-            background: #78909C;
+            background-color: rgba(120, 144, 156, 0.1);
+            color: #78909C;
         }
 
         .tag-qa {
-            background: #26A69A;
+            background-color: rgba(66, 153, 225, 0.2);
+            color: #2C5282;  /* Darker blue for better contrast */
         }
 
         .tag-database {
-            background: #1976D2;
+            background-color: rgba(25, 118, 210, 0.1);
+            color: #1976D2;
         }
 
         .tag-event {
-            background: #9C27B0;
+            background-color: rgba(156, 39, 176, 0.1);
+            color: #9C27B0;
         }
 
         .tag-sharepoint {
@@ -553,8 +577,8 @@
         }
 
         .tag-innovation {
-            background: #F4B400; /* Google Yellow */
-            color: black;
+            background-color: rgba(244, 180, 0, 0.1);
+            color: #F4B400;
         }
 
         .tag-academic-excellence {
@@ -595,22 +619,24 @@
             background: #6264A7;
         }
 
-        /* Add hover effect for all tags */
-        .experience-tag:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Base tag styling */
+        /* Tag Base Styles */
+        .tech-tag,
         .experience-tag {
             display: inline-block;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
+            padding: 6px 12px;
+            border-radius: 15px;
             font-size: 0.85rem;
             font-weight: 500;
-            margin: 0.2rem;
-            transition: all 0.2s ease;
-            cursor: default;
+            transition: all 0.3s ease;
+        }
+
+        /* Hover effect */
+        .tech-tag:hover,
+        .experience-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background-color: currentColor;
+            color: white;
         }
 
         /* Company Colors */
@@ -709,11 +735,13 @@
 
         /* Specific tag colors - using softer, more legible colors */
         .tag-documentation {
-            background: #5c6bc0;  /* Soft indigo */
+            background-color: rgba(160, 174, 192, 0.2);
+            color: #4A5568;  /* Darker gray */
         }
 
         .tag-data-analysis {
-            background: #26a69a;  /* Soft teal */
+            background-color: rgba(66, 153, 225, 0.15);
+            color: #2B6CB0;  /* Darker blue */
         }
 
         .tag-research {
@@ -733,7 +761,13 @@
         }
 
         .tag-project-management {
-            background: #7e57c2;  /* Soft purple */
+            background-color: rgba(203, 213, 224, 0.3);  /* Light grey background */
+            color: #4A5568;  /* Dark grey text */
+        }
+
+        .tag-project {  /* Additional class for project management */
+            background-color: rgba(203, 213, 224, 0.3);
+            color: #4A5568;
         }
 
         .tag-innovation {
@@ -765,6 +799,34 @@
             transform: translateY(-2px);
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
+
+        /* Hover states */
+        .tag-data-analysis:hover,
+        .tag-system:hover,
+        .tag-documentation:hover,
+        .tag-qa:hover,
+        .tag-project-management:hover,
+        .tag-project:hover {
+            background-color: currentColor;
+            color: white;
+        }
+
+        /* Institution name styles */
+        .institution-tmu {
+            background: linear-gradient(45deg, #004c9b, #ffdc00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+        }
+
+        .institution-glenforest {
+            background: linear-gradient(45deg, #000080, #FFD700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -793,9 +855,10 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="experience-card">
-                        <h3 class="experience-title">Software Engineer</h3>
+                        <h3 class="experience-title">Software Engineer Intern</h3>
                         <div class="experience-company company-crewscope">Crewscope</div>
                         <div class="experience-date">Jan 2025 - Apr 2025</div>
+                        <div class="experience-location">📍 Toronto, Ontario, Canada · Hybrid</div>
                         <p class="experience-description">
                             Designed and implemented backend services, managing data storage and developing a microservices-based architecture.
                         </p>
@@ -841,15 +904,17 @@
                 <div class="timeline-item">
                     <div class="experience-card">
                         <h3 class="experience-title">Quality Assurance Intern</h3>
-                        <div class="experience-company">Unity Health Toronto - Project Connect (Go-Live)</div>
+                        <div class="experience-company company-unity-health">Unity Health Toronto - Project Connect (Go-Live)</div>
                         <div class="experience-date">Sep 2024 - Nov 2024</div>
+                        <div class="experience-location">📍 Toronto, Ontario, Canada · On-site</div>
                         <p class="experience-description">
-                            Utilized project management tools and methodologies to oversee and execute tasks, ensuring timely and efficient project completion in a hospital environment.
+                            Supported the implementation of Epic Electronic Health Record system across Unity Health's three sites: St. Michael's Hospital, St. Joseph's Health Centre, and Providence Healthcare. Utilized project management tools and methodologies to oversee and execute tasks, ensuring timely and efficient project completion. Collaborated with cross-functional teams to identify and resolve technical issues, improving system performance and user experience. Conducted thorough testing of healthcare systems, ensuring compliance with security standards and regulatory requirements.
                         </p>
                         <div class="experience-tags">
                             <span class="experience-tag tag-qa">QA Testing</span>
                             <span class="experience-tag tag-project">Project Management</span>
                             <span class="experience-tag tag-documentation">Documentation</span>
+                            <span class="experience-tag tag-healthcare">Healthcare IT</span>
                         </div>
                     </div>
                 </div>
@@ -872,12 +937,13 @@
                 </div>
                 <div class="timeline-item">
                     <div class="experience-card">
-                        <h3 class="experience-title">Software Developer Co-op</h3>
+                        <h3 class="experience-title">Software Engineer Intern</h3>
                         <div class="experience-company">
                             <span class="company-mastercard-ethoca">Mastercard</span> - 
                             <span class="company-mastercard-ethoca ethoca">Ethoca</span>
                         </div>
                         <div class="experience-date">May 2024 - Aug 2024</div>
+                        <div class="experience-location">📍 Toronto, Ontario, Canada · Hybrid</div>
                         <p class="experience-description">
                             Developed robust front-end applications using Angular and Spring frameworks for Consumer Clarity product, currently accessed 10 billion times per month.
                         </p>
@@ -902,43 +968,25 @@
             <div class="timeline">
                 <!-- Toronto Metropolitan University -->
                 <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Bachelor of Science (Honours), Computer Science</h3>
-                        <span class="tmu-tag">Toronto Metropolitan University</span>
-                        <div class="date">Sep 2022 - Apr 2027</div>
-                        <div class="location">📍 Toronto, Ontario, Canada</div>
-                        <ul>
-                            <li>Major in Computer Science with focus in Machine Learning and Artificial Intelligence</li>
-                            <li>Minor in Innovation and Entrepreneurship</li>
-                            <li>Minor in Cybersecurity</li>
-                        </ul>
-                        <div class="tech-tags">
-                            <span class="tech-tag tag-computer-science">Computer Science</span>
-                            <span class="tech-tag tag-machine-learning">Machine Learning</span>
-                            <span class="tech-tag tag-ai">AI</span>
-                            <span class="tech-tag tag-cybersecurity">Cybersecurity</span>
-                            <span class="tech-tag tag-innovation">Innovation</span>
-                        </div>
+                    <div class="experience-card">
+                        <h3 class="experience-title">Computer Science Student</h3>
+                        <div class="institution-tmu">Toronto Metropolitan University</div>
+                        <div class="experience-date">Sep 2022 - Present</div>
+                        <p class="experience-description">
+                            Pursuing a Bachelor of Science in Computer Science with a focus on Machine Learning and AI, complemented by minors in Innovation and Cybersecurity.
+                        </p>
                     </div>
                 </div>
 
                 <!-- Glenforest Secondary School -->
                 <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Ontario Secondary School Diploma</h3>
-                        <span class="glenforest-tag">Glenforest Secondary School</span>
-                        <div class="date">Sep 2018 - Jun 2022</div>
-                        <div class="location">📍 Mississauga, Ontario, Canada</div>
-                        <ul>
-                            <li>Graduated with Honours and Principal's Award for Academic Excellence</li>
-                            <li>Ontario Scholar Award Recipient</li>
-                            <li>Graduated with 98% average</li>
-                            <li>Student Activity Council Technology Executive</li>
-                        </ul>
-                        <div class="tech-tags">
-                            <span class="tech-tag tag-academic-excellence">Academic Excellence</span>
-                            <span class="tech-tag tag-leadership">Leadership</span>
-                        </div>
+                    <div class="experience-card">
+                        <h3 class="experience-title">Secondary School Graduate</h3>
+                        <div class="institution-glenforest">Glenforest Secondary School</div>
+                        <div class="experience-date">Sep 2018 - Jun 2022</div>
+                        <p class="experience-description">
+                            Graduated with honors, demonstrating strong academic performance and leadership in computer science and technology initiatives.
+                        </p>
                     </div>
                 </div>
             </div>
