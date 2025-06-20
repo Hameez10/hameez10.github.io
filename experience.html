@@ -6,7 +6,7 @@
     <title>Experience - Hameez Iqbal</title>
     <!-- Preload Instagram embed for faster media page loading -->
     <link rel="preload" href="https://www.instagram.com/embed.js" as="script">
-    <style>
+    <style data-version="1.1">
         :root {
             --primary-color: #FF6B6B;
             --accent-color: #4ECDC4;
@@ -86,6 +86,25 @@
             margin: 0 auto;
             padding: 2rem;
             padding-top: calc(70px + 4rem); /* navbar height + additional padding */
+        }
+
+        /* Add responsive container sizes */
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1400px;
+            }
+        }
+
+        @media (min-width: 1600px) {
+            .container {
+                max-width: 1600px;
+            }
+        }
+
+        @media (min-width: 1920px) {
+            .container {
+                max-width: 1800px;
+            }
         }
 
         .experience-section {
@@ -246,14 +265,10 @@
             background-color: white;
             border: 3px solid var(--primary-color);
             border-radius: 50%;
-            top: calc(25px - 8px); /* Adjusting by subtracting half the height */
+            top: 50%;
+            transform: translateY(-50%);
             z-index: 1;
             transition: all 0.3s ease;
-        }
-
-        .timeline-item:hover::after {
-            background-color: var(--primary-color);
-            transform: scale(1.2);
         }
 
         .timeline-item:nth-child(odd)::after {
@@ -264,6 +279,45 @@
             left: -8px;
         }
 
+        /* Adjust timeline layout for larger screens */
+        @media (min-width: 1400px) {
+            .timeline-item {
+                padding: 10px 60px;  /* Increase padding for better spacing */
+            }
+
+            .timeline-item:nth-child(odd) {
+                padding-right: 80px;
+            }
+
+            .timeline-item:nth-child(even) {
+                padding-left: 80px;
+            }
+
+            .timeline-content {
+                padding: 2.5rem;  /* Slightly larger padding for content */
+            }
+        }
+
+        @media (min-width: 1600px) {
+            .timeline {
+                max-width: 1200px;  /* Wider timeline on very large screens */
+                margin: 0 auto;
+            }
+
+            .timeline-item {
+                padding: 10px 80px;
+            }
+
+            .timeline-item:nth-child(odd) {
+                padding-right: 100px;
+            }
+
+            .timeline-item:nth-child(even) {
+                padding-left: 100px;
+            }
+        }
+
+        /* Keep existing mobile media query */
         @media (max-width: 768px) {
             .timeline::after {
                 left: 31px;
@@ -286,7 +340,6 @@
 
             .timeline-item::after {
                 left: 23px;
-                top: calc(25px - 8px); /* Keep the same vertical centering in mobile view */
             }
 
             .timeline-item:nth-child(odd)::after {
@@ -301,6 +354,36 @@
             .section-title {
                 font-size: 2rem;
             }
+        }
+
+        /* TMU Institution tag */
+        .tmu-tag {
+            background: linear-gradient(to right, #004c9b, #004c9b 60%, #ffdc00);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* Glenforest Secondary School styles */
+        .glenforest-tag {
+            background: linear-gradient(to right, #000080, #000080 60%, #FFD700);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* Mississauga Institution tag */
+        .mississauga-tag {
+            background: linear-gradient(to right, #0077BE, #7AB800);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
     </style>
 </head>
@@ -475,14 +558,12 @@
                     <div class="timeline-content">
                         <h3>Bachelor of Science (Honours), Computer Science</h3>
                         <span class="tmu-tag">Toronto Metropolitan University</span>
-                        <div class="date">Sep 2022 - Apr 2026</div>
+                        <div class="date">Sep 2022 - Apr 2027</div>
                         <div class="location">📍 Toronto, Ontario, Canada</div>
                         <ul>
                             <li>Major in Computer Science with focus in Machine Learning and Artificial Intelligence</li>
                             <li>Minor in Innovation and Entrepreneurship</li>
                             <li>Minor in Cybersecurity</li>
-                            <li>Dean's List: Fall 2022, Winter 2023, Fall 2023</li>
-                            <li>Current CGPA: 3.9/4.33</li>
                         </ul>
                         <div class="tech-tags">
                             <span class="tech-tag">Computer Science</span>
@@ -503,16 +584,13 @@
                         <div class="location">📍 Mississauga, Ontario, Canada</div>
                         <ul>
                             <li>Graduated with Honours and Principal's Award for Academic Excellence</li>
-                            <li>Advanced Placement (AP) Computer Science A: Score 5/5</li>
                             <li>Ontario Scholar Award Recipient</li>
                             <li>Graduated with 98% average</li>
-                            <li>Computer Science Club President</li>
                             <li>Student Activity Council Technology Executive</li>
                         </ul>
                         <div class="tech-tags">
-                            <span class="tech-tag">AP Computer Science</span>
-                            <span class="tech-tag">Leadership</span>
                             <span class="tech-tag">Academic Excellence</span>
+                            <span class="tech-tag">Leadership</span>
                         </div>
                     </div>
                 </div>
