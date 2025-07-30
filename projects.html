@@ -6,6 +6,11 @@
     <title>Projects - Hameez Iqbal</title>
     <!-- Preload Instagram embed for faster media page loading -->
     <link rel="preload" href="https://www.instagram.com/embed.js" as="script">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <link rel="stylesheet" href="styles/tags.css">
     <style data-version="1.1">
         :root {
             --primary-color: #FF6B6B;
@@ -45,13 +50,13 @@
         }
 
         .project-card {
+            position: relative;
             background: white;
             border-radius: 20px;
-            padding: 2rem;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 2rem;
         }
 
         .project-card:hover {
@@ -60,7 +65,7 @@
         }
 
         .project-header {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .project-title {
@@ -98,66 +103,47 @@
         }
 
         .skill-tag {
-            background: rgba(255, 107, 107, 0.1);
-            color: var(--primary-color);
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
+            display: none;
         }
 
-        /* Language-specific tags */
-        .python-tag {
-            background: #3776AB;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
+        .tag-python, .python-tag,
+        .tag-java, .java-tag,
+        .tag-cpp,
+        .institution-tag,
+        .tmu-tag,
+        .glenforest-tag,
+        .ignition-tag,
+        .mississauga-tag {
+            display: none;
         }
 
-        .java-tag {
-            background: #f89820;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-        }
-
-        /* TMU Institution tag */
-        .tmu-tag {
-            background: linear-gradient(to right, #004c9b, #004c9b 60%, #ffdc00);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        }
-
-        /* Glenforest Secondary School styles */
-        .glenforest-tag {
-            background: linear-gradient(to right, #000080, #000080 60%, #FFD700);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        .institution-wrapper {
+            margin-bottom: 1rem;
         }
 
         .achievement-badge {
             position: absolute;
             top: 10px;
             right: 10px;
-            background: linear-gradient(45deg, #FFD700, #FFA500);
-            color: #000080;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            background: #FFD700;
+            color: #B8860B;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            width: 75px;
+            height: 75px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
             font-size: 1rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            border: 2px solid #FFD700;
+            box-shadow: 0 2px 5px rgba(218,165,32,0.2);
+        }
+
+        .achievement-star {
+            display: none;
+        }
+
+        .achievement-star::before {
+            display: none;
         }
 
         .project-links {
@@ -178,16 +164,6 @@
 
         .project-link:hover {
             text-decoration: underline;
-        }
-
-        .institution-tag {
-            background: var(--accent-color);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            display: inline-block;
-            margin-bottom: 1rem;
         }
 
         .section-title {
@@ -260,352 +236,366 @@
                 padding: 0.4rem 0.8rem;
             }
         }
-
-        /* Ignition Hacks tag */
-        .ignition-tag {
-            background: #488DF4;
-            color: #FFFFFF;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-        }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="experience.html">Experience</a>
-                <a href="projects.html" class="active">Projects</a>
-                <a href="media.html">Media</a>
-                <a href="heraldry.html">Heraldry</a>
-                <a href="contact.html">Contact</a>
+    <div class="content-wrapper">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="experience.html">Experience</a>
+                    <a href="projects.html" class="active">Projects</a>
+                    <a href="media.html">Media</a>
+                    <a href="heraldry.html">Heraldry</a>
+                    <a href="contact.html">Contact</a>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    <div class="container">
-        <h1 class="section-title">My Projects</h1>
-        <p class="section-subtitle">A collection of my academic and personal projects, showcasing my journey in technology and community impact.</p>
-        
-        <div class="projects-grid">
-            <!-- Bug Report System -->
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="tmu-tag">Toronto Metropolitan University</span>
-                    <h3 class="project-title">Bug Report System</h3>
-                    <div class="project-meta">
-                        <span class="project-date">Feb 2024 - Apr 2024</span>
+        <div class="container">
+            <h1 class="section-title">My Projects</h1>
+            <p class="section-subtitle">A collection of my academic and personal projects, showcasing my journey in technology and community impact.</p>
+            
+            <div class="projects-grid">
+                <!-- Bug Report System -->
+                <div class="project-card">
+                    <span class="achievement-badge" style="padding-left: 7px;">A+</span>
+                    <div class="project-header">
+                        <div class="institution-wrapper">
+                            <span class="tech-tag tag-institution">Toronto Metropolitan University</span>
+                        </div>
+                        <h3 class="project-title">Bug Report System</h3>
+                        <div class="project-meta">
+                            <span class="project-date">Feb 2024 - Apr 2024</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Currently in development for CPS406 - Introduction to Software Engineering. A comprehensive system for tracking and managing software bugs.
+                    </p>
+                    <div class="skills-list">
+                        <span class="tech-tag tag-software-engineering">Software Engineering</span>
+                        <span class="tech-tag tag-qa">Bug Tracking</span>
                     </div>
                 </div>
-                <p class="project-description">
-                    Currently in development for CPS406 - Introduction to Software Engineering. A comprehensive system for tracking and managing software bugs.
-                </p>
-                <div class="skills-list">
-                    <span class="skill-tag">Software Engineering</span>
-                    <span class="skill-tag">Bug Tracking</span>
-                </div>
-            </div>
 
-            <!-- Lisp Notes -->
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="institution-tag">Personal Project</span>
-                    <h3 class="project-title">Lisp Notes</h3>
-                    <div class="project-meta">
-                        <span class="project-date">December 2023</span>
+                <!-- Lisp Notes -->
+                <div class="project-card">
+                    <span class="achievement-badge" style="padding-left: 7px;">A+</span>
+                    <div class="project-header">
+                        <div class="institution-wrapper">
+                            <span class="tech-tag tag-personal">Personal Project</span>
+                        </div>
+                        <h3 class="project-title">Lisp Notes</h3>
+                        <div class="project-meta">
+                            <span class="project-date">December 2023</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        A comprehensive collection of notes and resources for learning Common Lisp programming language.
+                    </p>
+                    <div class="skills-list">
+                        <span class="tech-tag tag-lisp">Lisp</span>
+                        <span class="tech-tag tag-documentation">Documentation</span>
+                        <span class="tech-tag tag-education">Teaching</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Hameez10/Lisp-Notes" target="_blank" class="project-link"><img src="assets/GitHub.png" alt="GitHub" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> GitHub Repository</a>
                     </div>
                 </div>
-                <p class="project-description">
-                    A comprehensive collection of notes and resources for learning Common Lisp programming language.
-                </p>
-                <div class="skills-list">
-                    <span class="skill-tag">Lisp</span>
-                    <span class="skill-tag">Documentation</span>
-                    <span class="skill-tag">Teaching</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/Hameez10/Lisp-Notes" target="_blank" class="project-link"><img src="assets/GitHub.png" alt="GitHub" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> GitHub Repository</a>
-                </div>
-            </div>
 
-            <!-- Modern Encryption Tools Analysis -->
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="tmu-tag">Toronto Metropolitan University</span>
-                    <h3 class="project-title">Modern Encryption Tools Analysis</h3>
-                    <div class="project-meta">
-                        <span class="project-date">Oct 2023 - Nov 2023</span>
+                <!-- Modern Encryption Tools Analysis -->
+                <div class="project-card">
+                    <span class="achievement-badge" style="padding-left: 7px;">A+</span>
+                    <div class="project-header">
+                        <div class="institution-wrapper">
+                            <span class="tech-tag tag-institution">Toronto Metropolitan University</span>
+                        </div>
+                        <h3 class="project-title">Modern Encryption Tools Analysis</h3>
+                        <div class="project-meta">
+                            <span class="project-date">Oct 2023 - Nov 2023</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        A comparative analysis of modern encryption tools and their applications in cybersecurity. Collaborated with team members for CPS571 (Introduction to Cyber-Security).
+                    </p>
+                    <div class="skills-list">
+                        <span class="tech-tag tag-security">Cybersecurity</span>
+                        <span class="tech-tag tag-security">Encryption</span>
+                        <span class="tech-tag tag-research">Research</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://www.linkedin.com/in/hameez-iqbal/details/projects/1635554694499/single-media-viewer/?profileId=ACoAADDxt00BrKdkdBxPJ1a4XnOGqmkQK_23b1Y" target="_blank" class="project-link">📄 View Project</a>
                     </div>
                 </div>
-                <p class="project-description">
-                    A comparative analysis of modern encryption tools and their applications in cybersecurity. Collaborated with team members for CPS571 (Introduction to Cyber-Security).
-                </p>
-                <div class="skills-list">
-                    <span class="skill-tag">Cybersecurity</span>
-                    <span class="skill-tag">Encryption</span>
-                    <span class="skill-tag">Research</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://www.linkedin.com/in/hameez-iqbal/details/projects/1635554694499/single-media-viewer/?profileId=ACoAADDxt00BrKdkdBxPJ1a4XnOGqmkQK_23b1Y" target="_blank" class="project-link">📄 View Project</a>
-                </div>
-            </div>
 
-            <!-- METMate -->
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="ignition-tag">Ignition Hacks</span>
-                    <h3 class="project-title">METMate</h3>
-                    <div class="project-meta">
-                        <span class="project-date">Aug 2023</span>
+                <!-- METMate -->
+                <div class="project-card">
+                    <span class="achievement-badge" style="padding-left: 7px;">A+</span>
+                    <div class="project-header">
+                        <div class="institution-wrapper">
+                            <span class="tech-tag tag-hackathon">Ignition Hacks</span>
+                        </div>
+                        <h3 class="project-title">METMate</h3>
+                        <div class="project-meta">
+                            <span class="project-date">Aug 2023</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        A platform developed during Ignition Hacks hackathon to connect university students and foster meaningful friendships through shared interests and activities.
+                    </p>
+                    <div class="skills-list">
+                        <span class="tech-tag tag-html">HTML</span>
+                        <span class="tech-tag tag-javascript">JavaScript</span>
+                        <span class="tech-tag tag-css">CSS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Hameez10/MetMate" target="_blank" class="project-link"><img src="assets/GitHub.png" alt="GitHub" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> GitHub Repository</a>
                     </div>
                 </div>
-                <p class="project-description">
-                    A platform developed during Ignition Hacks hackathon to connect university students and foster meaningful friendships through shared interests and activities.
-                </p>
-                <div class="skills-list">
-                    <span class="skill-tag">HTML</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">CSS</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/Hameez10/MetMate" target="_blank" class="project-link"><img src="assets/GitHub.png" alt="GitHub" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> GitHub Repository</a>
-                </div>
-            </div>
 
-            <!-- Computer Organization Labs -->
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="tmu-tag">Toronto Metropolitan University</span>
-                    <h3 class="project-title">Computer Organization Course Labs</h3>
-                    <div class="project-meta">
-                        <span class="project-date">January 2023 - April 2023</span>
+                <!-- Computer Organization Labs -->
+                <div class="project-card">
+                    <span class="achievement-badge" style="padding-left: 7px;">A+</span>
+                    <div class="project-header">
+                        <div class="institution-wrapper">
+                            <span class="tech-tag tag-institution">Toronto Metropolitan University</span>
+                        </div>
+                        <h3 class="project-title">Computer Organization Course Labs</h3>
+                        <div class="project-meta">
+                            <span class="project-date">January 2023 - April 2023</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Comprehensive lab work focusing on assembly programming for Motorola 6809 and ARC architectures. Conducted thorough code analysis with detailed documentation and collaborated on microprocessor architecture studies.
+                    </p>
+                    <div class="skills-list">
+                        <span class="tech-tag tag-assembly">Assembly</span>
+                        <span class="tech-tag tag-system">Machine Code</span>
+                        <span class="tech-tag tag-system">Microprocessors</span>
+                        <span class="tech-tag tag-qa">Debugging</span>
                     </div>
                 </div>
-                <p class="project-description">
-                    Comprehensive lab work focusing on assembly programming for Motorola 6809 and ARC architectures. Conducted thorough code analysis with detailed documentation and collaborated on microprocessor architecture studies.
-                </p>
-                <div class="skills-list">
-                    <span class="skill-tag">Assembly</span>
-                    <span class="skill-tag">Machine Code</span>
-                    <span class="skill-tag">Microprocessors</span>
-                    <span class="skill-tag">Debugging</span>
-                </div>
-            </div>
 
-            <!-- ChatGPT Research -->
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="tmu-tag">Toronto Metropolitan University</span>
-                    <h3 class="project-title">Ethical Analysis of ChatGPT in Academia</h3>
-                    <div class="project-meta">
-                        <span class="project-date">Feb 2023 - Apr 2023</span>
+                <!-- ChatGPT Research -->
+                <div class="project-card">
+                    <span class="achievement-badge" style="padding-left: 7px;">A+</span>
+                    <div class="project-header">
+                        <div class="institution-wrapper">
+                            <span class="tech-tag tag-institution">Toronto Metropolitan University</span>
+                        </div>
+                        <h3 class="project-title">Ethical Analysis of ChatGPT in Academia</h3>
+                        <div class="project-meta">
+                            <span class="project-date">Feb 2023 - Apr 2023</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Research study exploring the ethical implications of using ChatGPT in academic settings, including surveys of professors, graduate students, and undergraduates.
+                    </p>
+                    <div class="skills-list">
+                        <span class="tech-tag tag-python">Python</span>
+                        <span class="tech-tag tag-research">Research</span>
+                        <span class="tech-tag tag-data-analysis">Data Analysis</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Hameez10/Ethical-Analysis-of-ChatGPT-in-Academia-Via-Surveys" target="_blank" class="project-link"><img src="assets/GitHub.png" alt="GitHub" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> GitHub Repository</a>
                     </div>
                 </div>
-                <p class="project-description">
-                    Research study exploring the ethical implications of using ChatGPT in academic settings, including surveys of professors, graduate students, and undergraduates.
-                </p>
-                <div class="skills-list">
-                    <span class="python-tag">Python</span>
-                    <span class="skill-tag">Research</span>
-                    <span class="skill-tag">Data Analysis</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/Hameez10/Ethical-Analysis-of-ChatGPT-in-Academia-Via-Surveys" target="_blank" class="project-link"><img src="assets/GitHub.png" alt="GitHub" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> GitHub Repository</a>
-                </div>
-            </div>
 
-            <!-- CPU Design -->
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="tmu-tag">Toronto Metropolitan University</span>
-                    <h3 class="project-title">CPU Design with ALU</h3>
-                    <div class="project-meta">
-                        <span class="project-date">Nov 2022 - Dec 2022</span>
+                <!-- CPU Design -->
+                <div class="project-card">
+                    <span class="achievement-badge" style="padding-left: 7px;">A+</span>
+                    <div class="project-header">
+                        <div class="institution-wrapper">
+                            <span class="tech-tag tag-institution">Toronto Metropolitan University</span>
+                        </div>
+                        <h3 class="project-title">CPU Design with ALU</h3>
+                        <div class="project-meta">
+                            <span class="project-date">Nov 2022 - Dec 2022</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Developed a fully functional CPU featuring ALU, Control Unit, and Display components. Designed and optimized ALU functionalities using Karnaugh maps, implemented Boolean algebra for logical operations, and integrated multiplexers for efficient data routing.
+                    </p>
+                    <div class="skills-list">
+                        <span class="tech-tag tag-system">Digital Logic</span>
+                        <span class="tech-tag tag-system">Computer Architecture</span>
+                        <span class="tech-tag tag-system">Circuit Design</span>
+                        <span class="tech-tag tag-system">Boolean Algebra</span>
                     </div>
                 </div>
-                <p class="project-description">
-                    Developed a fully functional CPU featuring ALU, Control Unit, and Display components. Designed and optimized ALU functionalities using Karnaugh maps, implemented Boolean algebra for logical operations, and integrated multiplexers for efficient data routing.
-                </p>
-                <div class="skills-list">
-                    <span class="skill-tag">Digital Logic</span>
-                    <span class="skill-tag">Computer Architecture</span>
-                    <span class="skill-tag">Circuit Design</span>
-                    <span class="skill-tag">Boolean Algebra</span>
-                </div>
-            </div>
 
-            <!-- Campaign Data Analysis -->
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="mississauga-tag">City of Mississauga</span>
-                    <h3 class="project-title">Campaign Data Analysis</h3>
-                    <div class="project-meta">
-                        <span class="project-date">Aug 2022 - Oct 2022</span>
+                <!-- Campaign Data Analysis -->
+                <div class="project-card">
+                    <span class="achievement-badge" style="padding-left: 7px;">A+</span>
+                    <div class="project-header">
+                        <div class="institution-wrapper">
+                            <span class="tech-tag tag-government">City of Mississauga</span>
+                        </div>
+                        <h3 class="project-title">Campaign Data Analysis</h3>
+                        <div class="project-meta">
+                            <span class="project-date">Aug 2022 - Oct 2022</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Utilized Python with Pandas and NumPy on Jupyter Notebook to analyze voter registration data and optimize campaign targeting in densely populated areas.
+                    </p>
+                    <div class="skills-list">
+                        <span class="tech-tag tag-python">Python</span>
+                        <span class="tech-tag tag-pandas">Pandas</span>
+                        <span class="tech-tag tag-numpy">NumPy</span>
+                        <span class="tech-tag tag-data-analysis">Data Analysis</span>
                     </div>
                 </div>
-                <p class="project-description">
-                    Utilized Python with Pandas and NumPy on Jupyter Notebook to analyze voter registration data and optimize campaign targeting in densely populated areas.
-                </p>
-                <div class="skills-list">
-                    <span class="python-tag">Python</span>
-                    <span class="skill-tag">Pandas</span>
-                    <span class="skill-tag">NumPy</span>
-                    <span class="skill-tag">Data Analysis</span>
-                </div>
-            </div>
 
-            <!-- Drone Programming Recreation -->
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="glenforest-tag">Glenforest Secondary School</span>
-                    <span class="achievement-badge">A+</span>
-                    <h3 class="project-title">Drone Programming Recreation</h3>
-                    <div class="project-meta">
-                        <span class="project-date">May 2022 - June 2022</span>
+                <!-- Drone Programming Recreation -->
+                <div class="project-card">
+                    <span class="achievement-badge" style="padding-left: 7px;">A+</span>
+                    <div class="project-header">
+                        <div class="institution-wrapper">
+                            <span class="tech-tag tag-education">Glenforest Secondary School</span>
+                        </div>
+                        <h3 class="project-title">Drone Programming Recreation</h3>
+                        <div class="project-meta">
+                            <span class="project-date">May 2022 - June 2022</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        A Python-based recreation of drone programming mechanics and controls.
+                    </p>
+                    <div class="skills-list">
+                        <span class="tech-tag tag-python">Python</span>
+                        <span class="tech-tag tag-automation">Drone Programming</span>
+                        <span class="tech-tag tag-system">Simulation</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Hameez10/Drone-Programming-Recreation-Python" target="_blank" class="project-link"><img src="assets/GitHub.png" alt="GitHub" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> GitHub Repository</a>
                     </div>
                 </div>
-                <p class="project-description">
-                    A Python-based recreation of drone programming mechanics and controls.
-                </p>
-                <div class="skills-list">
-                    <span class="python-tag">Python</span>
-                    <span class="skill-tag">Drone Programming</span>
-                    <span class="skill-tag">Simulation</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/Hameez10/Drone-Programming-Recreation-Python" target="_blank" class="project-link"><img src="assets/GitHub.png" alt="GitHub" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> GitHub Repository</a>
-                </div>
-            </div>
 
-            <!-- Flappy Bird AI -->
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="glenforest-tag">Glenforest Secondary School</span>
-                    <span class="achievement-badge">A+</span>
-                    <h3 class="project-title">Flappy Bird AI</h3>
-                    <div class="project-meta">
-                        <span class="project-date">Feb 2022 - May 2022</span>
+                <!-- Flappy Bird AI -->
+                <div class="project-card">
+                    <span class="achievement-badge" style="padding-left: 7px;">A+</span>
+                    <div class="project-header">
+                        <div class="institution-wrapper">
+                            <span class="tech-tag tag-education">Glenforest Secondary School</span>
+                        </div>
+                        <h3 class="project-title">Flappy Bird AI</h3>
+                        <div class="project-meta">
+                            <span class="project-date">Feb 2022 - May 2022</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Recreation of Flappy Bird with an AI implementation using Neural Networks, achieving 100% success rate in gameplay.
+                    </p>
+                    <div class="skills-list">
+                        <span class="tech-tag tag-python">Python</span>
+                        <span class="tech-tag tag-python">Pygame</span>
+                        <span class="tech-tag tag-innovation">Neural Networks</span>
+                        <span class="tech-tag tag-innovation">AI</span>
                     </div>
                 </div>
-                <p class="project-description">
-                    Recreation of Flappy Bird with an AI implementation using Neural Networks, achieving 100% success rate in gameplay.
-                </p>
-                <div class="skills-list">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">Pygame</span>
-                    <span class="skill-tag">Neural Networks</span>
-                    <span class="skill-tag">AI</span>
-                </div>
-            </div>
 
-            <!-- Linear Regression Tutorial -->
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="glenforest-tag">Glenforest Secondary School</span>
-                    <span class="achievement-badge">A+</span>
-                    <h3 class="project-title">Linear Regression Tutorial</h3>
-                    <div class="project-meta">
-                        <span class="project-date">February 2022 - March 2022</span>
+                <!-- Linear Regression Tutorial -->
+                <div class="project-card">
+                    <span class="achievement-badge" style="padding-left: 7px;">A+</span>
+                    <div class="project-header">
+                        <div class="institution-wrapper">
+                            <span class="tech-tag tag-education">Glenforest Secondary School</span>
+                        </div>
+                        <h3 class="project-title">Linear Regression Tutorial</h3>
+                        <div class="project-meta">
+                            <span class="project-date">February 2022 - March 2022</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Created an educational video tutorial demonstrating the application of Linear Regression using Jupyter Notebook, targeting IDP4U0-B students.
+                    </p>
+                    <div class="skills-list">
+                        <span class="tech-tag tag-python">Python</span>
+                        <span class="tech-tag tag-pandas">Pandas</span>
+                        <span class="tech-tag tag-matplotlib">Matplotlib</span>
+                        <span class="tech-tag tag-python">scikit-learn</span>
+                        <span class="tech-tag tag-jupyter">Jupyter Notebook</span>
                     </div>
                 </div>
-                <p class="project-description">
-                    Created an educational video tutorial demonstrating the application of Linear Regression using Jupyter Notebook, targeting IDP4U0-B students.
-                </p>
-                <div class="skills-list">
-                    <span class="python-tag">Python</span>
-                    <span class="skill-tag">Pandas</span>
-                    <span class="skill-tag">Matplotlib</span>
-                    <span class="skill-tag">scikit-learn</span>
-                    <span class="skill-tag">Jupyter Notebook</span>
-                </div>
-            </div>
 
-            <!-- COVID-19 Effects Analysis -->
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="glenforest-tag">Glenforest Secondary School</span>
-                    <span class="achievement-badge">A+</span>
-                    <h3 class="project-title">COVID-19 Effects on Classism in Mississauga</h3>
-                    <div class="project-meta">
-                        <span class="project-date">May 2021 - June 2021</span>
+                <!-- COVID-19 Effects Analysis -->
+                <div class="project-card">
+                    <span class="achievement-badge" style="padding-left: 7px;">A+</span>
+                    <div class="project-header">
+                        <div class="institution-wrapper">
+                            <span class="tech-tag tag-education">Glenforest Secondary School</span>
+                        </div>
+                        <h3 class="project-title">COVID-19 Effects on Classism in Mississauga</h3>
+                        <div class="project-meta">
+                            <span class="project-date">May 2021 - June 2021</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Analysis of how COVID-19 impacted social class disparities in Mississauga, completed as a culminating project for ICS4U.
+                    </p>
+                    <div class="skills-list">
+                        <span class="tech-tag tag-research">Research</span>
+                        <span class="tech-tag tag-data-analysis">Data Analysis</span>
+                        <span class="tech-tag tag-innovation">Social Impact</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Hameez10/COVID-19-And-Its-Effects-On-Classism-In-Mississauga-ICS4U-Culminative-Project" target="_blank" class="project-link"><img src="assets/GitHub.png" alt="GitHub" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> GitHub Repository</a>
                     </div>
                 </div>
-                <p class="project-description">
-                    Analysis of how COVID-19 impacted social class disparities in Mississauga, completed as a culminating project for ICS4U.
-                </p>
-                <div class="skills-list">
-                    <span class="skill-tag">Research</span>
-                    <span class="skill-tag">Data Analysis</span>
-                    <span class="skill-tag">Social Impact</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/Hameez10/COVID-19-And-Its-Effects-On-Classism-In-Mississauga-ICS4U-Culminative-Project" target="_blank" class="project-link"><img src="assets/GitHub.png" alt="GitHub" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> GitHub Repository</a>
-                </div>
-            </div>
 
-            <!-- Java Classes & Objects -->
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="glenforest-tag">Glenforest Secondary School</span>
-                    <span class="achievement-badge">A+</span>
-                    <h3 class="project-title">Java Classes & Objects Assignment</h3>
-                    <div class="project-meta">
-                        <span class="project-date">February 2021 - May 2021</span>
+                <!-- Java Classes & Objects -->
+                <div class="project-card">
+                    <span class="achievement-badge" style="padding-left: 7px;">A+</span>
+                    <div class="project-header">
+                        <div class="institution-wrapper">
+                            <span class="tech-tag tag-education">Glenforest Secondary School</span>
+                        </div>
+                        <h3 class="project-title">Java Classes & Objects Assignment</h3>
+                        <div class="project-meta">
+                            <span class="project-date">February 2021 - May 2021</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Implementation of Object-Oriented Programming concepts in Java, completed during semester 2 of the 2020-2021 school year.
+                    </p>
+                    <div class="skills-list">
+                        <span class="tech-tag tag-java">Java</span>
+                        <span class="tech-tag tag-software-engineering">OOP</span>
+                        <span class="tech-tag tag-software-engineering">Classes</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Hameez10/JavaClasses-ObjectsAssignment" target="_blank" class="project-link"><img src="assets/GitHub.png" alt="GitHub" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> GitHub Repository</a>
                     </div>
                 </div>
-                <p class="project-description">
-                    Implementation of Object-Oriented Programming concepts in Java, completed during semester 2 of the 2020-2021 school year.
-                </p>
-                <div class="skills-list">
-                    <span class="java-tag">Java</span>
-                    <span class="skill-tag">OOP</span>
-                    <span class="skill-tag">Classes</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/Hameez10/JavaClasses-ObjectsAssignment" target="_blank" class="project-link"><img src="assets/GitHub.png" alt="GitHub" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> GitHub Repository</a>
-                </div>
-            </div>
 
-            <!-- Activity Point Calculator -->
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="glenforest-tag">Glenforest Secondary School</span>
-                    <span class="achievement-badge">A+</span>
-                    <h3 class="project-title">Activity Point Award Calculator</h3>
-                    <div class="project-meta">
-                        <span class="project-date">September 2020 - October 2020</span>
+                <!-- Activity Point Calculator -->
+                <div class="project-card">
+                    <span class="achievement-badge" style="padding-left: 7px;">A+</span>
+                    <div class="project-header">
+                        <div class="institution-wrapper">
+                            <span class="tech-tag tag-education">Glenforest Secondary School</span>
+                        </div>
+                        <h3 class="project-title">Activity Point Award Calculator</h3>
+                        <div class="project-meta">
+                            <span class="project-date">September 2020 - October 2020</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Java program developed for Glenforest Secondary School to calculate graduation awards based on student activity points.
+                    </p>
+                    <div class="skills-list">
+                        <span class="tech-tag tag-java">Java</span>
+                        <span class="tech-tag tag-software-engineering">Console Application</span>
                     </div>
                 </div>
-                <p class="project-description">
-                    Java program developed for Glenforest Secondary School to calculate graduation awards based on student activity points.
-                </p>
-                <div class="skills-list">
-                    <span class="java-tag">Java</span>
-                    <span class="skill-tag">Console Application</span>
-                </div>
-            </div>
 
+            </div>
         </div>
     </div>
-
-    <script>
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            this.classList.toggle('active');
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
-
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelector('.menu-toggle').classList.remove('active');
-                document.querySelector('.nav-links').classList.remove('active');
-            });
-        });
-    </script>
+    <!-- Footer will be injected here by footer.js -->
 </body>
 </html> 

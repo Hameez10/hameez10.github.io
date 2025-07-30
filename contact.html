@@ -7,6 +7,11 @@
     <title>Contact - Hameez Iqbal</title>
     <!-- Preload Instagram embed for faster media page loading -->
     <link rel="preload" href="https://www.instagram.com/embed.js" as="script">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <link rel="stylesheet" href="styles/tags.css">
     <style>
         :root {
             --primary-color: #FF6B6B;
@@ -167,57 +172,45 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="experience.html">Experience</a>
-                <a href="projects.html">Projects</a>
-                <a href="media.html">Media</a>
-                <a href="heraldry.html">Heraldry</a>
-                <a href="contact.html" class="active">Contact</a>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container">
-        <section class="contact-section">
-            <h1 class="section-title">Get in Touch</h1>
-            
-            <p class="contact-text">
-                I'm always excited to connect with fellow professionals, students, and anyone interested in technology, innovation, or community engagement. Whether you have a question, want to collaborate, or just want to say hello, I'd love to hear from you!
-            </p>
-
-            <div class="decoration">✉️</div>
-
-            <div class="contact-methods">
-                <div class="contact-method">
-                    <h3>Let's Connect</h3>
-                    <p>For any inquiries or collaborations, reach out via <a href="https://www.linkedin.com/in/hameez-iqbal/" class="contact-link" target="_blank">LinkedIn</a> or email me at <a href="mailto:hameezwork@gmail.com" class="contact-link">hameezwork@gmail.com</a></p>
+    <div class="content-wrapper">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="experience.html">Experience</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="media.html">Media</a>
+                    <a href="heraldry.html">Heraldry</a>
+                    <a href="contact.html" class="active">Contact</a>
                 </div>
             </div>
+        </nav>
 
-            <p class="contact-text" style="margin-top: 2rem;">
-                I typically respond within 24-48 hours. Looking forward to connecting with you!
-            </p>
-        </section>
+        <div class="container">
+            <section class="contact-section">
+                <h1 class="section-title">Get in Touch</h1>
+                
+                <p class="contact-text">
+                    I'm always excited to connect with fellow professionals, students, and anyone interested in technology, innovation, or community engagement. Whether you have a question, want to collaborate, or just want to say hello, I'd love to hear from you!
+                </p>
+
+                <div class="decoration">✉️</div>
+
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <h3>Let's Connect</h3>
+                        <p>For any inquiries or collaborations, reach out via <a href="https://www.linkedin.com/in/hameez-iqbal/" class="contact-link" target="_blank">LinkedIn</a> or email me at <a href="mailto:hameezwork@gmail.com" class="contact-link">hameezwork@gmail.com</a></p>
+                    </div>
+                </div>
+
+                <p class="contact-text" style="margin-top: 2rem;">
+                    I typically respond within 24-48 hours. Looking forward to connecting with you!
+                </p>
+            </section>
+        </div>
     </div>
-
-    <script>
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            this.classList.toggle('active');
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
-
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelector('.menu-toggle').classList.remove('active');
-                document.querySelector('.nav-links').classList.remove('active');
-            });
-        });
-    </script>
+    <!-- Footer will be injected here by footer.js -->
 </body>
 </html> 

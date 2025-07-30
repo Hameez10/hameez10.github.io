@@ -6,6 +6,11 @@
     <title>Experience - Hameez Iqbal</title>
     <!-- Preload Instagram embed for faster media page loading -->
     <link rel="preload" href="https://www.instagram.com/embed.js" as="script">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <link rel="stylesheet" href="styles/tags.css">
     <style data-version="1.1">
         :root {
             --primary-color: #FF6B6B;
@@ -308,72 +313,100 @@
 
         /* Additional Tag Colors */
         .tag-qa {
-            background-color: rgba(66, 153, 225, 0.2);
-            color: #2C5282;  /* Darker blue for better contrast */
+            --tag-rgb: 44, 82, 130;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
         }
 
         .tag-testing {
-            background: #2E7D32; /* Material Green 800 */
+            --tag-rgb: 46, 125, 50;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
         }
 
         .tag-automation {
-            background: #0288D1; /* Material Blue 700 */
+            --tag-rgb: 2, 136, 209;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
         }
 
         .tag-quality {
-            background: #D32F2F; /* Material Red 700 */
+            --tag-rgb: 211, 47, 47;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
         }
 
         .tag-documentation {
-            background: #455A64; /* Material Blue Grey 700 */
+            --tag-rgb: 69, 90, 100;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
         }
 
         .tag-project-management {
-            background: #0097A7; /* Material Cyan 700 */
+            --tag-rgb: 0, 151, 167;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
         }
 
         .tag-healthcare {
-            background: #00A3E0; /* Unity Health Blue */
+            --tag-rgb: 0, 163, 224;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
         }
 
         .tag-technical-support {
-            background: #2D3748; /* Slate 800 */
+            --tag-rgb: 45, 55, 72;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
         }
 
         .tag-system {
-            background-color: rgba(74, 85, 104, 0.2);
-            color: #1A202C;  /* Even darker slate for better contrast */
+            --tag-rgb: 26, 32, 44;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
         }
 
         .tag-education {
-            background: #2B6CB0; /* Blue 700 */
+            --tag-rgb: 43, 108, 176;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
         }
 
         .tag-advocacy {
-            background: #6B46C1; /* Purple 700 */
+            --tag-rgb: 107, 70, 193;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
         }
 
         .tag-youth {
-            background: #00B4B4; /* Teal */
+            --tag-rgb: 0, 180, 180;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
         }
 
         .tag-policy {
-            background: #4C51BF; /* Indigo 700 */
+            --tag-rgb: 76, 81, 191;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
         }
 
         .tag-community {
-            background: #38A169; /* Green 700 */
+            --tag-rgb: 56, 161, 105;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
         }
 
         /* Programming Languages */
         .tag-python {
-            background-color: rgba(55, 118, 171, 0.1);
-            color: #3776AB;
+            --tag-rgb: 55, 118, 171;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
         }
 
         .tag-java {
-            background-color: rgba(248, 152, 32, 0.1);
-            color: #f89820;
+            --tag-rgb: 248, 152, 32;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
         }
 
         .tag-cpp {
@@ -630,13 +663,13 @@
             transition: all 0.3s ease;
         }
 
-        /* Hover effect */
+        /* Tag hover effect */
         .tech-tag:hover,
         .experience-tag:hover {
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.05);
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            background-color: currentColor;
-            color: white;
+            background-color: rgba(var(--tag-rgb), 0.2);
+            font-weight: 600;
         }
 
         /* Company Colors */
@@ -722,93 +755,246 @@
             text-shadow: none;
         }
 
-        /* Update tag colors for better legibility */
-        .tech-tag {
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            color: #fff;
-            background: #4a90e2;  /* Default blue */
+        /* Update tag styles to include RGB variables */
+        .tag-python {
+            --tag-rgb: 55, 118, 171;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
         }
 
-        /* Specific tag colors - using softer, more legible colors */
+        .tag-java {
+            --tag-rgb: 248, 152, 32;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
+        }
+
+        /* Continue for all other tags... */
+        .tag-cpp {
+            --tag-rgb: 0, 89, 156;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
+        }
+
+        .tag-javascript {
+            --tag-rgb: 247, 222, 30;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
+        }
+
+        .tag-typescript {
+            --tag-rgb: 49, 120, 190;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
+        }
+
+        .tag-html {
+            --tag-rgb: 227, 79, 38;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
+        }
+
+        .tag-css {
+            --tag-rgb: 21, 114, 182;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
+        }
+
+        .tag-react {
+            --tag-rgb: 97, 221, 251;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
+        }
+
+        .tag-angular {
+            --tag-rgb: 221, 0, 49;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
+        }
+
+        .tag-spring {
+            --tag-rgb: 109, 179, 63;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
+        }
+
+        .tag-git {
+            --tag-rgb: 240, 80, 50;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
+        }
+
+        .tag-github {
+            --tag-rgb: 24, 23, 23;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
+        }
+
+        .tag-gitlab {
+            --tag-rgb: 252, 109, 44;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
+        }
+
+        .tag-jenkins {
+            --tag-rgb: 210, 73, 51;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
+        }
+
+        .tag-sql {
+            --tag-rgb: 68, 121, 169;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
+        }
+
+        .tag-jupyter {
+            --tag-rgb: 243, 118, 38;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
+        }
+
+        .tag-excel {
+            --tag-rgb: 33, 115, 70;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
+        }
+
+        .tag-unix {
+            --tag-rgb: 252, 198, 36;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
+        }
+
+        .tag-jira {
+            --tag-rgb: 0, 82, 204;
+            background: rgb(var(--tag-rgb));
+        }
+
+        .tag-asana {
+            --tag-rgb: 240, 106, 106;
+            background: rgb(var(--tag-rgb));
+        }
+
+        .tag-confluence {
+            --tag-rgb: 23, 43, 77;
+            background: rgb(var(--tag-rgb));
+        }
+
+        .tag-clickup {
+            --tag-rgb: 123, 104, 238;
+            background: rgb(var(--tag-rgb));
+        }
+
+        .tag-bubble {
+            --tag-rgb: 36, 0, 255;
+            background: rgb(var(--tag-rgb));
+        }
+
+        .tag-google-blue {
+            --tag-rgb: 66, 133, 244;
+            background: rgb(var(--tag-rgb));
+        }
+
+        .tag-google-red {
+            --tag-rgb: 219, 68, 55;
+            background: rgb(var(--tag-rgb));
+        }
+
+        .tag-google-yellow {
+            --tag-rgb: 244, 180, 0;
+            color: black;
+        }
+
+        .tag-google-green {
+            --tag-rgb: 15, 157, 88;
+            background: rgb(var(--tag-rgb));
+        }
+
+        .tag-healthcare {
+            --tag-rgb: 65, 182, 230;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
+        }
+
+        .tag-technical-support {
+            --tag-rgb: 45, 55, 72;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
+        }
+
         .tag-documentation {
-            background-color: rgba(160, 174, 192, 0.2);
-            color: #4A5568;  /* Darker gray */
-        }
-
-        .tag-data-analysis {
-            background-color: rgba(66, 153, 225, 0.15);
-            color: #2B6CB0;  /* Darker blue */
-        }
-
-        .tag-research {
-            background: #7986cb;  /* Soft blue */
+            --tag-rgb: 113, 128, 150;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
         }
 
         .tag-leadership {
-            background: #5c6bc0;  /* Soft indigo */
-        }
-
-        .tag-teamwork {
-            background: #4db6ac;  /* Soft teal */
-        }
-
-        .tag-communication {
-            background: #4fc3f7;  /* Light blue */
+            --tag-rgb: 85, 60, 154;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
         }
 
         .tag-project-management {
-            background-color: rgba(203, 213, 224, 0.3);  /* Light grey background */
-            color: #4A5568;  /* Dark grey text */
+            --tag-rgb: 128, 90, 213;
+            background-color: rgba(var(--tag-rgb), 0.1);
+            color: rgb(var(--tag-rgb));
         }
 
-        .tag-project {  /* Additional class for project management */
-            background-color: rgba(203, 213, 224, 0.3);
-            color: #4A5568;
+        .tag-data-analysis {
+            --tag-rgb: 66, 153, 225;
+            background-color: rgba(var(--tag-rgb), 0.15);
+            color: rgb(var(--tag-rgb));
+        }
+
+        .tag-research {
+            --tag-rgb: 121, 134, 187;
+            background: rgb(var(--tag-rgb));
+        }
+
+        .tag-teamwork {
+            --tag-rgb: 77, 195, 247;
+            background: rgb(var(--tag-rgb));
+        }
+
+        .tag-communication {
+            --tag-rgb: 79, 195, 255;
+            background: rgb(var(--tag-rgb));
+        }
+
+        .tag-project {
+            --tag-rgb: 203, 213, 224;
+            background-color: rgba(var(--tag-rgb), 0.3);
+            color: rgb(var(--tag-rgb));
         }
 
         .tag-innovation {
-            background: #4db6ac;  /* Soft teal */
+            --tag-rgb: 244, 180, 0;
+            background: rgb(var(--tag-rgb));
         }
 
         .tag-problem-solving {
-            background: #5c6bc0;  /* Soft indigo */
+            --tag-rgb: 92, 182, 172;
+            background: rgb(var(--tag-rgb));
         }
 
         .tag-critical-thinking {
-            background: #4fc3f7;  /* Light blue */
+            --tag-rgb: 79, 195, 255;
+            background: rgb(var(--tag-rgb));
         }
 
         .tag-analysis {
-            background: #26a69a;  /* Soft teal */
+            --tag-rgb: 38, 166, 154;
+            background: rgb(var(--tag-rgb));
         }
 
         .tag-research-methodology {
-            background: #7986cb;  /* Soft blue */
+            --tag-rgb: 121, 134, 187;
+            background: rgb(var(--tag-rgb));
         }
 
         .tag-academic-writing {
-            background: #5c6bc0;  /* Soft indigo */
-        }
-
-        /* Hover effect for all tags */
-        .tech-tag:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        /* Hover states */
-        .tag-data-analysis:hover,
-        .tag-system:hover,
-        .tag-documentation:hover,
-        .tag-qa:hover,
-        .tag-project-management:hover,
-        .tag-project:hover {
-            background-color: currentColor;
-            color: white;
+            --tag-rgb: 92, 182, 172;
+            background: rgb(var(--tag-rgb));
         }
 
         /* Institution name styles */
@@ -830,182 +1016,170 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="experience.html" class="active">Experience</a>
-                <a href="projects.html">Projects</a>
-                <a href="media.html">Media</a>
-                <a href="heraldry.html">Heraldry</a>
-                <a href="contact.html">Contact</a>
+    <div class="content-wrapper">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="experience.html" class="active">Experience</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="media.html">Media</a>
+                    <a href="heraldry.html">Heraldry</a>
+                    <a href="contact.html">Contact</a>
+                </div>
             </div>
+        </nav>
+
+        <div class="container">
+            <section class="experience-section">
+                <div class="section-header">
+                    <h1 class="section-title">Professional Journey</h1>
+                    <p class="section-subtitle">A timeline of my experiences in technology, innovation, and community impact.</p>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="experience-card">
+                            <h3 class="experience-title">Software Engineer Intern</h3>
+                            <div class="experience-company company-crewscope">Crewscope</div>
+                            <div class="experience-date">Jan 2025 - Apr 2025</div>
+                            <div class="experience-location">📍 Toronto, Ontario, Canada · Hybrid</div>
+                            <p class="experience-description">
+                                Designed and implemented backend services, managing data storage and developing a microservices-based architecture.
+                            </p>
+                            <div class="experience-tags">
+                                <span class="experience-tag tag-python">Python</span>
+                                <span class="experience-tag tag-java">Java</span>
+                                <span class="experience-tag tag-spring">Spring</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="experience-card">
+                            <h3 class="experience-title">Technical Operations Intern</h3>
+                            <div class="experience-company company-unity-health">St. Michael's Hospital - Unity Health Toronto</div>
+                            <div class="experience-date">Dec 2024 - Jan 2025</div>
+                            <p class="experience-description">
+                                Developed an understanding of system interconnectivity and infrastructure, supporting asset relationships and optimizing hospital technology operations, leading to improved coordination across departments.
+                            </p>
+                            <div class="experience-tags">
+                                <span class="experience-tag tag-excel">Excel</span>
+                                <span class="experience-tag tag-data-analysis">Data Analysis</span>
+                                <span class="experience-tag tag-system">System Infrastructure</span>
+                                <span class="experience-tag tag-documentation">Documentation</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="experience-card">
+                            <h3 class="experience-title">Operating Room Support</h3>
+                            <div class="experience-company company-unity-health">St. Michael's Hospital - Unity Health Toronto</div>
+                            <div class="experience-date">Nov 2024 - Dec 2024</div>
+                            <p class="experience-description">
+                                Supported Operating Room staff in using the new Electronic Patient Records (EPR) system, including nurses, residents, fellows, surgeons, and other healthcare professionals.
+                            </p>
+                            <div class="experience-tags">
+                                <span class="experience-tag tag-healthcare">Healthcare IT</span>
+                                <span class="experience-tag tag-technical-support">Technical Support</span>
+                                <span class="experience-tag tag-epr">EPR Systems</span>
+                                <span class="experience-tag tag-hardware">Hardware Maintenance</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="experience-card">
+                            <h3 class="experience-title">Quality Assurance Intern</h3>
+                            <div class="experience-company company-unity-health">Unity Health Toronto - Project Connect (Go-Live)</div>
+                            <div class="experience-date">Sep 2024 - Nov 2024</div>
+                            <div class="experience-location">📍 Toronto, Ontario, Canada · On-site</div>
+                            <p class="experience-description">
+                                Supported the implementation of Epic Electronic Health Record system across Unity Health's three sites: St. Michael's Hospital, St. Joseph's Health Centre, and Providence Healthcare. Utilized project management tools and methodologies to oversee and execute tasks, ensuring timely and efficient project completion. Collaborated with cross-functional teams to identify and resolve technical issues, improving system performance and user experience. Conducted thorough testing of healthcare systems, ensuring compliance with security standards and regulatory requirements.
+                            </p>
+                            <div class="experience-tags">
+                                <span class="experience-tag tag-qa">QA Testing</span>
+                                <span class="experience-tag tag-project">Project Management</span>
+                                <span class="experience-tag tag-documentation">Documentation</span>
+                                <span class="experience-tag tag-healthcare">Healthcare IT</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="experience-card">
+                            <h3 class="experience-title">Campus Liaison & Data Team Member</h3>
+                            <div class="experience-company company-olp">Ontario Liberal Party</div>
+                            <div class="experience-date">Jul 2023 - Dec 2023</div>
+                            <p class="experience-description">
+                                Leveraged Unix and Excel to extract meaningful insights from data sets up to 2 million data points, optimizing workflow and data preparation.
+                            </p>
+                            <div class="experience-tags">
+                                <span class="experience-tag tag-unix">Unix</span>
+                                <span class="experience-tag tag-excel">Excel</span>
+                                <span class="experience-tag tag-data-analysis">Data Analysis</span>
+                                <span class="experience-tag tag-database">Database Management</span>
+                                <span class="experience-tag tag-event">Event Planning</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="experience-card">
+                            <h3 class="experience-title">Software Engineer Intern</h3>
+                            <div class="experience-company">
+                                <span class="company-mastercard-ethoca">Mastercard</span> - 
+                                <span class="company-mastercard-ethoca ethoca">Ethoca</span>
+                            </div>
+                            <div class="experience-date">May 2024 - Aug 2024</div>
+                            <div class="experience-location">📍 Toronto, Ontario, Canada · Hybrid</div>
+                            <p class="experience-description">
+                                Developed robust front-end applications using Angular and Spring frameworks for Consumer Clarity product, currently accessed 10 billion times per month.
+                            </p>
+                            <div class="experience-tags">
+                                <span class="experience-tag tag-angular">Angular</span>
+                                <span class="experience-tag tag-spring">Spring</span>
+                                <span class="experience-tag tag-java">Java</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-    </nav>
 
-    <div class="container">
-        <section class="experience-section">
-            <div class="section-header">
-                <h1 class="section-title">Professional Journey</h1>
-                <p class="section-subtitle">A timeline of my experiences in technology, innovation, and community impact.</p>
-            </div>
+        <div class="container">
+            <section class="experience-section">
+                <div class="section-header">
+                    <h1 class="section-title">Education</h1>
+                    <p class="section-subtitle">My academic journey in technology and innovation.</p>
+                </div>
 
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="experience-card">
-                        <h3 class="experience-title">Software Engineer Intern</h3>
-                        <div class="experience-company company-crewscope">Crewscope</div>
-                        <div class="experience-date">Jan 2025 - Apr 2025</div>
-                        <div class="experience-location">📍 Toronto, Ontario, Canada · Hybrid</div>
-                        <p class="experience-description">
-                            Designed and implemented backend services, managing data storage and developing a microservices-based architecture.
-                        </p>
-                        <div class="experience-tags">
-                            <span class="experience-tag tag-python">Python</span>
-                            <span class="experience-tag tag-java">Java</span>
-                            <span class="experience-tag tag-spring">Spring</span>
+                <div class="timeline">
+                    <!-- Toronto Metropolitan University -->
+                    <div class="timeline-item">
+                        <div class="experience-card">
+                            <h3 class="experience-title">Computer Science Student</h3>
+                            <div class="institution-tmu">Toronto Metropolitan University</div>
+                            <div class="experience-date">Sep 2022 - Present</div>
+                            <p class="experience-description">
+                                Pursuing a Bachelor of Science in Computer Science with a focus on Machine Learning and AI, complemented by minors in Innovation and Cybersecurity.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Glenforest Secondary School -->
+                    <div class="timeline-item">
+                        <div class="experience-card">
+                            <h3 class="experience-title">Secondary School Graduate</h3>
+                            <div class="institution-glenforest">Glenforest Secondary School</div>
+                            <div class="experience-date">Sep 2018 - Jun 2022</div>
+                            <p class="experience-description">
+                                Graduated with honors, demonstrating strong academic performance and leadership in computer science and technology initiatives.
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="experience-card">
-                        <h3 class="experience-title">Technical Operations Intern</h3>
-                        <div class="experience-company company-unity-health">St. Michael's Hospital - Unity Health Toronto</div>
-                        <div class="experience-date">Dec 2024 - Jan 2025</div>
-                        <p class="experience-description">
-                            Developed an understanding of system interconnectivity and infrastructure, supporting asset relationships and optimizing hospital technology operations, leading to improved coordination across departments.
-                        </p>
-                        <div class="experience-tags">
-                            <span class="experience-tag tag-excel">Excel</span>
-                            <span class="experience-tag tag-data-analysis">Data Analysis</span>
-                            <span class="experience-tag tag-system">System Infrastructure</span>
-                            <span class="experience-tag tag-documentation">Documentation</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="experience-card">
-                        <h3 class="experience-title">Operating Room Support</h3>
-                        <div class="experience-company company-unity-health">St. Michael's Hospital - Unity Health Toronto</div>
-                        <div class="experience-date">Nov 2024 - Dec 2024</div>
-                        <p class="experience-description">
-                            Supported Operating Room staff in using the new Electronic Patient Records (EPR) system, including nurses, residents, fellows, surgeons, and other healthcare professionals.
-                        </p>
-                        <div class="experience-tags">
-                            <span class="experience-tag tag-healthcare">Healthcare IT</span>
-                            <span class="experience-tag tag-technical-support">Technical Support</span>
-                            <span class="experience-tag tag-epr">EPR Systems</span>
-                            <span class="experience-tag tag-hardware">Hardware Maintenance</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="experience-card">
-                        <h3 class="experience-title">Quality Assurance Intern</h3>
-                        <div class="experience-company company-unity-health">Unity Health Toronto - Project Connect (Go-Live)</div>
-                        <div class="experience-date">Sep 2024 - Nov 2024</div>
-                        <div class="experience-location">📍 Toronto, Ontario, Canada · On-site</div>
-                        <p class="experience-description">
-                            Supported the implementation of Epic Electronic Health Record system across Unity Health's three sites: St. Michael's Hospital, St. Joseph's Health Centre, and Providence Healthcare. Utilized project management tools and methodologies to oversee and execute tasks, ensuring timely and efficient project completion. Collaborated with cross-functional teams to identify and resolve technical issues, improving system performance and user experience. Conducted thorough testing of healthcare systems, ensuring compliance with security standards and regulatory requirements.
-                        </p>
-                        <div class="experience-tags">
-                            <span class="experience-tag tag-qa">QA Testing</span>
-                            <span class="experience-tag tag-project">Project Management</span>
-                            <span class="experience-tag tag-documentation">Documentation</span>
-                            <span class="experience-tag tag-healthcare">Healthcare IT</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="experience-card">
-                        <h3 class="experience-title">Campus Liaison & Data Team Member</h3>
-                        <div class="experience-company company-olp">Ontario Liberal Party</div>
-                        <div class="experience-date">Jul 2023 - Dec 2023</div>
-                        <p class="experience-description">
-                            Leveraged Unix and Excel to extract meaningful insights from data sets up to 2 million data points, optimizing workflow and data preparation.
-                        </p>
-                        <div class="experience-tags">
-                            <span class="experience-tag tag-unix">Unix</span>
-                            <span class="experience-tag tag-excel">Excel</span>
-                            <span class="experience-tag tag-data-analysis">Data Analysis</span>
-                            <span class="experience-tag tag-database">Database Management</span>
-                            <span class="experience-tag tag-event">Event Planning</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="experience-card">
-                        <h3 class="experience-title">Software Engineer Intern</h3>
-                        <div class="experience-company">
-                            <span class="company-mastercard-ethoca">Mastercard</span> - 
-                            <span class="company-mastercard-ethoca ethoca">Ethoca</span>
-                        </div>
-                        <div class="experience-date">May 2024 - Aug 2024</div>
-                        <div class="experience-location">📍 Toronto, Ontario, Canada · Hybrid</div>
-                        <p class="experience-description">
-                            Developed robust front-end applications using Angular and Spring frameworks for Consumer Clarity product, currently accessed 10 billion times per month.
-                        </p>
-                        <div class="experience-tags">
-                            <span class="experience-tag tag-angular">Angular</span>
-                            <span class="experience-tag tag-spring">Spring</span>
-                            <span class="experience-tag tag-java">Java</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </div>
-
-    <div class="container">
-        <section class="experience-section">
-            <div class="section-header">
-                <h1 class="section-title">Education</h1>
-                <p class="section-subtitle">My academic journey in technology and innovation.</p>
-            </div>
-
-            <div class="timeline">
-                <!-- Toronto Metropolitan University -->
-                <div class="timeline-item">
-                    <div class="experience-card">
-                        <h3 class="experience-title">Computer Science Student</h3>
-                        <div class="institution-tmu">Toronto Metropolitan University</div>
-                        <div class="experience-date">Sep 2022 - Present</div>
-                        <p class="experience-description">
-                            Pursuing a Bachelor of Science in Computer Science with a focus on Machine Learning and AI, complemented by minors in Innovation and Cybersecurity.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Glenforest Secondary School -->
-                <div class="timeline-item">
-                    <div class="experience-card">
-                        <h3 class="experience-title">Secondary School Graduate</h3>
-                        <div class="institution-glenforest">Glenforest Secondary School</div>
-                        <div class="experience-date">Sep 2018 - Jun 2022</div>
-                        <p class="experience-description">
-                            Graduated with honors, demonstrating strong academic performance and leadership in computer science and technology initiatives.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <script>
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            this.classList.toggle('active');
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
-
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelector('.menu-toggle').classList.remove('active');
-                document.querySelector('.nav-links').classList.remove('active');
-            });
-        });
-    </script>
+    <!-- Footer will be injected here by footer.js -->
 </body>
 </html>

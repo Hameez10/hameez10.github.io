@@ -6,6 +6,11 @@
     <title>Heraldry - Hameez Iqbal</title>
     <!-- Preload Instagram embed for faster media page loading -->
     <link rel="preload" href="https://www.instagram.com/embed.js" as="script">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <link rel="stylesheet" href="styles/tags.css">
     <style>
         :root {
             --primary-color: #FF6B6B;
@@ -148,61 +153,64 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="experience.html">Experience</a>
-                <a href="projects.html">Projects</a>
-                <a href="media.html">Media</a>
-                <a href="heraldry.html" class="active">Heraldry</a>
-                <a href="contact.html">Contact</a>
+    <div class="content-wrapper">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="experience.html">Experience</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="media.html">Media</a>
+                    <a href="heraldry.html" class="active">Heraldry</a>
+                    <a href="contact.html">Contact</a>
+                </div>
             </div>
+        </nav>
+
+        <div class="container">
+            <section class="heraldry-section">
+                <h1 class="section-title">Heraldry</h1>
+                
+                <div class="intro-text">
+                    <p>
+                        <span class="highlight">Heraldry</span> is the ancient and noble practice of designing, displaying, and recording coats of arms and badges. Dating back to medieval times, it began as a way for knights to identify each other on the battlefield but evolved into a sophisticated system of visual identity for families, institutions, and nations.
+                    </p>
+                    <p>
+                        In modern times, heraldry continues to play a significant role in preserving historical traditions, representing organizations, and maintaining cultural heritage. It combines artistry with symbolism, where each color, pattern, and figure carries specific meaning and follows strict rules of design known as the "rules of blazon."
+                    </p>
+                </div>
+
+                <div class="medieval-decoration">⚜️</div>
+
+                <div class="wip-banner">
+                    <h2>More Content Coming Soon</h2>
+                    <p>This section is currently under development. Check back later for detailed explorations of heraldic designs, meanings, and their modern applications.</p>
+                </div>
+            </section>
+            <section class="heraldry-section">
+                <h2>Learn More About Canadian Heraldry</h2>
+                <div class="intro-text">
+                    <p>
+                        For those interested in learning more about heraldry in Canada, the Governor General's website offers extensive resources on Canadian heraldic traditions, regulations, and the process of obtaining a coat of arms.
+                    </p>
+                    <p>
+                        The Canadian Heraldic Authority, created in 1988, grants new coats of arms, flags, and badges to Canadian citizens and corporate bodies. Visit their official website to explore:
+                    </p>
+                    <ul style="list-style: none; margin: 1.5rem 0;">
+                        <li>• The history of Canadian heraldry</li>
+                        <li>• How to apply for a coat of arms</li>
+                        <li>• The Public Register of Arms, Flags and Badges</li>
+                        <li>• Educational resources about heraldic traditions</li>
+                    </ul>
+                    <a href="https://www.gg.ca/en/heraldry" target="_blank" style="display: inline-block; background: var(--primary-color); color: white; padding: 1rem 2rem; border-radius: 10px; text-decoration: none; margin-top: 1rem; transition: transform 0.3s ease;">
+                        Visit the Governor General's Heraldry Section →
+                    </a>
+                </div>
+            </section>
         </div>
-    </nav>
-
-    <div class="container">
-        <section class="heraldry-section">
-            <h1 class="section-title">Heraldry</h1>
-            
-            <div class="intro-text">
-                <p>
-                    <span class="highlight">Heraldry</span> is the ancient and noble practice of designing, displaying, and recording coats of arms and badges. Dating back to medieval times, it began as a way for knights to identify each other on the battlefield but evolved into a sophisticated system of visual identity for families, institutions, and nations.
-                </p>
-                <p>
-                    In modern times, heraldry continues to play a significant role in preserving historical traditions, representing organizations, and maintaining cultural heritage. It combines artistry with symbolism, where each color, pattern, and figure carries specific meaning and follows strict rules of design known as the "rules of blazon."
-                </p>
-            </div>
-
-            <div class="medieval-decoration">⚜️</div>
-
-            <div class="wip-banner">
-                <h2>More Content Coming Soon</h2>
-                <p>This section is currently under development. Check back later for detailed explorations of heraldic designs, meanings, and their modern applications.</p>
-            </div>
-        </section>
-        <section class="heraldry-section">
-            <h2>Learn More About Canadian Heraldry</h2>
-            <div class="intro-text">
-                <p>
-                    For those interested in learning more about heraldry in Canada, the Governor General's website offers extensive resources on Canadian heraldic traditions, regulations, and the process of obtaining a coat of arms.
-                </p>
-                <p>
-                    The Canadian Heraldic Authority, created in 1988, grants new coats of arms, flags, and badges to Canadian citizens and corporate bodies. Visit their official website to explore:
-                </p>
-                <ul style="list-style: none; margin: 1.5rem 0;">
-                    <li>• The history of Canadian heraldry</li>
-                    <li>• How to apply for a coat of arms</li>
-                    <li>• The Public Register of Arms, Flags and Badges</li>
-                    <li>• Educational resources about heraldic traditions</li>
-                </ul>
-                <a href="https://www.gg.ca/en/heraldry" target="_blank" style="display: inline-block; background: var(--primary-color); color: white; padding: 1rem 2rem; border-radius: 10px; text-decoration: none; margin-top: 1rem; transition: transform 0.3s ease;">
-                    Visit the Governor General's Heraldry Section →
-                </a>
-            </div>
-        </section>
     </div>
+    <!-- Footer will be injected here by footer.js -->
 </body>
 </html> 

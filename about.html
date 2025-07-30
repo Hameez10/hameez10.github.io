@@ -6,6 +6,11 @@
     <title>About - Hameez Iqbal</title>
     <!-- Preload Instagram embed for faster media page loading -->
     <link rel="preload" href="https://www.instagram.com/embed.js" as="script">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <link rel="stylesheet" href="styles/tags.css">
     <style>
         :root {
             --primary-color: #FF6B6B;
@@ -269,24 +274,6 @@
             gap: 0.8rem;
         }
 
-        .tech-tag {
-            background: white;
-            color: var(--text-dark);
-            padding: 0.5rem 1rem;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            cursor: default;
-        }
-
-        .tech-tag:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: none;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        }
-
         @media (max-width: 768px) {
             .tech-grid {
                 grid-template-columns: 1fr;
@@ -295,175 +282,186 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="about.html" class="active">About</a>
-                <a href="experience.html">Experience</a>
-                <a href="projects.html">Projects</a>
-                <a href="media.html">Media</a>
-                <a href="heraldry.html">Heraldry</a>
-                <a href="contact.html">Contact</a>
+    <div class="content-wrapper">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html" class="active">About</a>
+                    <a href="experience.html">Experience</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="media.html">Media</a>
+                    <a href="heraldry.html">Heraldry</a>
+                    <a href="contact.html">Contact</a>
+                </div>
             </div>
+        </nav>
+        <div class="container">
+            <section class="about-section">
+                <div class="profile-header">
+                    <div class="profile-image">
+                        <img src="HameezIqbal Image.png" alt="Hameez Iqbal">
+                    </div>
+                    <div class="profile-intro">
+                        <h1>About Me</h1>
+                        <p>I'm a Computer Science student at Toronto Metropolitan University, passionate about building products that make a positive impact. My journey spans technology, entrepreneurship, and community leadership.</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>🚀 Startup & Innovation</h2>
+                    <p>Deeply involved in Toronto's startup ecosystem through the DMZ at TMU, I've had the opportunity to work with innovative startups like <span class="highlight">Crewscope</span>. I've complemented my practical experience by studying at <span class="highlight">Y Combinator's Startup School</span>, learning from industry leaders about building and scaling successful tech companies.</p>
+                </div>
+
+                <div class="section">
+                    <h2>💻 Technical Journey</h2>
+                    <p>At TMU, I'm specializing in Computer Science with a focus on Cybersecurity, combining theoretical knowledge with practical applications. Through roles at companies like Mastercard and Unity Health Toronto, I've developed expertise in fraud prevention, healthcare technology, and software development.</p>
+                </div>
+
+                <div class="section">
+                    <h2>🤝 Community Impact</h2>
+                    <p>Beyond technology, I'm committed to civic engagement and community development. As a former PDSB Trustee candidate and active volunteer with Trace Labs, I work to bridge the gap between technology and social impact, particularly in education and digital privacy.</p>
+                </div>
+
+                <div class="section">
+                    <h2>🎯 Areas of Focus</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Product Development</h3>
+                            <ul class="skill-list">
+                                <li>User-Centered Design</li>
+                                <li>Product Strategy</li>
+                                <li>Agile Methodologies</li>
+                                <li>MVP Development</li>
+                            </ul>
+                        </div>
+
+                        <div class="skill-category">
+                            <h3>Technical Expertise</h3>
+                            <ul class="skill-list">
+                                <li>Full-Stack Development</li>
+                                <li>Cybersecurity</li>
+                                <li>System Architecture</li>
+                                <li>Cloud Infrastructure</li>
+                                <li>Technical Documentation</li>
+                                <li>System Infrastructure</li>
+                            </ul>
+                        </div>
+
+                        <div class="skill-category">
+                            <h3>Healthcare & Data</h3>
+                            <ul class="skill-list">
+                                <li>Healthcare IT Systems</li>
+                                <li>EPR Implementation</li>
+                                <li>Data Analysis</li>
+                                <li>Technical Support</li>
+                            </ul>
+                        </div>
+
+                        <div class="skill-category">
+                            <h3>Innovation & Research</h3>
+                            <ul class="skill-list">
+                                <li>Startup Development</li>
+                                <li>Market Analysis</li>
+                                <li>Technology Trends</li>
+                                <li>Digital Privacy</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>🛠️ Technology Stack</h2>
+                    <div class="tech-grid">
+                        <div class="tech-category">
+                            <h3>Development</h3>
+                            <div class="tech-tags">
+                                <span class="tech-tag tag-python">Python</span>
+                                <span class="tech-tag tag-java">Java</span>
+                                <span class="tech-tag tag-cpp">C++</span>
+                                <span class="tech-tag tag-lisp">Lisp</span>
+                                <span class="tech-tag tag-html">HTML</span>
+                                <span class="tech-tag tag-css">CSS</span>
+                                <span class="tech-tag tag-arduino">Arduino</span>
+                            </div>
+                        </div>
+                        <div class="tech-category">
+                            <h3>Frameworks & Libraries</h3>
+                            <div class="tech-tags">
+                                <span class="tech-tag tag-spring">Spring</span>
+                                <span class="tech-tag tag-react">React</span>
+                                <span class="tech-tag tag-angular">Angular</span>
+                                <span class="tech-tag tag-flask">Flask</span>
+                                <span class="tech-tag tag-numpy">NumPy</span>
+                                <span class="tech-tag tag-pandas">Pandas</span>
+                                <span class="tech-tag tag-matplotlib">Matplotlib</span>
+                                <span class="tech-tag tag-jupyter">Jupyter</span>
+                            </div>
+                        </div>
+
+                        <div class="tech-category">
+                            <h3>DevOps & Cloud</h3>
+                            <div class="tech-tags">
+                                <span class="tech-tag tag-gitlab">GitLab</span>
+                                <span class="tech-tag tag-github">GitHub</span>
+                                <span class="tech-tag tag-jenkins">Jenkins</span>
+                                <span class="tech-tag tag-azure">Azure</span>
+                                <span class="tech-tag tag-nexus">Nexus</span>
+                                <span class="tech-tag tag-unix">Linux/Unix</span>
+                                <span class="tech-tag tag-rest">REST API</span>
+                            </div>
+                        </div>
+
+                        <div class="tech-category">
+                            <h3>Security Tools</h3>
+                            <div class="tech-tags">
+                                <span class="tech-tag tag-security">Wireshark</span>
+                                <span class="tech-tag tag-security">Snort</span>
+                                <span class="tech-tag tag-security">Hashcat</span>
+                                <span class="tech-tag tag-security">John the Ripper</span>
+                                <span class="tech-tag tag-security">Splunk</span>
+                                <span class="tech-tag tag-security">Any.run</span>
+                                <span class="tech-tag tag-security">Virtual Machines</span>
+                            </div>
+                        </div>
+
+                        <div class="tech-category">
+                            <h3>Project Management</h3>
+                            <div class="tech-tags">
+                                <span class="tech-tag tag-jira">Jira</span>
+                                <span class="tech-tag tag-confluence">Confluence</span>
+                                <span class="tech-tag tag-asana">Asana</span>
+                                <span class="tech-tag tag-clickup">ClickUp</span>
+                                <span class="tech-tag tag-project-management">Bubble</span>
+                                <span class="tech-tag tag-project-management">Twilio</span>
+                            </div>
+                        </div>
+
+                        <div class="tech-category">
+                            <h3>Healthcare & Analytics</h3>
+                            <div class="tech-tags">
+                                <span class="tech-tag tag-healthcare">Epic EPR</span>
+                                <span class="tech-tag tag-excel">Excel</span>
+                                <span class="tech-tag tag-data-analysis">Data Analysis</span>
+                                <span class="tech-tag tag-documentation">Documentation</span>
+                                <span class="tech-tag tag-technical-support">Technical Support</span>
+                                <span class="tech-tag tag-system">System Infrastructure</span>
+                            </div>
+                        </div>
+
+                        <div class="tech-category">
+                            <h3>Productivity</h3>
+                            <div class="tech-tags">
+                                <span class="tech-tag tag-productivity">Microsoft Office</span>
+                                <span class="tech-tag tag-productivity">Google Workspace</span>
+                                <span class="tech-tag tag-productivity">NationBuilder</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-    </nav>
-
-    <div class="container">
-        <section class="about-section">
-            <div class="profile-header">
-                <div class="profile-image">
-                    <img src="HameezIqbal Image.png" alt="Hameez Iqbal">
-                </div>
-                <div class="profile-intro">
-                    <h1>About Me</h1>
-                    <p>I'm a Computer Science and Cybersecurity student at Toronto Metropolitan University, passionate about building products that make a positive impact. My journey spans technology, entrepreneurship, and community leadership.</p>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>🚀 Startup & Innovation</h2>
-                <p>Deeply involved in Toronto's startup ecosystem through the DMZ at TMU, I've had the opportunity to work with innovative startups like <span class="highlight">Crewscope</span>. I've complemented my practical experience by studying at <span class="highlight">Y Combinator's Startup School</span>, learning from industry leaders about building and scaling successful tech companies.</p>
-            </div>
-
-            <div class="section">
-                <h2>💻 Technical Journey</h2>
-                <p>At TMU, I'm specializing in Computer Science with a focus on Cybersecurity, combining theoretical knowledge with practical applications. Through roles at companies like Mastercard and Unity Health Toronto, I've developed expertise in fraud prevention, healthcare technology, and software development.</p>
-            </div>
-
-            <div class="section">
-                <h2>🤝 Community Impact</h2>
-                <p>Beyond technology, I'm committed to civic engagement and community development. As a former PDSB Trustee candidate and active volunteer with Trace Labs, I work to bridge the gap between technology and social impact, particularly in education and digital privacy.</p>
-            </div>
-
-            <div class="section">
-                <h2>🎯 Areas of Focus</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Product Development</h3>
-                        <ul class="skill-list">
-                            <li>User-Centered Design</li>
-                            <li>Product Strategy</li>
-                            <li>Agile Methodologies</li>
-                            <li>MVP Development</li>
-                        </ul>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Technical Expertise</h3>
-                        <ul class="skill-list">
-                            <li>Full-Stack Development</li>
-                            <li>Cybersecurity</li>
-                            <li>System Architecture</li>
-                            <li>Cloud Infrastructure</li>
-                        </ul>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Innovation & Research</h3>
-                        <ul class="skill-list">
-                            <li>Startup Development</li>
-                            <li>Market Analysis</li>
-                            <li>Technology Trends</li>
-                            <li>Digital Privacy</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>🛠️ Technology Stack</h2>
-                <div class="tech-grid">
-                    <div class="tech-category">
-                        <h3>Development</h3>
-                        <div class="tech-tags">
-                            <span class="tech-tag" style="cursor: default">Python</span>
-                            <span class="tech-tag" style="cursor: default">Java</span>
-                            <span class="tech-tag" style="cursor: default">C++</span>
-                            <span class="tech-tag" style="cursor: default">HTML & CSS</span>
-                            <span class="tech-tag" style="cursor: default">SQL</span>
-                            <span class="tech-tag" style="cursor: default">Arduino</span>
-                        </div>
-                    </div>
-                    <div class="tech-category">
-                        <h3>Frameworks & Libraries</h3>
-                        <div class="tech-tags">
-                            <span class="tech-tag" style="cursor: default">Spring</span>
-                            <span class="tech-tag" style="cursor: default">React</span>
-                            <span class="tech-tag" style="cursor: default">Angular</span>
-                            <span class="tech-tag" style="cursor: default">Flask</span>
-                            <span class="tech-tag" style="cursor: default">NumPy</span>
-                            <span class="tech-tag" style="cursor: default">Pandas</span>
-                            <span class="tech-tag" style="cursor: default">Matplotlib</span>
-                            <span class="tech-tag" style="cursor: default">Jupyter Notebook</span> 
-                        </div>
-                    </div>
-
-                    <div class="tech-category">
-                        <h3>DevOps & Cloud</h3>
-                        <div class="tech-tags">
-                            <span class="tech-tag" style="cursor: default">GitLab</span>
-                            <span class="tech-tag" style="cursor: default">GitHub</span>
-                            <span class="tech-tag" style="cursor: default">Jenkins</span>
-                            <span class="tech-tag" style="cursor: default">Azure</span>
-                            <span class="tech-tag" style="cursor: default">Nexus</span>
-                            <span class="tech-tag" style="cursor: default">Linux/Unix</span>
-                            <span class="tech-tag" style="cursor: default">REST API</span>
-                        </div>
-                    </div>
-
-                    <div class="tech-category">
-                        <h3>Security Tools</h3>
-                        <div class="tech-tags">
-                            <span class="tech-tag" style="cursor: default">Wireshark</span>
-                            <span class="tech-tag" style="cursor: default">Snort</span>
-                            <span class="tech-tag" style="cursor: default">Hashcat</span>
-                            <span class="tech-tag" style="cursor: default">John the Ripper</span>
-                            <span class="tech-tag" style="cursor: default">Splunk</span>
-                            <span class="tech-tag" style="cursor: default">Any.run</span>
-                            <span class="tech-tag" style="cursor: default">Virtual Machines</span>
-                        </div>
-                    </div>
-
-                    <div class="tech-category">
-                        <h3>Project Management</h3>
-                        <div class="tech-tags">
-                            <span class="tech-tag" style="cursor: default">Jira</span>
-                            <span class="tech-tag" style="cursor: default">Confluence</span>
-                            <span class="tech-tag" style="cursor: default">Asana</span>
-                            <span class="tech-tag" style="cursor: default">ClickUp</span>
-                            <span class="tech-tag" style="cursor: default">Bubble</span>
-                            <span class="tech-tag" style="cursor: default">Twilio</span>
-                        </div>
-                    </div>
-
-                    <div class="tech-category">
-                        <h3>Productivity</h3>
-                        <div class="tech-tags">
-                            <span class="tech-tag" style="cursor: default">Microsoft Office</span>
-                            <span class="tech-tag" style="cursor: default">Google Workspace</span>
-                            <span class="tech-tag" style="cursor: default">NationBuilder</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </div>
-
-    <script>
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            this.classList.toggle('active');
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
-
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelector('.menu-toggle').classList.remove('active');
-                document.querySelector('.nav-links').classList.remove('active');
-            });
-        });
-    </script>
+    <!-- Footer will be injected here by footer.js -->
 </body>
 </html> 

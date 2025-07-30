@@ -6,6 +6,10 @@
     <title>Hameez Iqbal</title>
     <!-- Preload Instagram embed for faster media page loading -->
     <link rel="preload" href="https://www.instagram.com/embed.js" as="script">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
     <style data-version="1.1">
         /* Reset and base styles */
         * {
@@ -40,6 +44,12 @@
             background: var(--warm-bg);
             overflow-y: auto;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-wrapper {
+            flex: 1 0 auto;
         }
 
         /* Navigation */
@@ -398,24 +408,21 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-links">
-                <a href="index.html" class="active">Home</a>
-                <a href="about.html">About</a>
-                <a href="experience.html">Experience</a>
-                <a href="projects.html">Projects</a>
-                <a href="media.html">Media</a>
-                <a href="heraldry.html">Heraldry</a>
-                <a href="contact.html">Contact</a>
+    <div class="content-wrapper">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-links">
+                    <a href="index.html" class="active">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="experience.html">Experience</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="media.html">Media</a>
+                    <a href="heraldry.html">Heraldry</a>
+                    <a href="contact.html">Contact</a>
+                </div>
             </div>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main>
-        <section class="hero">
+        </nav>
+        <div class="hero">
             <div class="hero-content">
                 <section class="profile-section">
                     <div class="profile-header">
@@ -462,11 +469,8 @@
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 Hameez Iqbal | <a href="mailto:hameezwork@gmail.com">hameezwork@gmail.com</a></p>
-    </footer>
+        </div>
+    </div>
+    <!-- Footer will be injected here by footer.js -->
 </body>
 </html>

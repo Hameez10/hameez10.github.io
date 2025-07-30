@@ -1,0 +1,263 @@
+/* Tag Base Styles */
+.tech-tag,
+.experience-tag,
+.skill-tag {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+/* Tag hover effect */
+.tech-tag:hover,
+.experience-tag:hover,
+.skill-tag:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background-color: rgba(var(--tag-rgb), 0.2);
+    font-weight: 600;
+}
+
+/* Programming Languages */
+.tag-python,
+.python-tag {
+    --tag-rgb: 55, 118, 171;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-java,
+.java-tag {
+    --tag-rgb: 248, 152, 32;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-cpp {
+    --tag-rgb: 0, 89, 156;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-javascript {
+    --tag-rgb: 247, 222, 30;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-typescript {
+    --tag-rgb: 49, 120, 190;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-lisp {
+    --tag-rgb: 85, 85, 85;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+/* Web Technologies */
+.tag-html {
+    --tag-rgb: 227, 79, 38;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-css {
+    --tag-rgb: 21, 114, 182;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-react {
+    --tag-rgb: 97, 221, 251;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-angular {
+    --tag-rgb: 221, 0, 49;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-spring {
+    --tag-rgb: 109, 179, 63;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+/* Version Control & DevOps */
+.tag-git {
+    --tag-rgb: 240, 80, 50;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-github {
+    --tag-rgb: 24, 23, 23;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-gitlab {
+    --tag-rgb: 252, 109, 44;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-jenkins {
+    --tag-rgb: 210, 73, 51;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+/* Data & Analytics */
+.tag-sql {
+    --tag-rgb: 68, 121, 169;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-jupyter {
+    --tag-rgb: 243, 118, 38;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-excel {
+    --tag-rgb: 33, 115, 70;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-unix {
+    --tag-rgb: 252, 198, 36;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+/* Project Management */
+.tag-jira {
+    --tag-rgb: 0, 82, 204;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-asana {
+    --tag-rgb: 240, 106, 106;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-confluence {
+    --tag-rgb: 23, 43, 77;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-clickup {
+    --tag-rgb: 123, 104, 238;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+/* Skills & Domains */
+.tag-qa {
+    --tag-rgb: 44, 82, 130;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-testing {
+    --tag-rgb: 46, 125, 50;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-automation {
+    --tag-rgb: 2, 136, 209;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-documentation {
+    --tag-rgb: 69, 90, 100;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-project-management {
+    --tag-rgb: 0, 105, 120;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-healthcare {
+    --tag-rgb: 0, 163, 224;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-technical-support {
+    --tag-rgb: 45, 55, 72;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-system {
+    --tag-rgb: 26, 32, 44;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-education {
+    --tag-rgb: 43, 108, 176;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-research {
+    --tag-rgb: 121, 134, 187;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-data-analysis {
+    --tag-rgb: 66, 153, 225;
+    background-color: rgba(var(--tag-rgb), 0.15);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-innovation {
+    --tag-rgb: 244, 180, 0;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-academic-excellence {
+    --tag-rgb: 255, 215, 0;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+/* Achievement Badge */
+.achievement-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #FFD700;
+    color: #B8860B;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    width: 75px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 2px 5px rgba(218,165,32,0.2);
+} 

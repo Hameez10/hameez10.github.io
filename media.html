@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Media - Hameez Iqbal</title>
+    <!-- Preload Instagram embed for faster media page loading -->
+    <link rel="preload" href="https://www.instagram.com/embed.js" as="script">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <link rel="stylesheet" href="styles/tags.css">
     <style>
         :root {
             --primary-color: #FF6B6B;
@@ -214,480 +221,467 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="experience.html">Experience</a>
-                <a href="projects.html">Projects</a>
-                <a href="media.html" class="active">Media</a>
-                <a href="heraldry.html">Heraldry</a>
-                <a href="contact.html">Contact</a>
+    <div class="content-wrapper">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="experience.html">Experience</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="media.html" class="active">Media</a>
+                    <a href="heraldry.html">Heraldry</a>
+                    <a href="contact.html">Contact</a>
+                </div>
             </div>
-        </div>
-    </nav>
-
-    <div class="container">
-        <h1 class="section-title">Media</h1>
-        <p class="section-subtitle">My social media presence and news coverage</p>
-
-        <!-- News Coverage Section -->
-        <section class="media-section">
-            <h2>📰 In The News</h2>
-            <div class="news-list">
-                <article class="news-item">
-                    <div class="news-source">LinkedIn</div>
-                    <div class="news-image">
-                        <img src="assets/mastercard-feature.jpg" alt="Mastercard Canada Feature">
+        </nav>
+        <div class="container">
+            <h1 class="section-title">Media</h1>
+            <p class="section-subtitle">A collection of my media appearances, features, and highlights.</p>
+            
+            <div class="media-section">
+                <h2>🎯 Professional Highlights</h2>
+                <div class="news-list">
+                    <div class="news-item">
+                        <div class="news-source">
+                            <img src="assets/LinkedIn_icon.png" alt="LinkedIn" style="height: 20px; vertical-align: middle; margin-right: 8px;">
+                            Mastercard Canada Summer Internship 2023
+                        </div>
+                        <div class="news-image" style="margin-bottom: 1rem;">
+                            <img src="assets/mastercard-feature.jpg" alt="Mastercard Internship" style="width: 100%; border-radius: 10px;">
+                        </div>
+                        <h3 class="news-title">Summer Internship at Mastercard Canada</h3>
+                        <p class="news-excerpt">Proud to have been part of Mastercard Canada's 2023 summer internship program, joining over 30 interns in Toronto and Vancouver offices, and 800+ globally. A truly #priceless experience contributing to innovative payment solutions and technology.</p>
+                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7100584774645252096" target="_blank" class="news-link" style="color: var(--primary-color); text-decoration: none; font-weight: 500; display: inline-block; margin-top: 1rem;">View on LinkedIn →</a>
                     </div>
-                    <h3 class="news-title">Mastercard Canada Co-op Feature</h3>
-                    <p class="news-excerpt">Featured on Mastercard Canada's LinkedIn for contributions and achievements during internship.</p>
-                    <div class="news-date">August 2023</div>
-                    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7089366608472637440/" class="media-link" target="_blank">View Feature →</a>
-                </article>
+                    
+                    <article class="news-item">
+                        <div class="news-source">The Mississauga News</div>
+                        <div class="news-image">
+                            <img src="assets/anti-islamophobia.jpg" alt="PDSB Anti-Islamophobia Strategy">
+                        </div>
+                        <h3 class="news-title">'It's wonderful and historic': Peel District School Board approves anti-Islamophobia strategy</h3>
+                        <p class="news-excerpt">Hameez Iqbal, who recently graduated from Glenforest Secondary School in Mississauga, described the strategy as a "solid plan" and called for trustees to directly connect with students on it. He emphasized the importance of implementation and accountability beyond just policy.</p>
+                        <div class="news-date">January 27, 2023</div>
+                        <a href="https://www.mississauga.com/news/it-s-wonderful-and-historic-peel-district-school-board-approves-anti-islamophobia-strategy/article_d87813a6-85b8-59f1-b40b-ad1a11142e05.html" class="media-link" target="_blank">Read Article →</a>
+                    </article>
 
-                <article class="news-item">
-                    <div class="news-source">The Mississauga News</div>
-                    <div class="news-image">
-                        <img src="assets/anti-islamophobia.jpg" alt="PDSB Anti-Islamophobia Strategy">
-                    </div>
-                    <h3 class="news-title">'It's wonderful and historic': Peel District School Board approves anti-Islamophobia strategy</h3>
-                    <p class="news-excerpt">Hameez Iqbal, who recently graduated from Glenforest Secondary School in Mississauga, described the strategy as a "solid plan" and called for trustees to directly connect with students on it. He emphasized the importance of implementation and accountability beyond just policy.</p>
-                    <div class="news-date">January 27, 2023</div>
-                    <a href="https://www.mississauga.com/news/it-s-wonderful-and-historic-peel-district-school-board-approves-anti-islamophobia-strategy/article_d87813a6-85b8-59f1-b40b-ad1a11142e05.html" class="media-link" target="_blank">Read Article →</a>
-                </article>
-
-                <article class="news-item">
-                    <div class="news-source">The Mississauga News</div>
-                    <div class="news-image">
-                        <img src="assets/pdsb-trustee.jpg" alt="PDSB Trustee Candidates">
-                    </div>
-                    <h3 class="news-title">Meet the Peel District School Board trustee candidates for Mississauga Wards 3 and 4</h3>
-                    <p class="news-excerpt">Coverage of the PDSB trustee candidates for Mississauga Wards 3 and 4, featuring profiles and platforms of candidates running in the municipal election.</p>
-                    <div class="news-date">October 2022</div>
-                    <a href="https://www.mississauga.com/news/municipal-elections/meet-the-peel-district-school-board-trustee-candidates-for-mississauga-wards-3-and-4/article_91ab630c-08df-5bb5-83e8-c719e41cc214.html" class="media-link" target="_blank">Read Article →</a>
-                </article>
+                    <article class="news-item">
+                        <div class="news-source">The Mississauga News</div>
+                        <div class="news-image">
+                            <img src="assets/pdsb-trustee.jpg" alt="PDSB Trustee Candidates">
+                        </div>
+                        <h3 class="news-title">Meet the Peel District School Board trustee candidates for Mississauga Wards 3 and 4</h3>
+                        <p class="news-excerpt">Coverage of the PDSB trustee candidates for Mississauga Wards 3 and 4, featuring profiles and platforms of candidates running in the municipal election.</p>
+                        <div class="news-date">October 2022</div>
+                        <a href="https://www.mississauga.com/news/municipal-elections/meet-the-peel-district-school-board-trustee-candidates-for-mississauga-wards-3-and-4/article_91ab630c-08df-5bb5-83e8-c719e41cc214.html" class="media-link" target="_blank">Read Article →</a>
+                    </article>
+                </div>
             </div>
-        </section>
 
-        <!-- LinkedIn Posts Section -->
-        <section class="media-section">
-            <h2>💼 Recent LinkedIn Updates</h2>
-            <p class="section-description">Check out my latest professional updates and achievements on <a href="https://www.linkedin.com/in/hameez-iqbal/recent-activity/all/" class="media-link" target="_blank">LinkedIn →</a></p>
-            <div class="linkedin-grid">
-                <!-- Post 1: Most Recent -->
-                <article class="linkedin-post">
-                    <div class="linkedin-content">
-                        <div class="post-meta">
-                            <span class="post-date">March 2024</span>
-                            <span class="post-type">Recent Update</span>
+            <!-- LinkedIn Posts Section -->
+            <section class="media-section">
+                <h2>💼 Recent LinkedIn Updates</h2>
+                <p class="section-description">Check out my latest professional updates and achievements on <a href="https://www.linkedin.com/in/hameez-iqbal/recent-activity/all/" class="media-link" target="_blank">LinkedIn →</a></p>
+                <div class="linkedin-grid">
+                    <!-- Post 1: Most Recent -->
+                    <article class="linkedin-post">
+                        <div class="linkedin-content">
+                            <div class="post-meta">
+                                <span class="post-date">March 2024</span>
+                                <span class="post-type">Recent Update</span>
+                            </div>
+                            <h3 class="post-title">Latest Professional Update</h3>
+                            <p class="post-excerpt">Visit my LinkedIn profile to see my most recent professional updates, achievements, and industry insights.</p>
+                            <div class="post-stats">
+                                <span>🔄 Latest Activity</span>
+                            </div>
+                            <a href="https://www.linkedin.com/in/hameez-iqbal/recent-activity/all/" class="media-link" target="_blank">View Latest Updates →</a>
                         </div>
-                        <h3 class="post-title">Latest Professional Update</h3>
-                        <p class="post-excerpt">Visit my LinkedIn profile to see my most recent professional updates, achievements, and industry insights.</p>
-                        <div class="post-stats">
-                            <span>🔄 Latest Activity</span>
+                    </article>
+
+                    <!-- Post 2: Mastercard Co-op -->
+                    <article class="linkedin-post">
+                        <div class="linkedin-content">
+                            <div class="post-meta">
+                                <span class="post-date">August 2023</span>
+                                <span class="post-type">Experience</span>
+                            </div>
+                            <h3 class="post-title">Co-op Student at Mastercard</h3>
+                            <p class="post-excerpt">Featured on Mastercard Canada's LinkedIn for contributions and achievements during co-op term. Working on innovative payment solutions and learning from industry leaders.</p>
+                            <div class="post-stats">
+                                <span>🎯 Featured by Mastercard Canada</span>
+                            </div>
+                            <a href="https://www.linkedin.com/feed/update/urn:li:activity:7089366608472637440/" class="media-link" target="_blank">View Feature →</a>
                         </div>
-                        <a href="https://www.linkedin.com/in/hameez-iqbal/recent-activity/all/" class="media-link" target="_blank">View Latest Updates →</a>
-                    </div>
-                </article>
+                    </article>
 
-                <!-- Post 2: Mastercard Co-op -->
-                <article class="linkedin-post">
-                    <div class="linkedin-content">
-                        <div class="post-meta">
-                            <span class="post-date">August 2023</span>
-                            <span class="post-type">Experience</span>
+                    <!-- Post 3: TMU Computer Science -->
+                    <article class="linkedin-post">
+                        <div class="linkedin-content">
+                            <div class="post-meta">
+                                <span class="post-date">September 2022</span>
+                                <span class="post-type">Education</span>
+                            </div>
+                            <h3 class="post-title">Computer Science at TMU</h3>
+                            <p class="post-excerpt">Studying Computer Science at Toronto Metropolitan University, specializing in Machine Learning and AI with minors in Innovation and Cybersecurity.</p>
+                            <div class="post-stats">
+                                <span>🎓 Education Update</span>
+                            </div>
+                            <a href="https://www.linkedin.com/in/hameez-iqbal/" class="media-link" target="_blank">View on LinkedIn →</a>
                         </div>
-                        <h3 class="post-title">Co-op Student at Mastercard</h3>
-                        <p class="post-excerpt">Featured on Mastercard Canada's LinkedIn for contributions and achievements during co-op term. Working on innovative payment solutions and learning from industry leaders.</p>
-                        <div class="post-stats">
-                            <span>🎯 Featured by Mastercard Canada</span>
-                        </div>
-                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7089366608472637440/" class="media-link" target="_blank">View Feature →</a>
-                    </div>
-                </article>
+                    </article>
+                </div>
+            </section>
 
-                <!-- Post 3: TMU Computer Science -->
-                <article class="linkedin-post">
-                    <div class="linkedin-content">
-                        <div class="post-meta">
-                            <span class="post-date">September 2022</span>
-                            <span class="post-type">Education</span>
-                        </div>
-                        <h3 class="post-title">Computer Science at TMU</h3>
-                        <p class="post-excerpt">Studying Computer Science at Toronto Metropolitan University, specializing in Machine Learning and AI with minors in Innovation and Cybersecurity.</p>
-                        <div class="post-stats">
-                            <span>🎓 Education Update</span>
-                        </div>
-                        <a href="https://www.linkedin.com/in/hameez-iqbal/" class="media-link" target="_blank">View on LinkedIn →</a>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <style>
-            .linkedin-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-                gap: 2rem;
-                margin-top: 2rem;
-            }
-
-            .linkedin-post {
-                background: white;
-                border-radius: 15px;
-                overflow: hidden;
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-                transition: transform 0.3s ease;
-            }
-
-            .linkedin-post:hover {
-                transform: translateY(-5px);
-            }
-
-            .linkedin-image {
-                width: 100%;
-                height: 200px;
-                overflow: hidden;
-            }
-
-            .linkedin-image img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                transition: transform 0.3s ease;
-            }
-
-            .linkedin-post:hover .linkedin-image img {
-                transform: scale(1.05);
-            }
-
-            .linkedin-content {
-                padding: 1.5rem;
-            }
-
-            .post-meta {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 1rem;
-            }
-
-            .post-date {
-                color: var(--text-light);
-                font-size: 0.9rem;
-            }
-
-            .post-type {
-                background: rgba(78, 205, 196, 0.1);
-                color: var(--accent-color);
-                padding: 0.3rem 0.8rem;
-                border-radius: 15px;
-                font-size: 0.8rem;
-                font-weight: 500;
-            }
-
-            .post-title {
-                font-size: 1.2rem;
-                color: var(--text-dark);
-                margin-bottom: 1rem;
-            }
-
-            .post-excerpt {
-                color: var(--text-light);
-                font-size: 0.95rem;
-                margin-bottom: 1rem;
-                line-height: 1.6;
-            }
-
-            .post-stats {
-                display: flex;
-                gap: 1rem;
-                margin-bottom: 1rem;
-                font-size: 0.9rem;
-                color: var(--primary-color);
-            }
-
-            @media (max-width: 768px) {
+            <style>
                 .linkedin-grid {
-                    grid-template-columns: 1fr;
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+                    gap: 2rem;
+                    margin-top: 2rem;
                 }
-            }
-        </style>
 
-        <style>
-            .section-description {
-                color: var(--text-light);
-                font-size: 1.1rem;
-                margin-bottom: 2rem;
-                margin-top: -0.5rem;
-            }
-        </style>
+                .linkedin-post {
+                    background: white;
+                    border-radius: 15px;
+                    overflow: hidden;
+                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+                    transition: transform 0.3s ease;
+                }
 
-        <!-- Instagram Section -->
-        <section class="media-section">
-            <h2>📸 Instagram Highlights</h2>
-            <div class="instagram-grid">
-                <!-- January 2023 - TMU Post -->
-                <div class="instagram-post">
-                    <iframe src="https://www.instagram.com/p/Cm3BR-ZNSD4/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                .linkedin-post:hover {
+                    transform: translateY(-5px);
+                }
+
+                .linkedin-image {
+                    width: 100%;
+                    height: 200px;
+                    overflow: hidden;
+                }
+
+                .linkedin-image img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    transition: transform 0.3s ease;
+                }
+
+                .linkedin-post:hover .linkedin-image img {
+                    transform: scale(1.05);
+                }
+
+                .linkedin-content {
+                    padding: 1.5rem;
+                }
+
+                .post-meta {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 1rem;
+                }
+
+                .post-date {
+                    color: var(--text-light);
+                    font-size: 0.9rem;
+                }
+
+                .post-type {
+                    background: rgba(78, 205, 196, 0.1);
+                    color: var(--accent-color);
+                    padding: 0.3rem 0.8rem;
+                    border-radius: 15px;
+                    font-size: 0.8rem;
+                    font-weight: 500;
+                }
+
+                .post-title {
+                    font-size: 1.2rem;
+                    color: var(--text-dark);
+                    margin-bottom: 1rem;
+                }
+
+                .post-excerpt {
+                    color: var(--text-light);
+                    font-size: 0.95rem;
+                    margin-bottom: 1rem;
+                    line-height: 1.6;
+                }
+
+                .post-stats {
+                    display: flex;
+                    gap: 1rem;
+                    margin-bottom: 1rem;
+                    font-size: 0.9rem;
+                    color: var(--primary-color);
+                }
+
+                @media (max-width: 768px) {
+                    .linkedin-grid {
+                        grid-template-columns: 1fr;
+                    }
+                }
+            </style>
+
+            <style>
+                .section-description {
+                    color: var(--text-light);
+                    font-size: 1.1rem;
+                    margin-bottom: 2rem;
+                    margin-top: -0.5rem;
+                }
+            </style>
+
+            <!-- Instagram Section -->
+            <section class="media-section">
+                <h2>📸 Instagram Highlights</h2>
+                <div class="instagram-grid">
+                    <!-- January 2023 - TMU Post -->
+                    <div class="instagram-post">
+                        <iframe src="https://www.instagram.com/p/Cm3BR-ZNSD4/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
+
+                    <!-- October 2022 - Campaign Post -->
+                    <div class="instagram-post">
+                        <iframe src="https://www.instagram.com/p/CkE4kA6r-jW/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
+
+                    <!-- October 2022 - Campaign Post -->
+                    <div class="instagram-post">
+                        <iframe src="https://www.instagram.com/p/Cj05Elpvo85/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
+
+                    <!-- October 2022 - Campaign Event -->
+                    <div class="instagram-post">
+                        <iframe src="https://www.instagram.com/p/CjwlCn5tjZu/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
+
+                    <!-- October 2022 - Campaign Update -->
+                    <div class="instagram-post">
+                        <iframe src="https://www.instagram.com/p/CjjiBUQLZGh/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
+
+                    <!-- October 2022 - Community Event -->
+                    <div class="instagram-post">
+                        <iframe src="https://www.instagram.com/p/CjhEElwtY1u/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
+
+                    <!-- October 2022 - Campaign Message -->
+                    <div class="instagram-post">
+                        <iframe src="https://www.instagram.com/p/Cjf-3Por2Rq/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
+
+                    <!-- September 2022 - Campaign Launch -->
+                    <div class="instagram-post">
+                        <iframe src="https://www.instagram.com/p/Ci75RVPrjnE/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
+
+                    <!-- August 2022 - Campaign Launch -->
+                    <div class="instagram-post">
+                        <iframe src="https://www.instagram.com/p/ChTU7_Vr3FB/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
+
+                    <!-- June 2022 - Graduation -->
+                    <div class="instagram-post">
+                        <iframe src="https://www.instagram.com/p/Ce-NMgWNQe9/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
+
+                    <!-- June 2022 - Community Event -->
+                    <div class="instagram-post">
+                        <iframe src="https://www.instagram.com/p/CeFAeRDrPsH/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
+
+                    <!-- May 2022 - Award Ceremony -->
+                    <div class="instagram-post">
+                        <iframe src="https://www.instagram.com/p/CdbjQd7JRId/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
+
+                    <!-- April 2022 - School Event -->
+                    <div class="instagram-post">
+                        <iframe src="https://www.instagram.com/p/CcQlZFkLVBv/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
+
+                    <!-- November 2019 - PDSB Student Trustee -->
+                    <div class="instagram-post">
+                        <iframe src="https://www.instagram.com/p/B430ZBOhEy4/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
                 </div>
 
-                <!-- October 2022 - Campaign Post -->
-                <div class="instagram-post">
-                    <iframe src="https://www.instagram.com/p/CkE4kA6r-jW/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-                </div>
+                <!-- Since we're using direct iframes now, we don't need the Instagram embed script -->
+                <script>
+                    // Function to load Instagram embeds sequentially
+                    function loadInstagramEmbeds() {
+                        const posts = Array.from(document.querySelectorAll('.instagram-post'));
+                        let currentIndex = 0;
 
-                <!-- October 2022 - Campaign Post -->
-                <div class="instagram-post">
-                    <iframe src="https://www.instagram.com/p/Cj05Elpvo85/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-                </div>
+                        // Initially mark all posts as waiting
+                        posts.forEach(post => post.classList.add('waiting'));
 
-                <!-- October 2022 - Campaign Event -->
-                <div class="instagram-post">
-                    <iframe src="https://www.instagram.com/p/CjwlCn5tjZu/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-                </div>
-
-                <!-- October 2022 - Campaign Update -->
-                <div class="instagram-post">
-                    <iframe src="https://www.instagram.com/p/CjjiBUQLZGh/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-                </div>
-
-                <!-- October 2022 - Community Event -->
-                <div class="instagram-post">
-                    <iframe src="https://www.instagram.com/p/CjhEElwtY1u/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-                </div>
-
-                <!-- October 2022 - Campaign Message -->
-                <div class="instagram-post">
-                    <iframe src="https://www.instagram.com/p/Cjf-3Por2Rq/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-                </div>
-
-                <!-- September 2022 - Campaign Launch -->
-                <div class="instagram-post">
-                    <iframe src="https://www.instagram.com/p/Ci75RVPrjnE/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-                </div>
-
-                <!-- August 2022 - Campaign Launch -->
-                <div class="instagram-post">
-                    <iframe src="https://www.instagram.com/p/ChTU7_Vr3FB/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-                </div>
-
-                <!-- June 2022 - Graduation -->
-                <div class="instagram-post">
-                    <iframe src="https://www.instagram.com/p/Ce-NMgWNQe9/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-                </div>
-
-                <!-- June 2022 - Community Event -->
-                <div class="instagram-post">
-                    <iframe src="https://www.instagram.com/p/CeFAeRDrPsH/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-                </div>
-
-                <!-- May 2022 - Award Ceremony -->
-                <div class="instagram-post">
-                    <iframe src="https://www.instagram.com/p/CdbjQd7JRId/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-                </div>
-
-                <!-- April 2022 - School Event -->
-                <div class="instagram-post">
-                    <iframe src="https://www.instagram.com/p/CcQlZFkLVBv/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-                </div>
-
-                <!-- November 2019 - PDSB Student Trustee -->
-                <div class="instagram-post">
-                    <iframe src="https://www.instagram.com/p/B430ZBOhEy4/embed" width="100%" height="580" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-                </div>
-            </div>
-
-            <!-- Since we're using direct iframes now, we don't need the Instagram embed script -->
-            <script>
-                // Function to load Instagram embeds sequentially
-                function loadInstagramEmbeds() {
-                    const posts = Array.from(document.querySelectorAll('.instagram-post'));
-                    let currentIndex = 0;
-
-                    // Initially mark all posts as waiting
-                    posts.forEach(post => post.classList.add('waiting'));
-
-                    function checkPostFullyLoaded(post) {
-                        return new Promise((resolve) => {
-                            const checkComplete = setInterval(() => {
-                                const iframe = post.querySelector('iframe');
-                                if (iframe) {
-                                    try {
-                                        // For direct iframes, check if loaded
-                                        if (iframe.contentWindow.document.readyState === 'complete') {
-                                            clearInterval(checkComplete);
-                                            resolve(true);
+                        function checkPostFullyLoaded(post) {
+                            return new Promise((resolve) => {
+                                const checkComplete = setInterval(() => {
+                                    const iframe = post.querySelector('iframe');
+                                    if (iframe) {
+                                        try {
+                                            // For direct iframes, check if loaded
+                                            if (iframe.contentWindow.document.readyState === 'complete') {
+                                                clearInterval(checkComplete);
+                                                resolve(true);
+                                                return;
+                                            }
+                                        } catch (e) {
+                                            // Cross-origin restrictions might prevent access
+                                            // Assume loaded after a short delay
+                                            setTimeout(() => {
+                                                clearInterval(checkComplete);
+                                                resolve(true);
+                                            }, 1000);
                                             return;
                                         }
-                                    } catch (e) {
-                                        // Cross-origin restrictions might prevent access
-                                        // Assume loaded after a short delay
-                                        setTimeout(() => {
-                                            clearInterval(checkComplete);
-                                            resolve(true);
-                                        }, 1000);
-                                        return;
                                     }
-                                }
-                            }, 100);
+                                }, 100);
 
-                            // Timeout after 10 seconds
-                            setTimeout(() => {
-                                clearInterval(checkComplete);
-                                resolve(false);
-                            }, 10000);
-                        });
-                    }
-
-                    async function loadNextPost() {
-                        if (currentIndex >= posts.length) return;
-
-                        const post = posts[currentIndex];
-                        
-                        // Remove waiting state and show loading state
-                        post.classList.remove('waiting');
-                        post.classList.add('loading');
-
-                        const isLoaded = await checkPostFullyLoaded(post);
-                        if (isLoaded) {
-                            post.classList.remove('loading');
-                            // Wait a moment to ensure smooth transition
-                            await new Promise(resolve => setTimeout(resolve, 500));
-                            currentIndex++;
-                            loadNextPost();
-                        } else {
-                            // If loading failed, skip to next post
-                            post.classList.remove('loading');
-                            currentIndex++;
-                            loadNextPost();
+                                // Timeout after 10 seconds
+                                setTimeout(() => {
+                                    clearInterval(checkComplete);
+                                    resolve(false);
+                                }, 10000);
+                            });
                         }
+
+                        async function loadNextPost() {
+                            if (currentIndex >= posts.length) return;
+
+                            const post = posts[currentIndex];
+                            
+                            // Remove waiting state and show loading state
+                            post.classList.remove('waiting');
+                            post.classList.add('loading');
+
+                            const isLoaded = await checkPostFullyLoaded(post);
+                            if (isLoaded) {
+                                post.classList.remove('loading');
+                                // Wait a moment to ensure smooth transition
+                                await new Promise(resolve => setTimeout(resolve, 500));
+                                currentIndex++;
+                                loadNextPost();
+                            } else {
+                                // If loading failed, skip to next post
+                                post.classList.remove('loading');
+                                currentIndex++;
+                                loadNextPost();
+                            }
+                        }
+
+                        // Start loading posts when they become visible
+                        const observer = new IntersectionObserver((entries) => {
+                            entries.forEach(entry => {
+                                if (entry.isIntersecting && currentIndex === 0) {
+                                    loadNextPost();
+                                    observer.disconnect();
+                                }
+                            });
+                        }, {
+                            rootMargin: '50px'
+                        });
+
+                        // Start observing the first post
+                        observer.observe(posts[0]);
                     }
 
-                    // Start loading posts when they become visible
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting && currentIndex === 0) {
-                                loadNextPost();
-                                observer.disconnect();
-                            }
-                        });
-                    }, {
-                        rootMargin: '50px'
-                    });
+                    // Start loading posts when the page loads
+                    window.addEventListener('load', loadInstagramEmbeds);
+                </script>
+            </section>
 
-                    // Start observing the first post
-                    observer.observe(posts[0]);
+            <style>
+                .news-image {
+                    width: 100%;
+                    height: 200px;
+                    overflow: hidden;
+                    border-radius: 10px;
+                    margin-bottom: 1rem;
                 }
 
-                // Start loading posts when the page loads
-                window.addEventListener('load', loadInstagramEmbeds);
-            </script>
-        </section>
+                .news-image img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    transition: transform 0.3s ease;
+                }
 
-        <style>
-            .news-image {
-                width: 100%;
-                height: 200px;
-                overflow: hidden;
-                border-radius: 10px;
-                margin-bottom: 1rem;
-            }
+                .news-item:hover .news-image img {
+                    transform: scale(1.05);
+                }
 
-            .news-image img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                transition: transform 0.3s ease;
-            }
-
-            .news-item:hover .news-image img {
-                transform: scale(1.05);
-            }
-
-            .news-list {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-                gap: 2rem;
-            }
-
-            .news-item {
-                background: var(--warm-bg);
-                border-radius: 15px;
-                padding: 1.5rem;
-                transition: transform 0.3s ease;
-                display: flex;
-                flex-direction: column;
-            }
-
-            .news-item:hover {
-                transform: translateY(-5px);
-            }
-
-            .news-source {
-                font-size: 0.9rem;
-                color: var(--primary-color);
-                font-weight: 500;
-                margin-bottom: 0.5rem;
-            }
-
-            .news-title {
-                font-size: 1.2rem;
-                color: var(--text-dark);
-                margin-bottom: 1rem;
-            }
-
-            .news-excerpt {
-                color: var(--text-light);
-                font-size: 0.9rem;
-                margin-bottom: 1rem;
-                flex-grow: 1;
-            }
-
-            .news-date {
-                color: var(--text-light);
-                font-size: 0.8rem;
-                margin-bottom: 1rem;
-            }
-
-            .media-link {
-                color: var(--primary-color);
-                text-decoration: none;
-                font-weight: 500;
-                transition: color 0.3s ease;
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-            }
-
-            .media-link:hover {
-                text-decoration: underline;
-            }
-
-            @media (max-width: 768px) {
                 .news-list {
-                    grid-template-columns: 1fr;
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+                    gap: 2rem;
                 }
-            }
-        </style>
+
+                .news-item {
+                    background: var(--warm-bg);
+                    border-radius: 15px;
+                    padding: 1.5rem;
+                    transition: transform 0.3s ease;
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .news-item:hover {
+                    transform: translateY(-5px);
+                }
+
+                .news-source {
+                    font-size: 0.9rem;
+                    color: var(--primary-color);
+                    font-weight: 500;
+                    margin-bottom: 0.5rem;
+                }
+
+                .news-title {
+                    font-size: 1.2rem;
+                    color: var(--text-dark);
+                    margin-bottom: 1rem;
+                }
+
+                .news-excerpt {
+                    color: var(--text-light);
+                    font-size: 0.9rem;
+                    margin-bottom: 1rem;
+                    flex-grow: 1;
+                }
+
+                .news-date {
+                    color: var(--text-light);
+                    font-size: 0.8rem;
+                    margin-bottom: 1rem;
+                }
+
+                .media-link {
+                    color: var(--primary-color);
+                    text-decoration: none;
+                    font-weight: 500;
+                    transition: color 0.3s ease;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
+
+                .media-link:hover {
+                    text-decoration: underline;
+                }
+
+                @media (max-width: 768px) {
+                    .news-list {
+                        grid-template-columns: 1fr;
+                    }
+                }
+            </style>
+        </div>
     </div>
-
-    <script>
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            this.classList.toggle('active');
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
-
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelector('.menu-toggle').classList.remove('active');
-                document.querySelector('.nav-links').classList.remove('active');
-            });
-        });
-    </script>
+    <!-- Footer will be injected here by footer.js -->
 </body>
 </html> 
