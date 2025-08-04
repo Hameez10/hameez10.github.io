@@ -236,6 +236,45 @@
                 padding: 0.4rem 0.8rem;
             }
         }
+
+        .cool-box {
+            background: #fff;
+            border-radius: 1.2rem;
+            box-shadow: 0 4px 24px rgba(78,205,196,0.10), 0 1.5px 6px rgba(44,62,80,0.07);
+            transition: transform 0.35s cubic-bezier(.4,2,.6,1), box-shadow 0.25s;
+            cursor: pointer;
+            min-width: 260px;
+            max-width: 340px;
+            flex: 1 1 300px;
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .cool-box-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .cool-cta {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--accent-color);
+            font-weight: bold;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .cool-box:hover {
+            transform: translateY(-10px) scale(1.04) rotate(-1deg);
+            box-shadow: 0 8px 32px rgba(78,205,196,0.18), 0 3px 12px rgba(44,62,80,0.12);
+        }
+        .cool-box:hover .cool-cta {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .cool-box:active {
+            transform: scale(0.98);
+        }
     </style>
 </head>
 <body>
@@ -283,7 +322,6 @@
 
                 <!-- Lisp Notes -->
                 <div class="project-card">
-                    <span class="achievement-badge" style="padding-left: 7px;">A+</span>
                     <div class="project-header">
                         <div class="institution-wrapper">
                             <span class="tech-tag tag-personal">Personal Project</span>
@@ -333,7 +371,6 @@
 
                 <!-- METMate -->
                 <div class="project-card">
-                    <span class="achievement-badge" style="padding-left: 7px;">A+</span>
                     <div class="project-header">
                         <div class="institution-wrapper">
                             <span class="tech-tag tag-hackathon">Ignition Hacks</span>
@@ -429,7 +466,6 @@
 
                 <!-- Campaign Data Analysis -->
                 <div class="project-card">
-                    <span class="achievement-badge" style="padding-left: 7px;">A+</span>
                     <div class="project-header">
                         <div class="institution-wrapper">
                             <span class="tech-tag tag-government">City of Mississauga</span>
@@ -573,8 +609,8 @@
                 </div>
 
                 <!-- Activity Point Calculator -->
-                <div class="project-card">
-                    <span class="achievement-badge" style="padding-left: 7px;">A+</span>
+                <a href="activity-points.html" style="text-decoration:none;color:inherit;">
+                  <div class="project-card cool-box" style="transition: transform 0.35s cubic-bezier(.4,2,.6,1), box-shadow 0.25s; cursor:pointer;">
                     <div class="project-header">
                         <div class="institution-wrapper">
                             <span class="tech-tag tag-education">Glenforest Secondary School</span>
@@ -591,7 +627,9 @@
                         <span class="tech-tag tag-java">Java</span>
                         <span class="tech-tag tag-software-engineering">Console Application</span>
                     </div>
-                </div>
+                    <span class="cool-cta">Try it now →</span>
+                  </div>
+                </a>
 
             </div>
         </div>

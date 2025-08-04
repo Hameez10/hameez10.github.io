@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glenforest Activity Points Awards Calculator</title>
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/tags.css">
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <script defer src="js/activity-points.js"></script>
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 120px 2rem 2rem 2rem;
+        }
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .form-nav {
+            margin-top: 20px;
+        }
+        .form-nav button {
+            margin-right: 10px;
+        }
+        .results {
+            margin-top: 30px;
+        }
+        form {
+            background: #fff;
+            border-radius: 1.2rem;
+            box-shadow: 0 4px 24px rgba(78,205,196,0.10), 0 1.5px 6px rgba(44,62,80,0.07);
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 100px 0.5rem 1rem 0.5rem;
+            }
+            form {
+                padding: 1rem 0.5rem 1rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <div class="container">
+        <h1>Glenforest Activity Points Awards Calculator</h1>
+        <form id="activityPointsForm">
+            <!-- Steps will be injected here by JS -->
+        </form>
+        <div class="form-nav">
+            <button type="button" id="prevBtn">Previous</button>
+            <button type="button" id="nextBtn">Next</button>
+        </div>
+        <div class="results" id="resultsContainer"></div>
+    </div>
+    <div id="footer-container"></div>
+</body>
+</html>
