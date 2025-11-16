@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traveling Salesman Algorithm - Route Optimizer - Hameez Iqbal</title>
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvoq6_o1VifcjpUw83PXDDciYDwK3ytSk&libraries=geometry"></script>
+    <style>
+        :root {
+            --primary-color: #FF6B6B;
+            --accent-color: #4ECDC4;
+            --warm-bg: #FFF9F4;
+            --text-dark: #2D3436;
+            --text-light: #636E72;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--warm-bg);
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            padding-top: calc(70px + 2rem);
+            flex: 1;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 968px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .input-section, .results-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .format-instructions {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .format-instructions code {
+            background: white;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .address-input {
+            width: 100%;
+            min-height: 300px;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            resize: vertical;
+            margin-bottom: 1rem;
+        }
+
+        .address-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-secondary {
+            background: #e0e0e0;
+            color: var(--text-dark);
+        }
+
+        .btn-secondary:hover {
+            background: #d0d0d0;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+        }
+
+        .loading::after {
+            content: '...';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+
+        .error-message {
+            background: #ffebee;
+            color: #c62828;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .route-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .route-item {
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .route-number {
+            background: var(--primary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .route-address {
+            flex: 1;
+        }
+
+        .route-distance {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .example-section {
+            margin-top: 2rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .example-button {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .example-button:hover {
+            background: #3db8ae;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-wrapper">
+        <div id="navbar-placeholder"></div>
+        
+        <div class="container">
+            <div class="page-header">
+                <h1>🚗 Route Optimizer</h1>
+                <p>Optimize your door-to-door campaign routes using the Traveling Salesman Algorithm</p>
+            </div>
+
+            <div class="main-content">
+                <div class="input-section">
+                    <h2 class="section-title">Enter Addresses</h2>
+                    <div class="format-instructions">
+                        <strong>Format:</strong> Enter one address per line. You can include:
+                        <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                            <li>Street address, City, State/Province, Country</li>
+                            <li>Or just: City, State/Province, Country</li>
+                        </ul>
+                        <strong>Example:</strong><br>
+                        <code>123 Main St, Toronto, ON, Canada<br>
+                        456 Oak Ave, Mississauga, ON, Canada<br>
+                        789 Pine Rd, Brampton, ON, Canada</code>
+                    </div>
+                    <textarea 
+                        id="addressInput" 
+                        class="address-input" 
+                        placeholder="Enter addresses here, one per line...&#10;&#10;Example:&#10;123 Main St, Toronto, ON, Canada&#10;456 Oak Ave, Mississauga, ON, Canada&#10;789 Pine Rd, Brampton, ON, Canada"
+                    ></textarea>
+                    <div class="button-group">
+                        <button id="calculateBtn" class="btn btn-primary">Calculate Optimal Route</button>
+                        <button id="clearBtn" class="btn btn-secondary">Clear</button>
+                    </div>
+                </div>
+
+                <div class="results-section">
+                    <h2 class="section-title">Route Results</h2>
+                    <div id="resultsContent">
+                        <p style="color: var(--text-light); text-align: center; padding: 2rem;">
+                            Enter addresses and click "Calculate Optimal Route" to see the optimized route.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-section">
+                <h2 class="section-title">💡 Quick Start</h2>
+                <p style="margin-bottom: 1rem; color: var(--text-light);">
+                    Click the button below to load example addresses and see how the route optimizer works.
+                </p>
+                <button id="loadExampleBtn" class="example-button">Load Example Addresses</button>
+            </div>
+
+            <div class="example-section" style="margin-top: 2rem; background: #e8f5e9; border: 1px solid #4caf50;">
+                <h2 class="section-title">✅ Ready to Use</h2>
+                <p style="margin-bottom: 1rem; color: var(--text-dark);">
+                    <strong>Google Maps API Configured:</strong> The route optimizer is ready to use! Simply enter your addresses and click "Calculate Optimal Route".
+                </p>
+                <p style="color: var(--text-dark); font-size: 0.9rem;">
+                    <strong>Tip:</strong> Make sure the following APIs are enabled in your Google Cloud Console: Maps JavaScript API, Geocoding API, and Directions API.
+                </p>
+            </div>
+        </div>
+
+        <div id="footer"></div>
+    </div>
+
+    <script>
+        let map;
+        let directionsService;
+        let directionsRenderer;
+        let markers = [];
+        let routeData = null;
+
+        // Initialize map when page loads
+        function initMap() {
+            if (typeof google === 'undefined' || !google.maps) {
+                console.error('Google Maps API not loaded. Please check your API key.');
+                return;
+            }
+            
+            const mapElement = document.getElementById('map');
+            if (!mapElement) return;
+            
+            map = new google.maps.Map(mapElement, {
+                zoom: 10,
+                center: { lat: 43.6532, lng: -79.3832 } // Default to Toronto
+            });
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+        }
+
+        // Parse addresses from text input
+        function parseAddresses(text) {
+            return text
+                .split('\n')
+                .map(line => line.trim())
+                .filter(line => line.length > 0);
+        }
+
+        // Geocode an address
+        function geocodeAddress(address) {
+            return new Promise((resolve, reject) => {
+                if (typeof google === 'undefined' || !google.maps) {
+                    reject(new Error('Google Maps API not loaded. Please check your API key.'));
+                    return;
+                }
+                
+                const geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ address: address }, (results, status) => {
+                    if (status === 'OK' && results[0]) {
+                        resolve({
+                            address: address,
+                            location: results[0].geometry.location,
+                            formatted: results[0].formatted_address
+                        });
+                    } else {
+                        reject(new Error(`Geocoding failed for: ${address}. Status: ${status}`));
+                    }
+                });
+            });
+        }
+
+        // Calculate distance between two points (Haversine formula)
+        function calculateDistance(point1, point2) {
+            const R = 6371; // Earth's radius in km
+            const lat1 = point1.lat();
+            const lon1 = point1.lng();
+            const lat2 = point2.lat();
+            const lon2 = point2.lng();
+
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                     Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                     Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c; // Distance in km
+        }
+
+        // Calculate distance matrix
+        function calculateDistanceMatrix(locations) {
+            const n = locations.length;
+            const matrix = Array(n).fill().map(() => Array(n).fill(0));
+
+            for (let i = 0; i < n; i++) {
+                for (let j = 0; j < n; j++) {
+                    if (i !== j) {
+                        matrix[i][j] = calculateDistance(
+                            locations[i].location,
+                            locations[j].location
+                        );
+                    }
+                }
+            }
+
+            return matrix;
+        }
+
+        // Nearest Neighbor TSP heuristic
+        function solveTSPNearestNeighbor(distanceMatrix) {
+            const n = distanceMatrix.length;
+            if (n === 0) return [];
+            if (n === 1) return [0];
+
+            const visited = new Array(n).fill(false);
+            const route = [0];
+            visited[0] = true;
+            let current = 0;
+            let totalDistance = 0;
+
+            for (let i = 1; i < n; i++) {
+                let nearest = -1;
+                let minDist = Infinity;
+
+                for (let j = 0; j < n; j++) {
+                    if (!visited[j] && distanceMatrix[current][j] < minDist) {
+                        minDist = distanceMatrix[current][j];
+                        nearest = j;
+                    }
+                }
+
+                if (nearest !== -1) {
+                    route.push(nearest);
+                    visited[nearest] = true;
+                    totalDistance += minDist;
+                    current = nearest;
+                }
+            }
+
+            // Return to start
+            totalDistance += distanceMatrix[current][0];
+            route.push(0);
+
+            return { route, totalDistance };
+        }
+
+        // 2-opt improvement
+        function improveRoute2Opt(route, distanceMatrix) {
+            let improved = true;
+            let bestRoute = [...route];
+            let bestDistance = calculateRouteDistance(route, distanceMatrix);
+
+            while (improved) {
+                improved = false;
+                for (let i = 1; i < route.length - 2; i++) {
+                    for (let j = i + 1; j < route.length - 1; j++) {
+                        const newRoute = twoOptSwap(bestRoute, i, j);
+                        const newDistance = calculateRouteDistance(newRoute, distanceMatrix);
+
+                        if (newDistance < bestDistance) {
+                            bestRoute = newRoute;
+                            bestDistance = newDistance;
+                            improved = true;
+                        }
+                    }
+                }
+            }
+
+            return { route: bestRoute, totalDistance: bestDistance };
+        }
+
+        function twoOptSwap(route, i, j) {
+            const newRoute = [...route];
+            const reversed = newRoute.slice(i, j + 1).reverse();
+            newRoute.splice(i, j - i + 1, ...reversed);
+            return newRoute;
+        }
+
+        function calculateRouteDistance(route, distanceMatrix) {
+            let distance = 0;
+            for (let i = 0; i < route.length - 1; i++) {
+                distance += distanceMatrix[route[i]][route[i + 1]];
+            }
+            return distance;
+        }
+
+        // Display route on map
+        function displayRoute(optimizedRoute, locations) {
+            // Clear existing markers
+            markers.forEach(marker => marker.setMap(null));
+            markers = [];
+
+            // Create waypoints (excluding start/end)
+            const waypoints = optimizedRoute.route
+                .slice(1, -1)
+                .map(index => ({
+                    location: locations[index].location,
+                    stopover: true
+                }));
+
+            const start = locations[optimizedRoute.route[0]];
+            const end = locations[optimizedRoute.route[optimizedRoute.route.length - 1]];
+
+            const request = {
+                origin: start.location,
+                destination: end.location,
+                waypoints: waypoints,
+                optimizeWaypoints: false,
+                travelMode: 'DRIVING'
+            };
+
+            directionsService.route(request, (result, status) => {
+                if (status === 'OK') {
+                    directionsRenderer.setDirections(result);
+
+                    // Add markers
+                    optimizedRoute.route.forEach((index, order) => {
+                        if (order < optimizedRoute.route.length - 1) { // Don't duplicate start/end
+                            const marker = new google.maps.Marker({
+                                position: locations[index].location,
+                                map: map,
+                                label: {
+                                    text: String(order + 1),
+                                    color: 'white',
+                                    fontWeight: 'bold'
+                                },
+                                title: `Stop ${order + 1}: ${locations[index].formatted}`
+                            });
+                            markers.push(marker);
+                        }
+                    });
+
+                    // Fit map to show entire route
+                    const bounds = new google.maps.LatLngBounds();
+                    optimizedRoute.route.forEach(index => {
+                        bounds.extend(locations[index].location);
+                    });
+                    map.fitBounds(bounds);
+                }
+            });
+        }
+
+        // Display route list
+        function displayRouteList(optimizedRoute, locations) {
+            const routeList = document.getElementById('routeList');
+            routeList.innerHTML = '';
+
+            optimizedRoute.route.forEach((index, order) => {
+                if (order < optimizedRoute.route.length - 1) {
+                    const location = locations[index];
+                    const nextIndex = optimizedRoute.route[order + 1];
+                    const distance = order === 0 ? 0 : 
+                        calculateDistance(location.location, locations[nextIndex].location);
+
+                    const li = document.createElement('li');
+                    li.className = 'route-item';
+                    li.innerHTML = `
+                        <div class="route-number">${order + 1}</div>
+                        <div class="route-address">
+                            <strong>${location.formatted}</strong>
+                            ${location.address !== location.formatted ? `<br><small>${location.address}</small>` : ''}
+                        </div>
+                        ${order > 0 ? `<div class="route-distance">${distance.toFixed(2)} km</div>` : ''}
+                    `;
+                    routeList.appendChild(li);
+                }
+            });
+        }
+
+        // Display statistics
+        function displayStats(optimizedRoute) {
+            const statsHTML = `
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-value">${optimizedRoute.route.length - 1}</div>
+                        <div class="stat-label">Total Stops</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${optimizedRoute.totalDistance.toFixed(2)}</div>
+                        <div class="stat-label">Total Distance (km)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${(optimizedRoute.totalDistance / optimizedRoute.route.length).toFixed(2)}</div>
+                        <div class="stat-label">Avg Distance/Stop (km)</div>
+                    </div>
+                </div>
+            `;
+            return statsHTML;
+        }
+
+        // Main calculation function
+        async function calculateRoute() {
+            const input = document.getElementById('addressInput').value.trim();
+            if (!input) {
+                alert('Please enter at least one address.');
+                return;
+            }
+
+            const addresses = parseAddresses(input);
+            if (addresses.length < 2) {
+                alert('Please enter at least 2 addresses to calculate a route.');
+                return;
+            }
+
+            const resultsContent = document.getElementById('resultsContent');
+            const calculateBtn = document.getElementById('calculateBtn');
+
+            // Show loading
+            resultsContent.innerHTML = '<div class="loading">Calculating optimal route</div>';
+            calculateBtn.disabled = true;
+
+            try {
+                // Geocode all addresses
+                const geocodePromises = addresses.map(addr => geocodeAddress(addr));
+                const locations = await Promise.all(geocodePromises);
+
+                // Calculate distance matrix
+                const distanceMatrix = calculateDistanceMatrix(locations);
+
+                // Solve TSP using Nearest Neighbor
+                let solution = solveTSPNearestNeighbor(distanceMatrix);
+
+                // Improve with 2-opt if we have more than 3 locations
+                if (locations.length > 3) {
+                    solution = improveRoute2Opt(solution.route, distanceMatrix);
+                }
+
+                routeData = { solution, locations };
+
+                // Display results
+                const statsHTML = displayStats(solution);
+                resultsContent.innerHTML = `
+                    ${statsHTML}
+                    <div id="map" class="map-container"></div>
+                    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Route Order:</h3>
+                    <ul id="routeList" class="route-list"></ul>
+                `;
+
+                // Reinitialize map in new container
+                setTimeout(() => {
+                    initMap();
+                    displayRoute(solution, locations);
+                    displayRouteList(solution, locations);
+                }, 100);
+
+            } catch (error) {
+                let errorMessage = error.message;
+                if (errorMessage.includes('API') || errorMessage.includes('google')) {
+                    errorMessage += '<br><br><strong>Setup Required:</strong> Please configure your Google Maps API key in the HTML file.';
+                }
+                resultsContent.innerHTML = `
+                    <div class="error-message">
+                        <strong>Error:</strong> ${errorMessage}
+                        <br><small>Please check that all addresses are valid and your API key is configured correctly.</small>
+                    </div>
+                `;
+            } finally {
+                calculateBtn.disabled = false;
+            }
+        }
+
+        // Clear function
+        function clearAll() {
+            document.getElementById('addressInput').value = '';
+            document.getElementById('resultsContent').innerHTML = `
+                <p style="color: var(--text-light); text-align: center; padding: 2rem;">
+                    Enter addresses and click "Calculate Optimal Route" to see the optimized route.
+                </p>
+            `;
+            if (directionsRenderer) {
+                directionsRenderer.setDirections({ routes: [] });
+            }
+            markers.forEach(marker => marker.setMap(null));
+            markers = [];
+            routeData = null;
+        }
+
+        // Load example addresses
+        function loadExample() {
+            const exampleAddresses = `123 Yonge Street, Toronto, ON, Canada
+456 Bay Street, Toronto, ON, Canada
+789 Queen Street West, Toronto, ON, Canada
+321 King Street East, Toronto, ON, Canada
+654 College Street, Toronto, ON, Canada
+987 Bloor Street West, Toronto, ON, Canada`;
+            document.getElementById('addressInput').value = exampleAddresses;
+        }
+
+        // Event listeners
+        document.getElementById('calculateBtn').addEventListener('click', calculateRoute);
+        document.getElementById('clearBtn').addEventListener('click', clearAll);
+        document.getElementById('loadExampleBtn').addEventListener('click', loadExample);
+
+        // Initialize map on load
+        window.addEventListener('load', () => {
+            // Map will be initialized when results are displayed
+        });
+    </script>
+</body>
+</html>
+
