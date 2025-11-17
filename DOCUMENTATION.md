@@ -78,6 +78,8 @@ User personas considered:
    - No auto-playing media
    - Preloaded critical assets
    - Responsive image sizing
+   - Embedded LinkedIn and Instagram posts for social media presence
+   - Social media embeds use official platform embed features
 
 4. **Semantic HTML**
    - Proper heading hierarchy
@@ -295,4 +297,11 @@ root/
    - Include company colors
    - List tools with proper tag classes
    - Keep descriptions concise (1-2 lines)
-   - Include location and work type (Hybrid/On-site/Remote) 
+   - Include location and work type (Hybrid/On-site/Remote)
+
+5. **Media Page Content**
+   - Professional highlights with news articles
+   - LinkedIn post embeds using official embed feature
+   - Instagram post embeds for visual content
+   - Responsive grid layout for social media posts
+   - Posts displayed in chronological order (most recent first) 

@@ -32,6 +32,8 @@ All pages inherit navigation and footer from these components, ensuring consiste
 
 - **Experience Page**: Added Government of Canada roles (AI Technical Program Management, Software Engineer, AI Product Management)
 - **Projects Page**: Added Campaign Route Optimizer with interactive "Try Now" button
+- **Media Page**: Added multiple LinkedIn post embeds for professional updates
+- **Cool Stuff Page**: Updated Route Optimizer with simplified title and description
 - **Tag System**: Enhanced color visibility and readability for all technology tags
 - **Navigation**: Consistent navbar across all pages including Route Optimizer tool
 
@@ -47,12 +49,13 @@ To run this website locally:
    ```
 4. Open `http://localhost:8000` in your browser
 
-## Note About Instagram Embeds
+## Note About Social Media Embeds
 
-The Media page contains embedded Instagram posts. To view these properly:
+The Media page contains embedded Instagram and LinkedIn posts. To view these properly:
 - Make sure you're viewing the site through a web server (either the live site or locally)
 - Ensure your browser allows third-party scripts
-- You might need to be logged into Instagram in your browser
+- You might need to be logged into Instagram/LinkedIn in your browser
+- LinkedIn posts are embedded using LinkedIn's official embed feature
 
 ## Contact
 
