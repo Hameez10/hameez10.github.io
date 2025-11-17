@@ -43,8 +43,8 @@
 
 .tag-javascript {
     --tag-rgb: 247, 222, 30;
-    background-color: rgba(var(--tag-rgb), 0.1);
-    color: rgb(var(--tag-rgb));
+    background-color: rgba(var(--tag-rgb), 0.15);
+    color: rgb(180, 160, 0);
 }
 
 .tag-typescript {
@@ -55,7 +55,7 @@
 
 .tag-lisp {
     --tag-rgb: 85, 85, 85;
-    background-color: rgba(var(--tag-rgb), 0.1);
+    background-color: rgba(var(--tag-rgb), 0.12);
     color: rgb(var(--tag-rgb));
 }
 
@@ -74,8 +74,8 @@
 
 .tag-react {
     --tag-rgb: 97, 221, 251;
-    background-color: rgba(var(--tag-rgb), 0.1);
-    color: rgb(var(--tag-rgb));
+    background-color: rgba(var(--tag-rgb), 0.15);
+    color: rgb(0, 150, 200);
 }
 
 .tag-angular {
@@ -99,7 +99,7 @@
 
 .tag-github {
     --tag-rgb: 24, 23, 23;
-    background-color: rgba(var(--tag-rgb), 0.1);
+    background-color: rgba(var(--tag-rgb), 0.12);
     color: rgb(var(--tag-rgb));
 }
 
@@ -136,8 +136,8 @@
 
 .tag-unix {
     --tag-rgb: 252, 198, 36;
-    background-color: rgba(var(--tag-rgb), 0.1);
-    color: rgb(var(--tag-rgb));
+    background-color: rgba(var(--tag-rgb), 0.15);
+    color: rgb(200, 150, 0);
 }
 
 /* Project Management */
@@ -149,13 +149,13 @@
 
 .tag-asana {
     --tag-rgb: 240, 106, 106;
-    background-color: rgba(var(--tag-rgb), 0.1);
-    color: rgb(var(--tag-rgb));
+    background-color: rgba(var(--tag-rgb), 0.15);
+    color: rgb(200, 60, 60);
 }
 
 .tag-confluence {
     --tag-rgb: 23, 43, 77;
-    background-color: rgba(var(--tag-rgb), 0.1);
+    background-color: rgba(var(--tag-rgb), 0.12);
     color: rgb(var(--tag-rgb));
 }
 
@@ -204,13 +204,13 @@
 
 .tag-technical-support {
     --tag-rgb: 45, 55, 72;
-    background-color: rgba(var(--tag-rgb), 0.1);
+    background-color: rgba(var(--tag-rgb), 0.12);
     color: rgb(var(--tag-rgb));
 }
 
 .tag-system {
     --tag-rgb: 26, 32, 44;
-    background-color: rgba(var(--tag-rgb), 0.1);
+    background-color: rgba(var(--tag-rgb), 0.12);
     color: rgb(var(--tag-rgb));
 }
 
@@ -234,15 +234,196 @@
 
 .tag-innovation {
     --tag-rgb: 244, 180, 0;
-    background-color: rgba(var(--tag-rgb), 0.1);
-    color: rgb(var(--tag-rgb));
+    background-color: rgba(var(--tag-rgb), 0.15);
+    color: rgb(200, 140, 0);
 }
 
 .tag-academic-excellence {
     --tag-rgb: 255, 215, 0;
+    background-color: rgba(var(--tag-rgb), 0.15);
+    color: rgb(200, 160, 0);
+}
+
+/* Additional Technology Tags */
+.tag-arduino {
+    --tag-rgb: 0, 150, 136;
     background-color: rgba(var(--tag-rgb), 0.1);
     color: rgb(var(--tag-rgb));
 }
+
+.tag-flask {
+    --tag-rgb: 0, 0, 0;
+    background-color: rgba(var(--tag-rgb), 0.15);
+    color: rgb(var(--tag-rgb));
+    font-weight: 600;
+}
+
+.tag-numpy {
+    --tag-rgb: 77, 77, 77;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-pandas {
+    --tag-rgb: 130, 80, 223;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-matplotlib {
+    --tag-rgb: 115, 142, 193;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-azure {
+    --tag-rgb: 0, 120, 212;
+    background-color: rgba(var(--tag-rgb), 0.15);
+    color: rgb(var(--tag-rgb));
+    font-weight: 500;
+}
+
+.tag-nexus {
+    --tag-rgb: 0, 150, 136;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-rest {
+    --tag-rgb: 0, 150, 136;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-security {
+    --tag-rgb: 211, 47, 47;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-bubble {
+    --tag-rgb: 36, 0, 255;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-twilio {
+    --tag-rgb: 240, 20, 100;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-epr {
+    --tag-rgb: 0, 163, 224;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-productivity {
+    --tag-rgb: 66, 133, 244;
+    background-color: rgba(var(--tag-rgb), 0.15);
+    color: rgb(var(--tag-rgb));
+    font-weight: 500;
+}
+
+/* Additional Technology Tags for Government of Canada */
+.tag-n8n {
+    --tag-rgb: 0, 150, 136;
+    background-color: rgba(var(--tag-rgb), 0.15);
+    color: rgb(var(--tag-rgb));
+    font-weight: 500;
+}
+
+.tag-nocodb {
+    --tag-rgb: 0, 120, 212;
+    background-color: rgba(var(--tag-rgb), 0.15);
+    color: rgb(var(--tag-rgb));
+    font-weight: 500;
+}
+
+.tag-sharepoint {
+    --tag-rgb: 0, 120, 212;
+    background-color: rgba(var(--tag-rgb), 0.15);
+    color: rgb(var(--tag-rgb));
+    font-weight: 500;
+}
+
+.tag-power-automate {
+    --tag-rgb: 0, 120, 212;
+    background-color: rgba(var(--tag-rgb), 0.15);
+    color: rgb(var(--tag-rgb));
+    font-weight: 500;
+}
+
+.tag-power-bi {
+    --tag-rgb: 255, 192, 0;
+    background-color: rgba(var(--tag-rgb), 0.15);
+    color: rgb(200, 150, 0);
+}
+
+.tag-csharp {
+    --tag-rgb: 128, 0, 128;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-dotnet {
+    --tag-rgb: 81, 43, 212;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-blazor {
+    --tag-rgb: 81, 43, 212;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-sql-server {
+    --tag-rgb: 204, 0, 0;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-visual-studio {
+    --tag-rgb: 93, 71, 139;
+    background-color: rgba(var(--tag-rgb), 0.15);
+    color: rgb(var(--tag-rgb));
+    font-weight: 500;
+}
+
+.tag-openwebui {
+    --tag-rgb: 66, 153, 225;
+    background-color: rgba(var(--tag-rgb), 0.15);
+    color: rgb(var(--tag-rgb));
+    font-weight: 500;
+}
+
+/* Additional Missing Tags */
+.tag-hardware {
+    --tag-rgb: 120, 144, 156;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-database {
+    --tag-rgb: 25, 118, 210;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-event {
+    --tag-rgb: 156, 39, 176;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
+.tag-project {
+    --tag-rgb: 0, 105, 120;
+    background-color: rgba(var(--tag-rgb), 0.1);
+    color: rgb(var(--tag-rgb));
+}
+
 
 /* Achievement Badge */
 .achievement-badge {

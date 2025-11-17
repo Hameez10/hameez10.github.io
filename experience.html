@@ -493,7 +493,9 @@
         }
 
         .tag-asana {
-            background: #F06A6A;
+            --tag-rgb: 240, 106, 106;
+            background-color: rgba(var(--tag-rgb), 0.15);
+            color: rgb(200, 60, 60);
         }
 
         .tag-confluence {
@@ -621,7 +623,9 @@
 
         /* Productivity Tools */
         .tag-asana {
-            background: #F06A6A;
+            --tag-rgb: 240, 106, 106;
+            background-color: rgba(var(--tag-rgb), 0.15);
+            color: rgb(200, 60, 60);
         }
 
         .tag-confluence {
@@ -730,6 +734,11 @@
 
         .company-olp {
             color: #E4002B;
+            font-weight: 600;
+        }
+
+        .company-government-canada {
+            color: #D52B1E;
             font-weight: 600;
         }
 
@@ -872,7 +881,8 @@
 
         .tag-asana {
             --tag-rgb: 240, 106, 106;
-            background: rgb(var(--tag-rgb));
+            background-color: rgba(var(--tag-rgb), 0.15);
+            color: rgb(200, 60, 60);
         }
 
         .tag-confluence {
@@ -1026,7 +1036,6 @@
                     <a href="experience.html" class="active">Experience</a>
                     <a href="projects.html">Projects</a>
                     <a href="media.html">Media</a>
-                    <a href="heraldry.html">Heraldry</a>
                     <a href="contact.html">Contact</a>
                 </div>
             </div>
@@ -1040,6 +1049,70 @@
                 </div>
 
                 <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="experience-card">
+                            <h3 class="experience-title">AI Technical Program Management</h3>
+                            <div class="experience-company company-government-canada">Government of Canada</div>
+                            <div class="experience-date">Aug 2025 - Present · 4 mos</div>
+                            <div class="experience-location">📍 Ottawa, Ontario, Canada · Hybrid</div>
+                            <p class="experience-description">
+                                Manage the AI portfolio under the Emerging Technology & AI Centre of Expertise, coordinating deployments and ensuring policy alignment. Designed and launched the AI Agent Request & Intake workflow, standardizing how branches propose, evaluate, and deploy AI projects across ECCC. Built n8n workflow automations cutting admin overhead by $50K+ annually and authored AI 101 training materials to promote responsible adoption.
+                            </p>
+                            <div class="experience-tags">
+                                <span class="experience-tag tag-n8n">n8n</span>
+                                <span class="experience-tag tag-nocodb">NocoDB</span>
+                                <span class="experience-tag tag-sharepoint">SharePoint</span>
+                                <span class="experience-tag tag-excel">Excel</span>
+                                <span class="experience-tag tag-power-automate">Power Automate</span>
+                                <span class="experience-tag tag-power-bi">Power BI</span>
+                                <span class="experience-tag tag-azure">Azure DevOps</span>
+                                <span class="experience-tag tag-python">Python</span>
+                                <span class="experience-tag tag-productivity">Microsoft 365</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="experience-card">
+                            <h3 class="experience-title">Software Engineer</h3>
+                            <div class="experience-company company-government-canada">Government of Canada</div>
+                            <div class="experience-date">Jun 2025 - Aug 2025 · 3 mos</div>
+                            <div class="experience-location">📍 Ottawa, Ontario, Canada · Hybrid</div>
+                            <p class="experience-description">
+                                Developed and debugged full-stack Blazor/.NET components for internal AI platforms, resolving localization, login, and resend-email issues for 10,000+ users. Built Python automation to consolidate AI deployments across departments, eliminating manual monthly reviews and saving ≈ $7K/year in staff time.
+                            </p>
+                            <div class="experience-tags">
+                                <span class="experience-tag tag-csharp">C#</span>
+                                <span class="experience-tag tag-dotnet">.NET Core</span>
+                                <span class="experience-tag tag-blazor">Blazor</span>
+                                <span class="experience-tag tag-sql-server">SQL Server</span>
+                                <span class="experience-tag tag-visual-studio">Visual Studio</span>
+                                <span class="experience-tag tag-azure">Azure DevOps</span>
+                                <span class="experience-tag tag-git">Git</span>
+                                <span class="experience-tag tag-openwebui">OpenWebUI</span>
+                                <span class="experience-tag tag-python">Python</span>
+                                <span class="experience-tag tag-github">GitHub</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="experience-card">
+                            <h3 class="experience-title">AI Product Management</h3>
+                            <div class="experience-company company-government-canada">Government of Canada</div>
+                            <div class="experience-date">May 2025 - Jun 2025 · 2 mos</div>
+                            <div class="experience-location">📍 Ottawa, Ontario, Canada · Hybrid</div>
+                            <p class="experience-description">
+                                Authored FAQ and client leadership guides clarifying AI workflows, reducing repetitive inquiries during pilot phases. Created internal product planning documentation and contributed to the AI Centre of Expertise (AICoE) plan, improving clarity in AI governance.
+                            </p>
+                            <div class="experience-tags">
+                                <span class="experience-tag tag-sharepoint">SharePoint</span>
+                                <span class="experience-tag tag-excel">Excel</span>
+                                <span class="experience-tag tag-power-bi">Power BI</span>
+                                <span class="experience-tag tag-asana">Asana</span>
+                                <span class="experience-tag tag-azure">Azure DevOps</span>
+                                <span class="experience-tag tag-productivity">Microsoft 365</span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="timeline-item">
                         <div class="experience-card">
                             <h3 class="experience-title">Software Engineer Intern</h3>
@@ -1095,7 +1168,7 @@
                             <div class="experience-date">Sep 2024 - Nov 2024</div>
                             <div class="experience-location">📍 Toronto, Ontario, Canada · On-site</div>
                             <p class="experience-description">
-                                Supported the implementation of Epic Electronic Health Record system across Unity Health's three sites: St. Michael's Hospital, St. Joseph's Health Centre, and Providence Healthcare. Utilized project management tools and methodologies to oversee and execute tasks, ensuring timely and efficient project completion. Collaborated with cross-functional teams to identify and resolve technical issues, improving system performance and user experience. Conducted thorough testing of healthcare systems, ensuring compliance with security standards and regulatory requirements.
+                                Supported the implementation of Epic Electronic Health Record system across Unity Health's three sites. Collaborated with cross-functional teams to identify and resolve technical issues, improving system performance and user experience.
                             </p>
                             <div class="experience-tags">
                                 <span class="experience-tag tag-qa">QA Testing</span>
@@ -1181,5 +1254,6 @@
         </div>
     </div>
     <!-- Footer will be injected here by footer.js -->
+    <div id="footer"></div>
 </body>
 </html>

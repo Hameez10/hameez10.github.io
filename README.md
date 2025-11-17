@@ -9,12 +9,31 @@ You can view the live website at: [https://hameez10.github.io](https://hameez10.
 ## Features
 
 - **Home**: Introduction and overview
-- **About**: Background and skills
-- **Experience**: Professional and academic experience
-- **Projects**: Portfolio of my work
+- **About**: Background and skills with technology stack
+- **Experience**: Professional and academic experience (most recent to oldest)
+- **Projects**: Portfolio of my work including interactive tools
+  - **Campaign Route Optimizer**: Traveling Salesman Algorithm tool for optimizing door-to-door campaign routes
+  - **Activity Point Calculator**: Java-based calculator for graduation awards
 - **Media**: News coverage and social media presence
-- **Heraldry**: Personal interests
+- **Cool Stuff**: Interesting projects and experiments
 - **Contact**: How to reach me
+
+## Architecture
+
+This website uses a component-based architecture for consistent navigation and footer across all pages:
+
+- **Navbar Component** (`components/navbar.html`): Centralized navigation menu
+- **Footer Component** (`components/footer.html`): Centralized footer with links and documentation
+- **JavaScript Loaders** (`js/navbar.js`, `js/footer.js`): Automatically inject components into all pages
+
+All pages inherit navigation and footer from these components, ensuring consistency and easy maintenance.
+
+## Recent Updates
+
+- **Experience Page**: Added Government of Canada roles (AI Technical Program Management, Software Engineer, AI Product Management)
+- **Projects Page**: Added Campaign Route Optimizer with interactive "Try Now" button
+- **Tag System**: Enhanced color visibility and readability for all technology tags
+- **Navigation**: Consistent navbar across all pages including Route Optimizer tool
 
 ## Local Development
 

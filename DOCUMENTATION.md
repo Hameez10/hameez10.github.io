@@ -99,6 +99,8 @@ User personas considered:
 - Consistent spacing
 - Clear call-to-action links
 - Hover effects for interactivity
+- Interactive "Try Now" buttons for web-based tools
+- Projects ordered from most recent to oldest
 
 ### Tag System
 - Semantic categorization
@@ -143,7 +145,7 @@ User personas considered:
    <span class="tech-tag tag-python">Python</span>
    ```
 2. Maintain consistent naming convention:
-   - Base class: `tech-tag`
+   - Base class: `tech-tag`, `experience-tag`, or `skill-tag`
    - Category prefix: `tag-`
    - Specific identifier: `python`, `java`, etc.
 
@@ -151,10 +153,17 @@ User personas considered:
    ```css
    .tag-{category} {
        --tag-rgb: R, G, B;
-       background-color: rgba(var(--tag-rgb), 0.1);
+       background-color: rgba(var(--tag-rgb), 0.1-0.15);
        color: rgb(var(--tag-rgb));
+       font-weight: 500; /* For better readability */
    }
    ```
+
+4. Readability Guidelines:
+   - Light colors (yellow, cyan) use darker text for contrast
+   - Background opacity adjusted (0.1-0.15) for visibility
+   - Font weight increased (500-600) for better legibility
+   - All tags tested for WCAG AA contrast compliance
 
 ## User Experience Considerations
 
@@ -215,20 +224,27 @@ User personas considered:
 ```
 root/
 ├── styles/
-│   ├── tags.css
-│   └── navbar.css
+│   ├── tags.css          # Comprehensive tag styling system
+│   ├── navbar.css        # Navigation bar styles
+│   └── footer.css        # Footer styles
 ├── components/
-│   └── navbar.html
+│   ├── navbar.html       # Centralized navigation component
+│   └── footer.html       # Centralized footer component
 ├── assets/
-│   └── images/
+│   └── images/           # Image assets
 ├── js/
-│   └── navbar.js
-└── pages/
-    ├── index.html
-    ├── about.html
-    ├── experience.html
-    ├── projects.html
-    └── contact.html
+│   ├── navbar.js         # Dynamic navbar loader
+│   ├── footer.js         # Dynamic footer loader
+│   └── activity-points.js # Activity calculator logic
+├── index.html
+├── about.html
+├── experience.html
+├── projects.html
+├── media.html
+├── cool-stuff.html
+├── contact.html
+├── TravelingSalesmanAlgorithm.html  # Route Optimizer tool
+└── activity-points.html             # Activity Point Calculator
 ```
 
 ### CSS Methodology
@@ -254,7 +270,9 @@ root/
 1. **Adding New Tags**
    - Follow existing color scheme
    - Update tags.css
-   - Test contrast ratios
+   - Test contrast ratios (WCAG AA minimum)
+   - Adjust background opacity (0.1-0.15) for visibility
+   - Use darker text colors for light backgrounds
    - Update documentation
 
 2. **New Projects**
@@ -262,9 +280,19 @@ root/
    - Follow tag guidelines
    - Maintain spacing standards
    - Update achievement indicators
+   - Add "Try Now" button for interactive tools
+   - Order projects from most recent to oldest
 
 3. **Content Updates**
    - Maintain heading hierarchy
    - Follow accessibility guidelines
    - Test responsive layouts
-   - Validate HTML structure 
+   - Validate HTML structure
+   - Ensure navbar and footer consistency across all pages
+
+4. **Experience Entries**
+   - Format: Most recent to oldest
+   - Include company colors
+   - List tools with proper tag classes
+   - Keep descriptions concise (1-2 lines)
+   - Include location and work type (Hybrid/On-site/Remote) 
