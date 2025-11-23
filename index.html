@@ -19,14 +19,13 @@
         }
 
         html, body {
-            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
             width: 100%;
-            position: relative;
             min-height: 100vh;
-            max-height: 100vh;
-            height: 100%;
-            overflow: hidden;
+            box-sizing: border-box;
             -webkit-text-size-adjust: 100%; /* Prevent iOS font size adjustment */
+            overflow-x: hidden;
         }
 
         :root {
@@ -42,14 +41,13 @@
             line-height: 1.6;
             color: var(--text-dark);
             background: var(--warm-bg);
-            overflow-y: auto;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            overflow-y: auto; /* normal vertical page scroll */
         }
 
         .content-wrapper {
-            flex: 1 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Navigation */
@@ -114,12 +112,12 @@
         .hero {
             padding: 2rem;
             padding-top: 6rem;
-            min-height: calc(100vh - 2rem);
+            padding-bottom: 1rem;
             display: flex;
             align-items: flex-start;
             position: relative;
-            overflow-y: auto;
             overflow-x: hidden;
+            /* the hero should size to its content, so no flex: 1 and no inner scrolling */
         }
 
         .hero::before {
@@ -145,7 +143,7 @@
             margin-top: 1rem;
             position: relative;
             z-index: 2;
-            padding-bottom: 2rem;
+            padding-bottom: 0;
             overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
@@ -250,10 +248,75 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
+        /* Detailed Interest Sections */
+        .interests-detail-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .interest-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .interest-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .interest-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .interest-emoji {
+            font-size: 2rem;
+        }
+
+        .interest-header h3 {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        .interest-description {
+            color: var(--text-light);
+            line-height: 1.7;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .interests-detail-section {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .interest-card {
+                padding: 1.25rem;
+            }
+
+            .interest-header h3 {
+                font-size: 1.1rem;
+            }
+
+            .interest-description {
+                font-size: 0.9rem;
+            }
+        }
+
         .connect-section {
             text-align: center;
             margin-top: 2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 0;
+            padding-bottom: 2rem;
         }
 
         .social-links {
@@ -290,10 +353,18 @@
 
         footer {
             text-align: center;
-            padding: 2rem;
+            padding: 1.5rem 2rem;
             color: var(--text-light);
             font-size: 0.9rem;
-            margin-top: auto;
+        }
+
+        #footer {
+            margin-top: 0 !important;
+            padding-top: 0;
+        }
+
+        #footer .footer {
+            margin-top: 0 !important;
         }
 
         footer a {
@@ -445,10 +516,12 @@
                         <span class="interest-tag" style="cursor: default">🧠 Artificial Intelligence</span>
                         <span class="interest-tag" style="cursor: default">🔒 Cybersecurity</span>
                         <span class="interest-tag" style="cursor: default">💡 Innovation</span>
+                        <span class="interest-tag" style="cursor: default">📊 Product Management</span>
                         <span class="interest-tag" style="cursor: default">🤝 Community Leadership</span>
                         <span class="interest-tag" style="cursor: default">🌟 Public Service</span>
                     </div>
                 </section>
+                <!-- End of Selection -->
 
                 <div class="connect-section">
                     <h2>Let's Connect!</h2>
@@ -466,8 +539,9 @@
                 </div>
             </div>
         </div>
+
+        <!-- Footer will be injected here by footer.js -->
+        <div id="footer"></div>
     </div>
-    <!-- Footer will be injected here by footer.js -->
-    <div id="footer"></div>
 </body>
 </html>
