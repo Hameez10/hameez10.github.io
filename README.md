@@ -30,9 +30,12 @@ All pages inherit navigation and footer from these components, ensuring consiste
 
 ## Recent Updates
 
-- **Experience Page**: Added Government of Canada roles (AI Technical Program Management, Software Engineer, AI Product Management)
+- **Experience Page**: 
+  - Added Government of Canada roles (AI Technical Program Manager, Software Engineer, AI Product Management)
+  - Improved card width and layout for better readability
+  - Fixed SharePoint tag color for better text visibility
+- **Media Page**: Added Instagram post embed and multiple LinkedIn post embeds for professional updates
 - **Projects Page**: Added Campaign Route Optimizer with interactive "Try Now" button
-- **Media Page**: Added multiple LinkedIn post embeds for professional updates
 - **Cool Stuff Page**: Updated Route Optimizer with simplified title and description
 - **Tag System**: Enhanced color visibility and readability for all technology tags
 - **Navigation**: Consistent navbar across all pages including Route Optimizer tool
