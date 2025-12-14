@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canadian Honours Eligibility Quiz - Hameez Iqbal</title>
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <style>
+        :root {
+            --primary-color: #FF6B6B;
+            --accent-color: #4ECDC4;
+            --warm-bg: #FFF9F4;
+            --text-dark: #2D3436;
+            --text-light: #636E72;
+            --success-color: #51CF66;
+            --warning-color: #FFD43B;
+        }
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--warm-bg);
+            overflow-y: auto;
+        }
+        .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            height: auto;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 0.75rem;
+            }
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 120px 2rem 2rem 2rem;
+        }
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .quiz-intro {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+        .quiz-container {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .question {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .question.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .question h2 {
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .question-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .option {
+            background: var(--warm-bg);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            position: relative;
+        }
+        .option:hover {
+            border-color: var(--primary-color);
+            transform: translateX(5px);
+            background: rgba(255, 107, 107, 0.05);
+        }
+        .option input[type="radio"] {
+            margin-right: 0.75rem;
+            cursor: pointer;
+        }
+        .option label {
+            cursor: pointer;
+            width: 100%;
+            display: block;
+        }
+        .option input[type="radio"]:checked + label {
+            font-weight: 600;
+        }
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+        .btn {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        .btn-primary:hover:not(:disabled) {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+        .btn-secondary {
+            background: var(--text-light);
+            color: white;
+        }
+        .btn-secondary:hover:not(:disabled) {
+            background: #4a5568;
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--warm-bg);
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+        .results {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .results.show {
+            display: block;
+        }
+        .result-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid var(--primary-color);
+        }
+        .result-card.eligible {
+            border-left-color: var(--success-color);
+        }
+        .result-card h3 {
+            color: var(--text-dark);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .result-card .level {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .result-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .info-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(78, 205, 196, 0.1);
+        }
+        .info-link:hover {
+            background: rgba(78, 205, 196, 0.2);
+            transform: translateX(5px);
+            color: var(--primary-color);
+        }
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light);
+        }
+        .no-results h2 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+        .restart-btn {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .info-box {
+            background: rgba(78, 205, 196, 0.1);
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        .info-box p {
+            margin: 0;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+            .quiz-container {
+                padding: 1.5rem;
+            }
+            .question h2 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+    <div class="container">
+        <h1>🇨🇦 Canadian Honours Eligibility Quiz</h1>
+        <p class="quiz-intro">Discover which Canadian awards and honours you may be eligible for based on your achievements and service</p>
+
+        <div class="quiz-container" id="quizContainer">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+
+            <!-- Question 1: Citizenship -->
+            <div class="question active" data-question="1">
+                <h2>Question 1 of 11</h2>
+                <div class="question-label">Are you a Canadian citizen?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="citizenship" id="citizen-yes" value="canadian">
+                        <label for="citizen-yes">Yes, I am a Canadian citizen</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="citizenship" id="citizen-no" value="non-canadian">
+                        <label for="citizen-no">No, I am not a Canadian citizen</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 2: Current Role -->
+            <div class="question" data-question="2">
+                <h2>Question 2 of 11</h2>
+                <div class="question-label">Are you currently an elected official or a judge?</div>
+                <div class="info-box">
+                    <p>Elected officials and judges are generally not eligible for the Order of Canada while in office, but may be eligible for other honours.</p>
+                </div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="official" id="official-yes" value="yes">
+                        <label for="official-yes">Yes, I am an elected official or judge</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="official" id="official-no" value="no">
+                        <label for="official-no">No, I am not</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 3: Achievement Type -->
+            <div class="question" data-question="3">
+                <h2>Question 3 of 11</h2>
+                <div class="question-label">What best describes your contributions?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="achievement" id="achievement-lifetime" value="lifetime">
+                        <label for="achievement-lifetime">Lifetime of outstanding achievement and service</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="achievement" id="achievement-single" value="single">
+                        <label for="achievement-single">A single exceptional deed or achievement</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="achievement" id="achievement-bravery" value="bravery">
+                        <label for="achievement-bravery">An act of bravery where I risked my life</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="achievement" id="achievement-volunteer" value="volunteer">
+                        <label for="achievement-volunteer">Significant, sustained volunteer service</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="achievement" id="achievement-polar" value="polar">
+                        <label for="achievement-polar">Outstanding service related to polar research or exploration</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="achievement" id="achievement-academic" value="academic">
+                        <label for="achievement-academic">Exceptional academic achievement (student)</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="achievement" id="achievement-arts" value="arts">
+                        <label for="achievement-arts">Excellence in visual arts, media arts, literature, or performing arts</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="achievement" id="achievement-sciences" value="sciences">
+                        <label for="achievement-sciences">Excellence in innovation, history, architecture, or advancing equality</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 4: Service Level -->
+            <div class="question" data-question="4" data-conditional="lifetime">
+                <h2>Question 4 of 11</h2>
+                <div class="question-label">At what level has your service and achievement been recognized?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="service-level" id="level-international" value="international">
+                        <label for="level-international">International or national level - exceptional service to Canada or humanity</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="service-level" id="level-national" value="national">
+                        <label for="level-national">National level - distinguished service to Canada or a broad field</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="service-level" id="level-regional" value="regional">
+                        <label for="level-regional">Local or regional level, or in a specific field</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 5: Bravery Level -->
+            <div class="question" data-question="5" data-conditional="bravery">
+                <h2>Question 5 of 11</h2>
+                <div class="question-label">How would you describe the level of risk in your act of bravery?</div>
+                <div class="info-box">
+                    <p>The act must involve real or perceived risk to life. Saving a life alone is not sufficient - the degree of risk and persistence are key factors. Actions without significant personal danger may qualify for a Governor General's Commendation instead.</p>
+                </div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="bravery-level" id="bravery-extreme" value="extreme">
+                        <label for="bravery-extreme">Extreme bravery - exceptional circumstances</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="bravery-level" id="bravery-outstanding" value="outstanding">
+                        <label for="bravery-outstanding">Outstanding bravery with significant risk</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="bravery-level" id="bravery-hazardous" value="hazardous">
+                        <label for="bravery-hazardous">Act of bravery in hazardous circumstances</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 6: Bravery Timing -->
+            <div class="question" data-question="6" data-conditional="bravery">
+                <h2>Question 6 of 11</h2>
+                <div class="question-label">When did the act of bravery occur?</div>
+                <div class="info-box">
+                    <p>Nominations for Decorations for Bravery must be submitted within 2 years of the incident or the conclusion of a court or coroner's review.</p>
+                </div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="bravery-timing" id="bravery-recent" value="within-2-years">
+                        <label for="bravery-recent">Within the last 2 years (or within 2 years of court/coroner review conclusion)</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="bravery-timing" id="bravery-older" value="more-than-2-years">
+                        <label for="bravery-older">More than 2 years ago (and court/coroner review concluded more than 2 years ago)</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 7: Achievement Date -->
+            <div class="question" data-question="7" data-conditional="single">
+                <h2>Question 7 of 11</h2>
+                <div class="question-label">When did this exceptional achievement occur?</div>
+                <div class="info-box">
+                    <p>Meritorious Service Decorations require achievements after June 11, 1984.</p>
+                </div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="achievement-date" id="date-recent" value="after-1984">
+                        <label for="date-recent">After June 11, 1984</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="achievement-date" id="date-before" value="before-1984">
+                        <label for="date-before">Before June 11, 1984</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 8: Volunteer Duration -->
+            <div class="question" data-question="8" data-conditional="volunteer">
+                <h2>Question 8 of 11</h2>
+                <div class="question-label">How long have you been volunteering?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="volunteer-duration" id="volunteer-long" value="sustained">
+                        <label for="volunteer-long">Many years of sustained, significant volunteer service</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="volunteer-duration" id="volunteer-short" value="limited">
+                        <label for="volunteer-short">Limited or recent volunteer service</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 9: Polar Work Date -->
+            <div class="question" data-question="9" data-conditional="polar">
+                <h2>Question 9 of 11</h2>
+                <div class="question-label">When did your polar-related work occur?</div>
+                <div class="info-box">
+                    <p>The Polar Medal recognizes contributions made on or after August 1, 2009.</p>
+                </div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="polar-date" id="polar-after" value="after-2009">
+                        <label for="polar-after">On or after August 1, 2009</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="polar-date" id="polar-before" value="before-2009">
+                        <label for="polar-before">Before August 1, 2009</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 10: Academic Level -->
+            <div class="question" data-question="10" data-conditional="academic">
+                <h2>Question 10 of 11</h2>
+                <div class="question-label">What level of education are you completing or have completed?</div>
+                <div class="info-box">
+                    <p>The Governor General's Academic Medal is awarded by educational institutions to the student with the highest academic average. There is no public nomination process.</p>
+                </div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="academic-level" id="academic-secondary" value="secondary">
+                        <label for="academic-secondary">Secondary (high school) level</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="academic-level" id="academic-collegiate" value="collegiate">
+                        <label for="academic-collegiate">Post-secondary diploma program</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="academic-level" id="academic-undergraduate" value="undergraduate">
+                        <label for="academic-undergraduate">Undergraduate program</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="academic-level" id="academic-graduate" value="graduate">
+                        <label for="academic-graduate">Graduate program</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 11: Arts Category -->
+            <div class="question" data-question="11" data-conditional="arts">
+                <h2>Question 11 of 11</h2>
+                <div class="question-label">Which area of the arts best describes your work?</div>
+                <div class="info-box">
+                    <p>Governor General's Awards in the Arts are administered by independent organizations like the Canada Council for the Arts and are awarded annually.</p>
+                </div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="arts-category" id="arts-visual" value="visual">
+                        <label for="arts-visual">Visual or Media Arts</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="arts-category" id="arts-literary" value="literary">
+                        <label for="arts-literary">Literature (fiction, non-fiction, poetry, drama, young people's literature, translation)</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="arts-category" id="arts-performing" value="performing">
+                        <label for="arts-performing">Performing Arts (lifetime achievement)</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 11: Sciences Category -->
+            <div class="question" data-question="11" data-conditional="sciences">
+                <h2>Question 11 of 11</h2>
+                <div class="question-label">Which area best describes your contributions?</div>
+                <div class="info-box">
+                    <p>Governor General's Awards in Sciences and Humanities are administered by specialized independent organizations and recognize excellence in various fields.</p>
+                </div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="sciences-category" id="sciences-equality" value="equality">
+                        <label for="sciences-equality">Advancing women's equality in Canada</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="sciences-category" id="sciences-history" value="history">
+                        <label for="sciences-history">Historical research, education, or public history programming</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="sciences-category" id="sciences-innovation" value="innovation">
+                        <label for="sciences-innovation">Innovation (technological, social, or public-sector)</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="sciences-category" id="sciences-architecture" value="architecture">
+                        <label for="sciences-architecture">Outstanding architectural design</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-navigation">
+                <button class="btn btn-secondary" id="prevBtn" disabled>Previous</button>
+                <button class="btn btn-primary" id="nextBtn">Next</button>
+            </div>
+        </div>
+
+        <div class="results" id="results">
+            <h2 style="color: var(--primary-color); margin-bottom: 2rem;">Your Eligibility Results</h2>
+            <div id="resultsContent"></div>
+            <div class="restart-btn">
+                <button class="btn btn-primary" id="restartBtn">Take Quiz Again</button>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+
+    <script>
+        let currentQuestion = 1;
+        const totalQuestions = 11;
+        let answers = {};
+        
+        // Track actual question number for display
+        let actualQuestionNumber = 1;
+        const questionOrder = [];
+
+        function updateProgress() {
+            const totalShown = getTotalQuestionsToShow();
+            if (totalShown) {
+                const progress = (actualQuestionNumber / totalShown) * 100;
+                document.getElementById('progressBar').style.width = progress + '%';
+            } else {
+                // If we don't know total yet, show progress based on current question
+                const progress = (actualQuestionNumber / 3) * 100;
+                document.getElementById('progressBar').style.width = Math.min(progress, 100) + '%';
+            }
+        }
+
+        function showQuestion(num) {
+            document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
+            const question = document.querySelector(`[data-question="${num}"]`);
+            if (question) {
+                question.classList.add('active');
+                // Count total questions that should be shown up to this point
+                let count = 0;
+                for (let i = 1; i <= num; i++) {
+                    const q = document.querySelector(`[data-question="${i}"]`);
+                    if (q) {
+                        const conditional = q.dataset.conditional;
+                        if (!conditional || shouldShowQuestion(conditional)) {
+                            count++;
+                        }
+                    }
+                }
+                actualQuestionNumber = count;
+                // Update the question number display
+                const h2 = question.querySelector('h2');
+                if (h2) {
+                    const totalShown = getTotalQuestionsToShow();
+                    // Only show question number if we know the total, otherwise show current count
+                    if (totalShown >= actualQuestionNumber) {
+                        h2.textContent = `Question ${actualQuestionNumber} of ${totalShown}`;
+                    } else {
+                        h2.textContent = `Question ${actualQuestionNumber}`;
+                    }
+                }
+            }
+            updateProgress();
+            updateNavigation();
+        }
+        
+        function getTotalQuestionsToShow() {
+            // Base questions (1, 2, 3) = 3
+            let total = 3;
+            const achievementType = answers['3'];
+            
+            if (!achievementType) {
+                // If we're on question 3 or before, return null to indicate we don't know yet
+                if (currentQuestion <= 3) {
+                    return null;
+                }
+                return 3; // Just the base questions (shouldn't happen)
+            }
+            
+            // Add one conditional question based on achievement type
+            total = 4; // 3 base + 1 conditional
+            
+            // If bravery, add one more for timing
+            if (achievementType === 'bravery') {
+                total = 5; // 3 base + bravery level (Q5) + timing (Q6)
+            }
+            
+            return total;
+        }
+
+        function updateNavigation() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentQuestion === 1;
+            
+            const currentQuestionEl = document.querySelector('.question.active');
+            const hasAnswer = currentQuestionEl && currentQuestionEl.querySelector('input:checked');
+            
+            const totalShown = getTotalQuestionsToShow();
+            if (totalShown && actualQuestionNumber >= totalShown) {
+                nextBtn.textContent = 'See Results';
+            } else {
+                nextBtn.textContent = 'Next';
+            }
+        }
+
+        function nextQuestion() {
+            const currentQuestionEl = document.querySelector('.question.active');
+            const selected = currentQuestionEl.querySelector('input:checked');
+            
+            if (!selected) {
+                alert('Please select an answer before continuing.');
+                return;
+            }
+
+            // Save answer
+            const questionNum = currentQuestionEl.dataset.question;
+            answers[questionNum] = selected.value;
+
+            // Handle conditional questions
+            if (selected.name === 'achievement') {
+                const achievementType = selected.value;
+                // Show/hide conditional questions based on achievement type
+                document.querySelectorAll('[data-conditional]').forEach(q => {
+                    if (q.dataset.conditional === achievementType) {
+                        // This question is relevant
+                    } else if (q.dataset.conditional && q.dataset.conditional !== achievementType) {
+                        // Skip this question, set a default answer
+                        const qNum = q.dataset.question;
+                        if (!answers[qNum]) {
+                            answers[qNum] = 'skip';
+                        }
+                    }
+                });
+                // Update the current question display to show correct total
+                const currentQ = document.querySelector('.question.active');
+                if (currentQ) {
+                    const h2 = currentQ.querySelector('h2');
+                    if (h2) {
+                        const totalShown = getTotalQuestionsToShow();
+                        if (totalShown) {
+                            h2.textContent = `Question ${actualQuestionNumber} of ${totalShown}`;
+                        }
+                    }
+                }
+            }
+
+            // Always try to find the next question
+            let nextQ = currentQuestion + 1;
+            let foundNext = false;
+            
+            while (nextQ <= totalQuestions) {
+                const nextQuestionEl = document.querySelector(`[data-question="${nextQ}"]`);
+                if (nextQuestionEl) {
+                    const conditional = nextQuestionEl.dataset.conditional;
+                    if (!conditional || shouldShowQuestion(conditional)) {
+                        // Found the next relevant question
+                        currentQuestion = nextQ;
+                        showQuestion(currentQuestion);
+                        foundNext = true;
+                        break;
+                    } else {
+                        // Skip this question (not relevant for current path)
+                        answers[nextQ] = 'skip';
+                        nextQ++;
+                    }
+                } else {
+                    break;
+                }
+            }
+            
+            // If we didn't find a next question, show results
+            if (!foundNext) {
+                showResults();
+            }
+        }
+
+        function shouldShowQuestion(conditional) {
+            if (conditional === 'lifetime') return answers['3'] === 'lifetime';
+            if (conditional === 'bravery') return answers['3'] === 'bravery';
+            if (conditional === 'single') return answers['3'] === 'single';
+            if (conditional === 'volunteer') return answers['3'] === 'volunteer';
+            if (conditional === 'polar') return answers['3'] === 'polar';
+            if (conditional === 'academic') return answers['3'] === 'academic';
+            if (conditional === 'arts') return answers['3'] === 'arts';
+            if (conditional === 'sciences') return answers['3'] === 'sciences';
+            return true;
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 1) {
+                // Find previous relevant question
+                let prevQ = currentQuestion - 1;
+                while (prevQ >= 1) {
+                    const prevQuestionEl = document.querySelector(`[data-question="${prevQ}"]`);
+                    if (prevQuestionEl) {
+                        const conditional = prevQuestionEl.dataset.conditional;
+                        if (!conditional || shouldShowQuestion(conditional)) {
+                            currentQuestion = prevQ;
+                            showQuestion(currentQuestion);
+                            return;
+                        } else {
+                            prevQ--;
+                        }
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('results').classList.add('show');
+            
+            const results = calculateResults();
+            displayResults(results);
+        }
+
+        function calculateResults() {
+            const results = [];
+            const citizenship = answers['1'];
+            const isOfficial = answers['2'] === 'yes';
+            const achievementType = answers['3'];
+
+            // Order of Canada
+            if (achievementType === 'lifetime' && !isOfficial) {
+                const serviceLevel = answers['4'];
+                let level = '';
+                let levelName = '';
+                
+                if (serviceLevel === 'international') {
+                    level = 'Companion (C.C.)';
+                    levelName = 'Companion';
+                } else if (serviceLevel === 'national') {
+                    level = 'Officer (O.C.)';
+                    levelName = 'Officer';
+                } else if (serviceLevel === 'regional') {
+                    level = 'Member (C.M.)';
+                    levelName = 'Member';
+                }
+                
+                if (level) {
+                    const citizenshipNote = citizenship === 'canadian' 
+                        ? 'As a Canadian citizen, you' 
+                        : 'As a non-Canadian whose contributions have brought benefit or honour to Canada, you';
+                    
+                    results.push({
+                        name: 'Order of Canada',
+                        level: level,
+                        levelName: levelName,
+                        description: `${citizenshipNote} may be eligible for the Order of Canada at the ${levelName} level. This is one of Canada's highest civilian honours, recognizing outstanding achievement, dedication to the community, and service to the nation across all sectors of society. Nominations are accepted year-round and the selection process may take up to two years.`,
+                        url: 'https://www.gg.ca/en/honours/canadian-honours/order-canada',
+                        eligible: true
+                    });
+                }
+            }
+
+            // Decorations for Bravery
+            if (achievementType === 'bravery') {
+                const braveryLevel = answers['5'];
+                const braveryTiming = answers['6'];
+                let level = '';
+                let levelName = '';
+                
+                if (braveryLevel === 'extreme') {
+                    level = 'Cross of Valour (C.V.)';
+                    levelName = 'Cross of Valour';
+                } else if (braveryLevel === 'outstanding') {
+                    level = 'Star of Courage (S.C.)';
+                    levelName = 'Star of Courage';
+                } else if (braveryLevel === 'hazardous') {
+                    level = 'Medal of Bravery (M.B.)';
+                    levelName = 'Medal of Bravery';
+                }
+                
+                if (level) {
+                    let timingNote = '';
+                    if (braveryTiming === 'more-than-2-years') {
+                        timingNote = ' However, please note that nominations must be submitted within 2 years of the incident or court/coroner review conclusion, so you may need to check if an exception applies or if a review is still ongoing.';
+                    }
+                    
+                    results.push({
+                        name: 'Decorations for Bravery',
+                        level: level,
+                        levelName: levelName,
+                        description: `You may be eligible for the ${levelName}. This recognizes individuals who risked their lives to save or protect others in dangerous circumstances.${timingNote} Nominations must be submitted within 2 years of the incident or the conclusion of a court or coroner's review.`,
+                        url: 'https://www.gg.ca/en/honours/canadian-honours/decorations-bravery',
+                        eligible: braveryTiming === 'within-2-years' || !braveryTiming
+                    });
+                }
+            }
+
+            // Meritorious Service Decorations
+            if (achievementType === 'single') {
+                const achievementDate = answers['7'];
+                if (achievementDate === 'after-1984') {
+                    const level = 'Meritorious Service Medal (M.S.M.) or Meritorious Service Cross (M.S.C.)';
+                    results.push({
+                        name: 'Meritorious Service Decorations (Civil Division)',
+                        level: level,
+                        levelName: 'Meritorious Service',
+                        description: `You may be eligible for a Meritorious Service Decoration (available to both Canadians and non-Canadians). This recognizes a single, exceptional deed, achievement, or act of innovation that has brought benefit or honour to Canada. The specific level (Medal or Cross) depends on the degree of merit. Nominations are accepted year-round.`,
+                        url: 'https://www.gg.ca/en/honours/canadian-honours/meritorious-service-decorations-civil-division',
+                        eligible: true
+                    });
+                }
+            }
+
+            // Sovereign's Medal for Volunteers
+            if (achievementType === 'volunteer') {
+                const volunteerDuration = answers['8'];
+                if (volunteerDuration === 'sustained') {
+                    const volunteerNote = citizenship === 'canadian'
+                        ? 'As a Canadian citizen, you'
+                        : 'As a non-Canadian whose volunteer work has benefited Canada or Canadians, you';
+                    
+                    results.push({
+                        name: "Sovereign's Medal for Volunteers",
+                        level: 'Medal',
+                        levelName: 'Sovereign\'s Medal',
+                        description: `${volunteerNote} may be eligible for the Sovereign's Medal for Volunteers. This honours individuals for significant, sustained, and unpaid volunteer service that has made a meaningful impact. Your service may be in Canada or abroad.`,
+                        url: 'https://www.gg.ca/en/honours/canadian-honours/sovereigns-medal-volunteers',
+                        eligible: true
+                    });
+                }
+            }
+
+            // Polar Medal
+            if (achievementType === 'polar') {
+                const polarDate = answers['9'];
+                if (polarDate === 'after-2009') {
+                    results.push({
+                        name: 'Polar Medal',
+                        level: 'Medal',
+                        levelName: 'Polar Medal',
+                        description: `You may be eligible for the Polar Medal. This recognizes outstanding service in support of polar research, exploration, northern heritage, and Canadian Arctic sovereignty. Your contributions must relate to Canadian interests.`,
+                        url: 'https://www.gg.ca/en/honours/canadian-honours/polar-medal',
+                        eligible: true
+                    });
+                }
+            }
+
+            // Governor General's Academic Medal
+            if (achievementType === 'academic') {
+                const academicLevel = answers['10'];
+                let level = '';
+                let levelName = '';
+                
+                if (academicLevel === 'secondary') {
+                    level = 'Bronze Medal';
+                    levelName = 'Bronze';
+                } else if (academicLevel === 'collegiate') {
+                    level = 'Collegiate Bronze Medal';
+                    levelName = 'Collegiate Bronze';
+                } else if (academicLevel === 'undergraduate') {
+                    level = 'Silver Medal';
+                    levelName = 'Silver';
+                } else if (academicLevel === 'graduate') {
+                    level = 'Gold Medal';
+                    levelName = 'Gold';
+                }
+                
+                if (level) {
+                    results.push({
+                        name: "Governor General's Academic Medal",
+                        level: level,
+                        levelName: levelName,
+                        description: `The Governor General's Academic Medal is Canada's most prestigious scholastic award, recognizing exceptional academic achievement. It is awarded annually by participating educational institutions to the student graduating with the highest academic average at the ${levelName.toLowerCase()} level. There is no public nomination process - selection is made by your educational institution.`,
+                        url: 'https://www.gg.ca/en/honours/canadian-honours/governor-generals-academic-medal',
+                        eligible: true,
+                        infoOnly: true
+                    });
+                }
+            }
+
+            // Governor General's Awards in the Arts
+            if (achievementType === 'arts') {
+                const artsCategory = answers['11'];
+                let awardName = '';
+                let description = '';
+                
+                if (artsCategory === 'visual') {
+                    awardName = "Governor General's Awards in Visual and Media Arts";
+                    description = `You may be eligible for the Governor General's Awards in Visual and Media Arts, Canada's foremost distinctions for excellence in visual and media arts. These awards are administered by the Canada Council for the Arts and awarded annually.`;
+                } else if (artsCategory === 'literary') {
+                    awardName = "Governor General's Literary Awards";
+                    description = `You may be eligible for the Governor General's Literary Awards, which recognize the best English- and French-language books published in Canada each year. Categories include fiction, non-fiction, poetry, drama, young people's literature, and translation. These awards are administered by the Canada Council for the Arts and nominations are submitted through publishers.`;
+                } else if (artsCategory === 'performing') {
+                    awardName = "Governor General's Performing Arts Awards";
+                    description = `You may be eligible for the Governor General's Performing Arts Awards, Canada's foremost distinction for lifetime achievement in the performing arts. These awards also recognize arts volunteers and are administered by the Governor General's Performing Arts Awards Foundation, awarded annually.`;
+                }
+                
+                if (awardName) {
+                    results.push({
+                        name: awardName,
+                        level: 'Award',
+                        levelName: awardName,
+                        description: description,
+                        url: 'https://www.gg.ca/en/honours/canadian-honours/governor-generals-awards-arts',
+                        eligible: true
+                    });
+                }
+            }
+
+            // Governor General's Awards in Sciences and Humanities
+            if (achievementType === 'sciences') {
+                const sciencesCategory = answers['11'];
+                let awardName = '';
+                let description = '';
+                let url = '';
+                
+                if (sciencesCategory === 'equality') {
+                    awardName = "Governor General's Awards in Commemoration of the Persons Case";
+                    description = `You may be eligible for the Governor General's Awards in Commemoration of the Persons Case, which recognize outstanding contributions to the advancement of women's equality in Canada. Created in 1979, these awards are administered by Women and Gender Equality Canada and awarded annually, typically in October.`;
+                    url = 'https://www.gg.ca/en/honours/canadian-honours/governor-generals-awards-commemoration-persons-case';
+                } else if (sciencesCategory === 'history') {
+                    awardName = "Governor General's History Awards";
+                    description = `You may be eligible for the Governor General's History Awards, which honour excellence in historical research, education, and public history programming. Established in 1996, these awards are administered by Canada's National History Society and awarded annually in categories including teaching, scholarly research, museums, community programming, and popular media.`;
+                    url = 'https://www.gg.ca/en/honours/canadian-honours/governor-generals-history-awards';
+                } else if (sciencesCategory === 'innovation') {
+                    awardName = "Governor General's Innovation Awards";
+                    description = `You may be eligible for the Governor General's Innovation Awards, which recognize Canadians whose innovative ideas, products, or services have significantly improved quality of life, productivity, or public services. These awards focus on both entrepreneurial/technological innovation and social/public-sector innovation, and are awarded periodically.`;
+                    url = 'https://www.gg.ca/en/honours/canadian-honours/governor-generals-innovation-awards';
+                } else if (sciencesCategory === 'architecture') {
+                    awardName = "Governor General's Medals in Architecture";
+                    description = `You may be eligible for the Governor General's Medals in Architecture, which recognize outstanding architectural design in recently completed Canadian projects. Rooted in the Massey Medals tradition (established 1950), these awards highlight regional, cultural, and historical influences in Canadian architecture. Organized by the Royal Architectural Institute of Canada and awarded periodically.`;
+                    url = 'https://www.gg.ca/en/honours/canadian-honours/governor-generals-medals-architecture';
+                }
+                
+                if (awardName) {
+                    results.push({
+                        name: awardName,
+                        level: 'Award',
+                        levelName: awardName,
+                        description: description,
+                        url: url || 'https://www.gg.ca/en/honours/canadian-honours',
+                        eligible: true
+                    });
+                }
+            }
+
+            return results;
+        }
+
+        function displayResults(results) {
+            const resultsContent = document.getElementById('resultsContent');
+            
+            if (results.length === 0) {
+                resultsContent.innerHTML = `
+                    <div class="no-results">
+                        <h2>No Specific Honours Identified</h2>
+                        <p>Based on your answers, we couldn't identify a specific Canadian honour you're eligible for at this time.</p>
+                        <p>However, this doesn't mean you're not eligible! The Canadian honours system is comprehensive, and eligibility depends on many factors. Consider:</p>
+                        <ul style="text-align: left; display: inline-block; margin-top: 1rem;">
+                            <li>Reviewing the official Governor General of Canada Honours website</li>
+                            <li>Consulting with someone who knows your achievements well</li>
+                            <li>Revisiting this quiz as your contributions evolve</li>
+                        </ul>
+                        <a href="https://www.gg.ca/en/honours/canadian-honours" target="_blank" rel="noopener noreferrer" class="info-link" style="margin-top: 1.5rem;">Visit the Official Canadian Honours Website →</a>
+                    </div>
+                `;
+            } else {
+                resultsContent.innerHTML = results.map(result => `
+                    <div class="result-card eligible">
+                        <h3>${result.name}</h3>
+                        <div class="level">${result.level}</div>
+                        <p>${result.description}</p>
+                        ${result.infoOnly ? '<p style="font-style: italic; color: var(--text-light); margin-top: 0.5rem;"><strong>Note:</strong> This award is institution-based and does not have a public nomination process.</p>' : ''}
+                        ${result.url ? `<a href="${result.url}" target="_blank" rel="noopener noreferrer" class="info-link">Learn more about ${result.name} →</a>` : ''}
+                    </div>
+                `).join('');
+            }
+        }
+
+        function restartQuiz() {
+            currentQuestion = 1;
+            actualQuestionNumber = 1;
+            answers = {};
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('results').classList.remove('show');
+            document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
+            showQuestion(1);
+        }
+
+        // Add event listeners for buttons and radio buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation buttons
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const restartBtn = document.getElementById('restartBtn');
+            
+            if (prevBtn) {
+                prevBtn.addEventListener('click', previousQuestion);
+            }
+            if (nextBtn) {
+                nextBtn.addEventListener('click', nextQuestion);
+            }
+            if (restartBtn) {
+                restartBtn.addEventListener('click', restartQuiz);
+            }
+            
+            // Make entire option div clickable
+            document.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    // Don't trigger if clicking directly on the radio button
+                    if (e.target.type === 'radio') {
+                        return;
+                    }
+                    const radio = this.querySelector('input[type="radio"]');
+                    if (radio && !radio.checked) {
+                        radio.checked = true;
+                        radio.dispatchEvent(new Event('change', { bubbles: true }));
+                    }
+                });
+            });
+            
+            // Radio button change listeners
+            document.querySelectorAll('input[type="radio"]').forEach(input => {
+                input.addEventListener('change', updateNavigation);
+            });
+            
+            updateNavigation();
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
