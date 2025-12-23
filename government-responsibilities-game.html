@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who's Responsible? Game (Canada) - Hameez Iqbal</title>
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <style>
+        :root {
+            --primary-color: #FF6B6B;
+            --accent-color: #4ECDC4;
+            --warm-bg: #FFF9F4;
+            --text-dark: #2D3436;
+            --text-light: #636E72;
+            --federal-color: #4ECDC4;
+            --provincial-color: #FF6B6B;
+            --municipal-color: #5A6C7D;
+            --success-color: #51CF66;
+            --warning-color: #FFD43B;
+            --error-color: #FF6B6B;
+        }
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--warm-bg);
+            overflow-y: auto;
+        }
+        .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            height: auto;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 0.75rem;
+            }
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 2rem 2rem 2rem;
+        }
+        .header-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+        }
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        .mode-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .mode-btn {
+            background: white;
+            border: 2px solid var(--text-light);
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: var(--text-dark);
+        }
+        .mode-btn.active {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .drop-zone {
+            background: white;
+            border: 3px dashed var(--text-light);
+            border-radius: 20px;
+            padding: 2rem;
+            min-height: 400px;
+            transition: all 0.3s ease;
+        }
+        .drop-zone.drag-over {
+            border-color: var(--accent-color);
+            background: rgba(78, 205, 196, 0.05);
+            transform: scale(1.02);
+        }
+        .drop-zone.federal {
+            border-color: var(--federal-color);
+        }
+        .drop-zone.provincial {
+            border-color: var(--provincial-color);
+        }
+        .drop-zone.municipal {
+            border-color: var(--municipal-color);
+        }
+        .zone-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .zone-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        .zone-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .zone-hint {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+        .zone-title.federal {
+            color: var(--federal-color);
+        }
+        .zone-title.provincial {
+            color: var(--provincial-color);
+        }
+        .zone-title.municipal {
+            color: var(--municipal-color);
+        }
+        .drop-here {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            padding: 2rem 0;
+        }
+        .sticker-tray {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        .tray-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+        .stickers-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .topic-sticker {
+            background: var(--warm-bg);
+            border: 2px solid transparent;
+            border-radius: 15px;
+            padding: 1rem 1.5rem;
+            cursor: grab;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 500;
+            user-select: none;
+            min-width: 150px;
+        }
+        .topic-sticker:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .topic-sticker.dragging {
+            opacity: 0.5;
+            cursor: grabbing;
+        }
+        .topic-sticker.correct {
+            border-color: var(--success-color);
+            background: rgba(81, 207, 102, 0.1);
+        }
+        .topic-sticker.partial {
+            border-color: var(--warning-color);
+            background: rgba(255, 212, 59, 0.1);
+        }
+        .topic-sticker.incorrect {
+            border-color: var(--error-color);
+            background: rgba(255, 107, 107, 0.1);
+        }
+        .sticker-icon {
+            font-size: 1.5rem;
+        }
+        .sticker-label {
+            font-size: 1rem;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+        .btn-secondary {
+            background: var(--accent-color);
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: #3db8ab;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .score-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+            text-align: center;
+            display: none;
+        }
+        .score-section.show {
+            display: block;
+        }
+        .score-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        .score-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+        .score-description {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        .badge {
+            background: var(--warm-bg);
+            padding: 0.75rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        .share-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--warm-bg);
+        }
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .share-btn {
+            background: white;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .share-btn:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
+        }
+        .share-btn.copy {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        .share-btn.copy:hover {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+        .share-btn.saved {
+            background: var(--success-color);
+            border-color: var(--success-color);
+            color: white;
+        }
+        .copy-feedback {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--success-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            z-index: 4000;
+            display: none;
+            animation: slideUp 0.3s ease;
+        }
+        .copy-feedback.show {
+            display: block;
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .explanation-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+        }
+        .explanation-modal.show {
+            display: flex;
+        }
+        .explanation-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .explanation-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        .explanation-text {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        .explanation-close {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+        }
+        .explanation-close:hover {
+            background: #ff5252;
+        }
+        .sticker-in-zone {
+            margin-bottom: 0.75rem;
+        }
+        @media (max-width: 1024px) {
+            .game-board {
+                grid-template-columns: 1fr;
+            }
+            .drop-zone {
+                min-height: 200px;
+            }
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 100px 1rem 2rem 1rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .stickers-container {
+                justify-content: center;
+            }
+            .topic-sticker {
+                min-width: 120px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+    <div class="container">
+        <div class="header-section">
+            <h1>🎮 Who's Responsible? (Canada)</h1>
+            <p class="subtitle">Drag each topic to the level of government that is primarily responsible</p>
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <a href="government-responsibilities.html" style="display: inline-block; background: var(--accent-color); color: white; padding: 0.5rem 1.5rem; border-radius: 20px; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(78, 205, 196, 0.2);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(78, 205, 196, 0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(78, 205, 196, 0.2)';">
+                    📚 View Reference Guide
+                </a>
+            </div>
+            <div class="mode-toggle">
+                <button class="mode-btn active" data-mode="learning">Learning Mode</button>
+                <button class="mode-btn" data-mode="strict">Strict Mode</button>
+            </div>
+        </div>
+
+        <div class="game-board" id="gameBoard">
+            <div class="drop-zone federal" data-level="federal">
+                <div class="zone-header">
+                    <div class="zone-icon">🇨🇦</div>
+                    <div class="zone-title federal">Federal</div>
+                    <div class="zone-hint">National programs, borders, currency</div>
+                </div>
+                <div class="drop-here">Drop here</div>
+            </div>
+            <div class="drop-zone provincial" data-level="provincial">
+                <div class="zone-header">
+                    <div class="zone-icon">🏛️</div>
+                    <div class="zone-title provincial">Provincial / Territorial</div>
+                    <div class="zone-hint">Healthcare, education, civil rights</div>
+                </div>
+                <div class="drop-here">Drop here</div>
+            </div>
+            <div class="drop-zone municipal" data-level="municipal">
+                <div class="zone-header">
+                    <div class="zone-icon">🏙️</div>
+                    <div class="zone-title municipal">Municipal</div>
+                    <div class="zone-hint">Local services, zoning, roads</div>
+                </div>
+                <div class="drop-here">Drop here</div>
+            </div>
+        </div>
+
+        <div class="sticker-tray">
+            <div class="tray-title">Topic Stickers</div>
+            <div class="stickers-container" id="stickersContainer"></div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" id="checkBtn" onclick="checkAnswers()">Check Answers</button>
+            <button class="btn btn-secondary" id="newRoundBtn" onclick="startNewRound()" style="display: none;">New Round</button>
+        </div>
+
+        <div class="score-section" id="scoreSection">
+            <div class="score-title">Civic Literacy Score</div>
+            <div class="score-value" id="scoreValue">0 / 12</div>
+            <div class="score-description" id="scoreDescription"></div>
+            <div class="badges" id="badgesContainer"></div>
+            <div class="share-section">
+                <div style="text-align: center; margin-bottom: 1rem;">
+                    <h3 style="color: var(--text-dark); font-size: 1.2rem; margin-bottom: 0.5rem;">Save & Share Your Result</h3>
+                </div>
+                <div class="share-buttons">
+                    <button class="share-btn copy" onclick="copyResult()">
+                        📋 Copy Result
+                    </button>
+                    <button class="share-btn" onclick="saveResult()" id="saveBtn">
+                        💾 Save Result
+                    </button>
+                    <button class="share-btn" onclick="shareResult()">
+                        🔗 Share
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="explanation-modal" id="explanationModal">
+        <div class="explanation-content">
+            <div class="explanation-title" id="explanationTitle"></div>
+            <div class="explanation-text" id="explanationText"></div>
+            <button class="explanation-close" onclick="closeExplanation()">Got it</button>
+        </div>
+    </div>
+
+    <div class="copy-feedback" id="copyFeedback">
+        ✅ Copied to clipboard!
+    </div>
+
+    <div id="footer"></div>
+
+    <script>
+        // Master topic bank
+        const topicBank = [
+            // Federal (Primary)
+            { id: 1, label: "Immigration & Citizenship", icon: "🛂", primary: "federal", shared: [], explanation: "Federal government manages immigration, refugees, and citizenship applications." },
+            { id: 2, label: "Passports", icon: "📘", primary: "federal", shared: [], explanation: "Federal government issues passports and travel documents." },
+            { id: 3, label: "National Defence", icon: "🛡️", primary: "federal", shared: [], explanation: "Federal government is responsible for national defence and armed forces." },
+            { id: 4, label: "Armed Forces", icon: "⚔️", primary: "federal", shared: [], explanation: "Canadian Armed Forces are under federal jurisdiction." },
+            { id: 5, label: "Employment Insurance", icon: "💼", primary: "federal", shared: [], explanation: "Federal program providing temporary income support to eligible workers." },
+            { id: 6, label: "Currency & Minting", icon: "💰", primary: "federal", shared: [], explanation: "Federal government manages currency and monetary policy through Bank of Canada." },
+            { id: 7, label: "Banking Regulation", icon: "🏦", primary: "federal", shared: [], explanation: "Federal government regulates banks and financial institutions." },
+            { id: 8, label: "International Trade", icon: "🌐", primary: "federal", shared: ["provincial"], explanation: "Federal negotiates trade agreements; provinces may have some trade roles." },
+            { id: 9, label: "Border Security", icon: "🚧", primary: "federal", shared: [], explanation: "Federal government manages border security and customs." },
+            { id: 10, label: "Customs & Tariffs", icon: "📦", primary: "federal", shared: [], explanation: "Federal government administers customs duties and tariffs." },
+            { id: 11, label: "Criminal Law", icon: "⚖️", primary: "federal", shared: ["provincial"], explanation: "Federal sets criminal law; provinces administer courts and corrections." },
+            { id: 12, label: "Federal Taxes", icon: "📊", primary: "federal", shared: [], explanation: "Federal government collects income tax, GST/HST, and corporate taxes." },
+            { id: 13, label: "National Parks", icon: "🏞️", primary: "federal", shared: [], explanation: "Federal government manages national parks and historic sites." },
+            { id: 14, label: "Indigenous Affairs", icon: "🌲", primary: "federal", shared: ["provincial"], explanation: "Federal has primary responsibility; provinces involved in some areas." },
+            { id: 15, label: "Federal Elections", icon: "🗳️", primary: "federal", shared: [], explanation: "Federal government administers federal elections." },
+            { id: 16, label: "Copyright Law", icon: "©️", primary: "federal", shared: [], explanation: "Federal government regulates copyright and intellectual property." },
+            { id: 17, label: "Telecommunications", icon: "📡", primary: "federal", shared: [], explanation: "Federal government regulates telecommunications and broadcasting." },
+            { id: 18, label: "Postal Service", icon: "📮", primary: "federal", shared: [], explanation: "Canada Post is a federal Crown corporation." },
+            { id: 19, label: "National Census", icon: "📋", primary: "federal", shared: [], explanation: "Statistics Canada conducts the national census." },
+            { id: 20, label: "Foreign Affairs", icon: "🤝", primary: "federal", shared: [], explanation: "Federal government manages foreign relations and diplomacy." },
+            { id: 21, label: "Aviation Regulation", icon: "✈️", primary: "federal", shared: [], explanation: "Transport Canada regulates aviation at the federal level." },
+            { id: 22, label: "Rail Safety", icon: "🚂", primary: "federal", shared: [], explanation: "Federal government sets rail safety standards." },
+            { id: 23, label: "Fisheries & Oceans", icon: "🐟", primary: "federal", shared: [], explanation: "Federal government manages fisheries and ocean resources." },
+            { id: 24, label: "Federal Courts", icon: "⚖️", primary: "federal", shared: [], explanation: "Federal courts handle federal law matters." },
+
+            // Provincial/Territorial (Primary)
+            { id: 25, label: "Healthcare Delivery", icon: "🏥", primary: "provincial", shared: ["federal"], explanation: "Provinces run hospitals and deliver care; federal supports via funding and national frameworks." },
+            { id: 26, label: "Hospitals & Clinics", icon: "🏨", primary: "provincial", shared: [], explanation: "Provinces operate and regulate hospitals and clinics." },
+            { id: 27, label: "Health Insurance Plans", icon: "💳", primary: "provincial", shared: [], explanation: "Provinces administer health insurance plans (e.g., OHIP, MSP)." },
+            { id: 28, label: "Education (K-12)", icon: "📚", primary: "provincial", shared: [], explanation: "Provinces set curriculum, fund schools, and regulate education." },
+            { id: 29, label: "Universities & Colleges", icon: "🎓", primary: "provincial", shared: [], explanation: "Provinces regulate and fund post-secondary institutions." },
+            { id: 30, label: "Driver Licensing", icon: "🚗", primary: "provincial", shared: [], explanation: "Provinces issue driver's licenses and set licensing requirements." },
+            { id: 31, label: "Highway Maintenance", icon: "🛣️", primary: "provincial", shared: ["federal"], explanation: "Provinces manage most highways; federal handles national routes." },
+            { id: 32, label: "Property & Civil Rights", icon: "📜", primary: "provincial", shared: [], explanation: "Provinces have broad jurisdiction over property law and civil matters." },
+            { id: 33, label: "Family Law", icon: "👨‍👩‍👧‍👦", primary: "provincial", shared: [], explanation: "Provinces regulate marriage, adoption, and family law matters." },
+            { id: 34, label: "Provincial Courts", icon: "⚖️", primary: "provincial", shared: [], explanation: "Provinces administer provincial courts." },
+            { id: 35, label: "Natural Resources", icon: "⛏️", primary: "provincial", shared: ["federal"], explanation: "Provinces manage most resources; federal handles interprovincial and international." },
+            { id: 36, label: "Energy Regulation", icon: "⚡", primary: "provincial", shared: ["federal"], explanation: "Provinces regulate most energy; federal handles interprovincial trade." },
+            { id: 37, label: "Alcohol Sales", icon: "🍷", primary: "provincial", shared: [], explanation: "Provinces regulate alcohol sales and distribution." },
+            { id: 38, label: "Provincial Policing", icon: "👮", primary: "provincial", shared: ["federal", "municipal"], explanation: "Provincial police (OPP, SQ) operate alongside RCMP and municipal forces." },
+            { id: 39, label: "Labour Standards", icon: "👷", primary: "provincial", shared: ["federal"], explanation: "Provinces set most labour standards; federal for federally regulated industries." },
+            { id: 40, label: "Occupational Health & Safety", icon: "🦺", primary: "provincial", shared: ["federal"], explanation: "Provinces regulate workplace safety; federal for federal workplaces." },
+            { id: 41, label: "Child Protection", icon: "👶", primary: "provincial", shared: [], explanation: "Provinces manage child welfare and protection services." },
+            { id: 42, label: "Social Assistance", icon: "🤲", primary: "provincial", shared: [], explanation: "Provinces administer social assistance programs (e.g., Ontario Works)." },
+            { id: 43, label: "Provincial Taxes", icon: "💵", primary: "provincial", shared: [], explanation: "Provinces collect some taxes (often through CRA)." },
+            { id: 44, label: "Building Codes", icon: "🏗️", primary: "provincial", shared: [], explanation: "Provinces set building codes; municipalities enforce through permits." },
+            { id: 45, label: "Rent Regulation", icon: "🏠", primary: "provincial", shared: [], explanation: "Provinces regulate rent control where applicable." },
+            { id: 46, label: "Consumer Protection", icon: "🛒", primary: "provincial", shared: [], explanation: "Provinces regulate consumer protection laws." },
+            { id: 47, label: "Long-term Care", icon: "🏥", primary: "provincial", shared: [], explanation: "Provinces regulate and fund long-term care homes." },
+            { id: 48, label: "Mental Health Services", icon: "🧠", primary: "provincial", shared: ["federal", "municipal"], explanation: "Provinces provide most mental health services; shared with federal and municipal." },
+            { id: 49, label: "Environmental Permitting", icon: "🌿", primary: "provincial", shared: ["federal"], explanation: "Provinces issue most environmental permits; federal for major projects." },
+
+            // Municipal (Primary)
+            { id: 50, label: "Garbage & Recycling", icon: "🗑️", primary: "municipal", shared: ["provincial"], explanation: "Municipalities collect and manage waste; provinces set environmental standards." },
+            { id: 51, label: "Snow Removal", icon: "❄️", primary: "municipal", shared: [], explanation: "Municipalities clear snow from local roads and sidewalks." },
+            { id: 52, label: "Local Roads & Sidewalks", icon: "🛤️", primary: "municipal", shared: [], explanation: "Municipalities maintain local roads, sidewalks, and street infrastructure." },
+            { id: 53, label: "Zoning & Land Use", icon: "🗺️", primary: "municipal", shared: ["provincial"], explanation: "Municipalities control land use and zoning; provinces set building codes." },
+            { id: 54, label: "Building Permits", icon: "📋", primary: "municipal", shared: ["provincial"], explanation: "Municipalities issue building permits; provinces set building codes." },
+            { id: 55, label: "Parking Enforcement", icon: "🅿️", primary: "municipal", shared: [], explanation: "Municipalities enforce parking regulations." },
+            { id: 56, label: "Public Transit", icon: "🚌", primary: "municipal", shared: ["provincial", "federal"], explanation: "Municipalities operate transit; provinces and feds provide funding." },
+            { id: 57, label: "Fire Services", icon: "🚒", primary: "municipal", shared: [], explanation: "Municipalities provide fire protection and emergency response." },
+            { id: 58, label: "Local Libraries", icon: "📚", primary: "municipal", shared: [], explanation: "Municipalities operate local public libraries." },
+            { id: 59, label: "Water & Wastewater", icon: "💧", primary: "municipal", shared: ["provincial"], explanation: "Municipalities operate water systems; provinces set safety standards." },
+            { id: 60, label: "Property Tax", icon: "🏘️", primary: "municipal", shared: [], explanation: "Municipalities collect property taxes." },
+            { id: 61, label: "Parks & Recreation", icon: "🌳", primary: "municipal", shared: [], explanation: "Municipalities manage local parks and recreation facilities." },
+            { id: 62, label: "Municipal Bylaws", icon: "📜", primary: "municipal", shared: [], explanation: "Municipalities create and enforce local bylaws." },
+            { id: 63, label: "Noise Complaints", icon: "🔇", primary: "municipal", shared: [], explanation: "Municipalities handle noise complaints and enforcement." },
+            { id: 64, label: "Housing Inspections", icon: "🔍", primary: "municipal", shared: [], explanation: "Municipalities conduct local housing inspections." },
+            { id: 65, label: "Traffic Lights & Signage", icon: "🚦", primary: "municipal", shared: [], explanation: "Municipalities manage traffic signals and local signage." },
+            { id: 66, label: "Community Centres", icon: "🏛️", primary: "municipal", shared: [], explanation: "Municipalities operate community centres and facilities." },
+            { id: 67, label: "Animal Control", icon: "🐕", primary: "municipal", shared: [], explanation: "Municipalities provide animal control services." },
+            { id: 68, label: "Business Licensing", icon: "🏪", primary: "municipal", shared: [], explanation: "Municipalities issue business licenses." },
+            { id: 69, label: "Local Planning", icon: "📐", primary: "municipal", shared: ["provincial"], explanation: "Municipalities handle local planning approvals." },
+
+            // Shared/Trickier Topics
+            { id: 70, label: "Policing", icon: "👮", primary: "shared", shared: ["federal", "provincial", "municipal"], explanation: "Shared responsibility: RCMP (federal), provincial police, and municipal forces." },
+            { id: 71, label: "Emergency Management", icon: "🚨", primary: "shared", shared: ["federal", "provincial", "municipal"], explanation: "All levels coordinate emergency response and disaster management." },
+            { id: 72, label: "Environmental Protection", icon: "🌍", primary: "shared", shared: ["federal", "provincial", "municipal"], explanation: "Shared jurisdiction with federal standards, provincial implementation, local action." },
+            { id: 73, label: "Housing Policy", icon: "🏘️", primary: "shared", shared: ["federal", "provincial", "municipal"], explanation: "Shared responsibility: federal funding, provincial programs, municipal zoning." },
+            { id: 74, label: "Infrastructure Funding", icon: "🏗️", primary: "shared", shared: ["federal", "provincial", "municipal"], explanation: "All levels provide infrastructure funding for different types of projects." },
+            { id: 75, label: "Public Health", icon: "🏥", primary: "shared", shared: ["federal", "provincial", "municipal"], explanation: "Federal sets standards, provinces deliver, municipalities provide local services." },
+            { id: 76, label: "Climate Change", icon: "🌡️", primary: "shared", shared: ["federal", "provincial", "municipal"], explanation: "All levels have roles in climate change response and policy." },
+            { id: 77, label: "Disaster Relief", icon: "🌊", primary: "shared", shared: ["federal", "provincial", "municipal"], explanation: "All levels coordinate disaster relief and emergency assistance." },
+            { id: 78, label: "Transportation Infrastructure", icon: "🚇", primary: "shared", shared: ["federal", "provincial", "municipal"], explanation: "Federal funds major projects, provinces manage highways, municipalities handle local transit." },
+            { id: 79, label: "Mental Health Supports", icon: "🧠", primary: "shared", shared: ["federal", "provincial", "municipal"], explanation: "Provinces provide most services; federal and municipal have supporting roles." },
+            { id: 80, label: "Childcare Services", icon: "👶", primary: "shared", shared: ["federal", "provincial", "municipal"], explanation: "Federal provides funding, provinces regulate, municipalities may operate programs." },
+            { id: 81, label: "Public Safety", icon: "🛡️", primary: "shared", shared: ["federal", "provincial", "municipal"], explanation: "All levels contribute to public safety through different mechanisms." },
+            { id: 82, label: "Seniors Services", icon: "👴", primary: "shared", shared: ["federal", "provincial", "municipal"], explanation: "Federal provides benefits, provinces deliver programs, municipalities offer local support." },
+            { id: 83, label: "Urban Planning", icon: "🏙️", primary: "shared", shared: ["provincial", "municipal"], explanation: "Municipalities do local planning; provinces set frameworks and approve major projects." },
+            { id: 84, label: "Internet Access", icon: "🌐", primary: "shared", shared: ["federal", "provincial", "municipal"], explanation: "Federal regulates, provinces may fund, municipalities may provide local infrastructure." },
+            { id: 85, label: "Indigenous Services", icon: "🌲", primary: "shared", shared: ["federal", "provincial"], explanation: "Federal has primary responsibility; provinces involved in some service delivery." },
+            { id: 86, label: "Immigration Settlement", icon: "🛂", primary: "shared", shared: ["federal", "provincial", "municipal"], explanation: "Federal manages immigration; provinces and municipalities provide settlement services." },
+            { id: 87, label: "Court Administration", icon: "⚖️", primary: "shared", shared: ["federal", "provincial"], explanation: "Federal and provincial courts have different jurisdictions and administration." },
+            { id: 88, label: "Infrastructure Stimulus", icon: "🏗️", primary: "shared", shared: ["federal", "provincial", "municipal"], explanation: "All levels coordinate on infrastructure stimulus programs." },
+            { id: 89, label: "Affordable Housing", icon: "🏠", primary: "shared", shared: ["federal", "provincial", "municipal"], explanation: "Federal provides funding, provinces have programs, municipalities control zoning and delivery." }
+        ];
+
+        let currentRound = [];
+        let gameMode = "learning";
+        let answersChecked = false;
+        let usedTopicIds = new Set();
+
+        function startNewRound() {
+            // Reset game state
+            answersChecked = false;
+            currentRound = [];
+            usedTopicIds.clear();
+            window.lastResult = null;
+            
+            // Clear URL parameters
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+            
+            // Clear drop zones and show "Drop here" text
+            document.querySelectorAll('.drop-zone').forEach(zone => {
+                // Remove all stickers from zones
+                zone.querySelectorAll('.topic-sticker').forEach(sticker => {
+                    sticker.remove();
+                });
+                // Show "Drop here" text
+                const dropHere = zone.querySelector('.drop-here');
+                if (dropHere) {
+                    dropHere.style.display = 'block';
+                }
+            });
+
+            // Generate balanced round
+            generateRound();
+            
+            // Hide score section
+            document.getElementById('scoreSection').classList.remove('show');
+            
+            // Show check button, hide new round button
+            document.getElementById('checkBtn').style.display = 'block';
+            document.getElementById('newRoundBtn').style.display = 'none';
+        }
+
+        function generateRound() {
+            // Filter available topics (exclude already used)
+            const available = topicBank.filter(t => !usedTopicIds.has(t.id));
+            
+            // Shuffle and select balanced topics
+            const shuffled = [...available].sort(() => Math.random() - 0.5);
+            
+            // Get 4 from each primary level
+            const federal = shuffled.filter(t => t.primary === "federal").slice(0, 4);
+            const provincial = shuffled.filter(t => t.primary === "provincial").slice(0, 4);
+            const municipal = shuffled.filter(t => t.primary === "municipal").slice(0, 4);
+            
+            // Combine and shuffle
+            currentRound = [...federal, ...provincial, ...municipal].sort(() => Math.random() - 0.5);
+            
+            // Mark as used
+            currentRound.forEach(t => usedTopicIds.add(t.id));
+            
+            // Render stickers
+            renderStickers();
+        }
+
+        function renderStickers() {
+            const container = document.getElementById('stickersContainer');
+            container.innerHTML = '';
+            
+            currentRound.forEach(topic => {
+                const sticker = document.createElement('div');
+                sticker.className = 'topic-sticker';
+                sticker.draggable = true;
+                sticker.dataset.topicId = topic.id;
+                sticker.innerHTML = `
+                    <span class="sticker-icon">${topic.icon}</span>
+                    <span class="sticker-label">${topic.label}</span>
+                `;
+                
+                sticker.addEventListener('dragstart', handleDragStart);
+                sticker.addEventListener('dragend', handleDragEnd);
+                
+                container.appendChild(sticker);
+            });
+            
+            // Setup drop zones
+            setupDropZones();
+        }
+
+        function handleDragStart(e) {
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/html', e.target.outerHTML);
+            e.dataTransfer.setData('topicId', e.target.dataset.topicId);
+            e.target.classList.add('dragging');
+        }
+
+        function handleDragEnd(e) {
+            e.target.classList.remove('dragging');
+        }
+
+        function setupDropZones() {
+            document.querySelectorAll('.drop-zone').forEach(zone => {
+                zone.addEventListener('dragover', handleDragOver);
+                zone.addEventListener('drop', handleDrop);
+                zone.addEventListener('dragleave', handleDragLeave);
+            });
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+            
+            const topicId = parseInt(e.dataTransfer.getData('topicId'));
+            const topic = topicBank.find(t => t.id === topicId);
+            const targetLevel = e.currentTarget.dataset.level;
+            
+            // Remove sticker from wherever it is
+            const existingSticker = document.querySelector(`[data-topic-id="${topicId}"]`);
+            const previousZone = existingSticker ? existingSticker.closest('.drop-zone') : null;
+            
+            if (existingSticker) {
+                existingSticker.remove();
+                // Show "Drop here" in previous zone if it's now empty
+                if (previousZone && previousZone !== e.currentTarget) {
+                    const previousDropHere = previousZone.querySelector('.drop-here');
+                    const hasStickers = previousZone.querySelectorAll('.topic-sticker').length === 0;
+                    if (previousDropHere && hasStickers) {
+                        previousDropHere.style.display = 'block';
+                    }
+                }
+            }
+            
+            // Create new sticker in drop zone
+            const sticker = document.createElement('div');
+            sticker.className = 'topic-sticker';
+            sticker.dataset.topicId = topicId;
+            sticker.dataset.placedLevel = targetLevel;
+            sticker.draggable = !answersChecked;
+            sticker.innerHTML = `
+                <span class="sticker-icon">${topic.icon}</span>
+                <span class="sticker-label">${topic.label}</span>
+            `;
+            
+            if (answersChecked) {
+                // Add click handler for explanation
+                sticker.style.cursor = 'pointer';
+                sticker.onclick = () => showExplanation(topic);
+            } else {
+                sticker.addEventListener('dragstart', handleDragStart);
+                sticker.addEventListener('dragend', handleDragEnd);
+            }
+            
+            // Hide "Drop here" text
+            const dropHere = e.currentTarget.querySelector('.drop-here');
+            if (dropHere) {
+                dropHere.style.display = 'none';
+            }
+            
+            e.currentTarget.appendChild(sticker);
+        }
+
+        function checkAnswers() {
+            if (answersChecked) return;
+            
+            answersChecked = true;
+            let correct = 0;
+            let partial = 0;
+            let incorrect = 0;
+            
+            document.querySelectorAll('.topic-sticker').forEach(sticker => {
+                const topicId = parseInt(sticker.dataset.topicId);
+                const placedLevel = sticker.dataset.placedLevel;
+                const topic = topicBank.find(t => t.id === topicId);
+                
+                sticker.draggable = false;
+                sticker.style.cursor = 'pointer';
+                sticker.onclick = () => showExplanation(topic);
+                
+                if (placedLevel === topic.primary) {
+                    sticker.classList.add('correct');
+                    correct++;
+                } else if (topic.shared.includes(placedLevel) || (gameMode === "learning" && topic.primary === "shared")) {
+                    sticker.classList.add('partial');
+                    partial++;
+                } else {
+                    sticker.classList.add('incorrect');
+                    incorrect++;
+                }
+            });
+            
+            // Calculate score
+            const totalScore = gameMode === "strict" ? correct : correct + Math.floor(partial / 2);
+            const maxScore = currentRound.length;
+            
+            // Show score
+            document.getElementById('scoreValue').textContent = `${totalScore} / ${maxScore}`;
+            document.getElementById('scoreDescription').textContent = 
+                `You correctly identified the primary responsibility for ${correct} topics${partial > 0 ? `, with ${partial} partially correct placements` : ''}.`;
+            
+            // Generate badges
+            const badgesContainer = document.getElementById('badgesContainer');
+            badgesContainer.innerHTML = '';
+            
+            if (correct >= 10) {
+                badgesContainer.innerHTML += '<div class="badge">🏆 Civic Expert</div>';
+            }
+            if (correct >= 8) {
+                badgesContainer.innerHTML += '<div class="badge">⭐ Federal Systems Thinker</div>';
+            }
+            const municipalCount = document.querySelectorAll('.drop-zone.municipal .topic-sticker.correct').length;
+            if (municipalCount >= 3) {
+                badgesContainer.innerHTML += '<div class="badge">🏙️ Local Government Pro</div>';
+            }
+            if (partial > 0) {
+                badgesContainer.innerHTML += '<div class="badge">🤝 Shared Powers Spotter</div>';
+            }
+            
+            document.getElementById('scoreSection').classList.add('show');
+            document.getElementById('checkBtn').style.display = 'none';
+            document.getElementById('newRoundBtn').style.display = 'block';
+            
+            // Store result data for sharing
+            window.lastResult = {
+                score: totalScore,
+                maxScore: maxScore,
+                correct: correct,
+                partial: partial,
+                incorrect: incorrect,
+                mode: gameMode,
+                badges: badgesContainer.innerHTML,
+                date: new Date().toLocaleDateString()
+            };
+        }
+
+        function generateResultText() {
+            if (!window.lastResult) return '';
+            
+            const result = window.lastResult;
+            const percentage = Math.round((result.score / result.maxScore) * 100);
+            
+            let text = `🎮 Who's Responsible? (Canada) - Game Result\n\n`;
+            text += `Civic Literacy Score: ${result.score} / ${result.maxScore} (${percentage}%)\n`;
+            text += `Mode: ${result.mode === 'strict' ? 'Strict' : 'Learning'}\n`;
+            text += `Correct: ${result.correct} | Partial: ${result.partial} | Incorrect: ${result.incorrect}\n`;
+            text += `Date: ${result.date}\n\n`;
+            text += `Play the game: ${window.location.href}\n`;
+            text += `#CivicLiteracy #CanadianGovernment`;
+            
+            return text;
+        }
+
+        function copyResult() {
+            const text = generateResultText();
+            
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showCopyFeedback();
+                }).catch(err => {
+                    fallbackCopy(text);
+                });
+            } else {
+                fallbackCopy(text);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showCopyFeedback();
+            } catch (err) {
+                alert('Failed to copy. Please copy manually.');
+            }
+            document.body.removeChild(textarea);
+        }
+
+        function showCopyFeedback() {
+            const feedback = document.getElementById('copyFeedback');
+            feedback.classList.add('show');
+            setTimeout(() => {
+                feedback.classList.remove('show');
+            }, 2000);
+        }
+
+        function saveResult() {
+            if (!window.lastResult) return;
+            
+            // Get existing saved results
+            let savedResults = [];
+            try {
+                const saved = localStorage.getItem('governmentGameResults');
+                if (saved) {
+                    savedResults = JSON.parse(saved);
+                }
+            } catch (e) {
+                console.error('Error reading saved results:', e);
+            }
+            
+            // Add current result
+            savedResults.push({
+                ...window.lastResult,
+                timestamp: Date.now()
+            });
+            
+            // Keep only last 50 results
+            if (savedResults.length > 50) {
+                savedResults = savedResults.slice(-50);
+            }
+            
+            // Save to localStorage
+            try {
+                localStorage.setItem('governmentGameResults', JSON.stringify(savedResults));
+                const saveBtn = document.getElementById('saveBtn');
+                const originalText = saveBtn.innerHTML;
+                saveBtn.innerHTML = '✅ Saved!';
+                saveBtn.classList.add('saved');
+                setTimeout(() => {
+                    saveBtn.innerHTML = originalText;
+                    saveBtn.classList.remove('saved');
+                }, 2000);
+            } catch (e) {
+                alert('Unable to save result. Your browser may not support local storage.');
+            }
+        }
+
+        function shareResult() {
+            if (!window.lastResult) return;
+            
+            const text = generateResultText();
+            const url = window.location.href;
+            
+            // Use Web Share API if available
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Who\'s Responsible? Game Result',
+                    text: text,
+                    url: url
+                }).catch(err => {
+                    if (err.name !== 'AbortError') {
+                        console.error('Error sharing:', err);
+                        fallbackShare(text, url);
+                    }
+                });
+            } else {
+                fallbackShare(text, url);
+            }
+        }
+
+        function fallbackShare(text, url) {
+            // Create a shareable link with encoded data
+            const result = window.lastResult;
+            const shareData = {
+                s: result.score,
+                m: result.maxScore,
+                c: result.correct,
+                p: result.partial,
+                mode: result.mode
+            };
+            
+            const encoded = btoa(JSON.stringify(shareData));
+            const shareUrl = `${url.split('?')[0]}?result=${encoded}`;
+            
+            // Try to copy the URL
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(`${text}\n\nShare link: ${shareUrl}`).then(() => {
+                    showCopyFeedback();
+                    document.getElementById('copyFeedback').textContent = '✅ Share link copied!';
+                });
+            } else {
+                // Fallback: show in alert
+                prompt('Copy this to share:', `${text}\n\nShare link: ${shareUrl}`);
+            }
+        }
+
+        function showExplanation(topic) {
+            document.getElementById('explanationTitle').textContent = topic.label;
+            document.getElementById('explanationText').textContent = topic.explanation;
+            document.getElementById('explanationModal').classList.add('show');
+        }
+
+        function closeExplanation() {
+            document.getElementById('explanationModal').classList.remove('show');
+        }
+
+        // Mode toggle
+        document.querySelectorAll('.mode-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                gameMode = this.dataset.mode;
+            });
+        });
+
+        // Close modal on overlay click
+        document.getElementById('explanationModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeExplanation();
+            }
+        });
+
+        // Check for shared result in URL
+        function loadSharedResult() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const resultParam = urlParams.get('result');
+            
+            if (resultParam) {
+                try {
+                    const decoded = JSON.parse(atob(resultParam));
+                    displaySharedResult(decoded);
+                } catch (e) {
+                    console.error('Error decoding shared result:', e);
+                }
+            }
+        }
+
+        function displaySharedResult(data) {
+            const totalScore = data.mode === "strict" ? data.s : data.s + Math.floor(data.p / 2);
+            const maxScore = data.m;
+            
+            document.getElementById('scoreValue').textContent = `${totalScore} / ${maxScore}`;
+            document.getElementById('scoreDescription').textContent = 
+                `You correctly identified the primary responsibility for ${data.c} topics${data.p > 0 ? `, with ${data.p} partially correct placements` : ''}.`;
+            
+            const badgesContainer = document.getElementById('badgesContainer');
+            badgesContainer.innerHTML = '';
+            
+            if (data.c >= 10) {
+                badgesContainer.innerHTML += '<div class="badge">🏆 Civic Expert</div>';
+            }
+            if (data.c >= 8) {
+                badgesContainer.innerHTML += '<div class="badge">⭐ Federal Systems Thinker</div>';
+            }
+            if (data.p > 0) {
+                badgesContainer.innerHTML += '<div class="badge">🤝 Shared Powers Spotter</div>';
+            }
+            
+            document.getElementById('scoreSection').classList.add('show');
+            document.getElementById('checkBtn').style.display = 'none';
+            document.getElementById('newRoundBtn').style.display = 'block';
+            
+            // Store for sharing
+            window.lastResult = {
+                score: totalScore,
+                maxScore: maxScore,
+                correct: data.c,
+                partial: data.p,
+                incorrect: data.m - data.c - data.p,
+                mode: data.mode || 'learning',
+                badges: badgesContainer.innerHTML,
+                date: new Date().toLocaleDateString()
+            };
+        }
+
+        // Initialize game
+        loadSharedResult();
+        if (!window.lastResult) {
+            startNewRound();
+        }
+    </script>
+</body>
+</html>

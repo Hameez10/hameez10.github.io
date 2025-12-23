@@ -245,8 +245,12 @@ root/
 ├── media.html
 ├── cool-stuff.html
 ├── contact.html
-├── TravelingSalesmanAlgorithm.html  # Route Optimizer tool
-└── activity-points.html             # Activity Point Calculator
+├── TravelingSalesmanAlgorithm.html      # Route Optimizer tool
+├── activity-points.html                 # Activity Point Calculator
+├── how-bill-becomes-law.html           # Canadian legislative process interactive guide
+├── government-responsibilities.html     # Federal/Provincial/Municipal responsibilities reference
+├── government-responsibilities-game.html # Drag-and-drop civic knowledge game
+└── canadian-honours-quiz.html          # Canadian honours eligibility quiz
 ```
 
 ### CSS Methodology
@@ -304,4 +308,12 @@ root/
    - LinkedIn post embeds using official embed feature
    - Instagram post embeds for visual content
    - Responsive grid layout for social media posts
-   - Posts displayed in chronological order (most recent first) 
+   - Posts displayed in chronological order (most recent first)
+
+6. **Cool Stuff Interactive Tools**
+   - **How a Bill Becomes Law**: Clickable flow diagram with detailed explanations for each stage
+   - **Who's Responsible? Reference**: Topic-based cards with search, filters, and detailed drawers
+   - **Who's Responsible? Game**: Drag-and-drop game with balanced rounds, scoring, and save/share
+   - All tools use consistent design system and are fully responsive
+   - Games include localStorage for personal progress tracking (no leaderboards)
+   - Share functionality via Web Share API with fallback options 

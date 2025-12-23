@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who's Responsible? (Canada) - Hameez Iqbal</title>
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <style>
+        :root {
+            --primary-color: #FF6B6B;
+            --accent-color: #4ECDC4;
+            --warm-bg: #FFF9F4;
+            --text-dark: #2D3436;
+            --text-light: #636E72;
+            --federal-color: #4ECDC4;
+            --provincial-color: #FF6B6B;
+            --municipal-color: #5A6C7D;
+            --shared-color: #9B59B6;
+        }
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--warm-bg);
+            overflow-y: auto;
+        }
+        .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            height: auto;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 0.75rem;
+            }
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 2rem 2rem 2rem;
+        }
+        .header-section {
+            margin-bottom: 2rem;
+        }
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+        }
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        .view-toggle {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-end;
+            margin-bottom: 2rem;
+        }
+        .toggle-btn {
+            background: white;
+            border: 2px solid var(--text-light);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: var(--text-dark);
+        }
+        .toggle-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        .toggle-btn:hover {
+            border-color: var(--primary-color);
+        }
+        .search-filters-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .search-box {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--warm-bg);
+            border-radius: 12px;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            transition: border-color 0.3s ease;
+        }
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        .filters-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        .filter-chip {
+            background: var(--warm-bg);
+            border: 2px solid transparent;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .filter-chip:hover {
+            border-color: var(--accent-color);
+        }
+        .filter-chip.active {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+        .level-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        .level-pill {
+            background: white;
+            border: 2px solid var(--text-light);
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .level-pill.federal {
+            border-color: var(--federal-color);
+        }
+        .level-pill.provincial {
+            border-color: var(--provincial-color);
+        }
+        .level-pill.municipal {
+            border-color: var(--municipal-color);
+        }
+        .level-pill.shared {
+            border-color: var(--shared-color);
+        }
+        .level-pill.active {
+            color: white;
+        }
+        .level-pill.federal.active {
+            background: var(--federal-color);
+        }
+        .level-pill.provincial.active {
+            background: var(--provincial-color);
+        }
+        .level-pill.municipal.active {
+            background: var(--municipal-color);
+        }
+        .level-pill.shared.active {
+            background: var(--shared-color);
+        }
+        .level-pill:hover {
+            transform: translateY(-2px);
+        }
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .topic-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        .topic-card.hidden {
+            display: none;
+        }
+        .topic-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+        .responsibility-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .badge {
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .badge.federal {
+            background: rgba(78, 205, 196, 0.15);
+            color: var(--federal-color);
+        }
+        .badge.provincial {
+            background: rgba(255, 107, 107, 0.15);
+            color: var(--provincial-color);
+        }
+        .badge.municipal {
+            background: rgba(90, 108, 125, 0.15);
+            color: var(--municipal-color);
+        }
+        .badge.shared {
+            background: rgba(155, 89, 182, 0.15);
+            color: var(--shared-color);
+        }
+        .badge.primary {
+            font-weight: 600;
+        }
+        .topic-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+        .common-examples {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+        .drawer {
+            position: fixed;
+            right: -100%;
+            top: 0;
+            width: 600px;
+            max-width: 90vw;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
+            z-index: 2000;
+            overflow-y: auto;
+            transition: right 0.3s ease;
+            padding: 2rem;
+        }
+        .drawer.open {
+            right: 0;
+        }
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--warm-bg);
+        }
+        .drawer-title {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        .close-btn {
+            background: var(--warm-bg);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+        .close-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        .at-a-glance {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .glance-item {
+            flex: 1;
+            min-width: 150px;
+            background: var(--warm-bg);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .glance-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+        .glance-value {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .responsibilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .responsibility-column {
+            background: var(--warm-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+        .responsibility-column h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        .responsibility-column.federal h3 {
+            color: var(--federal-color);
+        }
+        .responsibility-column.provincial h3 {
+            color: var(--provincial-color);
+        }
+        .responsibility-column.municipal h3 {
+            color: var(--municipal-color);
+        }
+        .responsibility-column ul {
+            list-style: none;
+            padding: 0;
+        }
+        .responsibility-column li {
+            padding: 0.5rem 0;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .responsibility-column li:last-child {
+            border-bottom: none;
+        }
+        .nuance-meter {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: var(--warm-bg);
+            border-radius: 12px;
+        }
+        .nuance-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        .nuance-bar {
+            height: 8px;
+            background: var(--warm-bg);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+        .nuance-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            top: -6px;
+            transition: left 0.3s ease;
+        }
+        .examples-section, .related-section {
+            margin: 2rem 0;
+        }
+        .examples-section h3, .related-section h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        .examples-section ul, .related-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .examples-section li {
+            padding: 0.5rem 0;
+            color: var(--text-light);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .examples-section li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        .related-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .related-link {
+            background: var(--warm-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .related-link:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1500;
+        }
+        .overlay.active {
+            display: block;
+        }
+        .map-view {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .map-view.active {
+            display: block;
+        }
+        .map-placeholder {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-light);
+        }
+        .map-placeholder p {
+            margin-bottom: 1rem;
+        }
+        .map-note {
+            background: var(--warm-bg);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 100px 1rem 2rem 1rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .drawer {
+                width: 100vw;
+                max-width: 100vw;
+            }
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+            .view-toggle {
+                justify-content: center;
+            }
+            .responsibilities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+    <div class="container">
+        <div class="header-section">
+            <h1>🏛️ Who's Responsible? (Canada)</h1>
+            <p class="subtitle">Federal vs Provincial/Territorial vs Municipal—explained by topic</p>
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+                <a href="government-responsibilities-game.html" style="display: inline-block; background: var(--primary-color); color: white; padding: 0.75rem 2rem; border-radius: 25px; text-decoration: none; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(255, 107, 107, 0.2);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(255, 107, 107, 0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(255, 107, 107, 0.2)';">
+                    🎮 Play the Game
+                </a>
+            </div>
+            <div class="view-toggle">
+                <button class="toggle-btn active" data-view="cards">Cards</button>
+                <button class="toggle-btn" data-view="map">Map</button>
+            </div>
+        </div>
+
+        <div class="search-filters-section">
+            <input type="text" class="search-box" id="searchBox" placeholder="Type a service (e.g., roads, EI, schools)">
+            <div class="filters-container">
+                <span class="filter-chip" data-filter="all">All Topics</span>
+                <span class="filter-chip" data-filter="everyday">Everyday life</span>
+                <span class="filter-chip" data-filter="money">Money & taxes</span>
+                <span class="filter-chip" data-filter="health">Health & safety</span>
+                <span class="filter-chip" data-filter="infrastructure">Infrastructure</span>
+                <span class="filter-chip" data-filter="justice">Justice</span>
+                <span class="filter-chip" data-filter="environment">Environment</span>
+            </div>
+            <div class="level-pills">
+                <div class="level-pill federal" data-level="federal">Federal</div>
+                <div class="level-pill provincial" data-level="provincial">Provincial/Territorial</div>
+                <div class="level-pill municipal" data-level="municipal">Municipal</div>
+                <div class="level-pill shared" data-level="shared">Shared</div>
+            </div>
+        </div>
+
+        <div class="cards-view">
+            <div class="topics-grid" id="topicsGrid"></div>
+        </div>
+
+        <div class="map-view" id="mapView">
+            <div class="map-placeholder">
+                <h2>Map View</h2>
+                <p>Select a topic from the cards view to see how responsibilities vary across provinces and territories.</p>
+                <div class="map-note">
+                    <strong>Note:</strong> The map view shows regional variations in shared responsibilities. For most topics, select a topic card first to see province-specific details.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="drawer" id="drawer">
+        <div class="drawer-header">
+            <h2 class="drawer-title" id="drawerTitle"></h2>
+            <button class="close-btn" onclick="closeDrawer()">×</button>
+        </div>
+        <div id="drawerContent"></div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script>
+        const topics = [
+            {
+                name: "Healthcare",
+                primary: "provincial",
+                secondary: ["federal"],
+                description: "Provinces run hospitals and deliver care; federal supports via funding and national frameworks.",
+                examples: "Hospitals, clinics, health insurance, public health",
+                category: "health",
+                atGlance: {
+                    primary: "Provincial/Territorial",
+                    often: "Federal",
+                    local: "Sometimes"
+                },
+                responsibilities: {
+                    federal: [
+                        "Funding transfers (e.g., health transfer)",
+                        "National public health agencies (certain roles)",
+                        "Health for specific populations (some services)"
+                    ],
+                    provincial: [
+                        "Hospitals, clinics, insurance plans",
+                        "Licensing & regulation of professionals",
+                        "Health policy + delivery"
+                    ],
+                    municipal: [
+                        "Local public health services (varies)",
+                        "Paramedic services (varies)",
+                        "Community health programs (varies)"
+                    ]
+                },
+                nuance: 20,
+                examplesList: [
+                    "OHIP in Ontario, MSP in BC",
+                    "Hospital operations",
+                    "Doctor licensing",
+                    "Public health units"
+                ],
+                related: ["Education", "Social Services"]
+            },
+            {
+                name: "Education (K-12 & Universities)",
+                primary: "provincial",
+                secondary: [],
+                description: "Provinces set curriculum, fund schools, and regulate post-secondary institutions.",
+                examples: "Public schools, universities, curriculum, teacher certification",
+                category: "everyday",
+                atGlance: {
+                    primary: "Provincial/Territorial",
+                    often: "None",
+                    local: "Sometimes"
+                },
+                responsibilities: {
+                    federal: [],
+                    provincial: [
+                        "Curriculum standards",
+                        "School funding",
+                        "Teacher certification",
+                        "University regulation"
+                    ],
+                    municipal: [
+                        "School board administration (varies)",
+                        "Local school facilities (varies)"
+                    ]
+                },
+                nuance: 10,
+                examplesList: [
+                    "Ontario Ministry of Education",
+                    "Provincial curriculum",
+                    "School boards",
+                    "University funding"
+                ],
+                related: ["Healthcare", "Social Services"]
+            },
+            {
+                name: "Immigration & Citizenship",
+                primary: "federal",
+                secondary: [],
+                description: "Federal government manages immigration, refugees, and citizenship applications.",
+                examples: "Visas, permanent residency, citizenship, refugee programs",
+                category: "everyday",
+                atGlance: {
+                    primary: "Federal",
+                    often: "None",
+                    local: "Rarely"
+                },
+                responsibilities: {
+                    federal: [
+                        "Immigration policy",
+                        "Citizenship applications",
+                        "Refugee programs",
+                        "Border security"
+                    ],
+                    provincial: [
+                        "Provincial nominee programs (some)",
+                        "Settlement services (some)"
+                    ],
+                    municipal: []
+                },
+                nuance: 5,
+                examplesList: [
+                    "IRCC (Immigration, Refugees and Citizenship Canada)",
+                    "Express Entry",
+                    "Provincial Nominee Programs",
+                    "Citizenship ceremonies"
+                ],
+                related: ["Employment Insurance", "Social Services"]
+            },
+            {
+                name: "Employment Insurance",
+                primary: "federal",
+                secondary: [],
+                description: "Federal program providing temporary income support to eligible workers.",
+                examples: "EI benefits, job training, parental benefits",
+                category: "money",
+                atGlance: {
+                    primary: "Federal",
+                    often: "None",
+                    local: "None"
+                },
+                responsibilities: {
+                    federal: [
+                        "EI benefits administration",
+                        "Job training programs",
+                        "Parental benefits",
+                        "Sickness benefits"
+                    ],
+                    provincial: [],
+                    municipal: []
+                },
+                nuance: 0,
+                examplesList: [
+                    "Service Canada",
+                    "EI claims",
+                    "Maternity/parental leave",
+                    "Job training support"
+                ],
+                related: ["Federal Taxes", "Social Services"]
+            },
+            {
+                name: "Criminal Law",
+                primary: "federal",
+                secondary: ["provincial"],
+                description: "Federal sets criminal law; provinces administer courts and corrections.",
+                examples: "Criminal Code, courts, prisons, police",
+                category: "justice",
+                atGlance: {
+                    primary: "Federal",
+                    often: "Provincial/Territorial",
+                    local: "Sometimes"
+                },
+                responsibilities: {
+                    federal: [
+                        "Criminal Code",
+                        "RCMP (federal policing)",
+                        "Federal corrections"
+                    ],
+                    provincial: [
+                        "Provincial courts",
+                        "Provincial corrections",
+                        "Provincial police (some)"
+                    ],
+                    municipal: [
+                        "Local police services (varies)",
+                        "By-law enforcement"
+                    ]
+                },
+                nuance: 30,
+                examplesList: [
+                    "Criminal Code of Canada",
+                    "Provincial courts",
+                    "RCMP",
+                    "Local police forces"
+                ],
+                related: ["Policing", "Justice System"]
+            },
+            {
+                name: "Policing",
+                primary: "shared",
+                secondary: ["federal", "provincial", "municipal"],
+                description: "Shared responsibility: RCMP (federal), provincial police, and municipal forces.",
+                examples: "RCMP, OPP, local police, by-law enforcement",
+                category: "justice",
+                atGlance: {
+                    primary: "Shared",
+                    often: "All levels",
+                    local: "Often"
+                },
+                responsibilities: {
+                    federal: [
+                        "RCMP (federal jurisdiction)",
+                        "National security",
+                        "Border enforcement"
+                    ],
+                    provincial: [
+                        "Provincial police (OPP, SQ, etc.)",
+                        "Highway patrol",
+                        "Provincial law enforcement"
+                    ],
+                    municipal: [
+                        "Local police services",
+                        "By-law enforcement",
+                        "Traffic enforcement"
+                    ]
+                },
+                nuance: 80,
+                examplesList: [
+                    "RCMP",
+                    "Ontario Provincial Police (OPP)",
+                    "Toronto Police Service",
+                    "Municipal by-law officers"
+                ],
+                related: ["Criminal Law", "Emergency Services"]
+            },
+            {
+                name: "Garbage & Recycling",
+                primary: "municipal",
+                secondary: ["provincial"],
+                description: "Municipalities collect and manage waste; provinces set environmental standards.",
+                examples: "Garbage collection, recycling programs, waste management",
+                category: "everyday",
+                atGlance: {
+                    primary: "Municipal",
+                    often: "Provincial/Territorial",
+                    local: "Municipal"
+                },
+                responsibilities: {
+                    federal: [],
+                    provincial: [
+                        "Environmental regulations",
+                        "Waste diversion targets",
+                        "Provincial standards"
+                    ],
+                    municipal: [
+                        "Garbage collection",
+                        "Recycling programs",
+                        "Waste management facilities",
+                        "Composting programs"
+                    ]
+                },
+                nuance: 25,
+                examplesList: [
+                    "Curbside collection",
+                    "Blue box programs",
+                    "Landfill management",
+                    "Waste diversion programs"
+                ],
+                related: ["Environment", "Water & Wastewater"]
+            },
+            {
+                name: "Water & Wastewater",
+                primary: "municipal",
+                secondary: ["provincial"],
+                description: "Municipalities operate water systems; provinces set safety standards.",
+                examples: "Water treatment, sewage, water quality",
+                category: "infrastructure",
+                atGlance: {
+                    primary: "Municipal",
+                    often: "Provincial/Territorial",
+                    local: "Municipal"
+                },
+                responsibilities: {
+                    federal: [
+                        "National guidelines (some)"
+                    ],
+                    provincial: [
+                        "Water quality standards",
+                        "Environmental regulations",
+                        "Provincial oversight"
+                    ],
+                    municipal: [
+                        "Water treatment plants",
+                        "Sewage systems",
+                        "Water distribution",
+                        "Infrastructure maintenance"
+                    ]
+                },
+                nuance: 20,
+                examplesList: [
+                    "Water treatment facilities",
+                    "Sewage treatment",
+                    "Water quality testing",
+                    "Infrastructure maintenance"
+                ],
+                related: ["Garbage & Recycling", "Infrastructure"]
+            },
+            {
+                name: "Local Roads & Sidewalks",
+                primary: "municipal",
+                secondary: [],
+                description: "Municipalities maintain local roads, sidewalks, and street infrastructure.",
+                examples: "City streets, sidewalks, local roads, street signs",
+                category: "infrastructure",
+                atGlance: {
+                    primary: "Municipal",
+                    often: "None",
+                    local: "Municipal"
+                },
+                responsibilities: {
+                    federal: [],
+                    provincial: [
+                        "Provincial highways (some)"
+                    ],
+                    municipal: [
+                        "Local road maintenance",
+                        "Sidewalk maintenance",
+                        "Street signs and signals",
+                        "Snow removal (local roads)"
+                    ]
+                },
+                nuance: 10,
+                examplesList: [
+                    "City street maintenance",
+                    "Sidewalk repairs",
+                    "Traffic signs",
+                    "Local road plowing"
+                ],
+                related: ["Highways", "Transit"]
+            },
+            {
+                name: "Highways",
+                primary: "provincial",
+                secondary: ["federal"],
+                description: "Provinces manage most highways; federal handles national routes.",
+                examples: "Provincial highways, 400-series, Trans-Canada Highway",
+                category: "infrastructure",
+                atGlance: {
+                    primary: "Provincial/Territorial",
+                    often: "Federal",
+                    local: "Rarely"
+                },
+                responsibilities: {
+                    federal: [
+                        "Trans-Canada Highway",
+                        "National infrastructure funding"
+                    ],
+                    provincial: [
+                        "Provincial highways",
+                        "Highway maintenance",
+                        "Driver licensing",
+                        "Traffic enforcement (highways)"
+                    ],
+                    municipal: []
+                },
+                nuance: 15,
+                examplesList: [
+                    "Highway 401, 400-series",
+                    "Provincial highway maintenance",
+                    "Driver licensing",
+                    "Highway patrol"
+                ],
+                related: ["Local Roads & Sidewalks", "Driver Licensing"]
+            },
+            {
+                name: "Driver Licensing",
+                primary: "provincial",
+                secondary: [],
+                description: "Provinces issue driver's licenses and set licensing requirements.",
+                examples: "Driver's licenses, vehicle registration, road tests",
+                category: "everyday",
+                atGlance: {
+                    primary: "Provincial/Territorial",
+                    often: "None",
+                    local: "None"
+                },
+                responsibilities: {
+                    federal: [],
+                    provincial: [
+                        "Driver's license issuance",
+                        "Vehicle registration",
+                        "Road tests",
+                        "Licensing regulations"
+                    ],
+                    municipal: []
+                },
+                nuance: 5,
+                examplesList: [
+                    "Ontario G1, G2, G licenses",
+                    "Vehicle registration",
+                    "Driver testing",
+                    "License renewals"
+                ],
+                related: ["Highways", "Vehicle Registration"]
+            },
+            {
+                name: "Housing",
+                primary: "shared",
+                secondary: ["federal", "provincial", "municipal"],
+                description: "Shared responsibility: federal funding, provincial programs, municipal zoning.",
+                examples: "Social housing, zoning, affordable housing programs",
+                category: "everyday",
+                atGlance: {
+                    primary: "Shared",
+                    often: "All levels",
+                    local: "Often"
+                },
+                responsibilities: {
+                    federal: [
+                        "National housing strategy",
+                        "CMHC programs",
+                        "Federal funding"
+                    ],
+                    provincial: [
+                        "Provincial housing programs",
+                        "Rent control (some)",
+                        "Housing policy"
+                    ],
+                    municipal: [
+                        "Zoning and land use",
+                        "Building permits",
+                        "Local housing programs",
+                        "Affordable housing initiatives"
+                    ]
+                },
+                nuance: 75,
+                examplesList: [
+                    "CMHC programs",
+                    "Social housing",
+                    "Zoning bylaws",
+                    "Affordable housing initiatives"
+                ],
+                related: ["Zoning & Building Permits", "Social Services"]
+            },
+            {
+                name: "Zoning & Building Permits",
+                primary: "municipal",
+                secondary: ["provincial"],
+                description: "Municipalities control land use and building permits; provinces set building codes.",
+                examples: "Zoning bylaws, building permits, land use planning",
+                category: "infrastructure",
+                atGlance: {
+                    primary: "Municipal",
+                    often: "Provincial/Territorial",
+                    local: "Municipal"
+                },
+                responsibilities: {
+                    federal: [],
+                    provincial: [
+                        "Building codes",
+                        "Provincial planning frameworks"
+                    ],
+                    municipal: [
+                        "Zoning bylaws",
+                        "Building permits",
+                        "Land use planning",
+                        "Development approvals"
+                    ]
+                },
+                nuance: 20,
+                examplesList: [
+                    "Zoning bylaws",
+                    "Building permits",
+                    "Development approvals",
+                    "Land use planning"
+                ],
+                related: ["Housing", "Local Roads & Sidewalks"]
+            },
+            {
+                name: "Environment",
+                primary: "shared",
+                secondary: ["federal", "provincial", "municipal"],
+                description: "Shared jurisdiction with federal standards, provincial implementation, local action.",
+                examples: "Climate change, pollution, protected areas, environmental assessments",
+                category: "environment",
+                atGlance: {
+                    primary: "Shared",
+                    often: "All levels",
+                    local: "Sometimes"
+                },
+                responsibilities: {
+                    federal: [
+                        "National environmental standards",
+                        "Climate change policy",
+                        "International agreements",
+                        "Federal environmental assessments"
+                    ],
+                    provincial: [
+                        "Provincial environmental regulations",
+                        "Provincial parks",
+                        "Resource management",
+                        "Provincial assessments"
+                    ],
+                    municipal: [
+                        "Local environmental programs",
+                        "Tree planting",
+                        "Local conservation (varies)"
+                    ]
+                },
+                nuance: 70,
+                examplesList: [
+                    "Carbon pricing",
+                    "Provincial parks",
+                    "Environmental assessments",
+                    "Climate action plans"
+                ],
+                related: ["Natural Resources", "Water & Wastewater"]
+            },
+            {
+                name: "Natural Resources",
+                primary: "provincial",
+                secondary: ["federal"],
+                description: "Provinces manage most resources; federal handles interprovincial and international.",
+                examples: "Mining, forestry, oil and gas, fisheries",
+                category: "environment",
+                atGlance: {
+                    primary: "Provincial/Territorial",
+                    often: "Federal",
+                    local: "Rarely"
+                },
+                responsibilities: {
+                    federal: [
+                        "Interprovincial trade",
+                        "International trade",
+                        "Fisheries (coastal)",
+                        "Nuclear energy"
+                    ],
+                    provincial: [
+                        "Mining rights",
+                        "Forestry",
+                        "Oil and gas (most)",
+                        "Provincial resource management"
+                    ],
+                    municipal: []
+                },
+                nuance: 25,
+                examplesList: [
+                    "Mining permits",
+                    "Forestry management",
+                    "Oil and gas extraction",
+                    "Resource royalties"
+                ],
+                related: ["Environment", "Property & Civil Rights"]
+            },
+            {
+                name: "Property & Civil Rights",
+                primary: "provincial",
+                secondary: [],
+                description: "Provinces have broad jurisdiction over property law and civil matters.",
+                examples: "Property law, contracts, family law, wills",
+                category: "justice",
+                atGlance: {
+                    primary: "Provincial/Territorial",
+                    often: "None",
+                    local: "None"
+                },
+                responsibilities: {
+                    federal: [],
+                    provincial: [
+                        "Property law",
+                        "Contract law",
+                        "Family law",
+                        "Wills and estates",
+                        "Civil courts"
+                    ],
+                    municipal: []
+                },
+                nuance: 5,
+                examplesList: [
+                    "Property transactions",
+                    "Family courts",
+                    "Civil litigation",
+                    "Estate planning"
+                ],
+                related: ["Criminal Law", "Justice System"]
+            },
+            {
+                name: "Federal Taxes",
+                primary: "federal",
+                secondary: [],
+                description: "Federal government collects income tax, GST/HST, and corporate taxes.",
+                examples: "Income tax, GST/HST, corporate tax",
+                category: "money",
+                atGlance: {
+                    primary: "Federal",
+                    often: "None",
+                    local: "None"
+                },
+                responsibilities: {
+                    federal: [
+                        "Income tax",
+                        "GST/HST",
+                        "Corporate tax",
+                        "Tax administration (CRA)"
+                    ],
+                    provincial: [
+                        "Provincial income tax (collected by CRA)",
+                        "Some provincial taxes"
+                    ],
+                    municipal: []
+                },
+                nuance: 10,
+                examplesList: [
+                    "Income tax returns",
+                    "GST/HST",
+                    "Corporate taxes",
+                    "CRA administration"
+                ],
+                related: ["Employment Insurance", "Provincial Taxes"]
+            },
+            {
+                name: "Transit",
+                primary: "municipal",
+                secondary: ["provincial", "federal"],
+                description: "Municipalities operate transit; provinces and feds provide funding.",
+                examples: "Buses, subways, LRT, transit planning",
+                category: "infrastructure",
+                atGlance: {
+                    primary: "Municipal",
+                    often: "Provincial/Territorial, Federal",
+                    local: "Municipal"
+                },
+                responsibilities: {
+                    federal: [
+                        "Infrastructure funding",
+                        "National transit strategy"
+                    ],
+                    provincial: [
+                        "Provincial funding",
+                        "Regional transit coordination (some)",
+                        "GO Transit (Ontario)"
+                    ],
+                    municipal: [
+                        "Local transit operations",
+                        "Transit planning",
+                        "Fare collection",
+                        "Service delivery"
+                    ]
+                },
+                nuance: 40,
+                examplesList: [
+                    "TTC, OC Transpo",
+                    "GO Transit",
+                    "LRT systems",
+                    "Bus networks"
+                ],
+                related: ["Local Roads & Sidewalks", "Infrastructure"]
+            },
+            {
+                name: "Fire Services",
+                primary: "municipal",
+                secondary: [],
+                description: "Municipalities provide fire protection and emergency response.",
+                examples: "Fire departments, fire prevention, emergency response",
+                category: "health",
+                atGlance: {
+                    primary: "Municipal",
+                    often: "None",
+                    local: "Municipal"
+                },
+                responsibilities: {
+                    federal: [],
+                    provincial: [
+                        "Fire safety codes (some)",
+                        "Provincial standards"
+                    ],
+                    municipal: [
+                        "Fire departments",
+                        "Fire prevention",
+                        "Emergency response",
+                        "Fire inspections"
+                    ]
+                },
+                nuance: 15,
+                examplesList: [
+                    "Fire departments",
+                    "Fire prevention programs",
+                    "Emergency response",
+                    "Fire code enforcement"
+                ],
+                related: ["Emergency Services", "Policing"]
+            },
+            {
+                name: "Social Services",
+                primary: "shared",
+                secondary: ["provincial", "municipal"],
+                description: "Shared responsibility with provincial delivery and municipal support.",
+                examples: "Welfare, disability support, child services, seniors programs",
+                category: "everyday",
+                atGlance: {
+                    primary: "Shared",
+                    often: "Provincial/Territorial, Municipal",
+                    local: "Sometimes"
+                },
+                responsibilities: {
+                    federal: [
+                        "Federal benefits (OAS, CPP)",
+                        "Indigenous services (some)"
+                    ],
+                    provincial: [
+                        "Social assistance",
+                        "Disability support",
+                        "Child welfare",
+                        "Seniors programs"
+                    ],
+                    municipal: [
+                        "Local social services (varies)",
+                        "Community programs",
+                        "Housing support (some)"
+                    ]
+                },
+                nuance: 60,
+                examplesList: [
+                    "Ontario Works",
+                    "ODSP",
+                    "Child welfare services",
+                    "Community support programs"
+                ],
+                related: ["Healthcare", "Housing"]
+            },
+            {
+                name: "National Defence",
+                primary: "federal",
+                secondary: [],
+                description: "Federal government is responsible for national defence and armed forces.",
+                examples: "Canadian Armed Forces, national security, defence policy",
+                category: "justice",
+                atGlance: {
+                    primary: "Federal",
+                    often: "None",
+                    local: "None"
+                },
+                responsibilities: {
+                    federal: [
+                        "Canadian Armed Forces",
+                        "National defence policy",
+                        "Military operations",
+                        "Defence procurement"
+                    ],
+                    provincial: [],
+                    municipal: []
+                },
+                nuance: 0,
+                examplesList: [
+                    "Canadian Armed Forces",
+                    "National defence",
+                    "Military bases",
+                    "Defence spending"
+                ],
+                related: ["Criminal Law", "Border Security"]
+            },
+            {
+                name: "Currency & Banking",
+                primary: "federal",
+                secondary: [],
+                description: "Federal government manages currency, banking regulation, and monetary policy.",
+                examples: "Bank of Canada, banking regulation, currency",
+                category: "money",
+                atGlance: {
+                    primary: "Federal",
+                    often: "None",
+                    local: "None"
+                },
+                responsibilities: {
+                    federal: [
+                        "Bank of Canada",
+                        "Banking regulation",
+                        "Currency",
+                        "Monetary policy"
+                    ],
+                    provincial: [],
+                    municipal: []
+                },
+                nuance: 0,
+                examplesList: [
+                    "Bank of Canada",
+                    "Banking regulations",
+                    "Canadian dollar",
+                    "Monetary policy"
+                ],
+                related: ["Federal Taxes", "International Trade"]
+            },
+            {
+                name: "International Trade",
+                primary: "federal",
+                secondary: ["provincial"],
+                description: "Federal negotiates trade agreements; provinces may have some trade roles.",
+                examples: "Trade agreements, tariffs, export/import regulation",
+                category: "money",
+                atGlance: {
+                    primary: "Federal",
+                    often: "Provincial/Territorial",
+                    local: "None"
+                },
+                responsibilities: {
+                    federal: [
+                        "Trade agreements",
+                        "Tariffs",
+                        "Export/import regulation",
+                        "International trade policy"
+                    ],
+                    provincial: [
+                        "Provincial trade promotion (some)",
+                        "Interprovincial trade"
+                    ],
+                    municipal: []
+                },
+                nuance: 15,
+                examplesList: [
+                    "CUSMA (USMCA)",
+                    "Trade agreements",
+                    "Export permits",
+                    "Trade missions"
+                ],
+                related: ["Currency & Banking", "Natural Resources"]
+            },
+            {
+                name: "Indigenous Affairs",
+                primary: "federal",
+                secondary: ["provincial"],
+                description: "Federal has primary responsibility; provinces involved in some areas.",
+                examples: "Reserves, treaties, Indigenous services, land claims",
+                category: "everyday",
+                atGlance: {
+                    primary: "Federal",
+                    often: "Provincial/Territorial",
+                    local: "Rarely"
+                },
+                responsibilities: {
+                    federal: [
+                        "Reserve lands",
+                        "Treaty negotiations",
+                        "Indigenous Services Canada",
+                        "Crown-Indigenous relations"
+                    ],
+                    provincial: [
+                        "Provincial services (some)",
+                        "Provincial programs (some)"
+                    ],
+                    municipal: []
+                },
+                nuance: 25,
+                examplesList: [
+                    "Reserve administration",
+                    "Treaty negotiations",
+                    "Indigenous Services",
+                    "Land claims"
+                ],
+                related: ["Social Services", "Natural Resources"]
+            }
+        ];
+
+        let currentFilter = "all";
+        let currentLevel = "all";
+        let currentView = "cards";
+        let searchTerm = "";
+
+        function renderTopics() {
+            const grid = document.getElementById('topicsGrid');
+            grid.innerHTML = '';
+
+            const filtered = topics.filter(topic => {
+                const matchesFilter = currentFilter === "all" || topic.category === currentFilter;
+                const matchesLevel = currentLevel === "all" || 
+                    topic.primary === currentLevel || 
+                    topic.secondary.includes(currentLevel);
+                const matchesSearch = searchTerm === "" || 
+                    topic.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    topic.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    topic.examples.toLowerCase().includes(searchTerm.toLowerCase());
+
+                return matchesFilter && matchesLevel && matchesSearch;
+            });
+
+            filtered.forEach(topic => {
+                const card = document.createElement('div');
+                card.className = 'topic-card';
+                card.onclick = () => openDrawer(topic);
+
+                const badges = [topic.primary, ...topic.secondary].map(level => {
+                    const isPrimary = level === topic.primary;
+                    return `<span class="badge ${level} ${isPrimary ? 'primary' : ''}">${level === 'federal' ? 'Federal' : level === 'provincial' ? 'Provincial/Territorial' : level === 'municipal' ? 'Municipal' : 'Shared'}${isPrimary ? ' (Primary)' : ''}</span>`;
+                }).join('');
+
+                card.innerHTML = `
+                    <div class="topic-name">${topic.name}</div>
+                    <div class="responsibility-badges">${badges}</div>
+                    <div class="topic-description">${topic.description}</div>
+                    <div class="common-examples">Examples: ${topic.examples}</div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        function openDrawer(topic) {
+            const drawer = document.getElementById('drawer');
+            const overlay = document.getElementById('overlay');
+            const title = document.getElementById('drawerTitle');
+            const content = document.getElementById('drawerContent');
+
+            title.textContent = topic.name;
+
+            const responsibilitiesHTML = `
+                <div class="responsibility-column federal">
+                    <h3>Federal</h3>
+                    <ul>
+                        ${topic.responsibilities.federal.length > 0 
+                            ? topic.responsibilities.federal.map(r => `<li>${r}</li>`).join('')
+                            : '<li>Not typically involved</li>'}
+                    </ul>
+                </div>
+                <div class="responsibility-column provincial">
+                    <h3>Provincial/Territorial</h3>
+                    <ul>
+                        ${topic.responsibilities.provincial.length > 0 
+                            ? topic.responsibilities.provincial.map(r => `<li>${r}</li>`).join('')
+                            : '<li>Not typically involved</li>'}
+                    </ul>
+                </div>
+                <div class="responsibility-column municipal">
+                    <h3>Municipal</h3>
+                    <ul>
+                        ${topic.responsibilities.municipal.length > 0 
+                            ? topic.responsibilities.municipal.map(r => `<li>${r}</li>`).join('')
+                            : '<li>Not typically involved</li>'}
+                    </ul>
+                </div>
+            `;
+
+            content.innerHTML = `
+                <div class="at-a-glance">
+                    <div class="glance-item">
+                        <div class="glance-label">Primary responsibility</div>
+                        <div class="glance-value">${topic.atGlance.primary}</div>
+                    </div>
+                    <div class="glance-item">
+                        <div class="glance-label">Usually involved</div>
+                        <div class="glance-value">${topic.atGlance.often}</div>
+                    </div>
+                    <div class="glance-item">
+                        <div class="glance-label">Local delivery</div>
+                        <div class="glance-value">${topic.atGlance.local}</div>
+                    </div>
+                </div>
+
+                <h3 style="color: var(--accent-color); margin: 2rem 0 1rem 0;">What they actually do</h3>
+                <div class="responsibilities-grid">
+                    ${responsibilitiesHTML}
+                </div>
+
+                <div class="nuance-meter">
+                    <div class="nuance-label">
+                        <span>Mostly one level</span>
+                        <span>Shared a lot</span>
+                    </div>
+                    <div class="nuance-bar">
+                        <div class="nuance-dot" style="left: ${topic.nuance}%"></div>
+                    </div>
+                </div>
+
+                <div class="examples-section">
+                    <h3>Examples you'll recognize</h3>
+                    <ul>
+                        ${topic.examplesList.map(ex => `<li>${ex}</li>`).join('')}
+                    </ul>
+                </div>
+
+                ${topic.related && topic.related.length > 0 ? `
+                    <div class="related-section">
+                        <h3>Related topics</h3>
+                        <div class="related-links">
+                            ${topic.related.map(rel => {
+                                const relatedTopic = topics.find(t => t.name === rel);
+                                if (relatedTopic) {
+                                    const topicIndex = topics.indexOf(relatedTopic);
+                                    return `<a href="#" class="related-link" onclick="event.preventDefault(); openDrawerByIndex(${topicIndex}); return false;">${rel}</a>`;
+                                }
+                                return '';
+                            }).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+            `;
+
+            drawer.classList.add('open');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+            const drawer = document.getElementById('drawer');
+            const overlay = document.getElementById('overlay');
+            drawer.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function openDrawerByIndex(index) {
+            openDrawer(topics[index]);
+        }
+
+        // Event listeners
+        document.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.addEventListener('click', function() {
+                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                currentFilter = this.dataset.filter;
+                renderTopics();
+            });
+        });
+
+        document.querySelectorAll('.level-pill').forEach(pill => {
+            pill.addEventListener('click', function() {
+                if (this.classList.contains('active')) {
+                    this.classList.remove('active');
+                    currentLevel = "all";
+                } else {
+                    document.querySelectorAll('.level-pill').forEach(p => p.classList.remove('active'));
+                    this.classList.add('active');
+                    currentLevel = this.dataset.level;
+                }
+                renderTopics();
+            });
+        });
+
+        document.getElementById('searchBox').addEventListener('input', function(e) {
+            searchTerm = e.target.value;
+            renderTopics();
+        });
+
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentView = this.dataset.view;
+                
+                if (currentView === 'cards') {
+                    document.querySelector('.cards-view').style.display = 'block';
+                    document.getElementById('mapView').classList.remove('active');
+                } else {
+                    document.querySelector('.cards-view').style.display = 'none';
+                    document.getElementById('mapView').classList.add('active');
+                }
+            });
+        });
+
+        document.getElementById('overlay').addEventListener('click', closeDrawer);
+
+        // Initialize
+        document.querySelector('.filter-chip[data-filter="all"]').classList.add('active');
+        renderTopics();
+    </script>
+</body>
+</html>

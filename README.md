@@ -15,7 +15,13 @@ You can view the live website at: [https://hameez10.github.io](https://hameez10.
   - **Campaign Route Optimizer**: Traveling Salesman Algorithm tool for optimizing door-to-door campaign routes
   - **Activity Point Calculator**: Java-based calculator for graduation awards
 - **Media**: News coverage and social media presence
-- **Cool Stuff**: Interesting projects and experiments
+- **Cool Stuff**: Interactive civic education tools and experiments
+  - **How a Bill Becomes Law (Canada)**: Interactive clickable flow explaining the Canadian legislative process
+  - **Who's Responsible? (Canada)**: Reference guide showing Federal vs Provincial vs Municipal responsibilities
+  - **Who's Responsible? Game**: Drag-and-drop game to test civic knowledge
+  - **Canadian Honours Quiz**: Interactive quiz to discover eligible Canadian awards
+  - **Glenforest Activity Points Awards**: Calculator for graduation awards
+  - **Route Optimizer**: Campaign route optimization tool
 - **Contact**: How to reach me
 
 ## Architecture
@@ -30,15 +36,19 @@ All pages inherit navigation and footer from these components, ensuring consiste
 
 ## Recent Updates
 
+- **Cool Stuff Section**: 
+  - Added "How a Bill Becomes Law (Canada)" - Interactive clickable flow with 7 stages of the legislative process
+  - Added "Who's Responsible? (Canada)" - Comprehensive reference guide with 22+ topics showing government responsibilities
+  - Added "Who's Responsible? Game" - Drag-and-drop game with 89 topics, scoring, badges, and save/share functionality
+  - Added "Canadian Honours Quiz" - Interactive eligibility quiz
 - **Experience Page**: 
   - Added Government of Canada roles (AI Technical Program Manager, Software Engineer, AI Product Management)
   - Improved card width and layout for better readability
   - Fixed SharePoint tag color for better text visibility
 - **Media Page**: Added Instagram post embed and multiple LinkedIn post embeds for professional updates
 - **Projects Page**: Added Campaign Route Optimizer with interactive "Try Now" button
-- **Cool Stuff Page**: Updated Route Optimizer with simplified title and description
 - **Tag System**: Enhanced color visibility and readability for all technology tags
-- **Navigation**: Consistent navbar across all pages including Route Optimizer tool
+- **Navigation**: Consistent navbar across all pages including all interactive tools
 
 ## Local Development
 
