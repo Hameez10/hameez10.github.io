@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canada - Hameez Iqbal</title>
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <style>
+        :root {
+            --primary-color: #FF6B6B;
+            --accent-color: #4ECDC4;
+            --warm-bg: #FFF9F4;
+            --text-dark: #2D3436;
+            --text-light: #636E72;
+        }
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--warm-bg);
+            overflow-y: auto;
+        }
+        .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            height: auto;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 0.75rem;
+            }
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 2rem 2rem 2rem;
+        }
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        .section-title {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin: 3rem 0 2rem 0;
+            text-align: center;
+        }
+        .legislative-process {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+        .process-bubbles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .process-bubble {
+            background: var(--warm-bg);
+            border: 3px solid transparent;
+            border-radius: 20px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            text-align: center;
+        }
+        .process-bubble:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.2);
+        }
+        .bubble-number {
+            background: var(--primary-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin: 0 auto 1.5rem auto;
+        }
+        .bubble-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+        .bubble-description {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .bubble-hint {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            font-style: italic;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .bubble-hint::before {
+            content: "👆";
+        }
+        .detail-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .detail-modal.show {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--warm-bg);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+        .modal-close:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        .modal-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .modal-text {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        .info-box {
+            background: var(--warm-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+        .info-box p {
+            margin: 0;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 100px 1rem 2rem 1rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .legislative-process {
+                padding: 1.5rem;
+            }
+            .process-bubbles {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .modal-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+    <div class="container">
+        <h1>🇨🇦 Canada</h1>
+        <p class="subtitle">Understanding Canadian Government and Civic Processes</p>
+
+        <h2 class="section-title">How a Bill Becomes Law</h2>
+        <div class="legislative-process">
+            <p style="text-align: center; color: var(--text-light); font-size: 1.1rem; margin-bottom: 2rem;">
+                To become Canadian federal law, a bill must be approved in identical form by both houses of Parliament – the <strong>Senate</strong> and the <strong>House of Commons</strong>. Click on any step below to learn more about the legislative process.
+            </p>
+            <div class="process-bubbles">
+                <div class="process-bubble" onclick="showDetail(1)">
+                    <div class="bubble-number">1</div>
+                    <div class="bubble-title">First Reading: Introducing the Bill</div>
+                    <div class="bubble-description">A bill is introduced in either the Senate or the House of Commons</div>
+                    <div class="bubble-hint">Click to see more</div>
+                </div>
+                <div class="process-bubble" onclick="showDetail(2)">
+                    <div class="bubble-number">2</div>
+                    <div class="bubble-title">Second Reading: Debating the Idea</div>
+                    <div class="bubble-description">Parliamentarians debate the principle and vote on whether to continue</div>
+                    <div class="bubble-hint">Click to see more</div>
+                </div>
+                <div class="process-bubble" onclick="showDetail(3)">
+                    <div class="bubble-number">3</div>
+                    <div class="bubble-title">Committee Stage: Discussion and Hearing Witnesses</div>
+                    <div class="bubble-description">A committee studies the bill in detail and may suggest changes</div>
+                    <div class="bubble-hint">Click to see more</div>
+                </div>
+                <div class="process-bubble" onclick="showDetail(4)">
+                    <div class="bubble-number">4</div>
+                    <div class="bubble-title">Report Stage: Back to the Chamber</div>
+                    <div class="bubble-description">The bill returns to the chamber with committee changes for debate</div>
+                    <div class="bubble-hint">Click to see more</div>
+                </div>
+                <div class="process-bubble" onclick="showDetail(5)">
+                    <div class="bubble-number">5</div>
+                    <div class="bubble-title">Third Reading: Debate and Vote</div>
+                    <div class="bubble-description">Final debate and vote to send the bill to the other chamber</div>
+                    <div class="bubble-hint">Click to see more</div>
+                </div>
+                <div class="process-bubble" onclick="showDetail(6)">
+                    <div class="bubble-number">6</div>
+                    <div class="bubble-title">Sent to the Other Chamber</div>
+                    <div class="bubble-description">The bill goes through the same process in the other house</div>
+                    <div class="bubble-hint">Click to see more</div>
+                </div>
+                <div class="process-bubble" onclick="showDetail(7)">
+                    <div class="bubble-number">7</div>
+                    <div class="bubble-title">Royal Assent: Becoming a Law</div>
+                    <div class="bubble-description">The Governor General grants Royal Assent and the bill becomes law</div>
+                    <div class="bubble-hint">Click to see more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="detail-modal" id="detailModal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script>
+        const stepDetails = {
+            1: {
+                title: "First Reading: Introducing the Bill",
+                content: `
+                    <p>First reading is the initial step in a bill's progress through Parliament. The parliamentarian proposing the bill will introduce it in the parliamentarian's chamber. Although this step is called first reading, the bill is not actually read aloud in the chamber – it is made available for parliamentarians and Canadians to read and examine.</p>
+                    <p><strong>Bill is printed</strong> and made available for review.</p>
+                    <div class="info-box">
+                        <p><strong>Note:</strong> Bills can be introduced in either the Senate (identified with "S" like Bill S-4) or the House of Commons (identified with "C" like Bill C-78). All bills are numbered chronologically within each session of Parliament.</p>
+                    </div>
+                `
+            },
+            2: {
+                title: "Second Reading: Debating the Idea",
+                content: `
+                    <p>During second reading, parliamentarians debate the principle (or main idea) of the bill. They examine its strengths and weaknesses and talk about how it might affect different groups of people. This gives parliamentarians (and other Canadians) a chance to listen to different perspectives and opinions on the bill.</p>
+                    <p>After the time for debate is over, parliamentarians vote on whether the bill will continue through the process. If the vote supports the bill, the House may decide to refer the bill to a legislative committee, standing committee, special committee, or Committee of the Whole.</p>
+                `
+            },
+            3: {
+                title: "Committee Stage: Discussion and Hearing Witnesses",
+                content: `
+                    <p>At the committee stage, the bill is studied in detail by a smaller group of parliamentarians, called a parliamentary committee. This is a <strong>clause-by-clause study</strong> of the bill.</p>
+                    <p>Committee can summon witnesses and experts to provide it with information and help in improving the bill. Committee members hold hearings where interested individuals and representatives from organizations can comment on the bill.</p>
+                    <p>Committees examine bills clause by clause (section by section) and can suggest amendments (changes) to the bill. Once this process is complete, the chairperson of the committee submits a report back to the chamber.</p>
+                `
+            },
+            4: {
+                title: "Report Stage: Back to the Chamber",
+                content: `
+                    <p>At the report stage, the committee reports the bill to the House clearly indicating any amendments proposed. The bill is returned to the chamber where it was introduced and debated again, including any changes proposed by the committee.</p>
+                    <p>House considers amendments and votes for or against them. Parliamentarians can suggest additional changes at this time and those amendments may be debated. When they have voted on the amendments, the bill is finalized, and it is ready for third reading.</p>
+                `
+            },
+            5: {
+                title: "Third Reading: Debate and Vote",
+                content: `
+                    <p>During third reading, parliamentarians debate and vote on bill as amended. This is the final debate and vote on the bill in the chamber where it was introduced. In the Senate, amendments may be made at third reading.</p>
+                    <p>If the bill is passed by a majority of parliamentarians at third reading, <strong>once the bill has been read 3 times in the House, it is sent to the Senate for its consideration</strong> (or vice versa if it started in the Senate).</p>
+                    <div class="info-box">
+                        <p><strong>Note:</strong> If a bill is rejected or if a decision is not made before a session of Parliament ends, the bill stops going through the legislative process and would need to be reintroduced in a new session.</p>
+                    </div>
+                `
+            },
+            6: {
+                title: "Sent to the Other Chamber",
+                content: `
+                    <p>Most bills begin in the House of Commons and are sent to the Senate for review. Bills can also start in the Senate and then go to the House of Commons for review.</p>
+                    <p>When a bill is sent from one chamber to the other, the bill is read again for the first time and goes through the same steps (first reading, second reading, committee stage, report stage, and third reading).</p>
+                    <p>If the reviewing chamber makes any changes, the bill gets sent back to the initial chamber for further review. Messages may go back and forth between the chambers as amendments are debated. Most amendments are intended to clarify, simplify or improve a bill.</p>
+                `
+            },
+            7: {
+                title: "Royal Assent: Becoming a Law",
+                content: `
+                    <p>In Canada's constitutional monarchy, bills require the assent of the Monarch to become a law. Once both the Senate and the House of Commons have passed a bill in identical form, in both official languages, <strong>the bill is presented to the Governor General for assent</strong>.</p>
+                    <p>The Governor General may assent to Bill in the Queen's name, withhold assent, or reserve assent. Royal Assent may be granted by a nod of the head in a traditional Royal Assent ceremony in the Senate Chamber or by the Governor General signing the bill.</p>
+                    <p>Once the bill receives Royal Assent, it officially becomes a law.</p>
+                    <div class="info-box">
+                        <p><strong>Historical Note:</strong> Royal Assent has never been refused to a federal bill in Canada.</p>
+                    </div>
+                `
+            }
+        };
+
+        function showDetail(stepNumber) {
+            const modal = document.getElementById('detailModal');
+            const content = document.getElementById('modalContent');
+            const details = stepDetails[stepNumber];
+            
+            content.innerHTML = `
+                <h2 class="modal-title">${details.title}</h2>
+                ${details.content}
+            `;
+            
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event) {
+            if (event && event.target !== event.currentTarget) return;
+            const modal = document.getElementById('detailModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

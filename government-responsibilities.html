@@ -468,6 +468,12 @@
         .overlay.active {
             display: block;
         }
+        .cards-view {
+            display: block;
+        }
+        .cards-view.hidden {
+            display: none;
+        }
         .map-view {
             display: none;
             background: white;
@@ -522,8 +528,8 @@
     <div id="navbar-placeholder"></div>
     <div class="container">
         <div class="header-section">
-            <h1>🏛️ Who's Responsible? (Canada)</h1>
-            <p class="subtitle">Federal vs Provincial/Territorial vs Municipal—explained by topic</p>
+        <h1>🏛️ Who's Responsible?</h1>
+        <p class="subtitle">Federal vs Provincial/Territorial vs Municipal—explained by topic</p>
             <div style="text-align: center; margin-bottom: 1.5rem;">
                 <a href="government-responsibilities-game.html" style="display: inline-block; background: var(--primary-color); color: white; padding: 0.75rem 2rem; border-radius: 25px; text-decoration: none; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(255, 107, 107, 0.2);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(255, 107, 107, 0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(255, 107, 107, 0.2)';">
                     🎮 Play the Game
@@ -554,7 +560,7 @@
             </div>
         </div>
 
-        <div class="cards-view">
+        <div class="cards-view" id="cardsView">
             <div class="topics-grid" id="topicsGrid"></div>
         </div>
 
@@ -1607,10 +1613,10 @@
                 currentView = this.dataset.view;
                 
                 if (currentView === 'cards') {
-                    document.querySelector('.cards-view').style.display = 'block';
+                    document.getElementById('cardsView').classList.remove('hidden');
                     document.getElementById('mapView').classList.remove('active');
                 } else {
-                    document.querySelector('.cards-view').style.display = 'none';
+                    document.getElementById('cardsView').classList.add('hidden');
                     document.getElementById('mapView').classList.add('active');
                 }
             });

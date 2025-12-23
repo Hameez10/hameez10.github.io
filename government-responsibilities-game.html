@@ -129,7 +129,7 @@
             border: 3px dashed var(--text-light);
             border-radius: 20px;
             padding: 2rem;
-            min-height: 400px;
+            min-height: 300px;
             transition: all 0.3s ease;
         }
         .drop-zone.drag-over {
@@ -200,15 +200,15 @@
             background: var(--warm-bg);
             border: 2px solid transparent;
             border-radius: 15px;
-            padding: 1rem 1.5rem;
+            padding: 0.75rem 1rem;
             cursor: grab;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.5rem;
             font-weight: 500;
             user-select: none;
-            min-width: 150px;
+            min-width: 120px;
         }
         .topic-sticker:hover {
             transform: translateY(-3px);
@@ -231,10 +231,10 @@
             background: rgba(255, 107, 107, 0.1);
         }
         .sticker-icon {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
         }
         .sticker-label {
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
         .action-buttons {
             display: flex;
@@ -470,7 +470,7 @@
     <div id="navbar-placeholder"></div>
     <div class="container">
         <div class="header-section">
-            <h1>🎮 Who's Responsible? (Canada)</h1>
+            <h1>🎮 Who's Responsible?</h1>
             <p class="subtitle">Drag each topic to the level of government that is primarily responsible</p>
             <div style="text-align: center; margin-bottom: 1rem;">
                 <a href="government-responsibilities.html" style="display: inline-block; background: var(--accent-color); color: white; padding: 0.5rem 1.5rem; border-radius: 20px; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(78, 205, 196, 0.2);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(78, 205, 196, 0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(78, 205, 196, 0.2)';">
@@ -697,6 +697,7 @@
             
             // Show check button, hide new round button
             document.getElementById('checkBtn').style.display = 'block';
+            document.getElementById('checkBtn').textContent = 'Check Answers';
             document.getElementById('newRoundBtn').style.display = 'none';
         }
 
@@ -804,17 +805,38 @@
             sticker.className = 'topic-sticker';
             sticker.dataset.topicId = topicId;
             sticker.dataset.placedLevel = targetLevel;
-            sticker.draggable = !answersChecked;
+            
+            // Check if this sticker was incorrect (can be moved after results)
+            const wasIncorrect = existingSticker && existingSticker.classList.contains('incorrect');
+            const wasCorrect = existingSticker && existingSticker.classList.contains('correct');
+            const wasPartial = existingSticker && existingSticker.classList.contains('partial');
+            
+            // Only incorrect stickers remain draggable after checking
+            sticker.draggable = !answersChecked || wasIncorrect;
+            
             sticker.innerHTML = `
                 <span class="sticker-icon">${topic.icon}</span>
                 <span class="sticker-label">${topic.label}</span>
             `;
             
+            // Preserve status classes if answers were checked
             if (answersChecked) {
-                // Add click handler for explanation
-                sticker.style.cursor = 'pointer';
-                sticker.onclick = () => showExplanation(topic);
+                if (wasIncorrect) {
+                    sticker.classList.add('incorrect');
+                    sticker.style.cursor = 'grab';
+                    sticker.addEventListener('dragstart', handleDragStart);
+                    sticker.addEventListener('dragend', handleDragEnd);
+                } else if (wasCorrect) {
+                    sticker.classList.add('correct');
+                    sticker.style.cursor = 'pointer';
+                    sticker.onclick = () => showExplanation(topic);
+                } else if (wasPartial) {
+                    sticker.classList.add('partial');
+                    sticker.style.cursor = 'pointer';
+                    sticker.onclick = () => showExplanation(topic);
+                }
             } else {
+                // Before checking, all stickers are draggable
                 sticker.addEventListener('dragstart', handleDragStart);
                 sticker.addEventListener('dragend', handleDragEnd);
             }
@@ -829,7 +851,7 @@
         }
 
         function checkAnswers() {
-            if (answersChecked) return;
+            if (answersChecked && !hasIncorrect()) return;
             
             answersChecked = true;
             let correct = 0;
@@ -841,19 +863,37 @@
                 const placedLevel = sticker.dataset.placedLevel;
                 const topic = topicBank.find(t => t.id === topicId);
                 
-                sticker.draggable = false;
-                sticker.style.cursor = 'pointer';
-                sticker.onclick = () => showExplanation(topic);
+                // Remove old classes and event handlers
+                sticker.classList.remove('correct', 'partial', 'incorrect');
+                sticker.onclick = null;
+                
+                // Clone to remove all event listeners
+                const newSticker = sticker.cloneNode(true);
+                sticker.parentNode.replaceChild(newSticker, sticker);
                 
                 if (placedLevel === topic.primary) {
-                    sticker.classList.add('correct');
+                    newSticker.classList.add('correct');
                     correct++;
+                    // Correct stickers are not draggable and show explanation
+                    newSticker.draggable = false;
+                    newSticker.style.cursor = 'pointer';
+                    newSticker.onclick = () => showExplanation(topic);
                 } else if (topic.shared.includes(placedLevel) || (gameMode === "learning" && topic.primary === "shared")) {
-                    sticker.classList.add('partial');
+                    newSticker.classList.add('partial');
                     partial++;
+                    // Partial stickers are not draggable and show explanation
+                    newSticker.draggable = false;
+                    newSticker.style.cursor = 'pointer';
+                    newSticker.onclick = () => showExplanation(topic);
                 } else {
-                    sticker.classList.add('incorrect');
+                    newSticker.classList.add('incorrect');
                     incorrect++;
+                    // Incorrect stickers remain draggable so user can fix them
+                    newSticker.draggable = true;
+                    newSticker.style.cursor = 'grab';
+                    // Re-enable drag handlers for incorrect stickers
+                    newSticker.addEventListener('dragstart', handleDragStart);
+                    newSticker.addEventListener('dragend', handleDragEnd);
                 }
             });
             
@@ -907,7 +947,7 @@
             const result = window.lastResult;
             const percentage = Math.round((result.score / result.maxScore) * 100);
             
-            let text = `🎮 Who's Responsible? (Canada) - Game Result\n\n`;
+            let text = `🎮 Who's Responsible? - Game Result\n\n`;
             text += `Civic Literacy Score: ${result.score} / ${result.maxScore} (${percentage}%)\n`;
             text += `Mode: ${result.mode === 'strict' ? 'Strict' : 'Learning'}\n`;
             text += `Correct: ${result.correct} | Partial: ${result.partial} | Incorrect: ${result.incorrect}\n`;
@@ -1054,6 +1094,10 @@
 
         function closeExplanation() {
             document.getElementById('explanationModal').classList.remove('show');
+        }
+
+        function hasIncorrect() {
+            return document.querySelectorAll('.topic-sticker.incorrect').length > 0;
         }
 
         // Mode toggle
