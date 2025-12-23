@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Day in the Chamber - Hameez Iqbal</title>
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <style>
+        :root {
+            --primary-color: #FF6B6B;
+            --accent-color: #4ECDC4;
+            --warm-bg: #FFF9F4;
+            --text-dark: #2D3436;
+            --text-light: #636E72;
+            --success-color: #51CF66;
+            --warning-color: #FFD43B;
+            --error-color: #FF6B6B;
+        }
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--warm-bg);
+            overflow-y: auto;
+        }
+        .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            height: auto;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 0.75rem;
+            }
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 2rem 2rem 2rem;
+        }
+        .header-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+        }
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        .mode-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .mode-btn {
+            background: white;
+            border: 2px solid var(--text-light);
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: var(--text-dark);
+        }
+        .mode-btn.active {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+        .timeline-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .timeline-track {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            min-height: 400px;
+        }
+        .timeline-slot {
+            background: var(--warm-bg);
+            border: 3px dashed var(--text-light);
+            border-radius: 15px;
+            padding: 1.5rem;
+            min-height: 80px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .timeline-slot.drag-over {
+            border-color: var(--accent-color);
+            background: rgba(78, 205, 196, 0.1);
+            transform: scale(1.02);
+        }
+        .timeline-slot.filled {
+            border-color: var(--accent-color);
+            border-style: solid;
+        }
+        .slot-label {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+        .event-card {
+            background: white;
+            border: 2px solid var(--text-light);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            cursor: grab;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 500;
+            user-select: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .event-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+        .event-card.dragging {
+            opacity: 0.5;
+            cursor: grabbing;
+        }
+        .event-card.correct {
+            border-color: var(--success-color);
+            background: rgba(81, 207, 102, 0.1);
+        }
+        .event-card.incorrect {
+            border-color: var(--error-color);
+            background: rgba(255, 107, 107, 0.1);
+        }
+        .event-icon {
+            font-size: 1.5rem;
+        }
+        .event-text {
+            font-size: 1rem;
+        }
+        .event-tray {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .tray-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+        .events-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .role-panel {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            display: none;
+        }
+        .role-panel.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .role-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+        .role-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .role-option {
+            background: var(--warm-bg);
+            border: 2px solid var(--text-light);
+            border-radius: 12px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: 500;
+        }
+        .role-option:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        .role-option.selected {
+            border-color: var(--primary-color);
+            background: rgba(255, 107, 107, 0.1);
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        .btn-primary:hover:not(:disabled) {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+        .btn-secondary {
+            background: var(--accent-color);
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: #3db8ab;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .feedback-panel {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+            display: none;
+        }
+        .feedback-panel.show {
+            display: block;
+        }
+        .feedback-item {
+            background: var(--warm-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .feedback-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .feedback-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .feedback-status {
+            font-size: 1.5rem;
+        }
+        .feedback-event {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .feedback-explanation {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-top: 0.5rem;
+            display: none;
+        }
+        .feedback-item.expanded .feedback-explanation {
+            display: block;
+        }
+        .score-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: none;
+        }
+        .score-section.show {
+            display: block;
+        }
+        .score-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        .score-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+        .explanation-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .explanation-modal.show {
+            display: flex;
+        }
+        .explanation-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .explanation-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        .explanation-text {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        .misconception-box {
+            background: rgba(255, 107, 107, 0.1);
+            border-left: 4px solid var(--error-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+        .explanation-close {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        .explanation-close:hover {
+            background: #ff5252;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 100px 1rem 2rem 1rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .timeline-track {
+                min-height: 300px;
+            }
+            .events-container {
+                flex-direction: column;
+            }
+            .role-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+    <div class="container">
+        <div class="header-section">
+            <h1>🕰️ A Day in the Chamber</h1>
+            <p class="subtitle">Arrange the events of a Commons sitting day — then identify who plays the key role at each stage</p>
+            <div class="mode-toggle">
+                <button class="mode-btn active" data-mode="learning">Learning Mode</button>
+                <button class="mode-btn" data-mode="strict">Strict Mode</button>
+            </div>
+        </div>
+
+        <div class="timeline-section">
+            <div class="section-title">Timeline: Arrange Events in Order</div>
+            <div class="timeline-track" id="timelineTrack">
+                <div class="timeline-slot" data-slot="1">
+                    <div class="slot-label">1</div>
+                </div>
+                <div class="timeline-slot" data-slot="2">
+                    <div class="slot-label">2</div>
+                </div>
+                <div class="timeline-slot" data-slot="3">
+                    <div class="slot-label">3</div>
+                </div>
+                <div class="timeline-slot" data-slot="4">
+                    <div class="slot-label">4</div>
+                </div>
+                <div class="timeline-slot" data-slot="5">
+                    <div class="slot-label">5</div>
+                </div>
+                <div class="timeline-slot" data-slot="6">
+                    <div class="slot-label">6</div>
+                </div>
+                <div class="timeline-slot" data-slot="7">
+                    <div class="slot-label">7</div>
+                </div>
+                <div class="timeline-slot" data-slot="8">
+                    <div class="slot-label">8</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="event-tray">
+            <div class="tray-title">Event Cards</div>
+            <div class="events-container" id="eventsContainer"></div>
+        </div>
+
+        <div class="role-panel" id="rolePanel">
+            <div class="section-title">Step 2: Identify the Key Role</div>
+            <div id="roleContent"></div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" id="checkOrderBtn" onclick="checkOrder()">Check Order</button>
+            <button class="btn btn-secondary" onclick="resetGame()">Reset</button>
+            <button class="btn btn-secondary" onclick="newRound()" id="newRoundBtn" style="display: none;">New Round</button>
+        </div>
+
+        <div class="feedback-panel" id="feedbackPanel">
+            <div class="section-title">Results & Explanations</div>
+            <div id="feedbackContent"></div>
+        </div>
+
+        <div class="score-section" id="scoreSection">
+            <div class="score-title">Parliamentary Procedure Score</div>
+            <div class="score-value" id="scoreValue">0 / 8</div>
+            <div class="score-description" id="scoreDescription"></div>
+        </div>
+    </div>
+
+    <div class="explanation-modal" id="explanationModal" onclick="closeExplanation(event)">
+        <div class="explanation-content" onclick="event.stopPropagation()">
+            <div id="explanationContent"></div>
+            <button class="explanation-close" onclick="closeExplanation()">Got it</button>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script>
+        // Event bank with 40 events
+        const eventsBank = [
+            { id: "evt_001", event: "Speaker takes the Chair", order_category: "Opening", correct_position_range: [1, 1], primary_role: "Speaker of the House", secondary_roles: ["Clerk of the House"], explanation: "The sitting day formally begins when the Speaker takes the Chair and proceedings are brought under the authority of the House.", common_misconception: "People often assume the Prime Minister 'opens' the day; procedure is initiated by the Speaker." },
+            { id: "evt_002", event: "Opening formalities (prayer / opening)", order_category: "Opening", correct_position_range: [1, 2], primary_role: "Speaker of the House", secondary_roles: ["Clerk of the House"], explanation: "The House begins with opening formalities that mark the start of official proceedings.", common_misconception: "It is not a policy segment; it is part of the House's formal procedure." },
+            { id: "evt_003", event: "Quorum confirmed", order_category: "Opening", correct_position_range: [1, 3], primary_role: "Speaker of the House", secondary_roles: ["Clerk of the House"], explanation: "The Speaker ensures the House can proceed by confirming a quorum is present.", common_misconception: "Quorum isn't a vote—it's the minimum presence needed to conduct business." },
+            { id: "evt_004", event: "Clerk reads the Order Paper", order_category: "Opening", correct_position_range: [1, 4], primary_role: "Clerk of the House", secondary_roles: ["Speaker of the House"], explanation: "The Clerk supports proceedings by referencing the day's agenda and procedural items.", common_misconception: "The Clerk does not make political decisions; they provide procedural continuity and accuracy." },
+            { id: "evt_005", event: "Members' Statements / Statements by Members", order_category: "Accountability", correct_position_range: [2, 5], primary_role: "Backbench MPs", secondary_roles: ["Speaker of the House"], explanation: "Members' Statements allow MPs to raise matters of local or national interest before major business.", common_misconception: "This is not Question Period; it's member-led and not structured as government scrutiny." },
+            { id: "evt_006", event: "Tabling of documents", order_category: "Routine Proceedings", correct_position_range: [2, 6], primary_role: "Ministers", secondary_roles: ["Clerk of the House", "Speaker of the House"], explanation: "Ministers table reports and official documents in the House as part of routine business.", common_misconception: "Tabling is not debate—it's a formal step to place documents on the official record." },
+            { id: "evt_007", event: "Presentation of petitions", order_category: "Routine Proceedings", correct_position_range: [2, 6], primary_role: "Backbench MPs", secondary_roles: ["Speaker of the House", "Clerk of the House"], explanation: "MPs present petitions from constituents to have them formally recognized by the House.", common_misconception: "Presenting a petition doesn't guarantee action; it places an issue on the record." },
+            { id: "evt_008", event: "Government responses to petitions", order_category: "Routine Proceedings", correct_position_range: [2, 7], primary_role: "Ministers", secondary_roles: ["Clerk of the House"], explanation: "The government provides formal responses to petitions according to parliamentary timelines.", common_misconception: "These are formal responses, not live debate exchanges." },
+            { id: "evt_009", event: "Introduction of bills (First Reading)", order_category: "Routine Proceedings", correct_position_range: [2, 7], primary_role: "Ministers", secondary_roles: ["Government House Leader", "Clerk of the House"], explanation: "Bills are introduced formally, placing them before the House for future debate stages.", common_misconception: "First Reading is usually not where the substantive debate happens." },
+            { id: "evt_010", event: "Committee reports presented", order_category: "Routine Proceedings", correct_position_range: [2, 7], primary_role: "Backbench MPs", secondary_roles: ["Clerk of the House"], explanation: "Committees report findings or recommendations back to the House as part of routine proceedings.", common_misconception: "Committees are not the Cabinet; their work is reported through MPs." },
+            { id: "evt_011", event: "Questions on the Order Paper (written questions)", order_category: "Routine Proceedings", correct_position_range: [2, 8], primary_role: "Clerk of the House", secondary_roles: ["Backbench MPs", "Ministers"], explanation: "Written questions are managed procedurally and placed on record, with government replies provided later.", common_misconception: "These are not the same as live questions in Question Period." },
+            { id: "evt_012", event: "Ministerial statements", order_category: "Accountability", correct_position_range: [2, 8], primary_role: "Ministers", secondary_roles: ["Speaker of the House"], explanation: "Ministers may make formal statements to inform the House of important matters or decisions.", common_misconception: "Ministerial statements are not the same as debate time; they are structured announcements." },
+            { id: "evt_013", event: "Question Period", order_category: "Accountability", correct_position_range: [3, 5], primary_role: "Leader of the Official Opposition", secondary_roles: ["Prime Minister", "Ministers", "Speaker of the House"], explanation: "Question Period is the main daily accountability forum where the opposition questions the government.", common_misconception: "Question Period isn't run by the Prime Minister; the Speaker moderates and opposition initiates questioning." },
+            { id: "evt_014", event: "Points of order raised", order_category: "Debate", correct_position_range: [1, 8], primary_role: "Speaker of the House", secondary_roles: ["Clerk of the House", "Backbench MPs"], explanation: "Points of order are procedural interventions where Members raise concerns about rules being followed.", common_misconception: "Points of order aren't debate points; they're about procedure." },
+            { id: "evt_015", event: "Speaker's ruling on a point of order", order_category: "Debate", correct_position_range: [1, 8], primary_role: "Speaker of the House", secondary_roles: ["Clerk of the House"], explanation: "The Speaker issues rulings to interpret and enforce Standing Orders and precedents.", common_misconception: "A ruling is not a government decision; it's procedural and applies across parties." },
+            { id: "evt_016", event: "Unanimous consent requested", order_category: "Control", correct_position_range: [2, 8], primary_role: "Government House Leader", secondary_roles: ["Opposition House Leader", "Speaker of the House"], explanation: "Unanimous consent allows the House to depart from usual rules if all Members agree.", common_misconception: "Consent is not automatic; any Member may refuse, and then normal rules apply." },
+            { id: "evt_017", event: "Government Orders begin", order_category: "Legislation", correct_position_range: [4, 7], primary_role: "Government House Leader", secondary_roles: ["Ministers", "Speaker of the House"], explanation: "Government Orders is where government legislation and key business are debated and advanced.", common_misconception: "This isn't the only time bills appear, but it is where sustained legislative debate happens." },
+            { id: "evt_018", event: "Second Reading debate", order_category: "Legislation", correct_position_range: [4, 7], primary_role: "Ministers", secondary_roles: ["Shadow Minister", "Backbench MPs", "Speaker of the House"], explanation: "Second Reading focuses on debating the principle of a bill before detailed committee work.", common_misconception: "Second Reading is not the final vote; it's a major but early stage." },
+            { id: "evt_019", event: "Second Reading vote", order_category: "Voting", correct_position_range: [5, 8], primary_role: "Whips", secondary_roles: ["Speaker of the House", "Clerk of the House"], explanation: "Votes at key stages are coordinated by party whips and administered procedurally by the House.", common_misconception: "Whips don't count votes; they coordinate attendance and discipline." },
+            { id: "evt_020", event: "Committee stage (bill referred to committee)", order_category: "Legislation", correct_position_range: [4, 8], primary_role: "Backbench MPs", secondary_roles: ["Ministers", "Shadow Minister"], explanation: "Committees examine bills in detail, hear witnesses, and propose amendments.", common_misconception: "Most of the detailed work happens in committee, not on the main floor." },
+            { id: "evt_021", event: "Report stage", order_category: "Legislation", correct_position_range: [5, 8], primary_role: "Speaker of the House", secondary_roles: ["Ministers", "Backbench MPs", "Clerk of the House"], explanation: "The House considers committee amendments and decides what proceeds to final debate.", common_misconception: "Report stage is not committee work; it's the full House reviewing committee outcomes." },
+            { id: "evt_022", event: "Third Reading debate", order_category: "Legislation", correct_position_range: [5, 8], primary_role: "Ministers", secondary_roles: ["Shadow Minister", "Backbench MPs"], explanation: "Third Reading is the final stage of House debate on a bill before it moves to the Senate.", common_misconception: "Third Reading is not the end of the legislative process; the Senate still considers the bill." },
+            { id: "evt_023", event: "Third Reading vote", order_category: "Voting", correct_position_range: [6, 8], primary_role: "Whips", secondary_roles: ["Speaker of the House", "Clerk of the House"], explanation: "A recorded vote finalizes the House's position on a bill at Third Reading.", common_misconception: "The Speaker rarely votes; they typically vote only to break ties under convention." },
+            { id: "evt_024", event: "Recorded division (vote)", order_category: "Voting", correct_position_range: [4, 8], primary_role: "Clerk of the House", secondary_roles: ["Speaker of the House", "Whips"], explanation: "Recorded divisions are formally administered and recorded, ensuring an official result.", common_misconception: "Whips coordinate Members, but the House's officers administer and record results." },
+            { id: "evt_025", event: "Vote deferred by Whips", order_category: "Control", correct_position_range: [4, 8], primary_role: "Whips", secondary_roles: ["Government House Leader", "Speaker of the House"], explanation: "Certain votes can be deferred to a scheduled time, allowing Members to be present.", common_misconception: "Deferral is procedural; it's not the same as cancelling a vote." },
+            { id: "evt_026", event: "Opposition Day motion (Opposition Business)", order_category: "Opposition", correct_position_range: [4, 8], primary_role: "Leader of the Official Opposition", secondary_roles: ["Opposition House Leader", "Backbench MPs"], explanation: "Opposition Days provide the opposition the ability to choose the subject of debate via motion.", common_misconception: "Opposition motions can be influential, but do not always compel government action directly." },
+            { id: "evt_027", event: "Opposition motion vote", order_category: "Voting", correct_position_range: [6, 8], primary_role: "Whips", secondary_roles: ["Clerk of the House", "Speaker of the House"], explanation: "Votes on opposition motions are managed through the same voting procedures as other business.", common_misconception: "Opposition motions are not automatically confidence votes unless framed as such." },
+            { id: "evt_028", event: "Time allocation motion", order_category: "Control", correct_position_range: [4, 8], primary_role: "Government House Leader", secondary_roles: ["Opposition House Leader", "Speaker of the House"], explanation: "Time allocation sets limits on debate length to move business forward.", common_misconception: "Time allocation is not the same as closure; it schedules debate rather than immediately ending it." },
+            { id: "evt_029", event: "Closure motion", order_category: "Control", correct_position_range: [4, 8], primary_role: "Government House Leader", secondary_roles: ["Speaker of the House"], explanation: "Closure is a procedure to end debate and force the House toward a vote.", common_misconception: "Closure is often confused with time allocation; closure more directly ends debate." },
+            { id: "evt_030", event: "Confidence motion debated", order_category: "Confidence", correct_position_range: [4, 8], primary_role: "Prime Minister", secondary_roles: ["Leader of the Official Opposition", "Ministers", "Whips"], explanation: "Confidence debates can determine whether the government retains the support of the House.", common_misconception: "Not every major vote is a confidence vote; confidence depends on the motion and context." },
+            { id: "evt_031", event: "Budget-related debate (supply / estimates discussion)", order_category: "Finance", correct_position_range: [4, 8], primary_role: "Ministers", secondary_roles: ["Shadow Minister", "Backbench MPs"], explanation: "Supply-related debate concerns government spending plans and estimates, central to parliamentary control of finance.", common_misconception: "Budgets and estimates are related but not identical procedural items." },
+            { id: "evt_032", event: "Motion to concur in a committee report", order_category: "Routine Proceedings", correct_position_range: [3, 8], primary_role: "Backbench MPs", secondary_roles: ["Speaker of the House"], explanation: "The House may debate whether to adopt (concur in) a committee report as an official House position.", common_misconception: "Committee reports do not become House decisions automatically; concurrence is a separate step." },
+            { id: "evt_033", event: "Private Members' Business begins", order_category: "Members", correct_position_range: [4, 8], primary_role: "Backbench MPs", secondary_roles: ["Speaker of the House", "Whips"], explanation: "Private Members' Business provides time for non-government MPs to advance bills or motions.", common_misconception: "Private Members' items can become law, but they follow the same stages and often face time constraints." },
+            { id: "evt_034", event: "Private Member's bill debate", order_category: "Members", correct_position_range: [4, 8], primary_role: "Backbench MPs", secondary_roles: ["Speaker of the House"], explanation: "MPs debate a bill introduced by a non-minister Member, often focused on a specific issue.", common_misconception: "Not all bills are government bills; private members can also introduce legislation." },
+            { id: "evt_035", event: "House suspends", order_category: "Transition", correct_position_range: [4, 8], primary_role: "Speaker of the House", secondary_roles: ["Clerk of the House"], explanation: "The House may suspend proceedings temporarily, pausing business without ending the sitting.", common_misconception: "Suspension is not adjournment; the House resumes later the same day." },
+            { id: "evt_036", event: "House resumes", order_category: "Transition", correct_position_range: [4, 8], primary_role: "Speaker of the House", secondary_roles: ["Clerk of the House"], explanation: "After suspension, the Speaker resumes proceedings and returns the House to its agenda.", common_misconception: "Resumption continues the same sitting; it does not start a new day." },
+            { id: "evt_037", event: "Adjournment Proceedings (late show)", order_category: "Closing", correct_position_range: [7, 8], primary_role: "Backbench MPs", secondary_roles: ["Ministers", "Speaker of the House"], explanation: "Adjournment Proceedings provide brief follow-ups to earlier questions, often near the end of the day.", common_misconception: "These are not the same as Question Period; they are short, structured follow-ups." },
+            { id: "evt_038", event: "Speaker adjourns the House", order_category: "Closing", correct_position_range: [8, 8], primary_role: "Speaker of the House", secondary_roles: ["Clerk of the House"], explanation: "The sitting formally ends when the Speaker declares the House adjourned.", common_misconception: "The government does not unilaterally end the sitting; the Speaker formally closes it." },
+            { id: "evt_039", event: "Speaker leaves the Chair", order_category: "Closing", correct_position_range: [8, 8], primary_role: "Speaker of the House", secondary_roles: ["Sergeant-at-Arms"], explanation: "The Speaker's departure marks the formal end of presided proceedings for the sitting.", common_misconception: "This is a procedural close, not a political act." },
+            { id: "evt_040", event: "Division bells ring (Members called to vote)", order_category: "Voting", correct_position_range: [4, 8], primary_role: "Whips", secondary_roles: ["Speaker of the House", "Clerk of the House"], explanation: "Division bells signal an upcoming vote and give Members time to return to the chamber, coordinated through party organization.", common_misconception: "The bells don't decide anything; they are a procedural notice mechanism." }
+        ];
+
+        const allRoles = [
+            "Speaker of the House",
+            "Prime Minister",
+            "Leader of the Official Opposition",
+            "Government House Leader",
+            "Opposition House Leader",
+            "Ministers",
+            "Shadow Minister",
+            "Whips",
+            "Backbench MPs",
+            "Clerk of the House",
+            "Sergeant-at-Arms"
+        ];
+
+        let currentRound = [];
+        let eventOrder = {}; // slot -> event
+        let roleAssignments = {}; // eventId -> role
+        let gameMode = "learning";
+        let step = "ordering"; // "ordering" or "roles"
+        let answersChecked = false;
+
+        function newRound() {
+            step = "ordering";
+            answersChecked = false;
+            eventOrder = {};
+            roleAssignments = {};
+            currentRound = [];
+            
+            // Select 8 events with constraints
+            const opening = eventsBank.filter(e => e.order_category === "Opening");
+            const accountability = eventsBank.filter(e => e.order_category === "Accountability");
+            const legislation = eventsBank.filter(e => e.order_category === "Legislation");
+            const voting = eventsBank.filter(e => e.order_category === "Voting" || e.order_category === "Control");
+            const closing = eventsBank.filter(e => e.order_category === "Closing");
+            
+            const selected = [
+                opening[Math.floor(Math.random() * opening.length)],
+                accountability[Math.floor(Math.random() * accountability.length)],
+                legislation[Math.floor(Math.random() * legislation.length)],
+                voting[Math.floor(Math.random() * voting.length)],
+                closing[Math.floor(Math.random() * closing.length)]
+            ];
+            
+            // Fill remaining slots with random events
+            const remaining = eventsBank.filter(e => !selected.includes(e));
+            const shuffled = [...remaining].sort(() => Math.random() - 0.5);
+            selected.push(...shuffled.slice(0, 3));
+            
+            // Shuffle final selection
+            currentRound = selected.sort(() => Math.random() - 0.5);
+            
+            renderGame();
+            document.getElementById('rolePanel').classList.remove('show');
+            document.getElementById('feedbackPanel').classList.remove('show');
+            document.getElementById('scoreSection').classList.remove('show');
+            document.getElementById('checkOrderBtn').style.display = 'block';
+            document.getElementById('checkOrderBtn').textContent = 'Check Order';
+            document.getElementById('newRoundBtn').style.display = 'none';
+        }
+
+        function renderGame() {
+            // Clear timeline
+            document.querySelectorAll('.timeline-slot').forEach(slot => {
+                slot.classList.remove('filled', 'drag-over');
+                const existingCard = slot.querySelector('.event-card');
+                if (existingCard) {
+                    existingCard.remove();
+                }
+            });
+            
+            // Render event cards in tray
+            const container = document.getElementById('eventsContainer');
+            container.innerHTML = '';
+            
+            currentRound.forEach(event => {
+                const card = document.createElement('div');
+                card.className = 'event-card';
+                card.draggable = step === "ordering" && !answersChecked;
+                card.dataset.eventId = event.id;
+                
+                const icon = getEventIcon(event.order_category);
+                card.innerHTML = `
+                    <span class="event-icon">${icon}</span>
+                    <span class="event-text">${event.event}</span>
+                `;
+                
+                if (step === "ordering" && !answersChecked) {
+                    card.addEventListener('dragstart', handleDragStart);
+                    card.addEventListener('dragend', handleDragEnd);
+                }
+                
+                container.appendChild(card);
+            });
+            
+            // Setup timeline slots
+            if (step === "ordering" && !answersChecked) {
+                setupTimelineSlots();
+            }
+        }
+
+        function setupTimelineSlots() {
+            document.querySelectorAll('.timeline-slot').forEach(slot => {
+                slot.addEventListener('dragover', handleDragOver);
+                slot.addEventListener('drop', handleDrop);
+                slot.addEventListener('dragleave', handleDragLeave);
+            });
+        }
+
+        function handleDragStart(e) {
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('eventId', e.target.dataset.eventId);
+            e.target.classList.add('dragging');
+        }
+
+        function handleDragEnd(e) {
+            e.target.classList.remove('dragging');
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+            
+            const eventId = e.dataTransfer.getData('eventId');
+            const slot = e.currentTarget;
+            const slotNum = parseInt(slot.dataset.slot);
+            
+            // Remove event from previous slot if any
+            Object.keys(eventOrder).forEach(key => {
+                if (eventOrder[key] === eventId) {
+                    delete eventOrder[key];
+                    const prevSlot = document.querySelector(`[data-slot="${key}"]`);
+                    if (prevSlot) {
+                        prevSlot.classList.remove('filled');
+                        const prevCard = prevSlot.querySelector('.event-card');
+                        if (prevCard) prevCard.remove();
+                    }
+                }
+            });
+            
+            // Add to new slot
+            eventOrder[slotNum] = eventId;
+            slot.classList.add('filled');
+            
+            const event = eventsBank.find(e => e.id === eventId);
+            const card = document.createElement('div');
+            card.className = 'event-card';
+            card.dataset.eventId = eventId;
+            card.draggable = !answersChecked;
+            
+            // Get icon based on category
+            const icon = getEventIcon(event.order_category);
+            card.innerHTML = `
+                <span class="event-icon">${icon}</span>
+                <span class="event-text">${event.event}</span>
+            `;
+            
+            if (!answersChecked) {
+                card.addEventListener('dragstart', handleDragStart);
+                card.addEventListener('dragend', handleDragEnd);
+            }
+            
+            slot.appendChild(card);
+            
+            // Remove from tray
+            const trayCard = document.querySelector(`[data-event-id="${eventId}"]`);
+            if (trayCard && trayCard.parentElement.id === 'eventsContainer') {
+                trayCard.remove();
+            }
+        }
+
+        function getEventIcon(category) {
+            const icons = {
+                "Opening": "🪑",
+                "Routine Proceedings": "📄",
+                "Accountability": "❓",
+                "Debate": "💬",
+                "Legislation": "🧾",
+                "Voting": "🗳️",
+                "Control": "⚖️",
+                "Opposition": "🎯",
+                "Confidence": "🏛️",
+                "Finance": "💰",
+                "Members": "👥",
+                "Transition": "🔄",
+                "Closing": "🔔"
+            };
+            return icons[category] || "🕰️";
+        }
+
+        function checkOrder() {
+            if (Object.keys(eventOrder).length < currentRound.length) {
+                alert('Please place all events on the timeline before checking.');
+                return;
+            }
+            
+            answersChecked = true;
+            step = "roles";
+            
+            // Show role panel
+            showRolePanel();
+            
+            // Hide check order button, show next step
+            document.getElementById('checkOrderBtn').style.display = 'none';
+        }
+
+        function showRolePanel() {
+            const content = document.getElementById('roleContent');
+            content.innerHTML = '';
+            
+            // Sort events by slot number
+            const sortedSlots = Object.keys(eventOrder).sort((a, b) => parseInt(a) - parseInt(b));
+            
+            sortedSlots.forEach(slotNum => {
+                const eventId = eventOrder[slotNum];
+                const event = eventsBank.find(e => e.id === eventId);
+                
+                const questionDiv = document.createElement('div');
+                questionDiv.style.marginBottom = '2rem';
+                questionDiv.innerHTML = `
+                    <div class="role-question">${slotNum}. ${event.event}</div>
+                    <div class="role-options" id="roles-${eventId}"></div>
+                `;
+                
+                const optionsContainer = questionDiv.querySelector(`#roles-${eventId}`);
+                allRoles.forEach(role => {
+                    const option = document.createElement('div');
+                    option.className = 'role-option';
+                    option.textContent = role;
+                    option.onclick = () => selectRole(eventId, role, option);
+                    optionsContainer.appendChild(option);
+                });
+                
+                content.appendChild(questionDiv);
+            });
+            
+            document.getElementById('rolePanel').classList.add('show');
+            document.getElementById('checkOrderBtn').style.display = 'block';
+            document.getElementById('checkOrderBtn').textContent = 'Check Answers';
+            document.getElementById('checkOrderBtn').onclick = checkAllAnswers;
+        }
+
+        function selectRole(eventId, role, element) {
+            roleAssignments[eventId] = role;
+            const container = element.parentElement;
+            container.querySelectorAll('.role-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+
+        function checkAllAnswers() {
+            if (Object.keys(roleAssignments).length < currentRound.length) {
+                alert('Please select a role for each event before checking answers.');
+                return;
+            }
+            
+            let orderCorrect = 0;
+            let roleCorrect = 0;
+            let total = currentRound.length;
+            
+            // Check ordering
+            const sortedSlots = Object.keys(eventOrder).sort((a, b) => parseInt(a) - parseInt(b));
+            sortedSlots.forEach(slotNum => {
+                const eventId = eventOrder[slotNum];
+                const event = eventsBank.find(e => e.id === eventId);
+                const position = parseInt(slotNum);
+                
+                if (position >= event.correct_position_range[0] && position <= event.correct_position_range[1]) {
+                    orderCorrect++;
+                    const card = document.querySelector(`[data-event-id="${eventId}"].event-card`);
+                    if (card) {
+                        card.classList.remove('incorrect');
+                        card.classList.add('correct');
+                    }
+                } else {
+                    const card = document.querySelector(`[data-event-id="${eventId}"].event-card`);
+                    if (card) {
+                        card.classList.remove('correct');
+                        card.classList.add('incorrect');
+                    }
+                }
+            });
+            
+            // Check roles
+            Object.keys(roleAssignments).forEach(eventId => {
+                const event = eventsBank.find(e => e.id === eventId);
+                const assigned = roleAssignments[eventId];
+                
+                if (assigned === event.primary_role) {
+                    roleCorrect++;
+                } else if (gameMode === "learning" && event.secondary_roles.includes(assigned)) {
+                    roleCorrect += 0.5;
+                }
+            });
+            
+            // Show feedback
+            showFeedback(orderCorrect, roleCorrect, total);
+            
+            // Show score
+            const totalScore = Math.round(orderCorrect + roleCorrect);
+            document.getElementById('scoreValue').textContent = `${totalScore} / ${total * 2}`;
+            document.getElementById('scoreDescription').textContent = 
+                `You correctly ordered ${orderCorrect} events and identified ${Math.round(roleCorrect)} roles.`;
+            document.getElementById('scoreSection').classList.add('show');
+            document.getElementById('checkOrderBtn').style.display = 'none';
+            document.getElementById('newRoundBtn').style.display = 'block';
+        }
+
+        function showFeedback(orderCorrect, roleCorrect, total) {
+            const content = document.getElementById('feedbackContent');
+            content.innerHTML = '';
+            
+            const sortedSlots = Object.keys(eventOrder).sort((a, b) => parseInt(a) - parseInt(b));
+            sortedSlots.forEach(slotNum => {
+                const eventId = eventOrder[slotNum];
+                const event = eventsBank.find(e => e.id === eventId);
+                const position = parseInt(slotNum);
+                const assigned = roleAssignments[eventId] || 'Not selected';
+                
+                const isOrderCorrect = position >= event.correct_position_range[0] && position <= event.correct_position_range[1];
+                const isRoleCorrect = assigned === event.primary_role || (gameMode === "learning" && event.secondary_roles.includes(assigned));
+                
+                const item = document.createElement('div');
+                item.className = 'feedback-item';
+                item.onclick = function() {
+                    this.classList.toggle('expanded');
+                    if (!this.classList.contains('expanded')) {
+                        showEventExplanation(event, isOrderCorrect, isRoleCorrect, assigned);
+                    }
+                };
+                
+                const status = isOrderCorrect && isRoleCorrect ? '✅' : (isOrderCorrect || isRoleCorrect ? '⚠️' : '❌');
+                
+                item.innerHTML = `
+                    <div class="feedback-header">
+                        <span class="feedback-status">${status}</span>
+                        <span class="feedback-event">${event.event}</span>
+                    </div>
+                    <div class="feedback-explanation">
+                        <p><strong>Position:</strong> ${isOrderCorrect ? 'Correct' : `Incorrect (should be position ${event.correct_position_range[0]}-${event.correct_position_range[1]})`}</p>
+                        <p><strong>Role:</strong> ${isRoleCorrect ? 'Correct' : `Incorrect (should be ${event.primary_role})`}</p>
+                        <p><strong>Explanation:</strong> ${event.explanation}</p>
+                        ${!isOrderCorrect || !isRoleCorrect ? `<p><em>Click for more details</em></p>` : ''}
+                    </div>
+                `;
+                
+                content.appendChild(item);
+            });
+            
+            document.getElementById('feedbackPanel').classList.add('show');
+        }
+
+        function showEventExplanation(event, isOrderCorrect, isRoleCorrect, assigned) {
+            let content = `<div class="explanation-title">${event.event}</div>`;
+            
+            if (!isOrderCorrect) {
+                content += `<div class="explanation-text"><strong>Correct Position:</strong> ${event.correct_position_range[0]}-${event.correct_position_range[1]}</div>`;
+            }
+            
+            content += `<div class="explanation-text">${event.explanation}</div>`;
+            
+            if (!isRoleCorrect) {
+                content += `<div class="explanation-text"><strong>Correct Role:</strong> ${event.primary_role}</div>`;
+                if (event.secondary_roles.length > 0) {
+                    content += `<div class="explanation-text"><strong>Also involved:</strong> ${event.secondary_roles.join(', ')}</div>`;
+                }
+            }
+            
+            if (event.common_misconception) {
+                content += `<div class="misconception-box"><strong>Common Misconception:</strong> ${event.common_misconception}</div>`;
+            }
+            
+            document.getElementById('explanationContent').innerHTML = content;
+            document.getElementById('explanationModal').classList.add('show');
+        }
+
+        function closeExplanation(event) {
+            if (event && event.target !== event.currentTarget) return;
+            document.getElementById('explanationModal').classList.remove('show');
+        }
+
+        function resetGame() {
+            eventOrder = {};
+            roleAssignments = {};
+            answersChecked = false;
+            step = "ordering";
+            renderGame();
+            document.getElementById('rolePanel').classList.remove('show');
+            document.getElementById('feedbackPanel').classList.remove('show');
+            document.getElementById('scoreSection').classList.remove('show');
+            document.getElementById('checkOrderBtn').style.display = 'block';
+            document.getElementById('checkOrderBtn').textContent = 'Check Order';
+            document.getElementById('checkOrderBtn').onclick = checkOrder;
+            document.getElementById('newRoundBtn').style.display = 'none';
+        }
+
+        // Mode toggle
+        document.querySelectorAll('.mode-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                gameMode = this.dataset.mode;
+            });
+        });
+
+        // Close modal on Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeExplanation();
+            }
+        });
+
+        // Initialize
+        newRound();
+    </script>
+</body>
+</html>

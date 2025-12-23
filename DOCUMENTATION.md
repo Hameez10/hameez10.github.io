@@ -94,6 +94,7 @@ User personas considered:
 - Responsive design with mobile menu
 - Active state indicators
 - Consistent across all pages
+- Includes "Canada" page between "Media" and "Cool Stuff"
 
 ### Project Cards
 - Structured information hierarchy
@@ -103,6 +104,14 @@ User personas considered:
 - Hover effects for interactivity
 - Interactive "Try Now" buttons for web-based tools
 - Projects ordered from most recent to oldest
+
+### Game Cards (Canada Page)
+- Icon-based visual identification
+- Title and description layout
+- Primary and secondary button styles
+- Responsive grid (3 columns desktop, 1 column mobile)
+- Hover effects with elevation
+- Direct navigation to games
 
 ### Tag System
 - Semantic categorization
@@ -245,11 +254,16 @@ root/
 ├── media.html
 ├── cool-stuff.html
 ├── contact.html
+├── canada.html                          # Canadian civic education hub page
 ├── TravelingSalesmanAlgorithm.html      # Route Optimizer tool
 ├── activity-points.html                 # Activity Point Calculator
 ├── how-bill-becomes-law.html           # Canadian legislative process interactive guide
 ├── government-responsibilities.html     # Federal/Provincial/Municipal responsibilities reference
 ├── government-responsibilities-game.html # Drag-and-drop civic knowledge game
+├── house-of-commons-roles.html          # Match roles to responsibilities game
+├── house-of-commons-quotes.html         # Match quotes to roles game
+├── day-in-the-chamber.html              # Timeline game for Commons sitting day
+├── commons-roles-bingo.html             # 3×3 bingo game for parliamentary roles
 └── canadian-honours-quiz.html          # Canadian honours eligibility quiz
 ```
 
@@ -314,6 +328,21 @@ root/
    - **How a Bill Becomes Law**: Clickable flow diagram with detailed explanations for each stage
    - **Who's Responsible? Reference**: Topic-based cards with search, filters, and detailed drawers
    - **Who's Responsible? Game**: Drag-and-drop game with balanced rounds, scoring, and save/share
+   - **Who Does What? — House of Commons**: Drag-and-drop game matching roles to responsibilities with learning/strict modes
+   - **Who Said This? — Commons Edition**: Quiz game matching parliamentary quotes to roles with historical context
+   - **A Day in the Chamber**: Timeline game ordering events and identifying roles in a Commons sitting day
+   - **Commons Roles Bingo**: Lightweight 3×3 bingo game with definitions, functions, and hints
+   - **Canadian Honours Quiz**: Interactive eligibility quiz for Canadian awards
    - All tools use consistent design system and are fully responsive
    - Games include localStorage for personal progress tracking (no leaderboards)
-   - Share functionality via Web Share API with fallback options 
+   - Share functionality via Web Share API with fallback options
+
+7. **Canada Page**
+   - Centralized hub for all Canadian civic education games and tools
+   - Features "How a Bill Becomes Law" interactive section with clickable bubbles
+   - Responsive grid layout displaying all 8 games with:
+     - Game icons and titles
+     - Descriptive text
+     - Direct navigation buttons
+   - Consistent card-based design with hover effects
+   - Alternating button colors for visual variety 

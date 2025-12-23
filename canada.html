@@ -230,6 +230,72 @@
             color: var(--text-dark);
             font-weight: 500;
         }
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .game-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        .game-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .game-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .game-description {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        .game-button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.2);
+        }
+        .game-button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+        }
+        .game-button.secondary {
+            background: var(--accent-color);
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.2);
+        }
+        .game-button.secondary:hover {
+            background: #3db8ab;
+            box-shadow: 0 6px 20px rgba(78, 205, 196, 0.3);
+        }
         @media (max-width: 768px) {
             .container {
                 padding: 100px 1rem 2rem 1rem;
@@ -249,6 +315,10 @@
             }
             .modal-content {
                 padding: 1.5rem;
+            }
+            .games-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
         }
     </style>
@@ -307,6 +377,65 @@
                     <div class="bubble-description">The Governor General grants Royal Assent and the bill becomes law</div>
                     <div class="bubble-hint">Click to see more</div>
                 </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Interactive Games & Tools</h2>
+        <div class="games-grid">
+            <div class="game-card">
+                <div class="game-icon">🇨🇦</div>
+                <div class="game-title">Canadian Honours Quiz</div>
+                <div class="game-description">Discover which Canadian awards and honours you may be eligible for based on your achievements, service, and contributions to Canada.</div>
+                <a href="canadian-honours-quiz.html" class="game-button">Take the quiz →</a>
+            </div>
+
+            <div class="game-card">
+                <div class="game-icon">📜</div>
+                <div class="game-title">How a Bill Becomes Law</div>
+                <div class="game-description">Explore the Canadian legislative process with an interactive clickable flow. Learn how bills move through Parliament to become law.</div>
+                <a href="how-bill-becomes-law.html" class="game-button">Explore the process →</a>
+            </div>
+
+            <div class="game-card">
+                <div class="game-icon">🏛️</div>
+                <div class="game-title">Who's Responsible? (Canada)</div>
+                <div class="game-description">Quickly understand which level of government is responsible for services in Canada. Federal, Provincial, or Municipal—explained by topic.</div>
+                <a href="government-responsibilities.html" class="game-button secondary">Explore responsibilities →</a>
+            </div>
+
+            <div class="game-card">
+                <div class="game-icon">🎮</div>
+                <div class="game-title">Who's Responsible? Game</div>
+                <div class="game-description">Test your civic knowledge! Drag and drop topics into the correct government level. Learn mode or strict mode—your choice.</div>
+                <a href="government-responsibilities-game.html" class="game-button">Play the game →</a>
+            </div>
+
+            <div class="game-card">
+                <div class="game-icon">🏛️</div>
+                <div class="game-title">Who Does What? — House of Commons</div>
+                <div class="game-description">Match parliamentary roles to their responsibilities. Learn how the House of Commons functions day-to-day through interactive gameplay.</div>
+                <a href="house-of-commons-roles.html" class="game-button secondary">Play the game →</a>
+            </div>
+
+            <div class="game-card">
+                <div class="game-icon">💬</div>
+                <div class="game-title">Who Said This? — Commons Edition</div>
+                <div class="game-description">Match parliamentary quotes to the roles that use them. Learn procedural language and parliamentary traditions through historical context.</div>
+                <a href="house-of-commons-quotes.html" class="game-button">Play the game →</a>
+            </div>
+
+            <div class="game-card">
+                <div class="game-icon">🕰️</div>
+                <div class="game-title">A Day in the Chamber</div>
+                <div class="game-description">Arrange events of a Commons sitting day in order, then identify key roles. Learn the daily structure and flow of Parliament.</div>
+                <a href="day-in-the-chamber.html" class="game-button secondary">Play the game →</a>
+            </div>
+
+            <div class="game-card">
+                <div class="game-icon">🎯</div>
+                <div class="game-title">Commons Roles Bingo</div>
+                <div class="game-description">Lightweight bingo game! Click the matching role as definitions appear. Quick and shareable way to learn parliamentary roles.</div>
+                <a href="commons-roles-bingo.html" class="game-button">Play the game →</a>
             </div>
         </div>
     </div>

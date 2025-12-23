@@ -19,9 +19,17 @@ You can view the live website at: [https://hameez10.github.io](https://hameez10.
   - **How a Bill Becomes Law (Canada)**: Interactive clickable flow explaining the Canadian legislative process
   - **Who's Responsible? (Canada)**: Reference guide showing Federal vs Provincial vs Municipal responsibilities
   - **Who's Responsible? Game**: Drag-and-drop game to test civic knowledge
+  - **Who Does What? — House of Commons**: Match parliamentary roles to their responsibilities
+  - **Who Said This? — Commons Edition**: Match parliamentary quotes to the roles that use them
+  - **A Day in the Chamber**: Arrange events of a Commons sitting day in order and identify key roles
+  - **Commons Roles Bingo**: Lightweight bingo game to learn parliamentary roles
   - **Canadian Honours Quiz**: Interactive quiz to discover eligible Canadian awards
   - **Glenforest Activity Points Awards**: Calculator for graduation awards
   - **Route Optimizer**: Campaign route optimization tool
+- **Canada**: Comprehensive page dedicated to Canadian civic education
+  - Features all interactive games and tools in one centralized location
+  - Includes "How a Bill Becomes Law" interactive section
+  - Quick access to all 8 civic education games and tools
 - **Contact**: How to reach me
 
 ## Architecture
@@ -40,7 +48,16 @@ All pages inherit navigation and footer from these components, ensuring consiste
   - Added "How a Bill Becomes Law (Canada)" - Interactive clickable flow with 7 stages of the legislative process
   - Added "Who's Responsible? (Canada)" - Comprehensive reference guide with 22+ topics showing government responsibilities
   - Added "Who's Responsible? Game" - Drag-and-drop game with 89 topics, scoring, badges, and save/share functionality
+  - Added "Who Does What? — House of Commons" - Drag-and-drop game matching roles to responsibilities
+  - Added "Who Said This? — Commons Edition" - Quiz game matching parliamentary quotes to roles
+  - Added "A Day in the Chamber" - Timeline game ordering events and identifying roles
+  - Added "Commons Roles Bingo" - Lightweight 3×3 bingo game for learning parliamentary roles
   - Added "Canadian Honours Quiz" - Interactive eligibility quiz
+- **Canada Page**: 
+  - New dedicated page for Canadian civic education
+  - Features "How a Bill Becomes Law" interactive section with clickable bubbles
+  - Centralized hub for all 8 interactive games and tools
+  - Responsive grid layout with game cards and direct navigation buttons
 - **Experience Page**: 
   - Added Government of Canada roles (AI Technical Program Manager, Software Engineer, AI Product Management)
   - Improved card width and layout for better readability

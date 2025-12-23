@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commons Roles Bingo - Hameez Iqbal</title>
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <style>
+        :root {
+            --primary-color: #FF6B6B;
+            --accent-color: #4ECDC4;
+            --warm-bg: #FFF9F4;
+            --text-dark: #2D3436;
+            --text-light: #636E72;
+            --success-color: #51CF66;
+            --warning-color: #FFD43B;
+        }
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--warm-bg);
+            overflow-y: auto;
+        }
+        .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            height: auto;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 0.75rem;
+            }
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 120px 2rem 2rem 2rem;
+        }
+        .header-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+        }
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        .definition-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .definition-text {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        .definition-hint {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-style: italic;
+            margin-top: 1rem;
+        }
+        .bingo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .bingo-square {
+            background: white;
+            border: 3px solid var(--text-light);
+            border-radius: 15px;
+            padding: 2rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .bingo-square:hover {
+            transform: scale(1.05);
+            border-color: var(--accent-color);
+            box-shadow: 0 5px 20px rgba(78, 205, 196, 0.2);
+        }
+        .bingo-square.marked {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+        .bingo-square.correct {
+            background: var(--success-color);
+            color: white;
+            border-color: var(--success-color);
+            animation: correctPulse 0.5s ease;
+        }
+        .bingo-square.incorrect {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            animation: shake 0.5s ease;
+        }
+        @keyframes correctPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        .checkmark {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            font-size: 1.5rem;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        .btn-primary:hover:not(:disabled) {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+        .btn-secondary {
+            background: var(--accent-color);
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: #3db8ab;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .score-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 2rem;
+            display: none;
+        }
+        .score-section.show {
+            display: block;
+        }
+        .score-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        .score-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+        .bingo-message {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--success-color);
+            margin: 1rem 0;
+            display: none;
+        }
+        .bingo-message.show {
+            display: block;
+            animation: bounce 0.5s ease;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .progress-indicator {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 100px 1rem 2rem 1rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .bingo-square {
+                padding: 1.5rem 0.5rem;
+                font-size: 1rem;
+            }
+            .definition-text {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+    <div class="container">
+        <div class="header-section">
+            <h1>🎯 Commons Roles Bingo</h1>
+            <p class="subtitle">Click the matching role as definitions appear</p>
+        </div>
+
+        <div class="progress-indicator" id="progressIndicator">Definition 1 of 9</div>
+
+        <div class="definition-card" id="definitionCard">
+            <div class="definition-text" id="definitionText">Click "Start Game" to begin</div>
+            <div class="definition-hint" id="definitionHint"></div>
+        </div>
+
+        <div class="bingo-grid" id="bingoGrid"></div>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" id="startBtn" onclick="startGame()">Start Game</button>
+            <button class="btn btn-secondary" onclick="resetGame()" id="resetBtn" style="display: none;">Reset</button>
+            <button class="btn btn-secondary" onclick="newGame()" id="newGameBtn" style="display: none;">New Game</button>
+        </div>
+
+        <div class="score-section" id="scoreSection">
+            <div class="bingo-message" id="bingoMessage">🎉 BINGO! 🎉</div>
+            <div class="score-title">Your Score</div>
+            <div class="score-value" id="scoreValue">0 / 9</div>
+            <div class="score-description" id="scoreDescription"></div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script>
+        // Roles data
+        const rolesData = [
+            {
+                id: "role_speaker",
+                label: "Speaker",
+                aliases: ["Speaker of the House"],
+                short_definition: "Presides over debates, enforces rules, and maintains order.",
+                key_functions: [
+                    "Maintains order and decorum",
+                    "Enforces Standing Orders",
+                    "Rules on points of order",
+                    "Puts questions to a vote"
+                ],
+                when_you_see_it: [
+                    "Calls 'Order!'",
+                    "Reminds Members to address the Chair",
+                    "Rules a motion out of order"
+                ],
+                difficulty: "easy",
+                tags: ["procedural", "presiding", "neutral"]
+            },
+            {
+                id: "role_pm",
+                label: "Prime Minister",
+                aliases: ["PM", "Head of Government"],
+                short_definition: "Leads the government and sets overall direction in the House.",
+                key_functions: [
+                    "Leads Cabinet and government agenda",
+                    "Answers major questions in Question Period",
+                    "Represents government direction in major debates",
+                    "Maintains the confidence of the House"
+                ],
+                when_you_see_it: [
+                    "Defends government priorities",
+                    "Speaks in confidence-related debates",
+                    "Answers high-profile QP questions"
+                ],
+                difficulty: "easy",
+                tags: ["government", "leadership", "accountability"]
+            },
+            {
+                id: "role_whip",
+                label: "Whip",
+                aliases: ["Government Whip", "Opposition Whip", "Party Whip"],
+                short_definition: "Manages party discipline, attendance, and voting coordination.",
+                key_functions: [
+                    "Ensures Members are present for votes",
+                    "Coordinates voting discipline",
+                    "Organizes speaking lists and attendance",
+                    "Assigns Members to committees (party-side)"
+                ],
+                when_you_see_it: [
+                    "Rallies Members for a vote",
+                    "Coordinates committee membership",
+                    "Manages caucus attendance expectations"
+                ],
+                difficulty: "medium",
+                tags: ["party", "votes", "coordination"]
+            },
+            {
+                id: "role_house_leader",
+                label: "House Leader",
+                aliases: ["Government House Leader", "Opposition House Leader"],
+                short_definition: "Negotiates and manages the schedule and flow of House business.",
+                key_functions: [
+                    "Schedules House business and debate timing",
+                    "Negotiates procedural agreements",
+                    "Moves time allocation/closure (government-side)",
+                    "Coordinates daily/weekly House plans"
+                ],
+                when_you_see_it: [
+                    "Announces upcoming business",
+                    "Seeks unanimous consent",
+                    "Negotiates debate timing"
+                ],
+                difficulty: "medium",
+                tags: ["scheduling", "procedure", "negotiation"]
+            },
+            {
+                id: "role_backbencher",
+                label: "Backbencher",
+                aliases: ["Backbench MP", "Backbench Member"],
+                short_definition: "Represents constituents and participates in debates and committees.",
+                key_functions: [
+                    "Represents constituents in the House",
+                    "Participates in debates",
+                    "Serves on committees",
+                    "Introduces private members' bills"
+                ],
+                when_you_see_it: [
+                    "Speaks on behalf of their riding",
+                    "Presents petitions",
+                    "Participates in committee work"
+                ],
+                difficulty: "easy",
+                tags: ["representation", "debate", "constituents"]
+            },
+            {
+                id: "role_clerk",
+                label: "Clerk",
+                aliases: ["Clerk of the House"],
+                short_definition: "Provides procedural advice and maintains official records.",
+                key_functions: [
+                    "Advises on parliamentary procedure",
+                    "Maintains official records (Hansard)",
+                    "Reads motions and votes",
+                    "Protects parliamentary symbols"
+                ],
+                when_you_see_it: [
+                    "Reads 'It has been moved and seconded'",
+                    "Announces vote results",
+                    "Cites Standing Orders"
+                ],
+                difficulty: "medium",
+                tags: ["procedure", "records", "administration"]
+            },
+            {
+                id: "role_sergeant",
+                label: "Sergeant-at-Arms",
+                aliases: ["Sergeant-at-Arms"],
+                short_definition: "Maintains security and ceremonial duties, including the Mace.",
+                key_functions: [
+                    "Protects parliamentary symbols (Mace)",
+                    "Maintains chamber security",
+                    "Performs ceremonial duties",
+                    "Manages access to the chamber"
+                ],
+                when_you_see_it: [
+                    "The Mace is laid on the Table",
+                    "Security measures are implemented",
+                    "Ceremonial proceedings occur"
+                ],
+                difficulty: "hard",
+                tags: ["security", "ceremony", "symbols"]
+            },
+            {
+                id: "role_opposition_leader",
+                label: "Opposition Leader",
+                aliases: ["Leader of the Official Opposition"],
+                short_definition: "Leads the opposition and holds the government to account.",
+                key_functions: [
+                    "Leads the Official Opposition",
+                    "Holds government accountable in Question Period",
+                    "Develops alternative policies",
+                    "Moves non-confidence motions"
+                ],
+                when_you_see_it: [
+                    "Questions the Prime Minister in QP",
+                    "Critiques government policy",
+                    "Moves confidence motions"
+                ],
+                difficulty: "easy",
+                tags: ["opposition", "accountability", "scrutiny"]
+            },
+            {
+                id: "role_minister",
+                label: "Minister",
+                aliases: ["Cabinet Minister", "Minister"],
+                short_definition: "Introduces and defends government legislation and policy in their portfolio.",
+                key_functions: [
+                    "Introduces government bills",
+                    "Defends government policy in their portfolio",
+                    "Answers questions in Question Period",
+                    "Manages government departments"
+                ],
+                when_you_see_it: [
+                    "Introduces a bill",
+                    "Defends policy in debate",
+                    "Answers portfolio-specific questions"
+                ],
+                difficulty: "easy",
+                tags: ["government", "legislation", "policy"]
+            }
+        ];
+
+        let currentDefinitions = [];
+        let currentDefinitionIndex = 0;
+        let markedSquares = new Set();
+        let correctCount = 0;
+        let gameStarted = false;
+        let currentCorrectRole = null;
+
+        function startGame() {
+            gameStarted = true;
+            currentDefinitionIndex = 0;
+            markedSquares.clear();
+            correctCount = 0;
+            
+            // Shuffle roles for grid
+            const shuffled = [...rolesData].sort(() => Math.random() - 0.5);
+            
+            // Render bingo grid
+            renderBingoGrid(shuffled);
+            
+            // Generate definitions (mix of short definitions, key functions, and "when you see it")
+            currentDefinitions = [];
+            rolesData.forEach(role => {
+                // Add short definition
+                currentDefinitions.push({
+                    type: 'definition',
+                    text: role.short_definition,
+                    roleId: role.id
+                });
+                // Add a key function
+                if (role.key_functions.length > 0) {
+                    currentDefinitions.push({
+                        type: 'function',
+                        text: role.key_functions[Math.floor(Math.random() * role.key_functions.length)],
+                        roleId: role.id
+                    });
+                }
+                // Add a "when you see it"
+                if (role.when_you_see_it.length > 0) {
+                    currentDefinitions.push({
+                        type: 'hint',
+                        text: role.when_you_see_it[Math.floor(Math.random() * role.when_you_see_it.length)],
+                        roleId: role.id
+                    });
+                }
+            });
+            
+            // Shuffle definitions
+            currentDefinitions = currentDefinitions.sort(() => Math.random() - 0.5).slice(0, 9);
+            
+            showNextDefinition();
+            
+            document.getElementById('startBtn').style.display = 'none';
+            document.getElementById('resetBtn').style.display = 'block';
+        }
+
+        function renderBingoGrid(roles) {
+            const grid = document.getElementById('bingoGrid');
+            grid.innerHTML = '';
+            
+            roles.slice(0, 9).forEach(role => {
+                const square = document.createElement('div');
+                square.className = 'bingo-square';
+                square.dataset.roleId = role.id;
+                square.textContent = role.label;
+                square.onclick = () => handleSquareClick(role.id, square);
+                grid.appendChild(square);
+            });
+        }
+
+        function showNextDefinition() {
+            if (currentDefinitionIndex >= currentDefinitions.length) {
+                endGame();
+                return;
+            }
+            
+            const def = currentDefinitions[currentDefinitionIndex];
+            const role = rolesData.find(r => r.id === def.roleId);
+            currentCorrectRole = def.roleId;
+            
+            document.getElementById('definitionText').textContent = def.text;
+            
+            let hint = '';
+            if (def.type === 'definition') {
+                hint = 'Click the role that matches this description';
+            } else if (def.type === 'function') {
+                hint = 'Which role performs this function?';
+            } else if (def.type === 'hint') {
+                hint = 'When you see this, which role is involved?';
+            }
+            document.getElementById('definitionHint').textContent = hint;
+            
+            document.getElementById('progressIndicator').textContent = 
+                `Definition ${currentDefinitionIndex + 1} of ${currentDefinitions.length}`;
+        }
+
+        function handleSquareClick(roleId, square) {
+            if (!gameStarted || markedSquares.has(square.dataset.roleId)) return;
+            
+            if (roleId === currentCorrectRole) {
+                square.classList.add('correct');
+                square.innerHTML = square.textContent + '<span class="checkmark">✓</span>';
+                markedSquares.add(square.dataset.roleId);
+                correctCount++;
+                
+                // Move to next definition after a short delay
+                setTimeout(() => {
+                    currentDefinitionIndex++;
+                    showNextDefinition();
+                }, 1000);
+            } else {
+                square.classList.add('incorrect');
+                setTimeout(() => {
+                    square.classList.remove('incorrect');
+                }, 1000);
+            }
+        }
+
+        function endGame() {
+            gameStarted = false;
+            const percentage = Math.round((correctCount / currentDefinitions.length) * 100);
+            
+            document.getElementById('scoreValue').textContent = `${correctCount} / ${currentDefinitions.length}`;
+            document.getElementById('scoreDescription').textContent = 
+                `You correctly identified ${correctCount} of ${currentDefinitions.length} roles (${percentage}%).`;
+            
+            if (correctCount === currentDefinitions.length) {
+                document.getElementById('bingoMessage').classList.add('show');
+            }
+            
+            document.getElementById('scoreSection').classList.add('show');
+            document.getElementById('newGameBtn').style.display = 'block';
+        }
+
+        function resetGame() {
+            gameStarted = false;
+            currentDefinitionIndex = 0;
+            markedSquares.clear();
+            correctCount = 0;
+            
+            // Reset all squares
+            document.querySelectorAll('.bingo-square').forEach(square => {
+                square.classList.remove('marked', 'correct', 'incorrect');
+                square.innerHTML = square.textContent.replace('<span class="checkmark">✓</span>', '');
+            });
+            
+            document.getElementById('definitionText').textContent = 'Click "Start Game" to begin';
+            document.getElementById('definitionHint').textContent = '';
+            document.getElementById('progressIndicator').textContent = 'Definition 1 of 9';
+            document.getElementById('scoreSection').classList.remove('show');
+            document.getElementById('bingoMessage').classList.remove('show');
+            document.getElementById('startBtn').style.display = 'block';
+            document.getElementById('resetBtn').style.display = 'none';
+            document.getElementById('newGameBtn').style.display = 'none';
+        }
+
+        function newGame() {
+            resetGame();
+            startGame();
+        }
+    </script>
+</body>
+</html>
