@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical Inbox - Coming Soon - Hameez Iqbal</title>
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <script src="js/navbar.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <style>
+        :root {
+            --primary-color: #FF6B6B;
+            --accent-color: #4ECDC4;
+            --warm-bg: #FFF9F4;
+            --text-dark: #2D3436;
+            --text-light: #636E72;
+            --background-color: rgba(255, 255, 255, 0.9);
+            --text-color: #2D3436;
+        }
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--warm-bg);
+            overflow-y: auto;
+        }
+        .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            height: auto;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 0.75rem;
+            }
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 150px 2rem 4rem 2rem;
+            text-align: center;
+        }
+        .coming-soon-content {
+            background: white;
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: var(--primary-color);
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+        .description {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .icon {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 120px 1rem 2rem 1rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            .description {
+                font-size: 1rem;
+            }
+            .coming-soon-content {
+                padding: 3rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+    <div class="container">
+        <div class="coming-soon-content">
+            <div class="icon">📬</div>
+            <h1>Historical Inbox</h1>
+            <p class="subtitle">Coming Soon</p>
+            <p class="description">
+                This page is currently under development. Check back soon for updates!
+            </p>
+        </div>
+    </div>
+    <div id="footer"></div>
+</body>
+</html>
+
