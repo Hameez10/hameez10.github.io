@@ -322,7 +322,8 @@
             display: flex;
             justify-content: center;
             gap: 1rem;
-            margin-top: 2rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
         }
         .btn {
             padding: 0.75rem 2rem;
@@ -415,7 +416,7 @@
             </div>
         </div>
 
-        <div class="progress-section">
+        <div class="progress-section" id="progress-section">
             <div class="progress-text" id="progressText">Question 1 of 10</div>
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill" style="width: 10%"></div>
@@ -429,15 +430,14 @@
 
         <div class="roles-selection" id="rolesSelection"></div>
 
-        <button class="submit-btn" id="submitBtn" onclick="submitAnswer()" disabled>Submit</button>
-
-        <div class="feedback-panel" id="feedbackPanel">
-            <div class="result-banner" id="resultBanner"></div>
-            <div id="feedbackContent"></div>
+        <div class="action-buttons" id="actionButtons" style="display: flex; margin-top: 1rem;">
+            <button class="btn btn-secondary" id="backBtn" onclick="previousQuestion()" style="display: none;">← Back</button>
+            <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" style="display: none;">Next Question →</button>
         </div>
 
-        <div class="action-buttons" id="actionButtons" style="display: none;">
-            <button class="btn btn-primary" onclick="nextQuestion()">Next Question</button>
+        <div class="feedback-panel" id="feedbackPanel" style="display: none;">
+            <div class="result-banner" id="resultBanner"></div>
+            <div id="feedbackContent"></div>
         </div>
 
         <div class="score-section" id="scoreSection">
@@ -827,10 +827,12 @@
         let selectedRole = null;
         let difficulty = "easy";
         let questionsPerRound = 10;
+        let userAnswers = []; // Store answers for each question
 
         function newRound() {
             currentQuestionIndex = 0;
             score = { correct: 0, partial: 0, incorrect: 0 };
+            userAnswers = [];
             
             // Filter quotes by difficulty
             let availableQuotes = quotesBank;
@@ -851,6 +853,12 @@
             const shuffled = [...availableQuotes].sort(() => Math.random() - 0.5);
             currentRound = shuffled.slice(0, questionsPerRound);
             
+            // Show question UI
+            document.getElementById('quoteCard').style.display = 'block';
+            document.getElementById('rolesSelection').style.display = 'grid';
+            document.getElementById('actionButtons').style.display = 'flex';
+            document.getElementById('progress-section').style.display = 'block';
+            
             showQuestion();
             document.getElementById('scoreSection').classList.remove('show');
         }
@@ -862,7 +870,14 @@
             }
             
             const question = currentRound[currentQuestionIndex];
-            selectedRole = null;
+            
+            // Check if user already answered this question
+            const existingAnswer = userAnswers[currentQuestionIndex];
+            if (existingAnswer) {
+                selectedRole = existingAnswer;
+            } else {
+                selectedRole = null;
+            }
             
             // Update quote
             document.getElementById('quoteText').textContent = question.quote;
@@ -887,89 +902,89 @@
             container.innerHTML = '';
             finalRoles.forEach(role => {
                 const option = document.createElement('div');
-                option.className = 'role-option';
+                option.className = 'role-option' + (existingAnswer && existingAnswer === role ? ' selected' : '');
                 option.textContent = role;
                 option.onclick = () => selectRole(role, option);
+                if (existingAnswer && existingAnswer === role) {
+                    option.style.pointerEvents = 'none'; // Disable clicking if already answered
+                }
                 container.appendChild(option);
             });
             
             // Reset UI
-            document.getElementById('submitBtn').disabled = true;
-            document.getElementById('feedbackPanel').classList.remove('show');
-            document.getElementById('actionButtons').style.display = 'none';
+            document.getElementById('feedbackPanel').style.display = 'none';
+            document.getElementById('backBtn').style.display = currentQuestionIndex > 0 ? 'block' : 'none';
+            document.getElementById('nextBtn').style.display = existingAnswer ? 'block' : 'none';
         }
 
         function selectRole(role, element) {
+            if (userAnswers[currentQuestionIndex]) return; // Already answered
+            
             selectedRole = role;
             document.querySelectorAll('.role-option').forEach(opt => {
                 opt.classList.remove('selected');
             });
             element.classList.add('selected');
-            document.getElementById('submitBtn').disabled = false;
-        }
-
-        function submitAnswer() {
-            if (!selectedRole) return;
             
-            const question = currentRound[currentQuestionIndex];
-            const isCorrect = selectedRole === question.primary_role;
+            // Save answer immediately
+            userAnswers[currentQuestionIndex] = role;
             
-            // Update score
-            if (isCorrect) {
-                score.correct++;
-            } else {
-                score.incorrect++;
-            }
+            // Disable all options
+            document.querySelectorAll('.role-option').forEach(opt => {
+                opt.style.pointerEvents = 'none';
+            });
             
-            // Show feedback
-            const banner = document.getElementById('resultBanner');
-            const content = document.getElementById('feedbackContent');
+            // Show next button
+            document.getElementById('nextBtn').style.display = 'block';
             
-            if (isCorrect) {
-                banner.className = 'result-banner correct';
-                banner.textContent = '✅ Correct';
-            } else {
-                banner.className = 'result-banner incorrect';
-                banner.textContent = '❌ Incorrect';
-            }
-            
-            content.innerHTML = `
-                <div class="explanation-section">
-                    <h3>Who Typically Says This?</h3>
-                    <p><strong>Typically said by:</strong> ${question.primary_role}</p>
-                </div>
-                <div class="explanation-section">
-                    <h3>Why This Role Matters</h3>
-                    <p>${question.why_it_matters}</p>
-                </div>
-                <div class="explanation-section">
-                    <h3>When Is This Used?</h3>
-                    <p>${question.when_used}</p>
-                </div>
-                <div class="historical-note" onclick="this.classList.toggle('expanded')">
-                    <div class="historical-note-header">
-                        <span>Historical Note</span>
-                        <span>▼</span>
-                    </div>
-                    <div class="historical-note-content">
-                        ${question.historical_note}
-                    </div>
-                </div>
-            `;
-            
-            document.getElementById('feedbackPanel').classList.add('show');
-            document.getElementById('submitBtn').disabled = true;
-            document.getElementById('actionButtons').style.display = 'flex';
+            // Auto-advance after a brief moment
+            setTimeout(() => {
+                if (currentQuestionIndex < currentRound.length - 1) {
+                    nextQuestion();
+                } else {
+                    // Last question - show final score
+                    showFinalScore();
+                }
+            }, 500);
         }
 
         function nextQuestion() {
-            currentQuestionIndex++;
-            showQuestion();
+            if (currentQuestionIndex < currentRound.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+        
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion();
+            }
         }
 
         function showFinalScore() {
+            // Calculate score from user answers
+            score = { correct: 0, partial: 0, incorrect: 0 };
+            
+            userAnswers.forEach((answer, index) => {
+                const question = currentRound[index];
+                if (answer === question.primary_role) {
+                    score.correct++;
+                } else {
+                    score.incorrect++;
+                }
+            });
+            
             const total = score.correct + score.incorrect;
             const percentage = Math.round((score.correct / total) * 100);
+            
+            // Hide question UI
+            document.getElementById('quoteCard').style.display = 'none';
+            document.getElementById('rolesSelection').style.display = 'none';
+            document.getElementById('actionButtons').style.display = 'none';
+            document.getElementById('progress-section').style.display = 'none';
             
             document.getElementById('scoreValue').textContent = `${score.correct} / ${total}`;
             document.getElementById('scoreDescription').textContent = 

@@ -22,7 +22,6 @@
             margin: 0;
             padding: 0;
             width: 100%;
-            min-height: 100vh;
             box-sizing: border-box;
             -webkit-text-size-adjust: 100%; /* Prevent iOS font size adjustment */
             overflow-x: hidden;
@@ -34,6 +33,8 @@
             --warm-bg: #FFF9F4;
             --text-dark: #2D3436;
             --text-light: #636E72;
+            --background-color: rgba(255, 255, 255, 0.9);
+            --text-color: #2D3436;
         }
 
         body {
@@ -45,7 +46,6 @@
         }
 
         .content-wrapper {
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
@@ -112,7 +112,7 @@
         .hero {
             padding: 2rem;
             padding-top: 6rem;
-            padding-bottom: 1rem;
+            padding-bottom: 2rem;
             display: flex;
             align-items: flex-start;
             position: relative;
@@ -316,7 +316,7 @@
             text-align: center;
             margin-top: 2rem;
             margin-bottom: 0;
-            padding-bottom: 2rem;
+            padding-bottom: 0;
         }
 
         .social-links {
@@ -365,6 +365,7 @@
 
         #footer .footer {
             margin-top: 0 !important;
+            margin-bottom: 0;
         }
 
         footer a {
@@ -507,7 +508,7 @@
 
                     <div class="about-me">
                         <p>
-                            Currently, I'm studying <span class="highlight">Computer Science</span> at Toronto Metropolitan University, with a focus on Machine Learning and Artificial Intelligence. I'm also pursuing a minor in Innovation and Cybersecurity — because I believe technology should not only be smart, but also safe and meaningful. 🚀
+                            I'm studying <span class="highlight">Computer Science</span> at Toronto Metropolitan University, focusing on Machine Learning and AI. I'm also working on minors in Innovation and Cybersecurity.
                         </p>
                     </div>
 

@@ -15,6 +15,8 @@
             --warm-bg: #FFF9F4;
             --text-dark: #2D3436;
             --text-light: #636E72;
+            --background-color: rgba(255, 255, 255, 0.9);
+            --text-color: #2D3436;
         }
         html, body {
             overflow-x: hidden;
@@ -160,7 +162,7 @@
             gap: 0.5rem;
         }
         .bubble-hint::before {
-            content: "👆";
+            content: "";
         }
         .detail-modal {
             display: none;
@@ -326,221 +328,60 @@
 <body>
     <div id="navbar-placeholder"></div>
     <div class="container">
-        <h1>🇨🇦 Canada</h1>
-        <p class="subtitle">Understanding Canadian Government and Civic Processes</p>
-
-        <h2 class="section-title">How a Bill Becomes Law</h2>
-        <div class="legislative-process">
-            <p style="text-align: center; color: var(--text-light); font-size: 1.1rem; margin-bottom: 2rem;">
-                To become Canadian federal law, a bill must be approved in identical form by both houses of Parliament – the <strong>Senate</strong> and the <strong>House of Commons</strong>. Click on any step below to learn more about the legislative process.
-            </p>
-            <div class="process-bubbles">
-                <div class="process-bubble" onclick="showDetail(1)">
-                    <div class="bubble-number">1</div>
-                    <div class="bubble-title">First Reading: Introducing the Bill</div>
-                    <div class="bubble-description">A bill is introduced in either the Senate or the House of Commons</div>
-                    <div class="bubble-hint">Click to see more</div>
-                </div>
-                <div class="process-bubble" onclick="showDetail(2)">
-                    <div class="bubble-number">2</div>
-                    <div class="bubble-title">Second Reading: Debating the Idea</div>
-                    <div class="bubble-description">Parliamentarians debate the principle and vote on whether to continue</div>
-                    <div class="bubble-hint">Click to see more</div>
-                </div>
-                <div class="process-bubble" onclick="showDetail(3)">
-                    <div class="bubble-number">3</div>
-                    <div class="bubble-title">Committee Stage: Discussion and Hearing Witnesses</div>
-                    <div class="bubble-description">A committee studies the bill in detail and may suggest changes</div>
-                    <div class="bubble-hint">Click to see more</div>
-                </div>
-                <div class="process-bubble" onclick="showDetail(4)">
-                    <div class="bubble-number">4</div>
-                    <div class="bubble-title">Report Stage: Back to the Chamber</div>
-                    <div class="bubble-description">The bill returns to the chamber with committee changes for debate</div>
-                    <div class="bubble-hint">Click to see more</div>
-                </div>
-                <div class="process-bubble" onclick="showDetail(5)">
-                    <div class="bubble-number">5</div>
-                    <div class="bubble-title">Third Reading: Debate and Vote</div>
-                    <div class="bubble-description">Final debate and vote to send the bill to the other chamber</div>
-                    <div class="bubble-hint">Click to see more</div>
-                </div>
-                <div class="process-bubble" onclick="showDetail(6)">
-                    <div class="bubble-number">6</div>
-                    <div class="bubble-title">Sent to the Other Chamber</div>
-                    <div class="bubble-description">The bill goes through the same process in the other house</div>
-                    <div class="bubble-hint">Click to see more</div>
-                </div>
-                <div class="process-bubble" onclick="showDetail(7)">
-                    <div class="bubble-number">7</div>
-                    <div class="bubble-title">Royal Assent: Becoming a Law</div>
-                    <div class="bubble-description">The Governor General grants Royal Assent and the bill becomes law</div>
-                    <div class="bubble-hint">Click to see more</div>
-                </div>
-            </div>
-        </div>
-
         <h2 class="section-title">Interactive Games & Tools</h2>
         <div class="games-grid">
             <div class="game-card">
-                <div class="game-icon">🇨🇦</div>
-                <div class="game-title">Canadian Honours Quiz</div>
-                <div class="game-description">Discover which Canadian awards and honours you may be eligible for based on your achievements, service, and contributions to Canada.</div>
+                <div class="game-icon"></div>
+                <div class="game-title">Canadian Awards Quiz</div>
+                <div class="game-description">Find out which Canadian awards you might be eligible for based on your achievements, service, and contributions.</div>
                 <a href="canadian-honours-quiz.html" class="game-button">Take the quiz →</a>
             </div>
 
             <div class="game-card">
-                <div class="game-icon">📜</div>
+                <div class="game-icon"></div>
                 <div class="game-title">How a Bill Becomes Law</div>
-                <div class="game-description">Explore the Canadian legislative process with an interactive clickable flow. Learn how bills move through Parliament to become law.</div>
+                <div class="game-description">Interactive guide to the Canadian legislative process. See how bills move through Parliament to become law.</div>
                 <a href="how-bill-becomes-law.html" class="game-button">Explore the process →</a>
             </div>
 
             <div class="game-card">
-                <div class="game-icon">🏛️</div>
+                <div class="game-icon"></div>
                 <div class="game-title">Who's Responsible? (Canada)</div>
-                <div class="game-description">Quickly understand which level of government is responsible for services in Canada. Federal, Provincial, or Municipal—explained by topic.</div>
-                <a href="government-responsibilities.html" class="game-button secondary">Explore responsibilities →</a>
+                <div class="game-description">Find out which level of government handles different services in Canada. Federal, Provincial, or Municipal—organized by topic.</div>
+                <a href="government-responsibilities.html" class="game-button">Explore responsibilities →</a>
             </div>
 
-            <div class="game-card">
-                <div class="game-icon">🎮</div>
-                <div class="game-title">Who's Responsible? Game</div>
-                <div class="game-description">Test your civic knowledge! Drag and drop topics into the correct government level. Learn mode or strict mode—your choice.</div>
-                <a href="government-responsibilities-game.html" class="game-button">Play the game →</a>
-            </div>
 
             <div class="game-card">
-                <div class="game-icon">🏛️</div>
+                <div class="game-icon"></div>
                 <div class="game-title">Who Does What? — House of Commons</div>
-                <div class="game-description">Match parliamentary roles to their responsibilities. Learn how the House of Commons functions day-to-day through interactive gameplay.</div>
-                <a href="house-of-commons-roles.html" class="game-button secondary">Play the game →</a>
+                <div class="game-description">Match parliamentary roles to their responsibilities. Learn how the House of Commons works day-to-day.</div>
+                <a href="house-of-commons-roles.html" class="game-button">Play the game →</a>
             </div>
 
             <div class="game-card">
-                <div class="game-icon">💬</div>
+                <div class="game-icon"></div>
                 <div class="game-title">Who Said This? — Commons Edition</div>
-                <div class="game-description">Match parliamentary quotes to the roles that use them. Learn procedural language and parliamentary traditions through historical context.</div>
+                <div class="game-description">Match parliamentary quotes to the roles that use them. Learn procedural language and parliamentary traditions.</div>
                 <a href="house-of-commons-quotes.html" class="game-button">Play the game →</a>
             </div>
 
             <div class="game-card">
-                <div class="game-icon">🕰️</div>
+                <div class="game-icon"></div>
                 <div class="game-title">A Day in the Chamber</div>
-                <div class="game-description">Arrange events of a Commons sitting day in order, then identify key roles. Learn the daily structure and flow of Parliament.</div>
-                <a href="day-in-the-chamber.html" class="game-button secondary">Play the game →</a>
+                <div class="game-description">Arrange events of a Commons sitting day in order, then identify key roles. Learn the daily structure of Parliament.</div>
+                <a href="day-in-the-chamber.html" class="game-button">Play the game →</a>
             </div>
 
             <div class="game-card">
-                <div class="game-icon">🎯</div>
+                <div class="game-icon"></div>
                 <div class="game-title">Commons Roles Bingo</div>
-                <div class="game-description">Lightweight bingo game! Click the matching role as definitions appear. Quick and shareable way to learn parliamentary roles.</div>
+                <div class="game-description">Lightweight bingo game. Click the matching role as definitions appear. Quick way to learn parliamentary roles.</div>
                 <a href="commons-roles-bingo.html" class="game-button">Play the game →</a>
             </div>
         </div>
     </div>
 
-    <div class="detail-modal" id="detailModal" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeModal()">×</button>
-            <div id="modalContent"></div>
-        </div>
-    </div>
-
     <div id="footer"></div>
-
-    <script>
-        const stepDetails = {
-            1: {
-                title: "First Reading: Introducing the Bill",
-                content: `
-                    <p>First reading is the initial step in a bill's progress through Parliament. The parliamentarian proposing the bill will introduce it in the parliamentarian's chamber. Although this step is called first reading, the bill is not actually read aloud in the chamber – it is made available for parliamentarians and Canadians to read and examine.</p>
-                    <p><strong>Bill is printed</strong> and made available for review.</p>
-                    <div class="info-box">
-                        <p><strong>Note:</strong> Bills can be introduced in either the Senate (identified with "S" like Bill S-4) or the House of Commons (identified with "C" like Bill C-78). All bills are numbered chronologically within each session of Parliament.</p>
-                    </div>
-                `
-            },
-            2: {
-                title: "Second Reading: Debating the Idea",
-                content: `
-                    <p>During second reading, parliamentarians debate the principle (or main idea) of the bill. They examine its strengths and weaknesses and talk about how it might affect different groups of people. This gives parliamentarians (and other Canadians) a chance to listen to different perspectives and opinions on the bill.</p>
-                    <p>After the time for debate is over, parliamentarians vote on whether the bill will continue through the process. If the vote supports the bill, the House may decide to refer the bill to a legislative committee, standing committee, special committee, or Committee of the Whole.</p>
-                `
-            },
-            3: {
-                title: "Committee Stage: Discussion and Hearing Witnesses",
-                content: `
-                    <p>At the committee stage, the bill is studied in detail by a smaller group of parliamentarians, called a parliamentary committee. This is a <strong>clause-by-clause study</strong> of the bill.</p>
-                    <p>Committee can summon witnesses and experts to provide it with information and help in improving the bill. Committee members hold hearings where interested individuals and representatives from organizations can comment on the bill.</p>
-                    <p>Committees examine bills clause by clause (section by section) and can suggest amendments (changes) to the bill. Once this process is complete, the chairperson of the committee submits a report back to the chamber.</p>
-                `
-            },
-            4: {
-                title: "Report Stage: Back to the Chamber",
-                content: `
-                    <p>At the report stage, the committee reports the bill to the House clearly indicating any amendments proposed. The bill is returned to the chamber where it was introduced and debated again, including any changes proposed by the committee.</p>
-                    <p>House considers amendments and votes for or against them. Parliamentarians can suggest additional changes at this time and those amendments may be debated. When they have voted on the amendments, the bill is finalized, and it is ready for third reading.</p>
-                `
-            },
-            5: {
-                title: "Third Reading: Debate and Vote",
-                content: `
-                    <p>During third reading, parliamentarians debate and vote on bill as amended. This is the final debate and vote on the bill in the chamber where it was introduced. In the Senate, amendments may be made at third reading.</p>
-                    <p>If the bill is passed by a majority of parliamentarians at third reading, <strong>once the bill has been read 3 times in the House, it is sent to the Senate for its consideration</strong> (or vice versa if it started in the Senate).</p>
-                    <div class="info-box">
-                        <p><strong>Note:</strong> If a bill is rejected or if a decision is not made before a session of Parliament ends, the bill stops going through the legislative process and would need to be reintroduced in a new session.</p>
-                    </div>
-                `
-            },
-            6: {
-                title: "Sent to the Other Chamber",
-                content: `
-                    <p>Most bills begin in the House of Commons and are sent to the Senate for review. Bills can also start in the Senate and then go to the House of Commons for review.</p>
-                    <p>When a bill is sent from one chamber to the other, the bill is read again for the first time and goes through the same steps (first reading, second reading, committee stage, report stage, and third reading).</p>
-                    <p>If the reviewing chamber makes any changes, the bill gets sent back to the initial chamber for further review. Messages may go back and forth between the chambers as amendments are debated. Most amendments are intended to clarify, simplify or improve a bill.</p>
-                `
-            },
-            7: {
-                title: "Royal Assent: Becoming a Law",
-                content: `
-                    <p>In Canada's constitutional monarchy, bills require the assent of the Monarch to become a law. Once both the Senate and the House of Commons have passed a bill in identical form, in both official languages, <strong>the bill is presented to the Governor General for assent</strong>.</p>
-                    <p>The Governor General may assent to Bill in the Queen's name, withhold assent, or reserve assent. Royal Assent may be granted by a nod of the head in a traditional Royal Assent ceremony in the Senate Chamber or by the Governor General signing the bill.</p>
-                    <p>Once the bill receives Royal Assent, it officially becomes a law.</p>
-                    <div class="info-box">
-                        <p><strong>Historical Note:</strong> Royal Assent has never been refused to a federal bill in Canada.</p>
-                    </div>
-                `
-            }
-        };
-
-        function showDetail(stepNumber) {
-            const modal = document.getElementById('detailModal');
-            const content = document.getElementById('modalContent');
-            const details = stepDetails[stepNumber];
-            
-            content.innerHTML = `
-                <h2 class="modal-title">${details.title}</h2>
-                ${details.content}
-            `;
-            
-            modal.classList.add('show');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(event) {
-            if (event && event.target !== event.currentTarget) return;
-            const modal = document.getElementById('detailModal');
-            modal.classList.remove('show');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Close on Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-    </script>
 </body>
 </html>

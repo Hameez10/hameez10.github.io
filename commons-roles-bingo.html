@@ -96,17 +96,17 @@
         .definition-card {
             background: white;
             border-radius: 20px;
-            padding: 2.5rem;
+            padding: 1.5rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             text-align: center;
-            min-height: 200px;
+            min-height: 150px;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
         .definition-text {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: var(--text-dark);
             line-height: 1.8;
             margin-bottom: 1rem;
@@ -120,19 +120,22 @@
         .bingo-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
+            gap: 0.5rem;
             margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .bingo-square {
             background: white;
-            border: 3px solid var(--text-light);
-            border-radius: 15px;
-            padding: 2rem 1rem;
+            border: 2px solid var(--text-light);
+            border-radius: 10px;
+            padding: 0.75rem 0.4rem;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 0.8rem;
             color: var(--text-dark);
             aspect-ratio: 1;
             display: flex;
@@ -173,9 +176,9 @@
         }
         .checkmark {
             position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            font-size: 1.5rem;
+            top: 0.3rem;
+            right: 0.3rem;
+            font-size: 1.2rem;
         }
         .action-buttons {
             display: flex;
@@ -267,8 +270,8 @@
                 font-size: 2rem;
             }
             .bingo-square {
-                padding: 1.5rem 0.5rem;
-                font-size: 1rem;
+                padding: 0.75rem 0.4rem;
+                font-size: 0.8rem;
             }
             .definition-text {
                 font-size: 1.1rem;
@@ -297,6 +300,7 @@
             <button class="btn btn-primary" id="startBtn" onclick="startGame()">Start Game</button>
             <button class="btn btn-secondary" onclick="resetGame()" id="resetBtn" style="display: none;">Reset</button>
             <button class="btn btn-secondary" onclick="newGame()" id="newGameBtn" style="display: none;">New Game</button>
+            <button class="btn btn-primary" id="nextBtn" onclick="skipToNext()" style="display: none;">Next Question</button>
         </div>
 
         <div class="score-section" id="scoreSection">
@@ -390,7 +394,7 @@
             },
             {
                 id: "role_backbencher",
-                label: "Backbencher",
+                label: "MP",
                 aliases: ["Backbench MP", "Backbench Member"],
                 short_definition: "Represents constituents and participates in debates and committees.",
                 key_functions: [
@@ -554,11 +558,32 @@
             });
         }
 
+        function resetBingoCards() {
+            // Clear marked squares for the new question
+            markedSquares.clear();
+            
+            // Reset all squares to their original state
+            document.querySelectorAll('.bingo-square').forEach(square => {
+                // Remove visual feedback classes
+                square.classList.remove('correct', 'incorrect', 'marked');
+                
+                // Restore original text (remove checkmarks)
+                const roleId = square.dataset.roleId;
+                const role = rolesData.find(r => r.id === roleId);
+                if (role) {
+                    square.textContent = role.label;
+                }
+            });
+        }
+
         function showNextDefinition() {
             if (currentDefinitionIndex >= currentDefinitions.length) {
                 endGame();
                 return;
             }
+            
+            // Reset all bingo cards to their original state
+            resetBingoCards();
             
             const def = currentDefinitions[currentDefinitionIndex];
             const role = rolesData.find(r => r.id === def.roleId);
@@ -578,6 +603,9 @@
             
             document.getElementById('progressIndicator').textContent = 
                 `Definition ${currentDefinitionIndex + 1} of ${currentDefinitions.length}`;
+            
+            // Hide the Next Question button when showing a new definition
+            document.getElementById('nextBtn').style.display = 'none';
         }
 
         function handleSquareClick(roleId, square) {
@@ -589,17 +617,24 @@
                 markedSquares.add(square.dataset.roleId);
                 correctCount++;
                 
-                // Move to next definition after a short delay
+                // Show Next Question button and move to next definition after a short delay
+                document.getElementById('nextBtn').style.display = 'block';
                 setTimeout(() => {
-                    currentDefinitionIndex++;
-                    showNextDefinition();
+                    skipToNext();
                 }, 1000);
             } else {
                 square.classList.add('incorrect');
+                // Show Next Question button after incorrect answer
+                document.getElementById('nextBtn').style.display = 'block';
                 setTimeout(() => {
                     square.classList.remove('incorrect');
                 }, 1000);
             }
+        }
+
+        function skipToNext() {
+            currentDefinitionIndex++;
+            showNextDefinition();
         }
 
         function endGame() {
@@ -638,6 +673,7 @@
             document.getElementById('startBtn').style.display = 'block';
             document.getElementById('resetBtn').style.display = 'none';
             document.getElementById('newGameBtn').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'none';
         }
 
         function newGame() {

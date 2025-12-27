@@ -422,10 +422,6 @@
                 <p><strong>This game explores how the Canadian House of Commons functions day-to-day.</strong></p>
                 <p>It focuses on roles and procedures—not political views.</p>
             </div>
-            <div class="mode-toggle">
-                <button class="mode-btn active" data-mode="learning">Learning Mode</button>
-                <button class="mode-btn" data-mode="strict">Strict Mode</button>
-            </div>
         </div>
 
         <div class="game-container">
@@ -662,7 +658,7 @@
             roles: [],
             responsibilities: []
         };
-        let gameMode = "learning";
+        let gameMode = "learning"; // Always learning mode now
         let answersChecked = false;
         let roleAssignments = {}; // responsibility -> [roles]
 
@@ -1000,14 +996,7 @@
             document.getElementById('newRoundBtn').style.display = 'none';
         }
 
-        // Mode toggle
-        document.querySelectorAll('.mode-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                gameMode = this.dataset.mode;
-            });
-        });
+        // Mode toggle removed - always using learning mode
 
         // Close modal on Escape
         document.addEventListener('keydown', function(e) {

@@ -1,6 +1,14 @@
 // Function to load and inject the navbar
 async function loadNavbar() {
     try {
+        // Check if navbar already exists and is complete
+        const existingNav = document.querySelector('nav.navbar');
+        if (existingNav && existingNav.querySelector('.nav-links')) {
+            // Navbar already exists, just initialize it
+            initializeNavbar();
+            return;
+        }
+
         // Try different relative paths to handle various page locations
         const paths = [
             './components/navbar.html',
@@ -23,14 +31,13 @@ async function loadNavbar() {
 
         if (navbarHtml) {
             // Try to find existing navbar and replace it
-            const existingNav = document.querySelector('nav.navbar');
             const navbarPlaceholder = document.getElementById('navbar-placeholder');
             
             if (navbarPlaceholder) {
                 // Use placeholder if it exists
                 navbarPlaceholder.innerHTML = navbarHtml;
             } else if (existingNav) {
-                // Replace existing navbar
+                // Replace existing navbar only if it's incomplete
                 existingNav.outerHTML = navbarHtml;
             } else {
                 // Insert at the beginning of body or content-wrapper
@@ -41,10 +48,18 @@ async function loadNavbar() {
             
             initializeNavbar();
         } else {
-            throw new Error('Could not load navbar from any path');
+            // If we can't load navbar component, just initialize existing navbar
+            if (existingNav) {
+                initializeNavbar();
+            }
         }
     } catch (error) {
         console.error('Error loading navbar:', error);
+        // Fallback: initialize existing navbar if it exists
+        const existingNav = document.querySelector('nav.navbar');
+        if (existingNav) {
+            initializeNavbar();
+        }
     }
 }
 
